@@ -1,0 +1,38 @@
+{
+    "format_version": 2,
+    "header": {
+        "description": "私が作りました",
+        "name": "GachaPvP BP",
+        "uuid": "10c4b93c-e52a-4822-b940-b4a1c808e280",
+        "version": [1, 0, 0],
+        "min_engine_version": [1, 21, 0]
+    },
+    "modules": [
+        {
+            "type": "data",
+            "uuid": "d5b5c0bb-e6a0-4b80-9bd7-cd022a0ddc57",
+            "version": [1, 0, 0]
+        },
+        {
+            "type": "script",
+            "language": "javascript",
+            "entry": "scripts/bundle.js",
+            "uuid": "7c34ccc7-de9d-405a-95ed-838339ca6498",
+            "version": [1, 0, 0]
+        }
+    ],
+    "dependencies": [
+        {
+			"uuid": "8e97c6db-b108-4429-a276-60250ae1e4b6",
+            "version": [1, 0, 0]
+		},
+        {
+            "module_name": "@minecraft/server",
+            "version": "1.16.0"
+        },
+        {
+            "module_name": "@minecraft/server-ui",
+            "version": "1.3.0"
+        }
+    ]
+}
