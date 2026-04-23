@@ -1,0 +1,14 @@
+{
+	"format_version": "1.20.80",
+	"minecraft:block": {
+		"description": {
+			"identifier": "vtv_armor:shadow_block"
+		},
+		"components": {
+			"minecraft:destructible_by_explosion": false,
+			"minecraft:collision_box": false,
+			"minecraft:display_name": "触れない！",
+			"minecraft:destructible_by_mining": false
+		}
+	}
+}

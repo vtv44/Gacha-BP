@@ -1,0 +1,14 @@
+{
+	"format_version": "1.20.80",
+	"minecraft:block": {
+		"description": {
+			"identifier": "vtv_armor:anti_3"
+		},
+		"components": {
+			"minecraft:destructible_by_explosion": false,
+			"minecraft:collision_box": false,
+			"minecraft:display_name": "安置3",
+			"minecraft:destructible_by_mining": false
+		}
+	}
+}
