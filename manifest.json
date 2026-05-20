@@ -1,38 +1,38 @@
 {
     "format_version": 2,
     "header": {
-        "description": "私が作りました",
         "name": "GachaPvP BP",
-        "uuid": "10c4b93c-e52a-4822-b940-b4a1c808e280",
+        "description": "GachaPVP V3kurai",
+        "uuid": "da94a94d-0f3c-48b6-8865-96b786c35943",
         "version": [1, 0, 0],
         "min_engine_version": [1, 21, 0]
     },
     "modules": [
         {
             "type": "data",
-            "uuid": "d5b5c0bb-e6a0-4b80-9bd7-cd022a0ddc57",
+            "uuid": "58b26105-8925-4595-849f-2026afdc14e2",
             "version": [1, 0, 0]
         },
         {
             "type": "script",
             "language": "javascript",
-            "entry": "scripts/bundle.js",
-            "uuid": "7c34ccc7-de9d-405a-95ed-838339ca6498",
+            "entry": "scripts/main.js",
+            "uuid": "0ed9f2fc-5a5e-46b5-9d88-7e03988dfd17",
             "version": [1, 0, 0]
         }
     ],
     "dependencies": [
         {
-			"uuid": "8e97c6db-b108-4429-a276-60250ae1e4b6",
+			"uuid": "31cad06f-f659-47c0-a2b8-f5b9e2e3888f",
             "version": [1, 0, 0]
 		},
         {
             "module_name": "@minecraft/server",
-            "version": "1.16.0"
+            "version": "2.6.0"
         },
         {
             "module_name": "@minecraft/server-ui",
-            "version": "1.3.0"
+            "version": "2.0.0"
         }
     ]
 }
