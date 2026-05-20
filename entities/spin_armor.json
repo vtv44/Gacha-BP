@@ -1,0 +1,30 @@
+{
+    "format_version": "1.21.44",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "gacha:spin_armor",
+            "is_spawnable": false,
+            "is_summonable": true
+        },
+        "components": {
+            "minecraft:health": {
+                "value": 99999999,
+                "max": 99999999
+            },
+            "minecraft:collision_box": {
+                "width": 3.0,
+                "height": 3.0
+            },
+            "minecraft:physics": {
+                "has_gravity": true
+            },
+            "minecraft:knockback_resistance": {
+                "value": 100.0
+            },
+            "minecraft:nameable": {
+                "always_show": true,
+                "allow_name_tag_renaming": true
+            }
+        }
+    }
+}
