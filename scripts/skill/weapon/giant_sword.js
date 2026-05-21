@@ -11,7 +11,7 @@ export class giantSwordSkill extends skillBase {
     execute(player) {
         const dimension = player.dimension;
         const teamObjective = world.scoreboard.getObjective("team");
-        const teamScore = teamObjective ? teamObjective.getScore(player.name) ?? -1 : -1;
+        const teamScore = teamObjective ? teamObjective.getScore(player) ?? -1 : -1;
 
         const viewDir = player.getViewDirection();
         const pos = player.location;
@@ -24,7 +24,7 @@ export class giantSwordSkill extends skillBase {
 
         const sword = dimension.spawnEntity("gacha:giant_ironsword", spawnPos);
 
-        sword.applyKnockback(0, 0, 0, -3);
+        sword.applyKnockback({x: 0, z: 0}, -3);
 
         let prevY = spawnPos.y;
         let tickCount = 0;
@@ -33,7 +33,7 @@ export class giantSwordSkill extends skillBase {
         const checkId = system.runInterval(() => {
             tickCount++;
 
-            if (!sword.isValid() || tickCount > maxTicks) {
+            if (!sword.isValid || tickCount > maxTicks) {
                 system.clearRun(checkId);
                 return;
             }
