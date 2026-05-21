@@ -1,4 +1,4 @@
 import { skillManager } from "./skillManager";
-import { FlameSkill } from "./spell/FlameSkill";
+import { redMagicSkill } from "./spell/redMagicSkill";
 
-skillManager.register(new FlameSkill())
+skillManager.register(new redMagicSkill())
