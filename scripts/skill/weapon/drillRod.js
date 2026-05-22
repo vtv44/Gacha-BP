@@ -7,7 +7,7 @@ export class drillRodSkill extends skillBase {
         super()
 
         this.id = "§g=魔杖= -ラ・グルトア-"
-        this.cooldown = 2 * 20
+        this.cooldown = 45 * 20
     }
 
     execute(player) {

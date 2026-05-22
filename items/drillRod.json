@@ -1,0 +1,18 @@
+{
+    "format_version": "1.21.60",
+    "minecraft:item": {
+        "description": {
+            "identifier": "gacha:drillRod",
+            "menu_category": {
+                "category": "items"
+            }
+        },
+        "components": {
+            "minecraft:icon": "blaze_rod",
+            "minecraft:max_stack_size": 1,
+            "minecraft:display_name": {
+                "value": "§g=魔杖= -ラ・グルトア-"
+            }
+        }
+    }
+}
