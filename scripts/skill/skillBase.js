@@ -20,11 +20,26 @@ export class skillBase {
         const cooltime = CooldownManager.getRemaining(player, this.id) / 20
 
         player.onScreenDisplay.setActionBar(
-            `§cスキルは${Math.floor(cooltime)}秒間使用できません`
+            `§cスキルは${Math.floor(cooltime) + 1}秒間使用できません`
         )
     }
 
     execute(player, event) {}
+
+    getTargets(player, location, maxDis, minDis = 0, exclude = true) {
+        const teamScore = world.scoreboard.getObjective("team").getScore(player)
+        return player.dimension.getPlayers({
+            location: location,
+            maxDistance: maxDis,
+            minDistance: minDis,
+            scoreOptions: [{
+                objective: "team",
+                minScore: teamScore,
+                maxScore: teamScore,
+                exclude: exclude
+            }]
+        })
+    }
 
     onCooldown(player) {
         CooldownManager.set(player, this.id, this.cooldown)

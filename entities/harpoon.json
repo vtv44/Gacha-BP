@@ -1,0 +1,35 @@
+{
+    "format_version": "1.26.0",
+    "minecraft:entity": {
+        "description": {
+            "identifier": "gacha:harpoon",
+            "is_spawnable": false,
+            "is_summonable": true
+        },
+        "components": {
+            "minecraft:projectile": {
+                "anchor": 0,
+                "angle_offset": 0,
+                "filter": "",
+                "gravity": 0.01,
+                "hit_sound": "",
+                "homing": false,
+                "inertia": 0.99,
+                "knockback": true,
+                "liquid_inertia": 0.99,
+                "offset": [0, 0, 0],
+                "on_hit": {
+                    "impact_damage": {
+                        "damage": 7
+                    },
+                    "stick_in_ground": {}
+                },
+                "particle": "iconcrack",
+                "power": 3.0,
+                "shoot_sound": "",
+                "shoot_target": true,
+                "should_bounce": false
+            }
+        }
+    }
+}

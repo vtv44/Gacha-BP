@@ -6,23 +6,14 @@ export class redMagicSkill extends skillBase {
     constructor() {
         super()
         
-        this.id = "§c赤色の魔力"
+        this.id = "§f赤色の魔力"
         this.cooldown = 15 * 20
     }
 
     execute(player) {
         const dimension = player.dimension
         const teamScore = world.scoreboard.getObjective("team").getScore(player)
-        const players = dimension.getEntities({
-            location: player.location,
-            maxDistance: 5,
-            scoreOptions: [{
-                objective: "team",
-                minScore: teamScore,
-                maxScore: teamScore,
-                exclude: true
-            }]
-        })
+        const players = this.getTargets(player, player.location, 5)
         for (const p of players) {
             p.setOnFire(6)
         }
