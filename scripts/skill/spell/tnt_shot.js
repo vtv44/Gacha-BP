@@ -24,9 +24,9 @@ export class tntshotSkill extends skillBase {
         system.runTimeout(() => {
             if (!tnt.isValid) return;
             tnt.applyImpulse({
-                x: viewDir.x * 3,
-                y: viewDir.y * 3,
-                z: viewDir.z * 3
+                x: viewDir.x * 1,
+                y: viewDir.y * 1,
+                z: viewDir.z * 1
                             });
                         }, 1);
 
