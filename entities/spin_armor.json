@@ -24,6 +24,11 @@
             "minecraft:nameable": {
                 "always_show": true,
                 "allow_name_tag_renaming": true
+            },
+            "minecraft:damage_sensor": {
+                "triggers": {
+                    "deals_damage": "no"
+                            }
             }
         }
     }

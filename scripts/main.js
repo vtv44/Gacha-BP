@@ -41,3 +41,22 @@ world.afterEvents.itemUse.subscribe(ev => {
     if (!skill) return;
     skill.use(source, ev);
 })
+
+world.afterEvents.entityHitEntity.subscribe((event) => {
+    const { damagingEntity, hitEntity } = event;
+
+    if (damagingEntity.typeId !== "minecraft:player") return;
+
+    const destinations = {
+        "gacha:spin_sword": "-300 0 0",
+        "gacha:spin_armor": "300 0 0",
+        "gacha:spin_book": "0 0 300"
+    };
+
+    const dest = destinations[hitEntity.typeId];
+    if (!dest) return;
+
+    damagingEntity.runCommand(`tp @s ${dest}`);
+    damagingEntity.runCommand("playsound beacon.power @s");
+    damagingEntity.runCommand("playsound mob.endermen.portal @s");
+});

@@ -1,11 +1,11 @@
-import { world, system } from "@minecraft/server";
+import { world, system, Effect } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class giantSwordSkill extends skillBase {
     constructor() {
         super();
         this.id = "§6ジャイアントソード";
-        this.cooldown = 20 * 20;
+        this.cooldown = 1 * 1;
     }
 
     execute(player) {
@@ -17,14 +17,17 @@ export class giantSwordSkill extends skillBase {
         const pos = player.location;
 
         const spawnPos = {
-            x: pos.x + viewDir.x * 8,
-            y: pos.y + viewDir.y * 8 + 20,
-            z: pos.z + viewDir.z * 8
+            x: pos.x + viewDir.x * 10,
+            y: pos.y + viewDir.y * 10 + 50,
+            z: pos.z + viewDir.z * 10
         };
 
         const sword = dimension.spawnEntity("gacha:giant_ironsword", spawnPos);
 
-        sword.applyKnockback({x: 0, z: 0}, -3);
+        system.runTimeout(() => {
+        if (!sword.isValid) return;
+        sword.applyImpulse({ x: 0, y: -500, z: 0 });
+        }, 2);
 
         let prevY = spawnPos.y;
         let tickCount = 0;
@@ -45,29 +48,30 @@ export class giantSwordSkill extends skillBase {
 
                 const landPos = sword.location;
 
-                dimension.runCommand(`particle minecraft:huge_explosion_emitter ${landPos.x} ${landPos.y} ${landPos.z}`)
-                dimension.runCommand(`playsound random.explode @a ${landPos.x} ${landPos.y} ${landPos.z}`)
+                system.runTimeout(() => {
+                    dimension.runCommand(`particle ptl:fire_scatter ${landPos.x} ${landPos.y} ${landPos.z}`)
+                    dimension.runCommand(`playsound random.anvil_land @a ${landPos.x} ${landPos.y} ${landPos.z}`)
 
+                    const targets = dimension.getEntities({
+                        location: landPos,
+                        maxDistance: 4.0,
+                        type: "minecraft:player",
+                        ...(teamScore !== -1 ? {
+                            scoreOptions: [{
+                                objective: "team",
+                                minScore: teamScore,
+                                maxScore: teamScore,
+                                exclude: true
+                            }]
+                        } : {})
+                    });
 
-                const targets = dimension.getEntities({
-                    location: landPos,
-                    maxDistance: 6,
-                    type: "minecraft:player",
-                    ...(teamScore !== -1 ? {
-                        scoreOptions: [{
-                            objective: "team",
-                            minScore: teamScore,
-                            maxScore: teamScore,
-                            exclude: true
-                        }]
-                    } : {})
-                });
+                    for (const target of targets) {
+                        target.applyDamage(5);
+                    }
 
-                for (const target of targets) {
-                    target.applyDamage(10);
-                }
-
-                sword.remove();
+                    sword.remove();
+                }, 5);
             }
 
             prevY = currentY;

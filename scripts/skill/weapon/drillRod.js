@@ -1,4 +1,4 @@
-import { system, world } from "@minecraft/server";
+import { EntityDamageCause, system, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class drillRodSkill extends skillBase {
@@ -37,7 +37,7 @@ export class drillRodSkill extends skillBase {
                 dimension.runCommand(`fill ${x + 1} ${y + 1} ${z + 1} ${x - 1} ${y - 1} ${z - 1} air`)
                 const targets = this.getTargets(player, atkPos, 2)
                 for (const t of targets) {
-                    t.applyDamage(6, {damagingEntity: source, cause: EntityDamageCause.entityAttack})
+                    t.applyDamage(6, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
                 }
             }
         }, 58)
