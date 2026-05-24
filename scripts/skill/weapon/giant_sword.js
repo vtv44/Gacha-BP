@@ -1,17 +1,15 @@
-import { world, system, Effect } from "@minecraft/server";
+import { world, system } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class giantSwordSkill extends skillBase {
     constructor() {
         super();
         this.id = "§6ジャイアントソード";
-        this.cooldown = 1 * 1;
+        this.cooldown = 20 * 5;
     }
 
     execute(player) {
         const dimension = player.dimension;
-        const teamObjective = world.scoreboard.getObjective("team");
-        const teamScore = teamObjective ? teamObjective.getScore(player) ?? -1 : -1;
 
         const viewDir = player.getViewDirection();
         const pos = player.location;
@@ -25,8 +23,8 @@ export class giantSwordSkill extends skillBase {
         const sword = dimension.spawnEntity("gacha:giant_ironsword", spawnPos);
 
         system.runTimeout(() => {
-        if (!sword.isValid) return;
-        sword.applyImpulse({ x: 0, y: -500, z: 0 });
+            if (!sword.isValid) return;
+            sword.applyImpulse({ x: 0, y: -50, z: 0 });
         }, 2);
 
         let prevY = spawnPos.y;
@@ -52,19 +50,7 @@ export class giantSwordSkill extends skillBase {
                     dimension.runCommand(`particle ptl:fire_scatter ${landPos.x} ${landPos.y} ${landPos.z}`)
                     dimension.runCommand(`playsound random.anvil_land @a ${landPos.x} ${landPos.y} ${landPos.z}`)
 
-                    const targets = dimension.getEntities({
-                        location: landPos,
-                        maxDistance: 4.0,
-                        type: "minecraft:player",
-                        ...(teamScore !== -1 ? {
-                            scoreOptions: [{
-                                objective: "team",
-                                minScore: teamScore,
-                                maxScore: teamScore,
-                                exclude: true
-                            }]
-                        } : {})
-                    });
+                    const targets = this.getTargets(player, landPos, 4.0);
 
                     for (const target of targets) {
                         target.applyDamage(5);
