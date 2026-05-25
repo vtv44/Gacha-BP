@@ -24,7 +24,7 @@ export class skillBase {
         )
     }
 
-    execute(player, event) {}
+    execute(player) {}
 
     getTargets(player, location, maxDis, minDis = 0, exclude = true) {
         const teamScore = world.scoreboard.getObjective("team").getScore(player)
@@ -45,9 +45,10 @@ export class skillBase {
         CooldownManager.set(player, this.id, this.cooldown)
     }
 
+    onDamage(player, event) {}
     use(player, event) {
         if (!this.canUse(player)) return
 
-        this.execute(player, event)
+        this.execute(player)
     }
 }

@@ -9,6 +9,17 @@ export const weaponItems = [
 
     {
         amount: 1,
+        id: "",
+        name: "§a突撃槍",
+        rarity: "unCommon",
+        lore: [
+            "§b[拙い連撃] §5右クリック",
+            "§5攻撃を当てると一瞬だけ加速できる"
+        ],
+    },
+
+    {
+        amount: 1,
         id: "minecraft:iron_sword",
         name: "§1英雄の剣",
         rarity: "rare",
@@ -55,6 +66,7 @@ export const weaponItems = [
 
     // 追加テンプレ　レアリティが同じものを固めといてね
     {
+        amount: 1,
         id: "",
         rarity: "",
         name: "",

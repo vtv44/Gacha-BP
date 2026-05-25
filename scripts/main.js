@@ -2,6 +2,7 @@ import { world, system, ItemCompostableComponent } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
+import { gachaBase } from "./gacha/gachaBase";
 
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);
@@ -14,24 +15,24 @@ world.afterEvents.itemUse.subscribe(ev => {
     if (id === "minecraft:nether_star") {
         const form = new ActionFormData()
         .title("select")
-        .button("wpn")
-        .button("def")
-        .button("spl")
-        .button("hub");
+        .button("§l§cWEAPON")
+        .button("§l§bDEFENCE")
+        .button("§l§aMAGIC")
+        .button("§l§dHUB");
         form.show(source).then((res) => {
             if (res.canceled) return;
             switch(res.selection) {
                 case 0: 
-                    world.sendMessage(`wpn`);
+                    source.runCommand(`tp @s -300 0 0 90`);
                     break;
                 case 1: 
-                    world.sendMessage(`def`);
+                    source.runCommand(`tp @s 300 0 0 90`);
                     break;
                 case 2: 
-                    world.sendMessage(`spl`);
+                    source.runCommand(`tp @s 0 0 300 90`);
                     break;
                 case 3: 
-                    world.sendMessage(`hub`);
+                    source.runCommand(`tp @s 0 1 0 90`);
                     break;
             }
         }) 
@@ -64,3 +65,16 @@ world.afterEvents.entityHitEntity.subscribe((event) => {
         damagingEntity.runCommand("playsound mob.endermen.portal @s");
     }, 1);
 });
+
+world.afterEvents.entityHurt.subscribe(ev => {
+    const {damage, damageSource, hurtEntity} = ev;
+    const damagingEntity = damageSource.damagingEntity;
+    if (damagingEntity !== undefined) {
+        const container = damagingEntity.getComponent("inventory").container;
+        const item = container.getSlot(damagingEntity.selectedSlotIndex).getItem();
+
+        const skill = skillManager.get(item.nameTag);
+        if (!skill) return;
+        skill.onDamage(damagingEntity, ev);
+    }
+})

@@ -5,6 +5,7 @@ import { redMagicSkill } from "./spell/redMagicSkill";
 import { scannerSkill } from "./spell/scanner";
 import { smokeBombSkill } from "./spell/smoke_bomb";
 import { tntshotSkill } from "./spell/tnt_shot";
+import { assaultLance } from "./weapon/assaultLance";
 import { dashSlashSkill } from "./weapon/dash_sword";
 import { drillRodSkill } from "./weapon/drillRod";
 import { giantSwordSkill } from "./weapon/giant_sword";
@@ -24,3 +25,4 @@ skillManager.register(new tntshotSkill())
 skillManager.register(new dashSlashSkill())
 skillManager.register(new smokeBombSkill())
 skillManager.register(new phantomSwordSkill())
+skillManager.register(new assaultLance())
