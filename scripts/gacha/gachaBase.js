@@ -1,4 +1,19 @@
+import { ItemStack } from "@minecraft/server"
+import { weaponItems } from "./weaponGacha/weaponItems"
+
 export class gachaBase {
+
+    giveItem(player, itemInfo) {
+        const item = new ItemStack(itemInfo.id, itemInfo.amount)
+        item.nameTag = itemInfo.name
+        item.setLore() = itemInfo.lore
+        player.getComponent("inventory").container.addItem(item)
+    }
+
+    hasCoin(player) {
+        // コインの所持の仕方を決める
+    }
+
     lottery(max) {
         // AI code しんじるな
         const maxUint32 = 0xFFFFFFFF

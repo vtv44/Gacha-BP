@@ -1,15 +1,17 @@
 export const weaponItems = [
     {
+        amount: 1,
         id: "",
-        rarity: "unCommon",
         name: "§a疾風の剣",
+        rarity: "unCommon",
         lore: [],
     },
 
     {
+        amount: 1,
         id: "minecraft:iron_sword",
-        rarity: "rare",
         name: "§1英雄の剣",
+        rarity: "rare",
         lore: [
             "§f[踏み込んだ一撃] §5右クリック",
             "§5前方に斬撃を二度放ってから突進する"
@@ -17,23 +19,26 @@ export const weaponItems = [
     },
 
     {
+        amount: 1,
         id: "",
-        rarity: "epic",
         name: "§dファントムソード",
+        rarity: "epic",
         lore: [],
     },
 
     {
+        amount: 1,
         id: "",
-        rarity: "epic",
         name: "§5暴れる重力",
+        rarity: "epic",
         lore: [],
     },
     
     {
+        amount: 1,
         id: "gacha:drillRod",
-        rarity: "legendary",
         name: "§6=魔杖= -ラ・グルトア-",
+        rarity: "legendary",
         lore: [
             "§c[§bアブルドブラスト§c] §5右クリック",
             "短時間の詠唱後、前方長距離に高威力の魔術を放つ"
@@ -41,9 +46,10 @@ export const weaponItems = [
     },
 
     {
+        amount: 1,
         id: "",
-        rarity: "legendary",
         name: "§6ジャイアントソード",
+        rarity: "legendary",
         lore: [],
     },
 
