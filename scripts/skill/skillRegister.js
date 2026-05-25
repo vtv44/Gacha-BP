@@ -10,7 +10,7 @@ import { drillRodSkill } from "./weapon/drillRod";
 import { giantSwordSkill } from "./weapon/giant_sword";
 import { heroSwordSkill } from "./weapon/heroSword";
 import { phantomSwordSkill } from "./weapon/phantom_sword";
-import { ragingGravitySkill } from "./weapon/raging_Gravity";
+import { ragingGravitySkill } from "./weapon/raging_gravity";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())

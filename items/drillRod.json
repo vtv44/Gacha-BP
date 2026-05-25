@@ -11,7 +11,10 @@
             "minecraft:icon": "blaze_rod",
             "minecraft:max_stack_size": 1,
             "minecraft:display_name": {
-                "value": "§g=魔杖= -ラ・グルトア-"
+                "value": "ドリルロッド"
+            },
+            "minecraft:damage": {
+                "value": 5
             }
         }
     }

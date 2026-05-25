@@ -6,8 +6,8 @@ export class drillRodSkill extends skillBase {
     constructor() {
         super()
 
-        this.id = "§g=魔杖= -ラ・グルトア-"
-        this.cooldown = 45 * 20
+        this.id = "§6=魔杖= -ラ・グルトア-"
+        this.cooldown = 35 * 20
     }
 
     execute(player) {
@@ -37,7 +37,7 @@ export class drillRodSkill extends skillBase {
                 dimension.runCommand(`fill ${x + 1} ${y + 1} ${z + 1} ${x - 1} ${y - 1} ${z - 1} air`)
                 const targets = this.getTargets(player, atkPos, 2)
                 for (const t of targets) {
-                    t.applyDamage(6, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
+                    t.applyDamage(16, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
                 }
             }
         }, 58)
