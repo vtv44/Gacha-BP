@@ -1,4 +1,4 @@
-export const divineWeapons = [
+export const legendarySpells = [
     {
         amount: 1,
         id: "",

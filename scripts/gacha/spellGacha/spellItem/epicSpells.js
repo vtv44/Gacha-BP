@@ -1,4 +1,4 @@
-export const divineWeapons = [
+export const epicSpells = [
     {
         amount: 1,
         id: "",
