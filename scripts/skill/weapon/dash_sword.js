@@ -1,7 +1,7 @@
 import { world, system } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
-export class dashSlashSkill extends skillBase {
+export class dashSwordSkill extends skillBase {
     constructor() {
         super();
         this.id = "§a疾風の剣";

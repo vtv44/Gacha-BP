@@ -26,7 +26,7 @@ export class smokeBombSkill extends skillBase {
             const len = Math.sqrt(dir.x ** 2 + dir.z ** 2) || 1;
             target.applyKnockback(
                 { x: dir.x / len, z: dir.z / len },
-                1.5
+                0.2
             );
         }
 

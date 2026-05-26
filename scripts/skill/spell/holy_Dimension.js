@@ -5,13 +5,17 @@ export class holyDimensionSkill extends skillBase {
     constructor() {
         super();
         this.id = "§5ホーリーディメンション";
-        this.cooldown = 20 * 20;
+        this.cooldown = 1 * 20;
     }
 
     execute(player) {
         const dimension = player.dimension;
+        const location = player.location;
+        
+        this.onCooldown(player);
 
-        const targets = this.getTargets(player, player.location, 5);
+        const targets = this.getTargets(player, location, 5);
+        if (targets.length === 0) return;
 
         for (const target of targets) {
             const pos = target.location;
@@ -21,6 +25,10 @@ export class holyDimensionSkill extends skillBase {
             system.runTimeout(() => {
                 if (!target.isValid) return;
 
+                // 発動時の位置で再度範囲チェック
+                const damaged = this.getTargets(player, pos, 3);
+                if (!damaged.includes(target)) return;
+
                 target.applyDamage(20);
                 dimension.spawnParticle("ptl:golden_ambition", pos);
                 dimension.spawnParticle("ptl:golden_burn", { x: pos.x, y: pos.y + 25, z: pos.z });
@@ -29,7 +37,5 @@ export class holyDimensionSkill extends skillBase {
                 player.runCommand(`playsound item.trident.thunder @a ~ ~ ~ 1 1`);
             }, 20);
         }
-
-        this.onCooldown(player);
     }
 }

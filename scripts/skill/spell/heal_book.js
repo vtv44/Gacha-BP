@@ -1,7 +1,7 @@
 import { world, system } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
-export class heal_bookSkill extends skillBase {
+export class healBookSkill extends skillBase {
     constructor() {
         super();
         this.id = "§a回復の本"; // アイテムのnameTagに合わせて変更してください
