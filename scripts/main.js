@@ -2,8 +2,6 @@ import { world, system, ItemCompostableComponent } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
-import { gachaBase } from "./gacha/gachaBase";
-import { weaponItems } from "./gacha/weaponGacha/weaponItems";
 
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);
@@ -73,6 +71,7 @@ world.afterEvents.entityHurt.subscribe(ev => {
     if (damagingEntity !== undefined) {
         const container = damagingEntity.getComponent("inventory").container;
         const item = container.getSlot(damagingEntity.selectedSlotIndex).getItem();
+        if(!item) return;
 
         const skill = skillManager.get(item.nameTag);
         if (!skill) return;
