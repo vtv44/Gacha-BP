@@ -3,6 +3,7 @@ import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
 import { gachaBase } from "./gacha/gachaBase";
+import { weaponItems } from "./gacha/weaponGacha/weaponItems";
 
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);
