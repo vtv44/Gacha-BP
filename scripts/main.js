@@ -1,15 +1,40 @@
-import { world, system, ItemCompostableComponent } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, EnchantmentTypes } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
+import { gachaBase } from "./gacha/gachaBase";
+import { rareWeapons } from "./gacha/weaponGacha/weaponItem/rareWeapons";
 
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);
+    const score = world.scoreboard;
+    if (!score.getObjective("team")) {
+        score.addObjective("team", "team");
+    }
+    if (!score.getObjective("coin")) {
+        score.addObjective("coin", "coin");
+    }
+})
+
+world.afterEvents.buttonPush.subscribe(ev => {
+    // atkGacha -322 3 0
+    // defGacha 278 3 0
+    // spellGacha -22 3 300
 })
 
 world.afterEvents.itemUse.subscribe(ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
+
+    if (id === "minecraft:emerald") {
+        new gachaBase().giveItem(source, rareWeapons[0])
+        new gachaBase().giveItem(source, rareWeapons[1])
+    }
+
+    if (id === "minecraft:iron_bar") {
+        const string = new gachaBase().lottery();
+        world.sendMessage(`${string}`);
+    }
 
     if (id === "minecraft:nether_star") {
         const form = new ActionFormData()
