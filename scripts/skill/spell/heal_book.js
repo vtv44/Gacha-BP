@@ -5,7 +5,7 @@ export class healBookSkill extends skillBase {
     constructor() {
         super();
         this.id = "§a回復の本"; // アイテムのnameTagに合わせて変更してください
-        this.cooldown = 1 * 20;
+        this.cooldown = 20 * 20;
     }
 
     execute(player) {

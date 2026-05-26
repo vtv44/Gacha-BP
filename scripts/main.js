@@ -31,7 +31,7 @@ world.afterEvents.itemUse.subscribe(ev => {
         new gachaBase().giveItem(source, rareWeapons[1])
     }
 
-    if (id === "minecraft:iron_bar") {
+    if (id === "minecraft:iron_ingot") {
         const string = new gachaBase().lottery();
         world.sendMessage(`${string}`);
     }

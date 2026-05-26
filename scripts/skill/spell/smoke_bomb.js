@@ -14,8 +14,7 @@ export class smokeBombSkill extends skillBase {
 
         dimension.spawnParticle("ptl:smoke_screen", location);
 
-        //atodenannkatuikasuru
-        //player.runCommand("playsound xxxx @a ~ ~ ~ 1 1");
+        player.runCommand("playsound random.explode @a ~ ~ ~ 1 1");
 
         const targets = this.getTargets(player, location, 5);
         for (const target of targets) {
