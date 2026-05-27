@@ -3,15 +3,16 @@ import { holyDimensionSkill } from "./spell/holy_Dimension";
 import { ragingGravitySkill } from "./spell/ragingGravity";
 import { redMagicSkill } from "./spell/redMagicSkill";
 import { scannerSkill } from "./spell/scanner";
-import { smokeBombSkill } from "./spell/smoke_Bomb";
+import { smokeBombSkill } from "./spell/smoke_bomb";
 import { assaultLance } from "./weapon/assaultLance";
 import { drillRodSkill } from "./weapon/drillRod";
-import { giantSwordSkill } from "./weapon/giant_Sword";
+import { giantSwordSkill } from "./weapon/giant_sword";
 import { heroSwordSkill } from "./weapon/heroSword";
-import { phantomSwordSkill } from "./weapon/phantom_Sword";
-import { healBookSkill } from "./spell/heal_Book";
-import { tntShotSkill } from "./spell/tnt_Shot";
-import { dashSwordSkill } from "./weapon/dash_Sword";
+import { phantomSwordSkill } from "./weapon/phantom_sword";
+import { healBookSkill } from "./spell/heal_book";
+import { tntShotSkill } from "./spell/tnt_shot";
+import { dashSwordSkill } from "./weapon/dash_sword";
+import { magicRevolverSkill } from "./weapon/magicRevolver";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -26,3 +27,4 @@ skillManager.register(new ragingGravitySkill())
 skillManager.register(new healBookSkill)
 skillManager.register(new tntShotSkill())
 skillManager.register(new dashSwordSkill())
+skillManager.register(new magicRevolverSkill())

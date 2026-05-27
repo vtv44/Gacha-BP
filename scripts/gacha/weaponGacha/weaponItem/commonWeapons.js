@@ -1,8 +1,8 @@
 export const commonWeapons = [
     {
         amount: 1,
-        id: "",
-        name: "",
+        id: "minecraft:stone_sword",
+        name: "§f石の剣",
         lore: [],
     },
 ]

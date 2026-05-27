@@ -1,4 +1,4 @@
-import { world } from "@minecraft/server"
+import { GameMode, world } from "@minecraft/server"
 import { CooldownManager } from "./cooldownManager"
 
 export class skillBase {
@@ -20,7 +20,7 @@ export class skillBase {
         const cooltime = CooldownManager.getRemaining(player, this.id) / 20
 
         player.onScreenDisplay.setActionBar(
-            `§cスキルは${Math.floor(cooltime) + 1}秒間使用できません`
+            `§cスキルは${cooltime}秒間使用できません`
         )
     }
 
@@ -37,7 +37,8 @@ export class skillBase {
                 minScore: teamScore,
                 maxScore: teamScore,
                 exclude: exclude
-            }]
+            }],
+            excludeGameModes: [GameMode.Spectator],
         })
     }
 

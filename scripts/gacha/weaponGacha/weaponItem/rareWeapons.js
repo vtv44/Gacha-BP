@@ -17,14 +17,8 @@ export const rareWeapons = [
         name: "§1エンチャントされた石の剣",
         lore: [],
         enchants: [
-            {
-                id: "sharpness",
-                level: 2
-            },
-            {
-                id: "knockback",
-                level: 2
-            }
+            {id: "sharpness", level: 2},
+            {id: "knockback", level: 2}
         ]
     },
     

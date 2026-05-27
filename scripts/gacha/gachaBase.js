@@ -14,6 +14,23 @@ export class gachaBase {
             {id: "divine", int: 100},
             {id: "special", int: 100},
         ]
+        this.returnPos = {x: 0, y: 0, z: 0}
+    }
+
+    decision(rarity) {
+        switch(rarity) {
+            case "common": return this.common()
+            case "unCommon": return this.unCommon()
+            case "rare": return this.rare()
+            case "epic": return this.epic()
+            case "legendary": return this.legendary()
+            case "mythic": return this.mythic()
+            case "divine": return this.divine()
+            case "special": return this.special() 
+            default: 
+                console.error("無効な数字が入力されました")
+                break;
+        }
     }
 
     giveItem(player, itemInfo) {
@@ -37,7 +54,7 @@ export class gachaBase {
         const coinScore = world.scoreboard.getObjective("coin")
         const playerCoin = coinScore.getScore(player)
 
-        if (!playerCoin || playerCoin < 0) return false
+        if (!playerCoin || playerCoin < this.cost) return false
         return true
     }
 
@@ -56,4 +73,22 @@ export class gachaBase {
         // 1 ~ max
         return Math.floor(Math.random() * max) + 1
     }
+
+    rollGacha(player) {
+        if (!this.hasCoin(player)) {
+            player.sendMessage("§cガチャを回すにはコインが足りません")
+            player.playSound("random.fizz", player.location)
+            return
+        }
+        this.decision(this.lottery())
+    }
+
+    common() {}
+    unCommon() {}
+    rare() {}
+    epic() {}
+    legendary() {}
+    mythic() {}
+    divine() {}
+    special() {}
 }

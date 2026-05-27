@@ -1,4 +1,4 @@
-import { world, system, ItemCompostableComponent, ItemStack, EnchantmentTypes } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, EnchantmentTypes, GameMode } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
@@ -25,11 +25,6 @@ world.afterEvents.buttonPush.subscribe(ev => {
 world.afterEvents.itemUse.subscribe(ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
-
-    if (id === "minecraft:emerald") {
-        new gachaBase().giveItem(source, rareWeapons[0])
-        new gachaBase().giveItem(source, rareWeapons[1])
-    }
 
     if (id === "minecraft:iron_ingot") {
         const string = new gachaBase().lottery();

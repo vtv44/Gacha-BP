@@ -32,6 +32,7 @@ export class drillRodSkill extends skillBase {
                     z: location.z + dir.z * i,
                 }
                 const {x, y, z} = atkPos
+                if (y < -64) return
                 dimension.spawnParticle("rpg:red_light_blue_magic_smoke", atkPos)
                 dimension.playSound("mob.irongolem.hit", atkPos, {pitch: 0.8, volume: 0.5})
                 dimension.runCommand(`fill ${x + 1} ${y + 1} ${z + 1} ${x - 1} ${y - 1} ${z - 1} air`)
