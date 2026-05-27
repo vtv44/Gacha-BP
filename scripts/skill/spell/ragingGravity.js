@@ -21,7 +21,6 @@ export class ragingGravitySkill extends skillBase {
 
     if (targets.length === 0) return;
 
-    // tellrawとplaysoundは一回だけ
     for (const target of targets) {
         target.runCommand("playsound mob.wither.ambient @a ~ ~ ~ 1 1");
         target.sendMessage({
