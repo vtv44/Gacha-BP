@@ -1,8 +1,8 @@
 export const specialWeapons = [
     {
         amount: 1,
-        id: "",
-        name: "",
+        id: "minecraft:iron_swrod  ",
+        name: "Hyperion",
         lore: []
     },
 ]

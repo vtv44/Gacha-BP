@@ -4,7 +4,7 @@ import { skillBase } from "../skillBase";
 export class cosmicMeteorSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§bコズミックメテオ"; // nameTagに合わせて変更
+        this.id = "§bコズミックメテオ";
         this.cooldown = 20 * 1;
     }
 
@@ -36,15 +36,12 @@ export class cosmicMeteorSkill extends skillBase {
 
             const crystal = dimension.spawnEntity("gacha:purple_crystal", spawnPos);
             crystals.push(crystal);
-
-            // 下方向にimpulse
             system.runTimeout(() => {
                 if (!crystal.isValid) return;
                 crystal.applyImpulse({ x: 0, y: -1, z: 0 });
             }, 2);
         }
 
-        // 毎tick処理
         let tickCount = 0;
         const intervalId = system.runInterval(() => {
             tickCount++;
@@ -54,11 +51,10 @@ export class cosmicMeteorSkill extends skillBase {
 
                 const crystalPos = crystal.location;
 
-                // 下のブロックを破壊（半径1マス、3ブロック分）
-for (let dx = -1; dx <= 1; dx++) {
-    for (let dz = -1; dz <= 1; dz++) {
-        for (let dy = 0; dy >= -3; dy--) {
-            const belowPos = {
+                for (let dx = -1; dx <= 1; dx++) {
+                for (let dz = -1; dz <= 1; dz++) {
+                for (let dy = 0; dy >= -3; dy--) {
+                const belowPos = {
                 x: Math.floor(crystalPos.x) + dx,
                 y: Math.floor(crystalPos.y) + dy,
                 z: Math.floor(crystalPos.z) + dz
@@ -68,14 +64,12 @@ for (let dx = -1; dx <= 1; dx++) {
     }
 }
 
-                // 半径1マスのプレイヤーにダメージ
                 const targets = this.getTargets(player, crystalPos, 1);
                 for (const target of targets) {
                     target.applyDamage(15);
                 }
             }
 
-            // 40tick後にremove
             if (tickCount >= 40) {
                 system.clearRun(intervalId);
                 for (const crystal of crystals) {
