@@ -4,7 +4,7 @@ import { skillBase } from "../skillBase";
 export class cosmicMeteorSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§aコズミックメテオ"; // nameTagに合わせて変更
+        this.id = "§bコズミックメテオ"; // nameTagに合わせて変更
         this.cooldown = 20 * 1;
     }
 
@@ -40,7 +40,7 @@ export class cosmicMeteorSkill extends skillBase {
             // 下方向にimpulse
             system.runTimeout(() => {
                 if (!crystal.isValid) return;
-                crystal.applyImpulse({ x: 0, y: -5, z: 0 });
+                crystal.applyImpulse({ x: 0, y: -1, z: 0 });
             }, 2);
         }
 
@@ -54,13 +54,19 @@ export class cosmicMeteorSkill extends skillBase {
 
                 const crystalPos = crystal.location;
 
-                // 下のブロックを破壊
-                const belowPos = {
-                    x: Math.floor(crystalPos.x),
-                    y: Math.floor(crystalPos.y) - 1,
-                    z: Math.floor(crystalPos.z)
-                };
-                dimension.runCommand(`setblock ${belowPos.x} ${belowPos.y} ${belowPos.z} air`);
+                // 下のブロックを破壊（半径1マス、3ブロック分）
+for (let dx = -1; dx <= 1; dx++) {
+    for (let dz = -1; dz <= 1; dz++) {
+        for (let dy = 0; dy >= -3; dy--) {
+            const belowPos = {
+                x: Math.floor(crystalPos.x) + dx,
+                y: Math.floor(crystalPos.y) + dy,
+                z: Math.floor(crystalPos.z) + dz
+            };
+            dimension.runCommand(`setblock ${belowPos.x} ${belowPos.y} ${belowPos.z} air`);
+        }
+    }
+}
 
                 // 半径1マスのプレイヤーにダメージ
                 const targets = this.getTargets(player, crystalPos, 1);
