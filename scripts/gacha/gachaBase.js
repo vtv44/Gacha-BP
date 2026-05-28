@@ -14,19 +14,20 @@ export class gachaBase {
             {id: "divine", int: 100},
             {id: "special", int: 100},
         ]
+        this.gachaPos = {x: 0, y: 0, z: 0}
         this.returnPos = {x: 0, y: 0, z: 0}
     }
 
-    decision(rarity) {
+    decision(rarity, player) {
         switch(rarity) {
-            case "common": return this.common()
-            case "unCommon": return this.unCommon()
-            case "rare": return this.rare()
-            case "epic": return this.epic()
-            case "legendary": return this.legendary()
-            case "mythic": return this.mythic()
-            case "divine": return this.divine()
-            case "special": return this.special() 
+            case "common": return this.common(player)
+            case "unCommon": return this.unCommon(player)
+            case "rare": return this.rare(player)
+            case "epic": return this.epic(player)
+            case "legendary": return this.legendary(player)
+            case "mythic": return this.mythic(player)
+            case "divine": return this.divine(player)
+            case "special": return this.special(player) 
             default: 
                 console.error("無効な数字が入力されました")
                 break;
@@ -80,15 +81,17 @@ export class gachaBase {
             player.playSound("random.fizz", player.location)
             return
         }
-        this.decision(this.lottery())
+        world.scoreboard.getObjective("coin").addScore(player, this.cost * -1)
+        this.decision(this.lottery(), player)
+        player.teleport(this.gachaPos)
     }
 
-    common() {}
-    unCommon() {}
-    rare() {}
-    epic() {}
-    legendary() {}
-    mythic() {}
-    divine() {}
-    special() {}
+    common(player) {}
+    unCommon(player) {}
+    rare(player) {}
+    epic(player) {}
+    legendary(player) {}
+    mythic(player) {}
+    divine(player) {}
+    special(player) {}
 }

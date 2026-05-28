@@ -14,6 +14,7 @@ import { tntShotSkill } from "./spell/tnt_Shot";
 import { dashSwordSkill } from "./weapon/dash_Sword";
 import { magicRevolverSkill } from "./weapon/magicRevolver";
 import { cosmicMeteorSkill } from "./weapon/cosmicMeteorSkill";
+import { explosiveAxeSkill } from "./weapon/explosiveAxe";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -31,3 +32,4 @@ skillManager.register(new dashSwordSkill())
 skillManager.register(new magicRevolverSkill())
 skillManager.register(new smokeBombSkill())
 skillManager.register(new cosmicMeteorSkill())
+skillManager.register(new explosiveAxeSkill())

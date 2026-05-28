@@ -1,9 +1,10 @@
-import { world, system, ItemCompostableComponent, ItemStack, EnchantmentTypes, GameMode } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
 import { gachaBase } from "./gacha/gachaBase";
 import { rareWeapons } from "./gacha/weaponGacha/weaponItem/rareWeapons";
+import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
 
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);
@@ -25,6 +26,10 @@ world.afterEvents.buttonPush.subscribe(ev => {
 world.afterEvents.itemUse.subscribe(ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
+
+    if (id === "minecraft:diamond") {
+        new weaponGacha().rollGacha(source);
+    }
 
     if (id === "minecraft:iron_ingot") {
         const string = new gachaBase().lottery();
