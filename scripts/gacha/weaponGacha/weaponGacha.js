@@ -14,7 +14,8 @@ export class weaponGacha extends gachaBase {
         super()
 
         this.cost = 10
-        this.gachaPos = {x: -325, y: 3, z: 0}
+        this.buttonPos = {x: -322, y: 3, z: 0}
+        this.gachaPos = {x: -329, y: 2, z: 0}
         this.returnPos = {x: -300, y: 0, z: 0}
     }
 
