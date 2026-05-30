@@ -5,7 +5,7 @@ export class highGearSkill extends skillBase {
     constructor() {
         super();
         this.id = "§bハイギア";
-        this.cooldown = 1 * 20;
+        this.cooldown = 7 * 20;
     }
 
     execute(player) {
