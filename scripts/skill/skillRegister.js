@@ -15,6 +15,8 @@ import { dashSwordSkill } from "./weapon/dash_Sword";
 import { magicRevolverSkill } from "./weapon/magicRevolver";
 import { cosmicMeteorSkill } from "./weapon/cosmicMeteorSkill";
 import { explosiveAxeSkill } from "./weapon/explosiveAxe";
+import { speedBootsSkill } from "./armor/speedBoots";
+import { harubaguSpecialCatalogSKill } from "./spell/harubaguSpecialCatalog";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -33,3 +35,6 @@ skillManager.register(new magicRevolverSkill())
 skillManager.register(new smokeBombSkill())
 skillManager.register(new cosmicMeteorSkill())
 skillManager.register(new explosiveAxeSkill())
+skillManager.register(new harubaguSpecialCatalogSKill())
+
+skillManager.tickSkillRegister(new speedBootsSkill())

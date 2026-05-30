@@ -1,10 +1,30 @@
-import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
 import { gachaBase } from "./gacha/gachaBase";
 import { rareWeapons } from "./gacha/weaponGacha/weaponItem/rareWeapons";
 import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
+
+const slots = [
+    EquipmentSlot.Head,
+    EquipmentSlot.Chest,
+    EquipmentSlot.Legs,
+    EquipmentSlot.Feet,
+]
+
+system.runInterval(() => {
+    const players = world.getAllPlayers()
+    for (const p of players) {
+        const armor = p.getComponent("equippable");
+        for (const slot of slots) {
+            const item = armor.getEquipment(slot);
+            const skill = skillManager.tickSkillGet(item?.nameTag);
+            if (!skill) continue;
+            skill.equip(p);
+        }
+    }
+}, 5)
 
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);

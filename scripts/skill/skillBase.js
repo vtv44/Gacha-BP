@@ -53,3 +53,12 @@ export class skillBase {
         this.execute(player)
     }
 }
+
+export class tickSkillBase extends skillBase {
+    constructor() {
+        super()
+    }
+
+    has(player) {}
+    equip(player) {}
+}
