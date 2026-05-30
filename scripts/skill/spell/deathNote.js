@@ -12,8 +12,8 @@ export class deathNoteSkill extends skillBase {
     }
 
     execute(player) {
-        const players = world.getAllPlayers({excludeGameModes: [GameMode.Spectator]})
-        .filter((p) => p.id === player.id)
+        const players = world.getAllPlayers()
+        .filter((p) => p.id !== player.id && p.getGameMode() !== GameMode.spectator)
         const form = new ActionFormData().title("§4誰の名前を書く？")
         for (let i = 0; i <= players.length - 1; i++) {
             form.button(`§l${players[i].nameTag}`)

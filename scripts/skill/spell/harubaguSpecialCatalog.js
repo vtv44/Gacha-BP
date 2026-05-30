@@ -97,7 +97,7 @@ export class harubaguSpecialCatalogSKill extends skillBase {
         .show(player).then(res => {
 
             player.sendMessage("§lはるばぐ様の加護を受け取った！")
-            player.playSound("random.levelup", player.location, {pitch: 0.5})
+            player.playSound("random.levelup", {pitch: 0.5})
             player.runCommand("particle kitpvp:ghost_phantomization_vanish ~~1.4~")
 
             if (res.canceled) {
