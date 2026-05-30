@@ -25,7 +25,7 @@ const isJumpingMap = new Set();
 system.runInterval(() => {
     for (const player of world.getAllPlayers()) {
         const held = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
-        if (held?.nameTag !== "§eハイギア") {
+        if (held?.nameTag !== "§bハイギア") {
             isJumpingMap.delete(player.id);
             continue;
         }
@@ -33,11 +33,12 @@ system.runInterval(() => {
         player.addEffect("speed", 10, { amplifier: 6, showParticles: false });
 
         const vel = player.getVelocity();
-        const isMoving = Math.abs(vel.x) > 0.5 || Math.abs(vel.z) > 0.5;
+        const isMoving = Math.abs(vel.x) > 0.7 || Math.abs(vel.z) > 0.7;
         if (isMoving) {
             const pos = player.location;
             const viewDir = player.getViewDirection();
             player.runCommand(`particle rca:afterimage ${pos.x - viewDir.x} ${pos.y} ${pos.z - viewDir.z}`);
+            player.runCommand("playsound mob.endermen.portal @a ~ ~ ~");
         }
 
         if (player.isJumping && vel.y > 0 && vel.y < 0.5 && !jumpCooldown.has(player.id)) {
