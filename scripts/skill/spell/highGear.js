@@ -4,7 +4,7 @@ import { skillBase } from "../skillBase";
 export class highGearSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§eハイギア";
+        this.id = "§bハイギア";
         this.cooldown = 1 * 20;
     }
 
