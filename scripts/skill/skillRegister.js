@@ -17,6 +17,7 @@ import { cosmicMeteorSkill } from "./weapon/cosmicMeteorSkill";
 import { explosiveAxeSkill } from "./weapon/explosiveAxe";
 import { speedBootsSkill } from "./armor/speedBoots";
 import { harubaguSpecialCatalogSKill } from "./spell/harubaguSpecialCatalog";
+import { highGearSkill } from "./spell/highGear";
 import { deathNoteSkill } from "./spell/deathNote";
 
 skillManager.register(new redMagicSkill())
@@ -38,4 +39,5 @@ skillManager.register(new cosmicMeteorSkill())
 skillManager.register(new explosiveAxeSkill())
 skillManager.register(new harubaguSpecialCatalogSKill())
 skillManager.register(new deathNoteSkill())
+skillManager.register(new highGearSkill())
 skillManager.tickSkillRegister(new speedBootsSkill())
