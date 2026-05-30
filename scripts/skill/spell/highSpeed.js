@@ -1,7 +1,7 @@
 import { world, system } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
-export class highGearSkill extends skillBase {
+export class highSpeedSkill extends skillBase {
     constructor() {
         super();
         this.id = "§bハイギア";
@@ -59,7 +59,7 @@ system.runInterval(() => {
 
         if (isJumpingMap.has(player.id) && system.currentTick % 1 === 0) {
             const dir = player.getViewDirection();
-            player.applyKnockback({ x: dir.x * 1.4, z: dir.z * 1.4 }, 0);
+            player.applyKnockback({ x: dir.x * 1.5, z: dir.z * 1.5 }, 0);
         }
     }
 }, 1);

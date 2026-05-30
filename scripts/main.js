@@ -123,3 +123,17 @@ world.afterEvents.entityHurt.subscribe(ev => {
         skill.onDamage(damagingEntity, ev);
     }
 })
+
+const blockedBlocks = [
+    "minecraft:crying_obsidian",
+    "minecraft:glowstone",
+    // "minecraft:xxxx",
+];
+
+world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
+    const { player } = event;
+    const held = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
+    if (blockedBlocks.includes(held?.typeId)) {
+        event.cancel = true;
+    }
+});

@@ -1,9 +1,12 @@
 export const mythicSpells = [
     {
         amount: 1,
-        id: "",
+        id: "minecraft:glowstone",
         name: "§5ホーリーディメンション",
-        lore: []
+        lore: [
+            "§e[聖なる一撃] §5右クリック",
+            
+        ]
     },
     
     {
