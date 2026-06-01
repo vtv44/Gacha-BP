@@ -4,8 +4,8 @@ import { skillBase } from "../skillBase";
 export class highSpeedSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§bハイギア";
-        this.cooldown = 7 * 20;
+        this.id = "§bハイスピード";
+        this.cooldown = 2 * 20;
     }
 
     execute(player) {
@@ -25,7 +25,7 @@ const isJumpingMap = new Set();
 system.runInterval(() => {
     for (const player of world.getAllPlayers()) {
         const held = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
-        if (held?.nameTag !== "§bハイギア") {
+        if (held?.nameTag !== "§bハイスピード") {
             isJumpingMap.delete(player.id);
             continue;
         }

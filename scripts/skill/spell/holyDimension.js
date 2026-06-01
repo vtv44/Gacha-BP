@@ -14,7 +14,7 @@ export class holyDimensionSkill extends skillBase {
         
         this.onCooldown(player);
 
-        const targets = this.getTargets(player, location, 5);
+        const targets = this.getTargets(player, location, 10);
         if (targets.length === 0) return;
 
         for (const target of targets) {
