@@ -19,6 +19,7 @@ import { speedBootsSkill } from "./armor/speedBoots";
 import { harubaguSpecialCatalogSKill } from "./spell/harubaguSpecialCatalog";
 import { highSpeedSkill } from "./spell/highSpeed";
 import { deathNoteSkill } from "./spell/deathNote";
+import { magicTechGunSwordSkill } from "./weapon/magicTechGunSword";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -40,4 +41,7 @@ skillManager.register(new explosiveAxeSkill())
 skillManager.register(new harubaguSpecialCatalogSKill())
 skillManager.register(new deathNoteSkill())
 skillManager.register(new highSpeedSkill())
+skillManager.register(new magicTechGunSwordSkill())
+
+
 skillManager.tickSkillRegister(new speedBootsSkill())

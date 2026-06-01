@@ -8,7 +8,7 @@ export class magicRevolverSkill extends skillBase {
     constructor() {
         super()
 
-        this.id = "§5=魔術銃= レボルブ"
+        this.id = "§d=魔術銃= レボルブ"
         this.cooldown = 6 * 20
     }
 

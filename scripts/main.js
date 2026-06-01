@@ -16,6 +16,17 @@ const slots = [
 system.runInterval(() => {
     const players = world.getAllPlayers()
     for (const p of players) {
+        const item = p.getComponent("inventory").container.getSlot(p.selectedSlotIndex).getItem();
+        if (!item) continue;
+        const skill = skillManager.tickSkillGet(item.nameTag);
+        if (!skill) continue;
+        skill.has(p);
+    }
+})
+
+system.runInterval(() => {
+    const players = world.getAllPlayers()
+    for (const p of players) {
         const armor = p.getComponent("equippable");
         for (const slot of slots) {
             const item = armor.getEquipment(slot);
