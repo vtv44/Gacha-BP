@@ -15,7 +15,8 @@
             },
             "minecraft:damage": {
                 "value": 6
-            }
+            },
+            "minecraft:hand_equipped": true
         }
     }
 }

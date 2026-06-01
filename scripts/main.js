@@ -59,7 +59,7 @@ world.afterEvents.itemUse.subscribe(ev => {
     const id = itemStack.typeId;
 
     if (id === "minecraft:diamond") {
-        new weaponGacha().rollGacha(source);
+        const ts = source.getEntitiesFromViewDirection({maxDistance: 25})
     }
 
     if (id === "minecraft:iron_ingot") {
