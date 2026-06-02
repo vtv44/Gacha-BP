@@ -11,6 +11,11 @@
                 "height": 1,
                 "width": 0.6
             },
+            "minecraft:damage_sensor": {
+                "triggers": {
+                    "deals_damage": "no"
+                }
+            },
             "minecraft:health": {
                 "value": 1,
                 "max": 1

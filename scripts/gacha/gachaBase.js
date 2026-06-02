@@ -1,4 +1,4 @@
-import { EnchantmentTypes, ItemStack, world } from "@minecraft/server"
+import { EnchantmentTypes, ItemStack, system, world } from "@minecraft/server"
 
 export class gachaBase {
 
@@ -84,6 +84,15 @@ export class gachaBase {
         world.scoreboard.getObjective("coin").addScore(player, this.cost * -1)
         this.decision(this.lottery(), player)
         player.teleport(this.gachaPos)
+    }
+
+    spawnCrate(dimension, pos) {
+        const crate = dimension.spawnEntity("gacha:gacha_crate", pos)
+        crate.playAnimation("animation.gacha_crate.open", {blendOutTime: 999})
+        system.runTimeout(() => {
+            if (!crate.isValid) return
+            crate.remove()
+        }, 40)
     }
 
     common(player) {}

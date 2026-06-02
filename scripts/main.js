@@ -59,7 +59,7 @@ world.afterEvents.itemUse.subscribe(ev => {
     const id = itemStack.typeId;
 
     if (id === "minecraft:diamond") {
-        const ts = source.getEntitiesFromViewDirection({maxDistance: 25})
+        new gachaBase().spawnCrate(source.dimension, source.location)
     }
 
     if (id === "minecraft:iron_ingot") {
