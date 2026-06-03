@@ -24,6 +24,8 @@ import { slowHelmetSkill } from "./armor/slowHelmet";
 import { superSlowHelmetSkill } from "./armor/superSlowHelmet";
 import { regenerationChestPlateSkill } from "./armor/regenerationChestPlate";
 import { superRegenerationChestPlateSkill } from "./armor/superRegenerationChestPlate";
+import { pushFeatherSkill } from "./spell/pushFeather";
+import { leapFeatherSkill } from "./spell/leapFeather";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -49,6 +51,8 @@ skillManager.register(new slowHelmetSkill())
 skillManager.register(new superSlowHelmetSkill())
 skillManager.register(new regenerationChestPlateSkill())
 skillManager.register(new superRegenerationChestPlateSkill())
+skillManager.register(new pushFeatherSkill())
+skillManager.register(new leapFeatherSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new slowHelmetSkill())

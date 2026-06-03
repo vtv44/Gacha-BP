@@ -21,6 +21,16 @@ export const rareSpells = [
     },
 
     {
+        amount: 5,
+        id: "minecraft:feather",
+        name: "§1大鶏の羽根",
+        lore: [
+            "§c[羽ばたき] §5右クリック",
+            "§5風を巻き起こし、前方の敵を吹き飛ばす"
+        ],
+    },
+
+    {
         amount: 1,
         id: "",
         name: "",

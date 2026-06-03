@@ -88,7 +88,9 @@ export class gachaBase {
 
     spawnCrate(dimension, pos) {
         const crate = dimension.spawnEntity("gacha:gacha_crate", pos)
-        crate.playAnimation("animation.gacha_crate.open", {blendOutTime: 999})
+        system.runTimeout(() => {
+            crate.playAnimation("animation.gacha_crate.open", {blendOutTime: 999})
+        }, 2)
         system.runTimeout(() => {
             if (!crate.isValid) return
             crate.remove()
