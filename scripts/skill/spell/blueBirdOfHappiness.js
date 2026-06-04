@@ -6,7 +6,7 @@ export class blueBirdOfHappinessSkill extends skillBase {
         super()
 
         this.id = "§6幸せを運ぶ青色の鳥"
-        this.cooldown = 20 * 20
+        this.cooldown = 40 * 20
     }
 
     execute(player) {
@@ -16,17 +16,18 @@ export class blueBirdOfHappinessSkill extends skillBase {
         this.onCooldown(player)
         this.consumeItem(player)
 
-        player.addEffect("regeneration", 15 * 20, {amplifier: 4})
-        player.addEffect("speed", 15 * 20, {amplifier: 4})
-        player.addEffect("jump_boost", 15 * 20, {amplifier: 4})
+        player.addEffect("regeneration", 30 * 20, {amplifier: 4})
+        player.addEffect("speed", 30 * 20, {amplifier: 4})
+        player.addEffect("jump_boost", 30 * 20, {amplifier: 4})
+        player.addEffect("village_hero", 30 * 20, {amplifier: 4})
 
-        dimension.spawnParticle("minecraft:magic_critical_hit_emitter", location)
+        player.runCommand("particle minecraft:magic_critical_hit_emitter ~~1.4~")
         dimension.playSound("mob.parrot.fly", location)
 
         const targets = this.getTargets(player, location, 100)
-        if (targets) {
+        if (targets[0]) {
             const rand = Math.floor(Math.random() * targets.length - 1)
-            const bird = new ItemStack("minecraft:")
+            const bird = new ItemStack("minecraft:lapis_lazuli")
             bird.nameTag = this.id
             bird.setLore([
                 "§1[贈り物] §5右クリック",

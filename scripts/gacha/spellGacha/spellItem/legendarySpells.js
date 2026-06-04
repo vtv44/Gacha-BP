@@ -1,7 +1,7 @@
 export const legendarySpells = [
     {
         amount: 1,
-        id: "",
+        id: "minecraft:lapis_lazuli",
         name: "§6幸せを運ぶ青色の鳥",
         lore: [
             "§1[贈り物] §5右クリック",
