@@ -1,4 +1,4 @@
-import { GameMode, world } from "@minecraft/server"
+import { GameMode, ItemStack, world } from "@minecraft/server"
 import { CooldownManager } from "./cooldownManager"
 
 export class skillBase {
@@ -14,6 +14,20 @@ export class skillBase {
         }
 
         return true
+    }
+
+    consumeItem(player) {
+        // 手持ちのアイテムが一個だけ消えます
+        const mainHand = player.getComponent("inventory").container.getSlot(player.selectedSlotIndex)
+        const item = mainHand.getItem()
+        if (item.amount - 1 <= 0) {
+            mainHand.setItem(null)
+            return
+        }
+        const newItem = new ItemStack(item.typeId, item.amount - 1)
+        newItem.nameTag = item.nameTag
+        newItem.setLore(item.getLore() ? item.getLore() : null)
+        mainHand.setItem(newItem)
     }
     
     cooldownMessage(player) {

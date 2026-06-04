@@ -11,6 +11,8 @@ export class pushFeatherSkill extends skillBase {
 
     execute(player) {
         this.onCooldown(player)
+        this.consumeItem(player)
+        
         const dimension = player.dimension
         const pos = player.location
         const dir = player.getViewDirection()
@@ -40,16 +42,5 @@ export class pushFeatherSkill extends skillBase {
                 dimension.playSound("wind_charge.burst", emitterPos, {volume: 0.3, pitch: 1.2})
             }, i)
         }
-
-        const mainHand = player.getComponent("inventory").container.getSlot(player.selectedSlotIndex)
-        const item = mainHand.getItem()
-        if (item.amount - 1 <= 0) {
-            mainHand.setItem(null)
-            return
-        }
-        const feather = new ItemStack(item.typeId, item.amount - 1)
-        feather.nameTag = item.nameTag
-        feather.setLore(item.getLore() ? item.getLore() : null)
-        mainHand.setItem(feather)
     }
 }
