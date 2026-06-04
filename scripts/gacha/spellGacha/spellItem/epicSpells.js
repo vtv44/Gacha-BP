@@ -1,9 +1,12 @@
 export const epicSpells = [
     {
-        amount: 1,
-        id: "",
-        name: "",
-        lore: [],
+        amount: 3,
+        id: "minecraft:phantom_membrane",
+        name: "§5鳳の羽根",
+        lore: [
+            "§d[躍進] §5右クリック",
+            "§5視点の方向に飛翔する"
+        ],
     },
     
     {
@@ -16,5 +19,12 @@ export const epicSpells = [
             "一定時間後にその魔法陣の中にいる敵の重力を数秒崩壊させる"
 
         ],
+    },
+    
+    {
+        amount: 1,
+        id: "",
+        name: "",
+        lore: [],
     },
 ]
