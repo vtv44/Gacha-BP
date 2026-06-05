@@ -27,6 +27,7 @@ import { superRegenerationChestPlateSkill } from "./armor/superRegenerationChest
 import { pushFeatherSkill } from "./spell/pushFeather";
 import { leapFeatherSkill } from "./spell/leapFeather";
 import { blueBirdOfHappinessSkill } from "./spell/blueBirdOfHappiness";
+import { jammingSwordSkill } from "./weapon/jammingSword";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -55,6 +56,7 @@ skillManager.register(new superRegenerationChestPlateSkill())
 skillManager.register(new pushFeatherSkill())
 skillManager.register(new leapFeatherSkill())
 skillManager.register(new blueBirdOfHappinessSkill())
+skillManager.register(new jammingSwordSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new slowHelmetSkill())
