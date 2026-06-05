@@ -124,6 +124,16 @@ world.afterEvents.entityHitEntity.subscribe((event) => {
 world.afterEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
     const damagingEntity = damageSource.damagingEntity;
+    if (hurtEntity.typeId !== "minecraft:player") return;
+
+    const armor = hurtEntity.getComponent("equippable");
+    for (const slot of slots) {
+        const item = armor.getEquipment(slot);
+        const skill = skillManager.get(item?.nameTag);
+        if (!skill) continue;
+        skill.onHurt(hurtEntity, ev);
+    }
+
     if (damagingEntity !== undefined) {
         const container = damagingEntity.getComponent("inventory").container;
         const item = container.getSlot(damagingEntity.selectedSlotIndex).getItem();

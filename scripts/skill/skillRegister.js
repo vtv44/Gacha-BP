@@ -28,6 +28,7 @@ import { pushFeatherSkill } from "./spell/pushFeather";
 import { leapFeatherSkill } from "./spell/leapFeather";
 import { blueBirdOfHappinessSkill } from "./spell/blueBirdOfHappiness";
 import { jammingSwordSkill } from "./weapon/jammingSword";
+import { thiefLeggingsSkill } from "./armor/thiefLeggings";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -57,6 +58,7 @@ skillManager.register(new pushFeatherSkill())
 skillManager.register(new leapFeatherSkill())
 skillManager.register(new blueBirdOfHappinessSkill())
 skillManager.register(new jammingSwordSkill())
+skillManager.register(new thiefLeggingsSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new slowHelmetSkill())

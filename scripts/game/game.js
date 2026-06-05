@@ -9,6 +9,12 @@ export class game {
     gameReset() {
         world.setDynamicProperty("game", false)
         this.teamClear()
+        for (const player of world.getAllPlayers()) {
+            player.getComponent("inventory").container.clearAll()
+            player.teleport({x: 0, y: 1, z: 0})
+            player.runCommand("hud @s reset all")
+            player.runCommand("effect @s clear")
+        }
     }
 
     gameStart() {

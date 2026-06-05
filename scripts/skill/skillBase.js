@@ -61,6 +61,7 @@ export class skillBase {
     }
 
     onDamage(player, event) {}
+    onHurt(player, event) {}
     use(player, event) {
         if (!this.canUse(player)) return
 
