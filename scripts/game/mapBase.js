@@ -9,6 +9,13 @@ export class mapBase {
         ]
     }
 
+    areaCenterPoint() {
+        const x = Math.floor(Math.random() * this.mapPos[1].x - this.mapPos[0].x)
+        const y = this.mapPos[0].y
+        const z = Math.floor(Math.random() * this.mapPos[1].z - this.mapPos[0].z)
+        return {x: x, y: y, z: z}
+    }
+
     buildRepair() {
         // ストラクチャーのidと座標の保存方法を考える
     }

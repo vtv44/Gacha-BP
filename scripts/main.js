@@ -5,6 +5,7 @@ import { ActionFormData } from "@minecraft/server-ui";
 import { gachaBase } from "./gacha/gachaBase";
 import { rareWeapons } from "./gacha/weaponGacha/weaponItem/rareWeapons";
 import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
+import { game } from "./game/game";
 
 const slots = [
     EquipmentSlot.Head,
@@ -37,6 +38,10 @@ system.runInterval(() => {
     }
 }, 5)
 
+system.runInterval(() => {
+    new game().onSecond();
+}, 20)
+
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);
     const score = world.scoreboard;
@@ -45,6 +50,9 @@ world.afterEvents.worldLoad.subscribe(ev => {
     }
     if (!score.getObjective("coin")) {
         score.addObjective("coin", "coin");
+    }
+    if (!score.getObjective("gameInfo")) {
+        score.addObjective("gameInfo", "§lGacha PvP");
     }
 })
 
