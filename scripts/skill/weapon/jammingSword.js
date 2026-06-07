@@ -21,7 +21,7 @@ export class jammingSwordSkill extends skillBase {
         dimension.playSound("mob.guardian.land_idle", hurtEntity.location, {pitch: 0.25})
 
         hurtEntity.runCommand("hud @s hide all")
-        hurtEntity.runCommand("camera @s set fade 0 0 0.3 color 0 0 0")
+        hurtEntity.runCommand("camera @s fade time 0 0.3 0 color 0 0 0")
 
         system.runTimeout(() => {
             if (jammingSwordSkill.ct.get(hurtEntity.id) > system.currentTick || !hurtEntity.isValid) return

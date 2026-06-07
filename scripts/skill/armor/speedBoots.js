@@ -5,7 +5,7 @@ export class speedBootsSkill extends tickSkillBase {
     constructor() {
         super()
 
-        this.id = "§1スピード靴"
+        this.id = "§1スピードブーツ"
     }
 
     equip(player) {

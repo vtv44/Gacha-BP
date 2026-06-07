@@ -29,6 +29,10 @@ import { leapFeatherSkill } from "./spell/leapFeather";
 import { blueBirdOfHappinessSkill } from "./spell/blueBirdOfHappiness";
 import { jammingSwordSkill } from "./weapon/jammingSword";
 import { thiefLeggingsSkill } from "./armor/thiefLeggings";
+import { jumpLeggingsSkill } from "./armor/jumpLeggings";
+import { superJumpLeggingsSkill } from "./armor/superJumpLeggings";
+import { superSpeedBootsSkill } from "./armor/superSpeedBoots";
+import { revengeChestPlateSkill } from "./armor/revengeChestPlate";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -50,18 +54,19 @@ skillManager.register(new harubaguSpecialCatalogSKill())
 skillManager.register(new deathNoteSkill())
 skillManager.register(new highSpeedSkill())
 skillManager.register(new magicTechGunSwordSkill())
-skillManager.register(new slowHelmetSkill())
-skillManager.register(new superSlowHelmetSkill())
-skillManager.register(new regenerationChestPlateSkill())
-skillManager.register(new superRegenerationChestPlateSkill())
 skillManager.register(new pushFeatherSkill())
 skillManager.register(new leapFeatherSkill())
 skillManager.register(new blueBirdOfHappinessSkill())
 skillManager.register(new jammingSwordSkill())
 skillManager.register(new thiefLeggingsSkill())
+skillManager.register(new revengeChestPlateSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
+skillManager.tickSkillRegister(new superSpeedBootsSkill())
 skillManager.tickSkillRegister(new slowHelmetSkill())
 skillManager.tickSkillRegister(new superSlowHelmetSkill())
 skillManager.tickSkillRegister(new regenerationChestPlateSkill())
 skillManager.tickSkillRegister(new superRegenerationChestPlateSkill())
+skillManager.tickSkillRegister(new jumpLeggingsSkill())
+skillManager.tickSkillRegister(new superJumpLeggingsSkill())
+skillManager.tickSkillRegister(new revengeChestPlateSkill())
