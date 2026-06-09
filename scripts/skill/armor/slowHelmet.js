@@ -8,11 +8,10 @@ export class slowHelmetSkill extends tickSkillBase {
     }
 
     equip(player) {
-        if (!this.canAddEffect(player)) return;
         
         const result = player.getEntitiesFromViewDirection({
-            maxDistance: 30,
-            ignoreBlockCollision: false
+            maxDistance: 10,
+            ignoreBlockCollision: true
         });
 
         if (result.length === 0) return;
@@ -32,7 +31,6 @@ export class slowHelmetSkill extends tickSkillBase {
                 target.setDynamicProperty("lastLookedMessageTime", system.currentTick + 100);
             }
         }
-
         target.addEffect("slowness", 100, { amplifier: 0, showParticles: true });
     }
 }
