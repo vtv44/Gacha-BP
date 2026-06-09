@@ -6,6 +6,7 @@ import { gachaBase } from "./gacha/gachaBase";
 import { rareWeapons } from "./gacha/weaponGacha/weaponItem/rareWeapons";
 import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
 import { game } from "./game/game";
+import { skillBase } from "./skill/skillBase";
 
 const slots = [
     EquipmentSlot.Head,
@@ -62,12 +63,20 @@ world.afterEvents.buttonPush.subscribe(ev => {
     // spellGacha -22 3 300
 })
 
+world.beforeEvents.effectAdd.subscribe(ev => {
+    const {entity} = ev;
+    const tick = system.currentTick;
+    if (!entity.isValid) return;
+
+    if (tick < entity.getDynamicProperty("effectCancelTime")) ev.cancel = true;
+})
+
 world.afterEvents.itemUse.subscribe(ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
 
     if (id === "minecraft:diamond") {
-        new gachaBase().spawnCrate(source.dimension, source.location)
+
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -166,3 +175,16 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
         event.cancel = true;
     }
 });
+
+world.afterEvents.playerSpawn.subscribe(ev => {
+    const {player, initialSpawn} = ev;
+    if (initialSpawn) {
+        player.setDynamicProperty("effectCancelTime", 0)
+
+        if (world.getDynamicProperty("game")) {
+
+        } else {
+
+        }
+    }
+})

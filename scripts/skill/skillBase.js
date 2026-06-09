@@ -1,10 +1,17 @@
-import { GameMode, ItemStack, world } from "@minecraft/server"
+import { GameMode, ItemStack, system, world } from "@minecraft/server"
 import { CooldownManager } from "./cooldownManager"
 
 export class skillBase {
     constructor() {
         this.id = ""
         this.cooldown = 0
+    }
+
+    canAddEffect(player) {
+        if (system.currentTick < player.getDynamicProperty("effectCancelTime")) {
+            return false
+        }
+        return true
     }
 
     canUse(player) {
@@ -36,6 +43,10 @@ export class skillBase {
         player.onScreenDisplay.setActionBar(
             `§cスキルは${cooltime}秒間使用できません`
         )
+    }
+
+    clearEffectSetTime(player, tick) {
+        player.setDynamicProperty("effectCancelTime", system.currentTick + tick)
     }
 
     execute(player) {}
