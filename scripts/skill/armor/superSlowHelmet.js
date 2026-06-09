@@ -1,4 +1,4 @@
-import { system } from "@minecraft/server"; // systemを追加
+import { system } from "@minecraft/server";
 import { tickSkillBase } from "../skillBase";
 
 export class superSlowHelmetSkill extends tickSkillBase {
@@ -10,7 +10,7 @@ export class superSlowHelmetSkill extends tickSkillBase {
     equip(player) {
         const result = player.getEntitiesFromViewDirection({
             maxDistance: 30,
-            ignoreBlockCollision: false
+            ignoreBlockCollision: true
         });
 
         if (result.length === 0) return;
@@ -18,10 +18,13 @@ export class superSlowHelmetSkill extends tickSkillBase {
         const target = result[0].entity;
         if (!target.isValid) return;
 
-        if (target.typeId === "minecraft:player") {
-            const targets = this.getTargets(player, player.location, 10);
-            if (!targets.includes(target)) return;
+        if (!this.isValidTarget(player, target)) return;
 
+        if (target.getEffect("slowness") !== undefined) return;
+
+        if (!this.canAddEffect(player)) return;
+
+        if (target.typeId === "minecraft:player") {
             const lastMessageTime = target.getDynamicProperty("lastLookedMessageTime") ?? 0;
             if (system.currentTick >= lastMessageTime) {
                 target.sendMessage({
