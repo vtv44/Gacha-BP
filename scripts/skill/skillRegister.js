@@ -33,6 +33,8 @@ import { jumpLeggingsSkill } from "./armor/jumpLeggings";
 import { superJumpLeggingsSkill } from "./armor/superJumpLeggings";
 import { superSpeedBootsSkill } from "./armor/superSpeedBoots";
 import { revengeChestPlateSkill } from "./armor/revengeChestPlate";
+import { gyroKineticWandSkill } from "./spell/gyroKineticWand";
+import { randomDiceSkill } from "./spell/randomDice";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -60,6 +62,8 @@ skillManager.register(new blueBirdOfHappinessSkill())
 skillManager.register(new jammingSwordSkill())
 skillManager.register(new thiefLeggingsSkill())
 skillManager.register(new revengeChestPlateSkill())
+skillManager.register(new gyroKineticWandSkill())
+skillManager.register(new randomDiceSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new superSpeedBootsSkill())

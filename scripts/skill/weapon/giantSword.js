@@ -36,6 +36,7 @@ export class giantSwordSkill extends skillBase {
 
             if (!sword.isValid || tickCount > maxTicks) {
                 system.clearRun(checkId);
+                if (sword.isValid) sword.remove();
                 return;
             }
 
@@ -47,16 +48,17 @@ export class giantSwordSkill extends skillBase {
                 const landPos = sword.location;
 
                 system.runTimeout(() => {
-                    dimension.runCommand(`particle ptl:fire_scatter ${landPos.x} ${landPos.y} ${landPos.z}`)
-                    dimension.runCommand(`playsound random.anvil_land @a ${landPos.x} ${landPos.y} ${landPos.z}`)
+                    dimension.runCommand(`particle ptl:fire_scatter ${landPos.x} ${landPos.y} ${landPos.z}`);
+                    dimension.runCommand(`playsound random.anvil_land @a ${landPos.x} ${landPos.y} ${landPos.z}`);
 
-                    const targets = this.getTargets(player, landPos, 4.0);
+                    try {
+                        const targets = this.getTargets(player, landPos, 4.0);
+                        for (const target of targets) {
+                            target.applyDamage(5);
+                        }
+                    } catch {}
 
-                    for (const target of targets) {
-                        target.applyDamage(5);
-                    }
-
-                    sword.remove();
+                    if (sword.isValid) sword.remove();
                 }, 2);
             }
 
