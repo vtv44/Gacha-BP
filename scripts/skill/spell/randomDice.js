@@ -5,30 +5,26 @@ export class randomDiceSkill extends skillBase {
     constructor() {
         super();
         this.id = "ランダムダイス";
+        this.cooldown = 1 * 20;
     }
 
     execute(player) {
-        const slot = player.getComponent("inventory").container.getSlot(player.selectedSlotIndex);
-        const item = slot.getItem();
-        if (!item) return;
+        this.consumeItem(player); 
 
-        if (item.amount > 1) {
-            item.amount -= 1;
-            slot.setItem(item);
-        } else {
-            slot.setItem(null);
-        }
+        const duration = 200; 
+
         if (Math.random() < 0.5) {
-            // 50%: 自分のエフェクトクリア
             player.runCommand("effect @s clear");
+            this.clearEffectSetTime(player, duration);
             player.runCommand("playsound voice.harubagu_4 @s ~ ~ ~");
         } else {
-            // 50%: 自分以外のエフェクトクリア
-            const targets = world.getAllPlayers().filter(p => p.id !== player.id);
+            const targets = this.getTargets(player, player.location, 100, 0, true);
+            
             for (const target of targets) {
                 target.runCommand("effect @s clear");
+                this.clearEffectSetTime(target, duration);
             }
-            player.runCommand("playsound voice.harubagu_5 @s ~ ~ ~");
+            player.runCommand("playsound voice.harubagu_5 @a ~ ~ ~");
         }
     }
 }

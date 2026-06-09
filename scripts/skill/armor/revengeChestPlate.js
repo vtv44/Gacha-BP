@@ -10,6 +10,7 @@ export class revengeChestPlateSkill extends tickSkillBase {
     }
 
     equip(player) {
+        if (!this.canAddEffect(player)) return;
         player.addEffect("speed", 10, { amplifier: 4, showParticles: false });
         player.addEffect("jump_boost", 10, { amplifier: 2, showParticles: false });
 
@@ -38,6 +39,7 @@ export class revengeChestPlateSkill extends tickSkillBase {
     }
 
     onHurt(player, event) {
+        if (!this.canAddEffect(player)) return;
         const damage = event.damage;
         const duration = 30 * 20;
 

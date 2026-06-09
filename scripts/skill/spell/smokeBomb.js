@@ -9,6 +9,7 @@ export class smokeBombSkill extends skillBase {
     }
 
     execute(player) {
+        if (!this.canAddEffect(player)) return;
         const dimension = player.dimension;
         const location = player.location;
 

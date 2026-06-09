@@ -10,6 +10,7 @@ export class regenerationChestPlateSkill extends tickSkillBase {
             }
         
             equip(player) {
+                if (!this.canAddEffect(player)) return;
                 if (regenCooldown.has(player.id)) return;
         
                 player.addEffect("regeneration", 5 * 20, { amplifier: 0, showParticles: false });

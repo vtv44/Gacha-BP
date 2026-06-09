@@ -9,6 +9,7 @@ export class speedBootsSkill extends tickSkillBase {
     }
 
     equip(player) {
+        if (!this.canAddEffect(player)) return;
         player.addEffect("speed", 20)
     }
 }

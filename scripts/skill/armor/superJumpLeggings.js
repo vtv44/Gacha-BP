@@ -8,6 +8,7 @@ export class superJumpLeggingsSkill extends tickSkillBase {
     }
 
     equip(player) {
+        if (!this.canAddEffect(player)) return;
         player.addEffect("jump_boost", 40, { amplifier: 2, showParticles: false });
     }
 }

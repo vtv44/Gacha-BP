@@ -7,6 +7,7 @@ export class superSpeedBootsSkill extends tickSkillBase {
     }
 
     equip(player) {
+        if (!this.canAddEffect(player)) return;
         player.addEffect("speed", 20, { amplifier: 4, showParticles: false });
     }
 }

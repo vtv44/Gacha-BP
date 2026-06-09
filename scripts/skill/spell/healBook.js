@@ -4,8 +4,8 @@ import { skillBase } from "../skillBase";
 export class healBookSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§a回復の本"; // アイテムのnameTagに合わせて変更してください
-        this.cooldown = 20 * 20;
+        this.id = "§a回復の本";
+        this.cooldown = 20 * 1;
     }
 
     execute(player) {
@@ -26,6 +26,7 @@ export class healBookSkill extends skillBase {
 
             const targets = this.getTargets(player, location, 4, 0, false);
             for (const target of targets) {
+                if (!this.canAddEffect(target)) continue;
                 target.addEffect("regeneration", 10 * 20, { amplifier: 1 });
             }
         }, 2 * 20);
