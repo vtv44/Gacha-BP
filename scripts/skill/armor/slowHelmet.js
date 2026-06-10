@@ -18,7 +18,8 @@ export class slowHelmetSkill extends tickSkillBase {
         const target = result[0].entity;
         if (!target.isValid) return;
 
-        if (!this.isValidTarget(player, target)) return;
+        const targets = this.getTargets(player, player.location, 30);
+        if (!targets.includes(target)) return;
 
         if (target.getEffect("slowness") !== undefined) return;
 
@@ -28,12 +29,13 @@ export class slowHelmetSkill extends tickSkillBase {
             const lastMessageTime = target.getDynamicProperty("lastLookedMessageTime") ?? 0;
             if (system.currentTick >= lastMessageTime) {
                 target.sendMessage({
-                    rawtext: [{ text: `${player.name}§j睨まれている。` }]
+                    rawtext: [{ text: `${player.name}に§j睨まれている。` }]
                 });
                 target.setDynamicProperty("lastLookedMessageTime", system.currentTick + 100);
             }
         }
 
+        // ここがエラーの発生しやすい場所です
         target.addEffect("slowness", 100, { amplifier: 0, showParticles: true });
     }
 }

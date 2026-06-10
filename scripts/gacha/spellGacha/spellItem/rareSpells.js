@@ -32,8 +32,11 @@ export const rareSpells = [
 
     {
         amount: 1,
-        id: "",
-        name: "",
-        lore: [],
+        id: "minecraft:glowstone_dust",
+        name: "§1リターン",
+        lore: [
+            "§c[座標の記録] §5右クリック",
+            "§5使用すると20秒持続する光のポータルを設置する。持続時間中に再使用するとポータルの位置にテレポートする。"
+        ],
     },
 ]

@@ -18,7 +18,8 @@ export class superSlowHelmetSkill extends tickSkillBase {
         const target = result[0].entity;
         if (!target.isValid) return;
 
-        if (!this.isValidTarget(player, target)) return;
+        const targets = this.getTargets(player, player.location, 30);
+        if (!targets.includes(target)) return;
 
         if (target.getEffect("slowness") !== undefined) return;
 

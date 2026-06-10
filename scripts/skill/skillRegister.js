@@ -36,6 +36,9 @@ import { revengeChestPlateSkill } from "./armor/revengeChestPlate";
 import { gyroKineticWandSkill } from "./spell/gyroKineticWand";
 import { randomDiceSkill } from "./spell/randomDice";
 import { changerSkill } from "./spell/changer";
+import { curseSwordSkill } from "./weapon/curseSword";
+import { returnSkill } from "./spell/return";
+import { speedUpSkill } from "./spell/speedUp";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -66,6 +69,9 @@ skillManager.register(new revengeChestPlateSkill())
 skillManager.register(new gyroKineticWandSkill())
 skillManager.register(new randomDiceSkill())
 skillManager.register(new changerSkill())
+skillManager.register(new curseSwordSkill())
+skillManager.register(new returnSkill())
+skillManager.register(new speedUpSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new superSpeedBootsSkill())
