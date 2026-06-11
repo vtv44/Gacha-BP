@@ -4,7 +4,7 @@ import { skillBase } from "../skillBase";
 export class cosmicMeteorSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§bコズミックメテオ";
+        this.id = "§bコズミックブレード";
         this.cooldown = 20 * 1;
     }
 

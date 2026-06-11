@@ -1,6 +1,6 @@
 import { system, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
-import { CooldownManager } from "../cooldownManager"; // 追加: クールタイム管理用
+import { CooldownManager } from "../cooldownManager";
 
 export class returnSkill extends skillBase {
     constructor() {
@@ -9,7 +9,7 @@ export class returnSkill extends skillBase {
         this.cooldown = 30 * 20;
     }
 
-        execute(player) {
+    execute(player) {
         const lastTick = player.getDynamicProperty("returnLastTick") ?? 0;
         const currentTick = system.currentTick;
 
@@ -19,11 +19,17 @@ export class returnSkill extends skillBase {
             const z = player.getDynamicProperty("returnZ");
 
             player.teleport({ x, y, z }, { dimension: player.dimension });
-            player.dimension.playSound("random.orb", { x, y, z });
             player.sendMessage("§b元の場所に戻りました。");
-            
+
+            system.runTimeout(() => {
+                try {
+                    player.dimension.playSound("random.orb", { x, y, z });
+                    player.dimension.spawnParticle("ptl:golden_radiance", { x, y: y + 1.0, z });
+                } catch {}
+            }, 2);
+
             player.setDynamicProperty("returnLastTick", 0);
-            this.onCooldown(player); // 戻る時だけクールダウン
+            this.onCooldown(player);
         } else {
             const pos = player.location;
             player.setDynamicProperty("returnX", pos.x);
@@ -33,26 +39,20 @@ export class returnSkill extends skillBase {
 
             player.dimension.playSound("respawn.anchor.charge", pos);
             player.sendMessage("§d座標を記録しました。");
-            // クールダウンなし
         }
     }
 }
 
-// 監視ループ
-const skillInstance = new returnSkill(); // クールタイム付与のためにインスタンスを作成
+const skillInstance = new returnSkill();
 
 system.runInterval(() => {
     for (const player of world.getPlayers()) {
         const lastTick = player.getDynamicProperty("returnLastTick") ?? 0;
 
-        // 所持チェック
         const held = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
         const isHolding = held?.nameTag === "§1リターン";
 
         if (lastTick === 0) {
-            if (isHolding) {
-                player.onScreenDisplay.setActionBar("§d座標未記録");
-            }
             continue;
         }
 
@@ -73,7 +73,9 @@ system.runInterval(() => {
         const z = player.getDynamicProperty("returnZ");
 
         if (typeof x === 'number' && typeof y === 'number' && typeof z === 'number') {
-            player.dimension.spawnParticle("return_particle", { x: x, y: y - 0.4, z: z });
+            try {
+                player.dimension.spawnParticle("return_particle", { x: x, y: y - 0.4, z: z });
+            } catch {}
         }
     }
 }, 20);

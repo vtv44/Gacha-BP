@@ -5,7 +5,7 @@ export class tntShotSkill extends skillBase {
     constructor() {
         super();
         this.id = "§1TNTショット";
-        this.cooldown = 1 * 20;
+        this.cooldown = 5 * 20;
     }
 
     execute(player) {

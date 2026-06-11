@@ -5,7 +5,7 @@ export class giantSwordSkill extends skillBase {
     constructor() {
         super();
         this.id = "§6ジャイアントソード";
-        this.cooldown = 1 * 1;
+        this.cooldown = 20 * 5;
     }
 
     execute(player) {
