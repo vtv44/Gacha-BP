@@ -39,6 +39,8 @@ import { changerSkill } from "./spell/changer";
 import { curseSwordSkill } from "./weapon/curseSword";
 import { returnSkill } from "./spell/return";
 import { speedUpSkill } from "./spell/speedUp";
+import { wallSkill } from "./armor/wall";
+import { specialCookieSkill } from "./armor/specialCookie";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -72,6 +74,8 @@ skillManager.register(new changerSkill())
 skillManager.register(new curseSwordSkill())
 skillManager.register(new returnSkill())
 skillManager.register(new speedUpSkill())
+skillManager.register(new wallSkill())
+skillManager.register(new specialCookieSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new superSpeedBootsSkill())

@@ -39,7 +39,7 @@ export class speedUpSkill extends skillBase {
 
             player.runCommand("playsound voice.BLACK_1 @s ~ ~ ~");
             player.runCommand("playsound random.potion.brewed @s ~ ~ ~");
-            player.runCommand("particle rca:arrow_red ~ ~ ~");
+            player.runCommand("particle rca:arrow_cyan ~ ~ ~");
         }
 
         this.onCooldown(player);
