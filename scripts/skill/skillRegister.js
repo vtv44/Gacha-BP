@@ -41,6 +41,10 @@ import { returnSkill } from "./spell/return";
 import { speedUpSkill } from "./spell/speedUp";
 import { wallSkill } from "./armor/wall";
 import { specialCookieSkill } from "./armor/specialCookie";
+import { dicerollSwordSkill } from "./weapon/dicerollSword";
+import { cinderSwordSkill } from "./weapon/cinderSword";
+import { medicalKitSkill } from "./spell/madicalKit";
+import { miniMedicalKitSkill } from "./spell/miniMedicalKit";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -76,6 +80,10 @@ skillManager.register(new returnSkill())
 skillManager.register(new speedUpSkill())
 skillManager.register(new wallSkill())
 skillManager.register(new specialCookieSkill())
+skillManager.register(new dicerollSwordSkill())
+skillManager.register(new cinderSwordSkill())
+skillManager.register(new medicalKitSkill())
+skillManager.register(new miniMedicalKitSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new superSpeedBootsSkill())

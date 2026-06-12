@@ -23,6 +23,9 @@
             "minecraft:physics": {
                 "has_collision": true,
                 "has_gravity": true
+            },
+            "minecraft:scale": {
+                "value": 2.0
             }
         }
     }

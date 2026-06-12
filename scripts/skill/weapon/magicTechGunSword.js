@@ -170,8 +170,15 @@ export class magicTechGunSwordSkill extends skillBase {
                 dimension.spawnParticle("gacha:techgun_smoke", atkPos)
             }
 
+            const teamScore = world.scoreboard.getObjective("team").getScore(player)
             const targets = player.getEntitiesFromViewDirection({
                 maxDistance: 25,
+                scoreOptions: [{
+                    objective: "team",
+                    minScore: teamScore,
+                    maxScore: teamScore,
+                    exclude: exclude
+                }],
             })
             for (const t of targets) {
                 t.entity.applyDamage(9)
