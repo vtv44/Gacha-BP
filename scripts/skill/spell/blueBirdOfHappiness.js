@@ -15,11 +15,12 @@ export class blueBirdOfHappinessSkill extends skillBase {
 
         this.onCooldown(player)
         this.consumeItem(player)
-
-        player.addEffect("regeneration", 30 * 20, {amplifier: 4})
-        player.addEffect("speed", 30 * 20, {amplifier: 4})
-        player.addEffect("jump_boost", 30 * 20, {amplifier: 4})
-        player.addEffect("village_hero", 30 * 20, {amplifier: 4})
+        if (this.canAddEffect(player)) {
+            player.addEffect("regeneration", 30 * 20, {amplifier: 4})
+            player.addEffect("speed", 30 * 20, {amplifier: 4})
+            player.addEffect("jump_boost", 30 * 20, {amplifier: 4})
+            player.addEffect("village_hero", 30 * 20, {amplifier: 4})
+        }
 
         player.runCommand("particle minecraft:magic_critical_hit_emitter ~~1.4~")
         dimension.playSound("mob.parrot.fly", location)

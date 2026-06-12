@@ -45,6 +45,7 @@ import { dicerollSwordSkill } from "./weapon/dicerollSword";
 import { cinderSwordSkill } from "./weapon/cinderSword";
 import { medicalKitSkill } from "./spell/madicalKit";
 import { miniMedicalKitSkill } from "./spell/miniMedicalKit";
+import { handcuffsSkill } from "./spell/handcuffs";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -84,6 +85,7 @@ skillManager.register(new dicerollSwordSkill())
 skillManager.register(new cinderSwordSkill())
 skillManager.register(new medicalKitSkill())
 skillManager.register(new miniMedicalKitSkill())
+skillManager.register(new handcuffsSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new superSpeedBootsSkill())
