@@ -1,5 +1,5 @@
 import { EquipmentSlot } from "@minecraft/server";
-import { tickSkillBase } from "../skillBase"; // パスは環境に合わせてください
+import { tickSkillBase } from "../skillBase";
 
 export class vampireHelmetSkill extends tickSkillBase {
     constructor() {
@@ -8,24 +8,37 @@ export class vampireHelmetSkill extends tickSkillBase {
         this.cooldown = 0;
     }
 
-    onDamage(player, event) {
+    has(player) {
+        if (!player || !player.isValid) return false;
+
         const equippable = player.getComponent("equippable");
-        if (!equippable) return;
+        if (!equippable) return false;
 
         const headItem = equippable.getEquipment(EquipmentSlot.Head);
+        
+        // 頭に「§aヴァンパイアヘルメット」を被っている時だけ、このスキルを「持っている(true)」とみなす
+        return headItem ? headItem.nameTag === this.id : false;
+    }
 
-        if (headItem && headItem.nameTag === this.id) {
-            const healthComponent = player.getComponent("health");
-            if (healthComponent) {
-                const currentHealth = healthComponent.currentValue;
-                const maxHealth = healthComponent.effectiveMaxValue;
+    // 2. システム側で装備時に呼び出す処理（今回は常時パッシブなので空でOK）
+    equip(player) {}
 
-                if (currentHealth < maxHealth) {
-                    healthComponent.setCurrentValue(Math.min(currentHealth + 1, maxHealth));
+    // 3. has()がtrue（＝ヘルメットを被っている時）だけ、攻撃時にシステムから呼ばれる
+    onDamage(player, event) {
+        if (!player || !player.isValid) return;
 
-                    player.dimension.playSound("random.orb", player.location, { volume: 0.4, pitch: 1.8 });
-                }
-            }
+        const healthComponent = player.getComponent("health");
+        if (!healthComponent) return;
+
+        const currentHealth = healthComponent.currentValue;
+        const maxHealth = healthComponent.effectiveMaxValue;
+
+        // 体力が減っている場合のみ、HPを1（ハート0.5個分）回復
+        if (currentHealth < maxHealth) {
+            healthComponent.setCurrentValue(Math.min(currentHealth + 1, maxHealth));
+            
+            // 吸血音の演出
+            player.dimension.playSound("random.orb", player.location, { volume: 0.4, pitch: 1.8 });
         }
     }
 }
