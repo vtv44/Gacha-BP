@@ -1,8 +1,7 @@
-import { EquipmentSlot } from "@minecraft/server";
+import { EquipmentSlot, ItemStack } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class thiefLeggingsSkill extends skillBase {
-    // 気が向いたら音とパーティクル着ける
     constructor() {
         super()
 
@@ -19,7 +18,12 @@ export class thiefLeggingsSkill extends skillBase {
         mainHand.setItem(null)
         player.getComponent("equippable").setEquipment(EquipmentSlot.Legs, null)
         player.getComponent("inventory").container.addItem(item)
-
+        
         player.sendMessage(`${item.nameTag}§r§lを盗んだ！`)
+        player.playSound("random.levelup", {pitch: 2})
+        player.dimension.spawnParticle("rca:just_guard", player.location)
+
+        damager.sendMessage(`${item.nameTag}§r§lを盗まれた！`)
+        damager.playSound("random.hurt")
     }
 }

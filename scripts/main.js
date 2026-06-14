@@ -76,7 +76,7 @@ world.afterEvents.itemUse.subscribe(ev => {
     const id = itemStack.typeId;
 
     if (id === "minecraft:diamond") {
-
+        new gachaBase().spawnCrate(source.dimension, source.location)
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -145,10 +145,10 @@ world.afterEvents.entityHurt.subscribe(ev => {
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
-        const item = armor.getEquipment(slot);
-        const skill = skillManager.get(item?.nameTag);
-        if (!skill) continue;
-        skill.onHurt(hurtEntity, ev);
+       const item = armor.getEquipment(slot);
+       const skill = skillManager.get(item?.nameTag);
+       if (!skill) continue;
+       skill.onHurt(hurtEntity, ev);
     }
 
     if (damagingEntity !== undefined) {

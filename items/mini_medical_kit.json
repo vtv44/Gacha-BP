@@ -1,0 +1,18 @@
+{
+    "format_version": "1.21.60",
+    "minecraft:item": {
+        "description": {
+            "identifier": "gacha:mini_medical_kit",
+            "menu_category": {
+                "category": "items"
+            }
+        },
+        "components": {
+            "minecraft:icon": "mini_medical_kit",
+            "minecraft:max_stack_size": 1,
+            "minecraft:display_name": {
+                "value": "ミニ回復します"
+            }
+        }
+    }
+}

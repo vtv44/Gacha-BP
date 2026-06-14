@@ -10,7 +10,8 @@ export class harubaguSpecialCatalogSKill extends skillBase {
     }
 
     execute(player) {
-        player.getComponent("inventory").container.getSlot(player.selectedSlotIndex).setItem(null)
+        this.consumeItem(player)
+        
         const score = world.scoreboard.getObjective("team").getScore(player)
         const enemies = player.dimension.getPlayers({
             scoreOptions: [{
@@ -32,9 +33,11 @@ export class harubaguSpecialCatalogSKill extends skillBase {
         })
         for (const e of enemies) {
             this.debuffForm(e)
+            e.playSound("voice.harubagu_3")
         }
         for (const t of teamMates) {
             this.buffForm(t)
+            t.playSound("voice.harubagu_2")
         }
     }
 
