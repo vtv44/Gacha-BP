@@ -44,7 +44,7 @@ import { specialCookieSkill } from "./armor/specialCookie";
 import { campfireHealSkill } from "./spell/camfireHeal";
 import { vampireHelmetSkill } from "./armor/vampireHelmet";
 import { miniMedicalKitSkill } from "./spell/miniMedicalKit";
-import { medicalKitSkill } from "./spell/medicalKit";
+import { medicalKitSkill } from "./spell/madicalKit";
 import { cinderSwordSkill } from "./weapon/cinderSword";
 import { dicerollSwordSkill } from "./weapon/dicerollSword";
 import { handcuffsSkill } from "./spell/handcuffs"
@@ -90,6 +90,7 @@ skillManager.register(new dicerollSwordSkill())
 skillManager.register(new cinderSwordSkill())
 skillManager.register(new miniMedicalKitSkill())
 skillManager.register(new handcuffsSkill())
+skillManager.register(new medicalKitSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new superSpeedBootsSkill())
