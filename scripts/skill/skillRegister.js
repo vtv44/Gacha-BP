@@ -41,6 +41,8 @@ import { returnSkill } from "./spell/return";
 import { speedUpSkill } from "./spell/speedUp";
 import { wallSkill } from "./armor/wall";
 import { specialCookieSkill } from "./armor/specialCookie";
+import { campfireHealSkill } from "./spell/camfireHeal";
+import { vampireHelmetSkill } from "./armor/vampireHelmet";
 
 skillManager.register(new redMagicSkill())
 skillManager.register(new giantSwordSkill())
@@ -76,6 +78,8 @@ skillManager.register(new returnSkill())
 skillManager.register(new speedUpSkill())
 skillManager.register(new wallSkill())
 skillManager.register(new specialCookieSkill())
+skillManager.register(new campfireHealSkill())
+skillManager.register(new vampireHelmetSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new superSpeedBootsSkill())
@@ -86,3 +90,4 @@ skillManager.tickSkillRegister(new superRegenerationChestPlateSkill())
 skillManager.tickSkillRegister(new jumpLeggingsSkill())
 skillManager.tickSkillRegister(new superJumpLeggingsSkill())
 skillManager.tickSkillRegister(new revengeChestPlateSkill())
+skillManager.tickSkillRegister(new vampireHelmetSkill())

@@ -26,10 +26,10 @@ export class speedUpSkill extends skillBase {
             teammate.addEffect("jump_boost", duration, { amplifier: 1, showParticles: true });
 
             player.runCommand("playsound voice.BLACK_2 @s ~ ~ ~");
-            player.runCommand("particle rca:arrow_red ~ ~ ~");
+            player.runCommand("particle rca:arrow_cyan ~ ~ ~");
             player.runCommand("playsound random.potion.brewed @s ~ ~ ~");
             teammate.runCommand("playsound voice.BLACK_2 @s ~ ~ ~");
-            teammate.runCommand("particle rca:arrow_red ~ ~ ~");
+            teammate.runCommand("particle rca:arrow_cyan ~ ~ ~");
             teammate.runCommand("playsound random.potion.brewed @s ~ ~ ~");
         } else {
             // 味方検知なし
