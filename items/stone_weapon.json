@@ -1,0 +1,16 @@
+{
+  "format_version": "1.20.0",
+  "minecraft:item": {
+    "description": {
+      "identifier": "gacha:stone_weapon"
+    },
+    "components": {
+      "minecraft:icon": "stone_weapon",
+      "minecraft:display_name": { "value": "ただの石" },
+      "minecraft:attack": {
+        "damage": 5
+      },
+      "minecraft:hand_equipped": true
+    }
+  }
+}
