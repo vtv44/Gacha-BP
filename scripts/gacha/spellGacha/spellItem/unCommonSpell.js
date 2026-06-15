@@ -16,4 +16,21 @@ export const unCommonSpell = [
             "§5味方に視線を合わせず使用すると自分にスピード2と跳躍2を20秒与える。"
         ],
     },
+    
+    {
+        amount: 1,
+        id: "minecraft:green_dye",
+        name: "§a緑色の魔力",
+        lore: [
+            "§3[毒霧] §5右クリック",
+            "§5周囲に毒を付与し、自分の毒を除去する"
+        ]
+    },
+
+    {
+        amount: 1,
+        id: "",
+        name: "",
+        lore: []
+    },
 ]

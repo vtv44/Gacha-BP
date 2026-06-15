@@ -48,6 +48,10 @@ import { medicalKitSkill } from "./spell/madicalKit";
 import { cinderSwordSkill } from "./weapon/cinderSword";
 import { dicerollSwordSkill } from "./weapon/dicerollSword";
 import { handcuffsSkill } from "./spell/handcuffs"
+import { drainSwordSkill } from "./weapon/drainSword";
+import { harubaguSpecialLevySKill } from "./spell/harubaguSpecialLevy";
+import { totemChestPlateSkill } from "./armor/totemChestPlate";
+import { greenMagicSKill } from "./spell/greenMagicSkill";
 
 
 skillManager.register(new redMagicSkill())
@@ -90,6 +94,10 @@ skillManager.register(new cinderSwordSkill())
 skillManager.register(new miniMedicalKitSkill())
 skillManager.register(new handcuffsSkill())
 skillManager.register(new medicalKitSkill())
+skillManager.register(new drainSwordSkill())
+skillManager.register(new harubaguSpecialLevySKill())
+skillManager.register(new totemChestPlateSkill())
+skillManager.register(new greenMagicSKill())
 
 skillManager.tickSkillRegister(new speedBootsSkill())
 skillManager.tickSkillRegister(new superSpeedBootsSkill())

@@ -13,6 +13,7 @@ const slots = [
     EquipmentSlot.Chest,
     EquipmentSlot.Legs,
     EquipmentSlot.Feet,
+    EquipmentSlot.Mainhand,
 ]
 
 system.runInterval(() => {
@@ -76,7 +77,7 @@ world.afterEvents.itemUse.subscribe(ev => {
     const id = itemStack.typeId;
 
     if (id === "minecraft:diamond") {
-        new gachaBase().spawnCrate(source.dimension, source.location)
+        source.getComponent("health").resetToMaxValue
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -145,20 +146,20 @@ world.afterEvents.entityHurt.subscribe(ev => {
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
-       const item = armor.getEquipment(slot);
+       const item = armor.getEquipment(slot)
        const skill = skillManager.get(item?.nameTag);
        if (!skill) continue;
        skill.onHurt(hurtEntity, ev);
     }
 
-    if (damagingEntity !== undefined) {
-        const container = damagingEntity.getComponent("inventory").container;
-        const item = container.getSlot(damagingEntity.selectedSlotIndex).getItem();
-        if(!item) return;
-
-        const skill = skillManager.get(item.nameTag);
-        if (!skill) return;
-        skill.onDamage(damagingEntity, ev);
+    if (damagingEntity !== undefined && damagingEntity.typeId === "minecraft:player") {
+        const armor = damagingEntity.getComponent("equippable");
+        for (const slot of slots) {
+            const item = armor.getEquipment(slot)
+            const skill = skillManager.get(item?.nameTag);
+            if (!skill) continue;
+            skill.onDamage(damagingEntity, ev);
+        }
     }
 })
 

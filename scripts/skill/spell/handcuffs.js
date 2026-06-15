@@ -12,6 +12,10 @@ export class handcuffsSkill extends skillBase {
     }
 
     onDamage(player, event) {
+        if (!this.canUse(player)) return
+
+        this.onCooldown(player)
+
         const hurtEntity = event.hurtEntity
         const dimension = player.dimension
         const pos = hurtEntity.location
