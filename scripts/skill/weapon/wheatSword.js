@@ -1,35 +1,49 @@
 import { skillBase } from "../skillBase";
+import { ItemStack } from "@minecraft/server";
 
 export class wheatSwordSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§6麦麦/枯れ枯れ切り替え";
-        this.cooldown = 20 * 10; //
-        this.isWheatMode = new Map();
+        this.id = "gacha:wheat_weapon";
     }
 
-    execute(player) {
-        const currentMode = this.isWheatMode.get(player.name) ?? true;
-        const nextMode = !currentMode;
-        this.isWheatMode.set(player.name, nextMode);
-
-        const displayName = nextMode ? "§1麦麦ソード" : "§1枯れ枯れソード";
-        player.sendMessage(`モードを ${displayName} に切り替えました！`);
-        player.dimension.playSound("random.click", player.location, { volume: 0.5, pitch: 1.2 });
-    }
-
+    // 攻撃時の効果
     onDamage(player, event) {
         const target = event.hurtEntity;
         if (!target || !target.isValid) return;
 
-        const isWheat = this.isWheatMode.get(player.name) ?? true;
+        const hand = player.getComponent("equippable").getEquipment("Mainhand");
+        if (!hand) return;
 
-        if (isWheat) {
+        if (hand.typeId === "gacha:wheat_weapon") {
             target.runCommand("effect @s saturation 1 1 true");
-            target.dimension.playSound("random.orb", target.location, { volume: 0.5, pitch: 0.8 });
-        } else {
+        } else if (hand.typeId === "gacha:deadbush_weapon") {
             target.runCommand("effect @s hunger 5 2 true");
-            target.dimension.playSound("mob.zombie.infect", target.location, { volume: 0.5, pitch: 1.5 });
         }
+    }
+
+    // スニーク右クリック等で発動する切り替え処理
+    execute(player) {
+        const equip = player.getComponent("equippable");
+        const oldItem = equip.getEquipment("Mainhand");
+        if (!oldItem) return;
+
+        // 次のアイテムIDを決定
+        const newTypeId = (oldItem.typeId === "gacha:wheat_weapon") ? "gacha:deadbush_weapon" : "gacha:wheat_weapon";
+        const newItem = new ItemStack(newTypeId, 1);
+
+        // --- エンチャント引き継ぎ処理 ---
+        const oldEnchantable = oldItem.getComponent("minecraft:enchantable");
+        if (oldEnchantable) {
+            const enchantments = oldEnchantable.getEnchantments();
+            const newEnchantable = newItem.getComponent("minecraft:enchantable");
+            if (newEnchantable) {
+                newEnchantable.setEnchantments(enchantments);
+            }
+        }
+
+        // 持ち替え実行
+        equip.setEquipment("Mainhand", newItem);
+        player.dimension.playSound("random.click", player.location, { volume: 0.5, pitch: 1.2 });
     }
 }

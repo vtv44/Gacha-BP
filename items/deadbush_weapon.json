@@ -2,15 +2,15 @@
   "format_version": "1.20.80",
   "minecraft:item": {
     "description": {
-      "identifier": "gacha:wheat_weapon",
+      "identifier": "gacha:deadbush_weapon",
       "menu_category": {
         "category": "equipment",
         "group": "itemGroup.name.sword"
       }
     },
     "components": {
-      "minecraft:icon": "wheat_weapon",
-      "minecraft:display_name": { "value": "§1麦麦ソード" },
+      "minecraft:icon": "deadbush_weapon",
+      "minecraft:display_name": { "value": "§4枯れ枯れソード" },
       "minecraft:max_stack_size": 1,
       "minecraft:hand_equipped": true,
       "minecraft:enchantable": {

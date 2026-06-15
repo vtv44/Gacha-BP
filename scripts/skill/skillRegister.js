@@ -101,6 +101,7 @@ skillManager.register(new drainSwordSkill());
 skillManager.register(new harubaguSpecialLevySKill());
 skillManager.register(new totemChestPlateSkill());
 skillManager.register(new greenMagicSKill());
+skillManager.register(new wheatSwordSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
