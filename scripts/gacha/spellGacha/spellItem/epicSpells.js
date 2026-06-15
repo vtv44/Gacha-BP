@@ -23,6 +23,17 @@ export const epicSpells = [
     
     {
         amount: 1,
+        id: "gacha:medical_kit",
+        name: "§5回復キット",
+        lore: [
+            "§d[応急手当] §5右クリック",
+            "§5自分の体力を即座に10回復する",
+            "§5消耗品"
+        ],
+    },
+
+    {
+        amount: 1,
         id: "",
         name: "",
         lore: [],

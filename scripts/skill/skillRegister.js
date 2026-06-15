@@ -47,61 +47,68 @@ import { miniMedicalKitSkill } from "./spell/miniMedicalKit";
 import { medicalKitSkill } from "./spell/madicalKit";
 import { cinderSwordSkill } from "./weapon/cinderSword";
 import { dicerollSwordSkill } from "./weapon/dicerollSword";
-import { handcuffsSkill } from "./spell/handcuffs"
+import { handcuffsSkill } from "./spell/handcuffs";
 import { dispelBladeSkill } from "./weapon/dispelBlade";
 import { wheatSwordSkill } from "./weapon/wheatSword";
+import { drainSwordSkill } from "./weapon/drainSword";
+import { harubaguSpecialLevySKill } from "./spell/harubaguSpecialLevy";
+import { totemChestPlateSkill } from "./armor/totemChestPlate";
+import { greenMagicSKill } from "./spell/greenMagicSkill";
 
+skillManager.register(new redMagicSkill());
+skillManager.register(new giantSwordSkill());
+skillManager.register(new heroSwordSkill());
+skillManager.register(new drillRodSkill());
+skillManager.register(new scannerSkill());
+skillManager.register(new holyDimensionSkill());
+skillManager.register(new smokeBombSkill());
+skillManager.register(new phantomSwordSkill());
+skillManager.register(new assaultLance());
+skillManager.register(new ragingGravitySkill());
+skillManager.register(new healBookSkill());
+skillManager.register(new tntShotSkill());
+skillManager.register(new dashSwordSkill());
+skillManager.register(new magicRevolverSkill());
+skillManager.register(new cosmicMeteorSkill());
+skillManager.register(new explosiveAxeSkill());
+skillManager.register(new harubaguSpecialCatalogSKill());
+skillManager.register(new deathNoteSkill());
+skillManager.register(new highSpeedSkill());
+skillManager.register(new magicTechGunSwordSkill());
+skillManager.register(new pushFeatherSkill());
+skillManager.register(new leapFeatherSkill());
+skillManager.register(new blueBirdOfHappinessSkill());
+skillManager.register(new jammingSwordSkill());
+skillManager.register(new thiefLeggingsSkill());
+skillManager.register(new revengeChestPlateSkill());
+skillManager.register(new gyroKineticWandSkill());
+skillManager.register(new randomDiceSkill());
+skillManager.register(new changerSkill());
+skillManager.register(new curseSwordSkill());
+skillManager.register(new returnSkill());
+skillManager.register(new speedUpSkill());
+skillManager.register(new wallSkill());
+skillManager.register(new specialCookieSkill());
+skillManager.register(new campfireHealSkill());
+skillManager.register(new dicerollSwordSkill());
+skillManager.register(new cinderSwordSkill());
+skillManager.register(new miniMedicalKitSkill());
+skillManager.register(new handcuffsSkill());
+skillManager.register(new medicalKitSkill());
+skillManager.register(new dispelBladeSkill());
+skillManager.register(new wheatSwordSkill());
+skillManager.register(new drainSwordSkill());
+skillManager.register(new harubaguSpecialLevySKill());
+skillManager.register(new totemChestPlateSkill());
+skillManager.register(new greenMagicSKill());
 
-skillManager.register(new redMagicSkill())
-skillManager.register(new giantSwordSkill())
-skillManager.register(new heroSwordSkill())
-skillManager.register(new drillRodSkill())
-skillManager.register(new scannerSkill())
-skillManager.register(new holyDimensionSkill())
-skillManager.register(new smokeBombSkill())
-skillManager.register(new phantomSwordSkill())
-skillManager.register(new assaultLance())
-skillManager.register(new ragingGravitySkill())
-skillManager.register(new healBookSkill)
-skillManager.register(new tntShotSkill())
-skillManager.register(new dashSwordSkill())
-skillManager.register(new magicRevolverSkill())
-skillManager.register(new cosmicMeteorSkill())
-skillManager.register(new explosiveAxeSkill())
-skillManager.register(new harubaguSpecialCatalogSKill())
-skillManager.register(new deathNoteSkill())
-skillManager.register(new highSpeedSkill())
-skillManager.register(new magicTechGunSwordSkill())
-skillManager.register(new pushFeatherSkill())
-skillManager.register(new leapFeatherSkill())
-skillManager.register(new blueBirdOfHappinessSkill())
-skillManager.register(new jammingSwordSkill())
-skillManager.register(new thiefLeggingsSkill())
-skillManager.register(new revengeChestPlateSkill())
-skillManager.register(new gyroKineticWandSkill())
-skillManager.register(new randomDiceSkill())
-skillManager.register(new changerSkill())
-skillManager.register(new curseSwordSkill())
-skillManager.register(new returnSkill())
-skillManager.register(new speedUpSkill())
-skillManager.register(new wallSkill())
-skillManager.register(new specialCookieSkill())
-skillManager.register(new campfireHealSkill())
-skillManager.register(new dicerollSwordSkill())
-skillManager.register(new cinderSwordSkill())
-skillManager.register(new miniMedicalKitSkill())
-skillManager.register(new handcuffsSkill())
-skillManager.register(new medicalKitSkill())
-skillManager.register(new dispelBladeSkill())
-skillManager.register(new wheatSwordSkill())
-
-skillManager.tickSkillRegister(new speedBootsSkill())
-skillManager.tickSkillRegister(new superSpeedBootsSkill())
-skillManager.tickSkillRegister(new slowHelmetSkill())
-skillManager.tickSkillRegister(new superSlowHelmetSkill())
-skillManager.tickSkillRegister(new regenerationChestPlateSkill())
-skillManager.tickSkillRegister(new superRegenerationChestPlateSkill())
-skillManager.tickSkillRegister(new jumpLeggingsSkill())
-skillManager.tickSkillRegister(new superJumpLeggingsSkill())
-skillManager.tickSkillRegister(new revengeChestPlateSkill())
-skillManager.tickSkillRegister(new vampireHelmetSkill())
+skillManager.tickSkillRegister(new speedBootsSkill());
+skillManager.tickSkillRegister(new superSpeedBootsSkill());
+skillManager.tickSkillRegister(new slowHelmetSkill());
+skillManager.tickSkillRegister(new superSlowHelmetSkill());
+skillManager.tickSkillRegister(new regenerationChestPlateSkill());
+skillManager.tickSkillRegister(new superRegenerationChestPlateSkill());
+skillManager.tickSkillRegister(new jumpLeggingsSkill());
+skillManager.tickSkillRegister(new superJumpLeggingsSkill());
+skillManager.tickSkillRegister(new revengeChestPlateSkill());
+skillManager.tickSkillRegister(new vampireHelmetSkill());

@@ -1,4 +1,4 @@
-import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
@@ -7,12 +7,14 @@ import { rareWeapons } from "./gacha/weaponGacha/weaponItem/rareWeapons";
 import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
 import { game } from "./game/game";
 import { skillBase } from "./skill/skillBase";
+import { theEnd } from "./game/maps/theEnd";
 
 const slots = [
     EquipmentSlot.Head,
     EquipmentSlot.Chest,
     EquipmentSlot.Legs,
     EquipmentSlot.Feet,
+    EquipmentSlot.Mainhand,
 ]
 
 system.runInterval(() => {
@@ -71,12 +73,19 @@ world.beforeEvents.effectAdd.subscribe(ev => {
     if (tick < entity.getDynamicProperty("effectCancelTime")) ev.cancel = true;
 })
 
-world.afterEvents.itemUse.subscribe(ev => {
+world.afterEvents.itemUse.subscribe(async ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
 
     if (id === "minecraft:diamond") {
-        new gachaBase().spawnCrate(source.dimension, source.location)
+        const positions = await new theEnd().mapSpawnPos(10)
+        for (const p of positions) {
+            world.sendMessage(`${p.x}, ${p.y}, ${p.z}`)
+        }
+    }
+
+    if (id === "minecraft:emerald") {
+        new theEnd().buildRepair()
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -145,20 +154,20 @@ world.afterEvents.entityHurt.subscribe(ev => {
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
-       const item = armor.getEquipment(slot);
+       const item = armor.getEquipment(slot)
        const skill = skillManager.get(item?.nameTag);
        if (!skill) continue;
        skill.onHurt(hurtEntity, ev);
     }
 
-    if (damagingEntity !== undefined) {
-        const container = damagingEntity.getComponent("inventory").container;
-        const item = container.getSlot(damagingEntity.selectedSlotIndex).getItem();
-        if(!item) return;
-
-        const skill = skillManager.get(item.nameTag);
-        if (!skill) return;
-        skill.onDamage(damagingEntity, ev);
+    if (damagingEntity !== undefined && damagingEntity.typeId === "minecraft:player") {
+        const armor = damagingEntity.getComponent("equippable");
+        for (const slot of slots) {
+            const item = armor.getEquipment(slot)
+            const skill = skillManager.get(item?.nameTag);
+            if (!skill) continue;
+            skill.onDamage(damagingEntity, ev);
+        }
     }
 })
 

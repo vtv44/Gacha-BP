@@ -15,4 +15,21 @@ export const legendaryWeapons = [
         name: "§6ジャイアントソード",
         lore: [],
     },
+
+    {
+        amount: 1,
+        id: "gacha:drain_sword",
+        name: "§6リアルゴーストソード",
+        lore: [
+            "§b[吸収] §5攻撃",
+            "§5HP吸収"
+        ],
+    },
+
+    {
+        amount: 1,
+        id: "",
+        name: "",
+        lore: [],
+    },
 ]

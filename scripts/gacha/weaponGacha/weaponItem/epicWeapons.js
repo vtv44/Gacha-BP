@@ -7,6 +7,11 @@ export const epicWeapons = [
             "§c[レイジバウンド] 右クリック",
             "力を溜めて前方に爆発を起こす"
         ],
+        enchants: [
+            {id: "sharpness", level: 3},
+            {id: "knockback", level: 1},
+            {id: "unbreaking", level: 2}
+        ]
     },
     {
         amount: 1,

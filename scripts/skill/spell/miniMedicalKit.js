@@ -20,7 +20,7 @@ export class miniMedicalKitSkill extends skillBase {
         if (max < current + this.heal) {
             health.resetToMaxValue()
         } else {
-            health.setCurrentValue(this.heal)
+            health.setCurrentValue(current + this.heal)
         }
 
         const location = player.location
