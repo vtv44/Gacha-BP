@@ -13,6 +13,7 @@ export class mapBase {
     }
 
     areaCenterPoint() {
+        // 範囲中心地のやつ
         const x = Math.floor(Math.random() * (this.mapPos[1].x - this.mapPos[0].x)) 
         const y = this.mapPos[0].y
         const z = Math.floor(Math.random() * (this.mapPos[1].z - this.mapPos[0].z))
@@ -20,12 +21,11 @@ export class mapBase {
     }
 
     buildRepair() {
-        const dimension = world.getDimension("overworld")
         for (let i = 0; i <= this.structures.length - 1; i++) {
             system.runTimeout(() => {
                 world.structureManager.place(
                     this.structures[i].id,
-                    dimension,
+                    world.getDimension("overworld"),
                     {
                         x: this.structures[i].x,
                         y: this.structures[i].y,
@@ -41,11 +41,10 @@ export class mapBase {
     }
 
     createTickingArea() {
-        const dimension = world.getDimension("overworld")
         world.tickingAreaManager.createTickingArea(
             "mapLoad",
             {
-                dimension: dimension,
+                dimension: world.getDimension("overworld"),
                 from: this.mapPos[0],
                 to: this.mapPos[1]
             }
@@ -56,8 +55,6 @@ export class mapBase {
         // 渡された数だけランダムな座標を返す
         // 難しい仕様とかは一旦抜き
         // 壁に埋まるのだけ対策
-
-        // 5tickまつ
         return new Promise((resolve) => {
             const positions = []
             const dimension = world.getDimension("overworld")
@@ -65,7 +62,7 @@ export class mapBase {
             this.createTickingArea()
 
             system.runTimeout(() => {
-                for (let i = 0; i <= count; i++) {
+                for (let i = 0; i <= count - 1; i++) {
                 
                     const x = Math.floor(Math.random() * (this.mapPos[1].x - this.mapPos[0].x))
                     const y = Math.floor(Math.random() * (this.mapPos[1].y - this.mapPos[0].y))
@@ -77,22 +74,25 @@ export class mapBase {
                         z: z + this.mapPos[0].z
                     }
 
-                    if (!this.spawnTest(dimension, spawnPos)) continue;
+                    if (!this.spawnTest(dimension, spawnPos)) {
+                        i--
+                        continue
+                    }
                     positions.push(spawnPos)
                 }
 
                 world.tickingAreaManager.removeTickingArea("mapLoad")
                 
                 resolve(positions)
-            }, 5)
+            }, 20)
         })
     }
 
     spawnTest(dimension, pos) {
         const block = dimension.getBlock(pos)
         return (
-            block.below().typeId !== "minecraft:air" ||
-            block.typeId === "minecraft:air" ||
+            block.below().typeId !== "minecraft:air" &&
+            block.typeId === "minecraft:air" &&
             block.above().typeId === "minecraft:air"
         ) 
     }

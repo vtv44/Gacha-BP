@@ -78,14 +78,12 @@ world.afterEvents.itemUse.subscribe(async ev => {
     const id = itemStack.typeId;
 
     if (id === "minecraft:diamond") {
-        const positions = await new theEnd().mapSpawnPos(10)
-        for (const p of positions) {
-            world.sendMessage(`${p.x}, ${p.y}, ${p.z}`)
-        }
+        const positions = await new theEnd().mapSpawnPos(1)
+        source.teleport(positions[0])
     }
 
     if (id === "minecraft:emerald") {
-        new theEnd().buildRepair()
+        new game().gameStart()
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -122,6 +120,12 @@ world.afterEvents.itemUse.subscribe(async ev => {
     const skill = skillManager.get(itemStack.nameTag);
     if (!skill) return;
     skill.use(source, ev);
+})
+
+world.afterEvents.entityDie.subscribe(ev => {
+    ev.deadEntity.sendMessage("aa")
+    ev.deadEntity.addEffect("speed", 100 * 20)
+    if (world.getDynamicProperty("game")) new game().playerDie(ev);
 })
 
 world.afterEvents.entityHitEntity.subscribe((event) => {
