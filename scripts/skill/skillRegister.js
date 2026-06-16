@@ -49,11 +49,12 @@ import { cinderSwordSkill } from "./weapon/cinderSword";
 import { dicerollSwordSkill } from "./weapon/dicerollSword";
 import { handcuffsSkill } from "./spell/handcuffs";
 import { dispelBladeSkill } from "./weapon/dispelBlade";
-import { wheatSwordSkill } from "./weapon/wheatSword";
 import { drainSwordSkill } from "./weapon/drainSword";
 import { harubaguSpecialLevySKill } from "./spell/harubaguSpecialLevy";
 import { totemChestPlateSkill } from "./armor/totemChestPlate";
 import { greenMagicSKill } from "./spell/greenMagicSkill";
+import { infernalAxeSkill } from "./weapon/infernalAxe";
+import { deadbushSwordSkill } from "./weapon/deadbushSword";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -96,12 +97,11 @@ skillManager.register(new miniMedicalKitSkill());
 skillManager.register(new handcuffsSkill());
 skillManager.register(new medicalKitSkill());
 skillManager.register(new dispelBladeSkill());
-skillManager.register(new wheatSwordSkill());
 skillManager.register(new drainSwordSkill());
 skillManager.register(new harubaguSpecialLevySKill());
 skillManager.register(new totemChestPlateSkill());
 skillManager.register(new greenMagicSKill());
-skillManager.register(new wheatSwordSkill())
+skillManager.register(new deadbushSwordSkill())
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -113,3 +113,19 @@ skillManager.tickSkillRegister(new jumpLeggingsSkill());
 skillManager.tickSkillRegister(new superJumpLeggingsSkill());
 skillManager.tickSkillRegister(new revengeChestPlateSkill());
 skillManager.tickSkillRegister(new vampireHelmetSkill());
+
+const axeSkill = new infernalAxeSkill();
+
+const axeNames = [
+    "§1ぼろぼろの斧",
+    "§5斧",
+    "§6血の斧",
+    "§d血まみれの斧",
+    "§b業火の斧"
+];
+
+for (const name of axeNames) {
+    const s = Object.create(axeSkill);
+    s.id = name;
+    skillManager.register(s);
+}
