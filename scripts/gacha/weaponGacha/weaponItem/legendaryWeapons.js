@@ -28,6 +28,21 @@ export const legendaryWeapons = [
 
     {
         amount: 1,
+        id: "minecraft:iron_sword",
+        name: "§6アメノオハバリノツルギ",
+        lore: [
+            "§b[十文字斬り] §5右クリック",
+            "§5前方に大ダメージを二回与える"
+        ],
+        enchants: [
+            {id: "sharpness", level: 2},
+            {id: "knockback", level: 1},
+            {id: "unbreaking", level: 3}
+        ]
+    },
+
+    {
+        amount: 1,
         id: "",
         name: "",
         lore: [],

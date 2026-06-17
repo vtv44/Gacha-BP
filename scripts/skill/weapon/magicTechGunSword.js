@@ -177,7 +177,7 @@ export class magicTechGunSwordSkill extends skillBase {
                     objective: "team",
                     minScore: teamScore,
                     maxScore: teamScore,
-                    exclude: exclude
+                    exclude: true
                 }],
             })
             for (const t of targets) {

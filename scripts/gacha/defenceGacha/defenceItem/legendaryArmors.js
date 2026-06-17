@@ -31,6 +31,20 @@ export const legendaryArmors = [
 
     {
         amount: 1,
+        id: "minecraft:diamond_leggings",
+        name: "§6不完全な反射脚",
+        lore: [
+            "§d[リフレクト] §5被弾",
+            "§5攻撃を受けたとき、受けたダメージの四分の一を反射する",
+        ],
+        enchants: [
+            {id: "thorns", level: 3},
+            {id: "unbreaking", level: 3},
+        ]
+    },
+
+    {
+        amount: 1,
         id: "",
         name: "",
         lore: [],

@@ -55,6 +55,11 @@ import { totemChestPlateSkill } from "./armor/totemChestPlate";
 import { greenMagicSKill } from "./spell/greenMagicSkill";
 import { infernalAxeSkill } from "./weapon/infernalAxe";
 import { deadbushSwordSkill } from "./weapon/deadbushSword";
+import { breakArmorSKill } from "./spell/breakArmor";
+import { crossSlashSkill } from "./weapon/crossSlash";
+import { gateOfBabylonSkill } from "./spell/gateOfBabylon";
+import { reflectArmorSkill } from "./armor/reflectArmor";
+import { perfectReflectArmorSkill } from "./armor/perfectReflectArmor";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -101,7 +106,12 @@ skillManager.register(new drainSwordSkill());
 skillManager.register(new harubaguSpecialLevySKill());
 skillManager.register(new totemChestPlateSkill());
 skillManager.register(new greenMagicSKill());
-skillManager.register(new deadbushSwordSkill())
+skillManager.register(new deadbushSwordSkill());
+skillManager.register(new breakArmorSKill());
+skillManager.register(new crossSlashSkill());
+skillManager.register(new gateOfBabylonSkill());
+skillManager.register(new reflectArmorSkill());
+skillManager.register(new perfectReflectArmorSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());

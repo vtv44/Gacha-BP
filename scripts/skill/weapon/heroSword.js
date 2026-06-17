@@ -23,7 +23,7 @@ export class heroSwordSkill extends skillBase {
         dimension.playSound("random.pop", atkPos, {pitch: 0.4, volume: 1.2})
         const targets = this.getTargets(player, atkPos, 2)
         for (const t of targets) {
-            t.applyDamage(4, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
+            t.applyDamage(3, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
         }
 
         system.runTimeout(() => {
@@ -45,7 +45,7 @@ export class heroSwordSkill extends skillBase {
             player.applyKnockback({x: dir.x * 2, z: dir.z * 2}, 0.3)
             const targets = this.getTargets(player, atkPos, 4)
             for (const t of targets) {
-                t.applyDamage(8, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
+                t.applyDamage(6, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
             }
         }, 8)
     }

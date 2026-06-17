@@ -9,6 +9,7 @@ export class game {
 
     gameReset() {
         world.setDynamicProperty("game", false)
+        world.setDynamicProperty("gameJoinPlayers", null)
         world.scoreboard.clearObjectiveAtDisplaySlot("Sidebar")
         world.gameRules.pvp = false
         this.teamClear()
@@ -31,6 +32,7 @@ export class game {
         gameInfo.setScore("§l§b残り人数", 0)
 
         const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
+        world.setDynamicProperty("gameJoinPlayers", players)
         const map = this.mapSelect()
         const spawnPos = await map.mapSpawnPos(players.length)
 
@@ -60,6 +62,23 @@ export class game {
         }
     }
 
+    teamSelect() {
+        const dimension = world.getDimension("overworld")
+        const players = dimension.getPlayers()
+        const teamObject = world.scoreboard.getObjective("team")
+
+        for (let i = 0; i <= players.length - 1; i++) {
+            const location = players[i].location
+            teamObject.setScore(players[i], i + 4)
+
+            const block = dimension.getBlock(location).below()
+            if (block.typeId === "minecraft:red_wool") teamObject.setScore(players[i], 1)
+            if (block.typeId === "minecraft:blue_wool") teamObject.setScore(players[i], 2)
+            if (block.typeId === "minecraft:green_wool") teamObject.setScore(players[i], 3)
+            if (block.typeId === "minecraft:yellow_wool") teamObject.setScore(players[i], 4)
+        }
+    }
+
     mapSelect() {
         // ランダムなマップクラスを返す
         const rand = Math.floor(Math.random() * maps.length)
@@ -81,7 +100,7 @@ export class game {
 
     playerDie(event) {
         const {damageSource, deadEntity} = event
-
+        if (damageSource.typeId !== "minecraft:player") return
     }
 }
 
