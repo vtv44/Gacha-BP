@@ -2,6 +2,7 @@ import { EntityDamageCause, system, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class gateOfBabylonSkill extends skillBase {
+    // 要修正　攻撃判定、34行
     constructor() {
         super()
 

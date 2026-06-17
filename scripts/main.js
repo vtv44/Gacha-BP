@@ -83,7 +83,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
     }
 
     if (id === "minecraft:emerald") {
-        new game().gameStart()
+        new theEnd().buildRepair()
     }
 
     if (id === "minecraft:iron_ingot") {

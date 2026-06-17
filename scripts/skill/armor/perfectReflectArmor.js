@@ -1,4 +1,4 @@
-import { EntityDamageCause } from "@minecraft/server";
+import { EntityDamageCause, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class perfectReflectArmorSkill extends skillBase {
@@ -9,12 +9,13 @@ export class perfectReflectArmorSkill extends skillBase {
     }
 
     onHurt(player, event) {
+        // applydamage 変
         const {damage, hurtEntity} = event
         const dimension = player.dimension
         const {x, y, z} = player.location
         if (!hurtEntity) return
 
-        hurtEntity.apllyDamage(damage, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
+        hurtEntity.applyDamage(damage, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
         dimension.spawnParticle("rca:just_guard", {x: x, y: y + 1.4, z: z})
         dimension.spawnParticle("rca:tame_heart", {x: x, y: y + 1.4, z: z})
         dimension.playSound("damage.thorns", player.location, {pitch: 0.8})

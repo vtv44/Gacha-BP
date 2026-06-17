@@ -57,7 +57,7 @@ export class crossSlashSkill extends skillBase {
                 dimension.playSound("mob.vex.charge", pos, {pitch: 2, volume: 0.2})
                 for (const t of this.getTargets(player, pos, 2)) {
                     t.applyDamage(10, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
-                    t.addEffect("slowness", 40 * 20, {amplifier: 4})
+                    t.addEffect("slowness", 4 * 20, {amplifier: 4})
                 }
             }
 
@@ -75,7 +75,7 @@ export class crossSlashSkill extends skillBase {
                     dimension.playSound("mob.vex.charge", pos, {pitch: 2, volume: 0.2})
                     for (const t of this.getTargets(player, pos, 2)) {
                         t.applyDamage(10, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
-                        t.addEffect("slowness", 40 * 20, {amplifier: 4})
+                        t.addEffect("slowness", 4 * 20, {amplifier: 4})
                     }
                 }
             }, 24)

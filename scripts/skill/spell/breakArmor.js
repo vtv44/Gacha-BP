@@ -17,7 +17,7 @@ export class breakArmorSKill extends skillBase {
 
         const hurtEntity = event.hurtEntity
         const armor = player.getComponent("equippable")
-        const hurtArmor = player.getComponent("equippable")
+        const hurtArmor = hurtEntity.getComponent("equippable")
 
         for (const slot of slots) {
             armor.setEquipment(slot, null)
