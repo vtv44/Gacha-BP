@@ -60,6 +60,7 @@ import { crossSlashSkill } from "./weapon/crossSlash";
 import { gateOfBabylonSkill } from "./spell/gateOfBabylon";
 import { reflectArmorSkill } from "./armor/reflectArmor";
 import { perfectReflectArmorSkill } from "./armor/perfectReflectArmor";
+import { wheatSwordSkill } from "./weapon/wheatSword";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -112,6 +113,7 @@ skillManager.register(new crossSlashSkill());
 skillManager.register(new gateOfBabylonSkill());
 skillManager.register(new reflectArmorSkill());
 skillManager.register(new perfectReflectArmorSkill());
+skillManager.register(new wheatSwordSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());

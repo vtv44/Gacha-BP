@@ -9,11 +9,12 @@
       }
     },
     "components": {
-      "minecraft:icon": "infernalAxe",
+      "minecraft:icon": "infernal_axe", 
       "minecraft:display_name": { "value": "§b業火の斧" },
       "minecraft:max_stack_size": 1,
       "minecraft:hand_equipped": true,
       "minecraft:glint": true,
+      "minecraft:damage": 15, 
       "minecraft:enchantable": {
         "slot": "sword",
         "value": 15

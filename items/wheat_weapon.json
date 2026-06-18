@@ -10,9 +10,10 @@
     },
     "components": {
       "minecraft:icon": "wheat_weapon",
-      "minecraft:display_name": { "value": "§1麦麦ソード" },
+      "minecraft:display_name": { "value": "麦麦ソード" },
       "minecraft:max_stack_size": 1,
       "minecraft:hand_equipped": true,
+      "minecraft:damage": 7,
       "minecraft:enchantable": {
         "slot": "sword",
         "value": 15
