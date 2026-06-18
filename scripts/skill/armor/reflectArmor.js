@@ -2,7 +2,6 @@ import { EntityDamageCause } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class reflectArmorSkill extends skillBase {
-    // applydamage 変
     constructor() {
         super()
 
@@ -10,12 +9,13 @@ export class reflectArmorSkill extends skillBase {
     }
 
     onHurt(player, event) {
-        const {damage, hurtEntity} = event
+        const {damage, damageSource} = event
         const dimension = player.dimension
         const {x, y, z} = player.location
-        if (!hurtEntity) return
+        const damagingEntity = damageSource.damagingEntity;
+        if (!damagingEntity) return
 
-        hurtEntity.applyDamage(damage / 4, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
+        damagingEntity.applyDamage(damage / 4, {damagingEntity: player, cause: EntityDamageCause.none})
         dimension.spawnParticle("rca:just_guard", {x: x, y: y + 1.4, z: z})
         dimension.playSound("damage.thorns", player.location)
     }

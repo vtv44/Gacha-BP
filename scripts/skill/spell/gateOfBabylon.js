@@ -83,44 +83,34 @@ export class gateOfBabylonSkill extends skillBase {
                     z: center.z + right.z * rx
                 }
                 system.runTimeout(() => {
-                    arrowShot(player, vector3, dir, player.dimension, 20)
-
-                    const atkTargets = this.getTargets(player, {
-                        x: x + dir.x * 4,
-                        y: y,
-                        z: z + dir.z * 4
-                    }, 4)
-                    const nearTargets = this.getTargets(player, location, 4)
-
-                    const targets = atkTargets.filter(player => {
-                        nearTargets.some(other => other.id === player.id)
-                    })
-
-                    for (const t of targets) {
-                        t.applyDamage(6, {damagingEntity: player, cause: EntityDamageCause.none})
-                    }
+                    this.arrowShot(player, vector3, dir, player.dimension, 20)
                 }, 10 + i * 1);
             }
         }
     }
-}
 
-function arrowShot(player, location, dir, dimension, count = 20) {
-    let {x, y, z} = location;
-    dimension.runCommand(`particle rpg:yellow_v_magic_circle ${x} ${y} ${z}`)
-    dimension.runCommand(`playsound mob.elderguardian.curse @a ${x} ${y} ${z} 0.5 2`)
-    system.runTimeout(() => {
-        dimension.runCommand(`playsound mob.blaze.shoot @a ${x} ${y} ${z} 0.6 3`)
-        for (let i = 0; i <= count; i++) {
-            const pos = {
-                x: location.x + dir.x * (i / 2),
-                y: location.y + dir.y * (i / 2),
-                z: location.z + dir.z * (i / 2),
+    arrowShot(player, location, dir, dimension, count = 20) {
+        let {x, y, z} = location;
+        dimension.runCommand(`particle gacha:babylon_gate ${x} ${y} ${z}`)
+        dimension.runCommand(`playsound mob.elderguardian.curse @a ${x} ${y} ${z} 0.5 2`)
+        system.runTimeout(() => {
+            dimension.runCommand(`playsound mob.blaze.shoot @a ${x} ${y} ${z} 0.6 3`)
+            for (let i = 0; i <= count; i++) {
+                const pos = {
+                    x: location.x + dir.x * (i / 2),
+                    y: location.y + dir.y * (i / 2),
+                    z: location.z + dir.z * (i / 2),
+                }
+                const {x, y, z} = pos;
+                dimension.runCommand(`particle rpg:yellow_smoke ${x} ${y} ${z}`);
+                dimension.runCommand(`playsound random.pop @a ${x} ${y} ${z} 0.01 0.5`)
+
+                if (count % 5 === 0) {
+                    for (const t of this.getTargets(player, location, 1)) {
+                        t.applyDamage(6, {damagingEntity: player, cause: EntityDamageCause.none})
+                    }
+                }
             }
-            const {x, y, z} = pos;
-            dimension.runCommand(`particle rpg:yellow_smoke ${x} ${y} ${z}`);
-            dimension.runCommand(`playsound random.pop @a ${x} ${y} ${z} 0.01 0.5`)
-        }
-    }, 10)
-    
+        }, 10)
+    }
 }
