@@ -106,7 +106,7 @@ export class gateOfBabylonSkill extends skillBase {
                 dimension.runCommand(`playsound random.pop @a ${x} ${y} ${z} 0.01 0.5`)
 
                 if (count % 5 === 0) {
-                    for (const t of this.getTargets(player, location, 1)) {
+                    for (const t of this.getTargets(player, pos, 1)) {
                         t.applyDamage(6, {damagingEntity: player, cause: EntityDamageCause.none})
                     }
                 }
