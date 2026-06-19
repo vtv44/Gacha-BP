@@ -52,7 +52,13 @@ export class skillBase {
     execute(player) {}
 
     getTargets(player, location, maxDis, minDis = 0, exclude = true) {
-        const teamScore = world.scoreboard.getObjective("team").getScore(player)
+        let teamScore = -1
+        try {
+            teamScore = world.scoreboard.getObjective("team").getScore(player)
+        } catch {
+            teamScore = -1
+        }
+
         return player.dimension.getPlayers({
             location: location,
             maxDistance: maxDis,

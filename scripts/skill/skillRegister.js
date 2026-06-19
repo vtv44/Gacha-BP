@@ -61,6 +61,7 @@ import { gateOfBabylonSkill } from "./spell/gateOfBabylon";
 import { reflectArmorSkill } from "./armor/reflectArmor";
 import { perfectReflectArmorSkill } from "./armor/perfectReflectArmor";
 import { wheatSwordSkill } from "./weapon/wheatSword";
+import { hellBladeSKill } from "./weapon/hellBlade";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -114,6 +115,7 @@ skillManager.register(new gateOfBabylonSkill());
 skillManager.register(new reflectArmorSkill());
 skillManager.register(new perfectReflectArmorSkill());
 skillManager.register(new wheatSwordSkill());
+skillManager.register(new hellBladeSKill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());

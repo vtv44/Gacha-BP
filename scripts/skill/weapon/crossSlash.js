@@ -12,6 +12,8 @@ export class crossSlashSkill extends skillBase {
     execute(player) {
         this.onCooldown(player)
 
+        if (this.canAddEffect) player.addEffect("speed", 20 * 20, {amplifier: 1})
+
         const dimension = player.dimension
         const location = player.location
         const dir = player.getViewDirection()

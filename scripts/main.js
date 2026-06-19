@@ -1,4 +1,4 @@
-import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
@@ -42,11 +42,12 @@ system.runInterval(() => {
 }, 5)
 
 system.runInterval(() => {
-    new game().onSecond();
+    game.onSecond()
 }, 20)
 
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);
+
     const score = world.scoreboard;
     if (!score.getObjective("team")) {
         score.addObjective("team", "team");
@@ -83,7 +84,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
     }
 
     if (id === "minecraft:emerald") {
-        new theEnd().buildRepair()
+        game.teamSelect()
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -118,14 +119,14 @@ world.afterEvents.itemUse.subscribe(async ev => {
     }
 
     const skill = skillManager.get(itemStack.nameTag);
-    if (!skill) return;
-    skill.use(source, ev);
+    if (skill) skill.use(source, ev);
+
+    const tickSkill = skillManager.tickSkillGet(itemStack.nameTag);
+    if (tickSkill) tickSkill.use(source, ev);
 })
 
 world.afterEvents.entityDie.subscribe(ev => {
-    ev.deadEntity.sendMessage("aa")
-    ev.deadEntity.addEffect("speed", 100 * 20)
-    if (world.getDynamicProperty("game")) new game().playerDie(ev);
+    if (world.getDynamicProperty("game")) game.playerDie(ev);
 })
 
 world.afterEvents.entityHitEntity.subscribe((event) => {
@@ -192,12 +193,17 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
 world.afterEvents.playerSpawn.subscribe(ev => {
     const {player, initialSpawn} = ev;
     if (initialSpawn) {
-        player.setDynamicProperty("effectCancelTime", 0)
+        game.resetPlayer(player)
+
+        if (!player.getDynamicProperty("win")) player.setDynamicProperty("win", 0);
+        if (!player.getDynamicProperty("kill")) player.setDynamicProperty("kill", 0);
+        if (!player.getDynamicProperty("rp")) player.setDynamicProperty("rp", 0);
 
         if (world.getDynamicProperty("game")) {
+            player.sendMessage(`§l§bガチャPVPへようこそ\n \n§l§f現在はバトルフェーズです`);
 
         } else {
-
+            player.sendMessage(`§l§bガチャPVPへようこそ\n \n§l§f現在はガチャフェーズです`);
         }
     }
 })
