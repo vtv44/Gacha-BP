@@ -7,7 +7,7 @@ export class assaultLance extends skillBase {
     }
 
     onDamage(player, ev) {
-        player.addEffect("speed", 20)
+        if (this.canAddEffect) player.addEffect("speed", 20)
         player.runCommand("particle kitpvp:ninja_shuriken ~~1.4~")
         player.runCommand("playsound item.trident.return @a ~~~ 1")
     }

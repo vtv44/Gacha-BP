@@ -53,6 +53,13 @@ export class harubaguSpecialCatalogSKill extends skillBase {
 
         .show(player).then(res => {
 
+            if (!this.canAddEffect) {
+                player.sendMessage("§lはるばぐ様の加護を受け取れなかった...")
+                player.playSound("random.fizz")
+                player.runCommand("particle minecraft:egg_destroy_emitter ~~1.4~")
+                return
+            }
+
             player.sendMessage("§lはるばぐ様の加護を受け取った！")
             player.playSound("random.levelup", {pitch: 2.0})
             player.runCommand("particle minecraft:example_flipbook ~~1.4~")
