@@ -18,7 +18,6 @@ export class speedUpSkill extends skillBase {
         const teammate = target && teammates.includes(target) ? target : null;
 
         if (teammate) {
-            // 味方検知あり
             const duration = 15 * 20;
             player.addEffect("speed", duration, { amplifier: 1, showParticles: true });
             player.addEffect("jump_boost", duration, { amplifier: 1, showParticles: true });
@@ -32,7 +31,6 @@ export class speedUpSkill extends skillBase {
             teammate.runCommand("particle rca:arrow_cyan ~ ~ ~");
             teammate.runCommand("playsound random.potion.brewed @s ~ ~ ~");
         } else {
-            // 味方検知なし
             const duration = 30 * 20;
             player.addEffect("speed", duration, { amplifier: 1, showParticles: true });
             player.addEffect("jump_boost", duration, { amplifier: 1, showParticles: true });
