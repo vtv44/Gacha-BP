@@ -197,6 +197,7 @@ export class magicTechGunSwordSkill extends skillBase {
         }
         const {x, y, z} = tpPos
 
+        player.addEffect("speed", 1 * 20, {amplifier: 4})
         player.teleport(tpPos, {facingLocation: location})
         player.runCommand(`fill ${x + 2} ${y + 2} ${z + 2} ${x - 2} ${y} ${z - 2} air`)
 

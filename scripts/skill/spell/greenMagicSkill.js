@@ -19,7 +19,7 @@ export class greenMagicSKill extends skillBase {
         dimension.playSound("mob.witch.celebrate", location)
 
         for (const t of this.getTargets(player, location, 4)) {
-            t.addEffect("poison", 5 * 20)
+            if (this.canAddEffect(player)) t.addEffect("poison", 5 * 20)
         }
     }
 }

@@ -62,6 +62,7 @@ import { reflectArmorSkill } from "./armor/reflectArmor";
 import { perfectReflectArmorSkill } from "./armor/perfectReflectArmor";
 import { wheatSwordSkill } from "./weapon/wheatSword";
 import { hellBladeSKill } from "./weapon/hellBlade";
+import { healHelmetSkill } from "./armor/healHelmet";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -116,6 +117,7 @@ skillManager.register(new reflectArmorSkill());
 skillManager.register(new perfectReflectArmorSkill());
 skillManager.register(new wheatSwordSkill());
 skillManager.register(new hellBladeSKill());
+skillManager.register(new healHelmetSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());

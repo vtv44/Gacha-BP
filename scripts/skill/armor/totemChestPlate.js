@@ -23,9 +23,12 @@ export class totemChestPlateSkill extends skillBase {
         dimension.playSound("random.break", location)
 
         health.resetToMaxValue()
-        player.addEffect("resistance", 10 * 20, {amplifier: 4})
-        player.addEffect("regeneration", 10 * 20, {amplifier: 4})
-        player.addEffect("fire_resistance", 30 * 20)
+        
+        if (this.canAddEffect) {
+            player.addEffect("resistance", 10 * 20, {amplifier: 4})
+            player.addEffect("regeneration", 10 * 20, {amplifier: 4})
+            player.addEffect("fire_resistance", 30 * 20)
+        }
 
         player.getComponent("equippable").setEquipment(EquipmentSlot.Chest, null)
     }

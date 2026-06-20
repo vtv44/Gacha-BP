@@ -22,6 +22,8 @@ export class drillRodSkill extends skillBase {
         }
         dimension.spawnParticle("rpg:red_light_blue_v_magic_circle", particlePos)
         dimension.playSound("portal.portal", particlePos, {pitch: 1.5, volume: 0.6})
+
+        if (this.canAddEffect) player.addEffect("regeneration", 10 * 20, {amplifier: 1})
         
         system.runTimeout(() => {
             dimension.playSound("mob.elderguardian.curse", particlePos, {pitch: 0.8})
