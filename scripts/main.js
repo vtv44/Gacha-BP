@@ -8,6 +8,7 @@ import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
 import { game } from "./game/game";
 import { skillBase } from "./skill/skillBase";
 import { theEnd } from "./game/maps/theEnd";
+import { rankPointManager } from "./game/rankPointManager";
 
 const slots = [
     EquipmentSlot.Head,
@@ -44,6 +45,17 @@ system.runInterval(() => {
 system.runInterval(() => {
     game.onSecond()
 }, 20)
+
+
+world.beforeEvents.chatSend.subscribe(ev => {
+    const {message, sender} = ev;
+    ev.cancel = true;
+    if (world.getDynamicProperty("game")) {
+        world.sendMessage(`<${sender.name}> ${message}`)
+    } else {
+        world.sendMessage(`<${sender.nameTag}> ${message}`)
+    }
+})
 
 world.afterEvents.worldLoad.subscribe(ev => {
     world.setDynamicProperty("game", false);
@@ -83,8 +95,12 @@ world.afterEvents.itemUse.subscribe(async ev => {
         source.teleport(positions[0])
     }
 
+    if (id === "minecraft:stick") {
+        game.gameStart()
+    }
+
     if (id === "minecraft:emerald") {
-        game.teamSelect()
+        
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -198,6 +214,8 @@ world.afterEvents.playerSpawn.subscribe(ev => {
         if (!player.getDynamicProperty("win")) player.setDynamicProperty("win", 0);
         if (!player.getDynamicProperty("kill")) player.setDynamicProperty("kill", 0);
         if (!player.getDynamicProperty("rp")) player.setDynamicProperty("rp", 0);
+
+        rankPointManager.rankConfirm(player)
 
         if (world.getDynamicProperty("game")) {
             player.sendMessage(`§l§bガチャPVPへようこそ\n \n§l§f現在はバトルフェーズです`);
