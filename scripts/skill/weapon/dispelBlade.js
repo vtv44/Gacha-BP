@@ -3,7 +3,7 @@ import { skillBase } from "../skillBase";
 export class dispelBladeSkill extends skillBase {
     constructor() {
         super();
-        this.id = "ディスペルブレード";
+        this.id = "§5ディスペルブレード";
         this.cooldown = 0;
     }
 
