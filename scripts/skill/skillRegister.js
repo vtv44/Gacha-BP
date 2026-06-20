@@ -63,6 +63,13 @@ import { perfectReflectArmorSkill } from "./armor/perfectReflectArmor";
 import { wheatSwordSkill } from "./weapon/wheatSword";
 import { hellBladeSKill } from "./weapon/hellBlade";
 import { healHelmetSkill } from "./armor/healHelmet";
+import { thunderSword } from "./weapon/thunderSword";
+import { brokenSwordSkill } from "./weapon/brokenSword";
+import { robustHelmetSkill } from "./armor/robustHelmet";
+import { fluffyBootsSkill } from "./armor/fluffyBoots";
+import { rocketSpearSkill } from "./weapon/rocketSpear";
+import { breakerSkill, crusherSkill } from "./weapon/breaker";
+import { powerChargeSkill } from "./spell/powerCharge";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -118,6 +125,12 @@ skillManager.register(new perfectReflectArmorSkill());
 skillManager.register(new wheatSwordSkill());
 skillManager.register(new hellBladeSKill());
 skillManager.register(new healHelmetSkill());
+skillManager.register(new thunderSword());
+skillManager.register(new brokenSwordSkill());
+skillManager.register(new rocketSpearSkill());
+skillManager.register(new breakerSkill());
+skillManager.register(new crusherSkill());
+skillManager.register(new powerChargeSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -129,6 +142,8 @@ skillManager.tickSkillRegister(new jumpLeggingsSkill());
 skillManager.tickSkillRegister(new superJumpLeggingsSkill());
 skillManager.tickSkillRegister(new revengeChestPlateSkill());
 skillManager.tickSkillRegister(new vampireHelmetSkill());
+skillManager.tickSkillRegister(new robustHelmetSkill())
+skillManager.tickSkillRegister(new fluffyBootsSkill())
 
 const axeSkill = new infernalAxeSkill();
 

@@ -18,8 +18,11 @@ export const unCommonWeapons = [
     
     {
         amount: 1,
-        id: "",
-        name: "",
-        lore: [],
+        id: "minecraft:copper_sword",
+        name: "§a壊れた星輝剣",
+        lore: [
+        "§e[斬撃] §5右クリック",
+        "右クリックで前方の敵をノックバックさせごく少量のダメージを与える"
+        ],
     },
 ]

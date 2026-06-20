@@ -24,8 +24,11 @@ export const rareWeapons = [
     
     {
         amount: 1,
-        id: "",
-        name: "",
-        lore: [],
+        id: "minecraft:golden_sword",
+        name: "§1サンダーソード",
+        lore: [
+        "§e[天の憤怒] §5攻撃",
+        "敵を攻撃した時天の怒りが呼び覚まされ相手を上方向に強く吹き飛ばし雷を落とす"
+        ],
     },
 ]

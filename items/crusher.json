@@ -1,0 +1,28 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:item": {
+    "description": {
+      "identifier": "gacha:crusher",
+      "menu_category": {
+        "category": "equipment",
+        "group": "itemGroup.name.sword"
+      }
+    },
+    "components": {
+      "minecraft:icon": "crusher",
+      "minecraft:display_name": { "value": "クラッシャー" },
+      "minecraft:max_stack_size": 1,
+      "minecraft:hand_equipped": true,
+      "minecraft:enchantable": {
+        "slot": "sword",
+        "value": 15
+      },
+      "minecraft:tags": {
+        "tags": [
+          "minecraft:is_sword",
+          "minecraft:is_tool"
+        ]
+      }
+    }
+  }
+}
