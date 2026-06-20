@@ -1,5 +1,6 @@
 import { Difficulty, GameMode, InputPermissionCategory, ItemStack, system, world } from "@minecraft/server"
 import { theEnd } from "./maps/theEnd"
+import { rankPointManager } from "./rankPointManager"
 
 export class game {
 
@@ -15,14 +16,19 @@ export class game {
     static gameJoinPlayers = []
 
     static gameEnd() {
+        // 途中?
         world.sendMessage(`§l§c====決着====\n§f勝者`)
         for (const s of this.gameJoinPlayers) {
             const kill = s.getDynamicProperty("killInGame")
             world.sendMessage(`§f${s.nameTag} / キル数: ${kill}`)
+
+            rankPointManager.rankPointAdd(s, 400)
         }
 
         for (const p of world.getAllPlayers()) {
             p.playSound("random.explode", {volume: 0.6})
+            const kill = p.getDynamicProperty("killInGame")
+            rankPointManager.rankPointAdd(p, kill * 40)
         }
         system.runTimeout(() => {
             this.gameReset()
@@ -30,6 +36,7 @@ export class game {
     }
 
     static gameReset() {
+        // 途中?
         world.setDynamicProperty("game", false)
 
         this.gameJoinPlayers = []
@@ -46,6 +53,7 @@ export class game {
     }
 
     static async gameStart() {
+        // ok
         const dimension = world.getDimension("overworld")
         const gameInfo = world.scoreboard.getObjective("gameInfo")
 
@@ -62,11 +70,14 @@ export class game {
         for (let i = 0; i <= players.length - 1; i++) {
             gameInfo.addScore("§l§b残り人数", 1)
             players[i].teleport(spawnPos[i])
+            players[i].runCommand("effect @s clear")
             players[i].addEffect("haste", 5 * 20, {amplifier: 255})
             players[i].addEffect("slow_falling", 20 * 20)
             players[i].addEffect("instant_health", 20 * 20)
             players[i].addEffect("resistance", 20 * 20)
             players[i].setGameMode(GameMode.Survival)
+            players[i].nameTag = ""
+            rankPointManager.rankPointAdd(players[i], 50)
         }
 
         system.runTimeout(() => {
@@ -80,12 +91,16 @@ export class game {
     }
 
     static resetPlayer(player) {
+        // ok?
         player.setDynamicProperty("killInGame", 0)
         player.setDynamicProperty("effectCancelTime", 0);
         player.teleport({x: 0.5, y: 1, z: 0.5})
         player.setGameMode(GameMode.Adventure)
         player.runCommand("hud @s reset all")
         player.runCommand("effect @s clear")
+
+        player.addEffect("instant_health", 999999 * 20, {amplifier: 255, showParticles: false})
+        player.addEffect("saturation", 999999 * 20, {amplifier: 255, showParticles: false})
 
         const netherStar = new ItemStack("minecraft:nether_star", 1)
         netherStar.nameTag = "§l§d移動装置 §f/ 右クリック"
@@ -104,15 +119,20 @@ export class game {
     }
 
     static playerDie(event) {
+        // 途中 ゲームが終了できるか確かめる処理を入れる
         const {damageSource, deadEntity} = event
         if (deadEntity.typeId !== "minecraft:player") return
 
         this.resetPlayer(deadEntity)
         deadEntity.setGameMode(GameMode.Spectator)
-        if (this.testJoinGame) {}
+
+        if (this.testJoinGame) {
+            this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== deadEntity.id)
+        }
     }
 
     static teamClear() {
+        // ok
         const teamScore = world.scoreboard.getObjective("team")
         
         for (const p of world.getAllPlayers()) {
@@ -126,6 +146,7 @@ export class game {
     }
 
     static teamSelect() {
+        // ok
         const dimension = world.getDimension("overworld")
         const players = dimension.getPlayers()
         const teamObject = world.scoreboard.getObjective("team")
@@ -143,6 +164,7 @@ export class game {
     }
 
     static testJoinGame(player) {
+        // ok
         const id = player.id
         for (const p of this.gameJoinPlayers) {
             if (!p.id === id) continue
@@ -152,12 +174,14 @@ export class game {
     }
 
     static mapSelect() {
+        // ok
         // ランダムなマップクラスを返す
         const rand = Math.floor(Math.random() * maps.length)
         return maps[rand]
     }
 
     static onSecond() {
+        // 途中
         if (world.getDynamicProperty("game")) {
             // ゲーム中ならここが動く
             const gameInfo = world.scoreboard.getObjective("gameInfo")
