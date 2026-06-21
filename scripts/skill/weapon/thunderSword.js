@@ -5,7 +5,7 @@ export class thunderSword extends skillBase {
     constructor() {
         super();
         this.id = "§1サンダーソード";
-        this.cooldown = 25 * 20;
+        this.cooldown = 5 * 20;
     }
 
     onDamage(player, event) {

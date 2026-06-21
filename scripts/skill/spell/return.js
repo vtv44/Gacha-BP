@@ -6,7 +6,7 @@ export class returnSkill extends skillBase {
     constructor() {
         super();
         this.id = "§1リターン";
-        this.cooldown = 30 * 20;
+        this.cooldown = 5 * 20;
     }
 
     execute(player) {

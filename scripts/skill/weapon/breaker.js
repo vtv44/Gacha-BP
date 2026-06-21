@@ -92,7 +92,7 @@ export class crusherSkill extends skillBase {
         
         if (item?.nameTag === this.id) {
             system.run(() => {
-                target?.applyDamage(4, { cause: "override" });
+                target?.applyDamage(5, { cause: "override" });
             });
         }
     }

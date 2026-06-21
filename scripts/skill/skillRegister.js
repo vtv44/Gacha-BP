@@ -70,6 +70,13 @@ import { fluffyBootsSkill } from "./armor/fluffyBoots";
 import { rocketSpearSkill } from "./weapon/rocketSpear";
 import { breakerSkill, crusherSkill } from "./weapon/breaker";
 import { powerChargeSkill } from "./spell/powerCharge";
+import { assassinSkill } from "./spell/assassin";
+import { swapperSkill } from "./spell/swapper";
+import { returnAxeSkill } from "./weapon/returnAxe";
+import { blowAwaySwordSkill } from "./weapon/blowAwaySword";
+import { assassinBladeSkill } from "./weapon/assasinBlade";
+import { trueAssassinBladeSkill } from "./weapon/trueAssasinBlade";
+import { assaultArmorSkill } from "./armor/assaultArmor";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -131,6 +138,13 @@ skillManager.register(new rocketSpearSkill());
 skillManager.register(new breakerSkill());
 skillManager.register(new crusherSkill());
 skillManager.register(new powerChargeSkill());
+skillManager.register(new assassinSkill());
+skillManager.register(new swapperSkill());
+skillManager.register(new returnAxeSkill());
+skillManager.register(new blowAwaySwordSkill());
+skillManager.register(new assassinBladeSkill());
+skillManager.register(new trueAssassinBladeSkill());
+skillManager.register(new assaultArmorSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -142,8 +156,9 @@ skillManager.tickSkillRegister(new jumpLeggingsSkill());
 skillManager.tickSkillRegister(new superJumpLeggingsSkill());
 skillManager.tickSkillRegister(new revengeChestPlateSkill());
 skillManager.tickSkillRegister(new vampireHelmetSkill());
-skillManager.tickSkillRegister(new robustHelmetSkill())
-skillManager.tickSkillRegister(new fluffyBootsSkill())
+skillManager.tickSkillRegister(new robustHelmetSkill());
+skillManager.tickSkillRegister(new fluffyBootsSkill());
+skillManager.tickSkillRegister(new assaultArmorSkill());
 
 const axeSkill = new infernalAxeSkill();
 
