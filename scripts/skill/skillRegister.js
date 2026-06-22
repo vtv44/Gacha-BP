@@ -77,6 +77,7 @@ import { blowAwaySwordSkill } from "./weapon/blowAwaySword";
 import { assassinBladeSkill } from "./weapon/assasinBlade";
 import { trueAssassinBladeSkill } from "./weapon/trueAssasinBlade";
 import { assaultArmorSkill } from "./armor/assaultArmor";
+import { theEyeOfOrdinSkill } from "./armor/theEyeOfOdin";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -159,6 +160,7 @@ skillManager.tickSkillRegister(new vampireHelmetSkill());
 skillManager.tickSkillRegister(new robustHelmetSkill());
 skillManager.tickSkillRegister(new fluffyBootsSkill());
 skillManager.tickSkillRegister(new assaultArmorSkill());
+skillManager.tickSkillRegister(new theEyeOfOrdinSkill());
 
 const axeSkill = new infernalAxeSkill();
 

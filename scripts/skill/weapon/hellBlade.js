@@ -6,7 +6,7 @@ export class hellBladeSKill extends skillBase {
         super()
 
         this.id = "§d地獄の大剣"
-        this.cooldown = 5 * 20
+        this.cooldown = 15 * 20
     }
 
     execute(player) {

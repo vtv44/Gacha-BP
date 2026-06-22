@@ -12,6 +12,7 @@ export class skillManager {
 
     static tickSkillRegister(skill) {
         this.tickSKills.set(skill.id, skill)
+        this.skills.set(skill.id, skill)
     }
 
     static tickSkillGet(id) {

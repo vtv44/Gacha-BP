@@ -15,56 +15,12 @@ export class gateOfBabylonSkill extends skillBase {
         const location = player.location
         const dir = player.getViewDirection()
 
+        this.onCooldown(player)
+
         if (player.isSneaking) {
             // 変える
-            const headPos = player.getHeadLocation()
-            const teamScore = world.scoreboard.getObjective("team").getScore(player)
-            const targets = player.getEntitiesFromViewDirection({
-                maxDistance: 20,
-                scoreOptions: [{
-                    objective: "team",
-                    minScore: teamScore,
-                    maxScore: teamScore,
-                    exclude: true
-                }],
-            })
-            dimension.playSound("random.bow", location)
-
-            for (const target of targets) {
-                const t = target.entity
-                if (!t.typeId === "minecraft:player") return
-                
-                t.runCommand("inputpermission set @s movement disabled")
-                t.applyDamage(4)
-                t.addEffect("slowness", 12 * 20, {amplifier: 4})
-                t.addEffect("weakness", 12 * 20, {amplifier: 4})
-                t.removeEffect("resistance")
-                dimension.spawnParticle("rca:chain", t.location)
-                dimension.playSound("mob.elderguardian.curse", t.location)
-
-                system.runTimeout(() => {
-                    if (!t) return
-                    t.runCommand("inputpermission set @s movement enabled")
-                    t.playSound("random.click")
-                }, 60)
-            }
-
-            for (let i = 1; i <= 40; i++) {
-                const pos = {
-                    x: headPos.x + dir.x * (i / 2),
-                    y: headPos.y + dir.y * (i / 2),
-                    z: headPos.z + dir.z * (i / 2)
-                }
-                dimension.playSound("break.heavy_core", pos, {pitch: 0.7, volume: 0.2})
-
-                if (i % 2 === 0) {
-                    dimension.spawnParticle("gacha:chain_y", pos)
-                } else {
-                    dimension.spawnParticle("gacha:chain_xz", pos)
-                }
-            }
+            
         } else {
-            this.onCooldown(player)
             const {x, y, z} = location
             dimension.playSound(`voice.harubagu_${Math.floor(Math.random() * 2) + 7}`, {
                 x: x + dir.x * 1,
@@ -107,12 +63,6 @@ export class gateOfBabylonSkill extends skillBase {
                 const {x, y, z} = pos;
                 dimension.runCommand(`particle rpg:yellow_smoke ${x} ${y} ${z}`);
                 dimension.runCommand(`playsound random.pop @a ${x} ${y} ${z} 0.01 0.5`)
-
-                if (count % 5 === 0) {
-                    for (const t of this.getTargets(player, pos, 3)) {
-                        t.applyDamage(1, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
-                    }
-                }
             }
         }, 20)
     }

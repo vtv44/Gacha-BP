@@ -1,4 +1,4 @@
-import { EquipmentSlot, world } from "@minecraft/server";
+import { EquipmentSlot, system, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class totemChestPlateSkill extends skillBase {
@@ -8,28 +8,32 @@ export class totemChestPlateSkill extends skillBase {
         this.id = "§6トーテムチェストプレート"
     }
 
-    onHurt(player, event) {
+    onHurtBefore(player, event) {
+        const damage = event.damage
         const health = player.getComponent("health")
-        const maxHelth = health.effectiveMax
         const current = health.currentValue
 
-        if (current > 6) return
+        if (damage < current) return
 
-        const dimension = player.dimension
-        const location = player.location
+        event.cancel = true
 
-        dimension.spawnParticle("kitpvp:wind_second_wind", location)
-        dimension.playSound("random.totem", location, {volume: 0.6})
-        dimension.playSound("random.break", location)
+        system.run(() => {
+            const dimension = player.dimension
+            const location = player.location
 
-        health.resetToMaxValue()
-        
-        if (this.canAddEffect) {
-            player.addEffect("resistance", 10 * 20, {amplifier: 4})
-            player.addEffect("regeneration", 10 * 20, {amplifier: 4})
-            player.addEffect("fire_resistance", 30 * 20)
-        }
+            dimension.spawnParticle("kitpvp:wind_second_wind", location)
+            dimension.playSound("random.totem", location, {volume: 0.6})
+            dimension.playSound("random.break", location)
 
-        player.getComponent("equippable").setEquipment(EquipmentSlot.Chest, null)
+            health.resetToMaxValue()
+            
+            if (this.canAddEffect) {
+                player.addEffect("resistance", 10 * 20, {amplifier: 4})
+                player.addEffect("regeneration", 10 * 20, {amplifier: 4})
+                player.addEffect("fire_resistance", 30 * 20)
+            }
+
+            player.getComponent("equippable").setEquipment(EquipmentSlot.Chest, null)
+        })
     }
 }

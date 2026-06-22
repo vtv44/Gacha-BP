@@ -18,6 +18,13 @@ const slots = [
     EquipmentSlot.Mainhand,
 ]
 
+const slots2 = [
+    EquipmentSlot.Head,
+    EquipmentSlot.Chest,
+    EquipmentSlot.Legs,
+    EquipmentSlot.Feet,
+]
+
 system.runInterval(() => {
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -33,7 +40,7 @@ system.runInterval(() => {
     const players = world.getAllPlayers()
     for (const p of players) {
         const armor = p.getComponent("equippable");
-        for (const slot of slots) {
+        for (const slot of slots2) {
             const item = armor.getEquipment(slot);
             const skill = skillManager.tickSkillGet(item?.nameTag);
             if (!skill) continue;
@@ -54,6 +61,19 @@ world.beforeEvents.chatSend.subscribe(ev => {
         world.sendMessage(`<${sender.name}> ${message}`)
     } else {
         world.sendMessage(`<${sender.nameTag}> ${message}`)
+    }
+})
+
+world.beforeEvents.entityHurt.subscribe(ev => {
+    const {damage, damageSource, hurtEntity} = ev;
+    // if (!world.getDynamicProperty("game")) ev.cancel = true;
+
+    const armor = hurtEntity.getComponent("equippable");
+    for (const slot of slots) {
+       const item = armor.getEquipment(slot)
+       const skill = skillManager.get(item?.nameTag);
+       if (!skill) continue;
+       skill.onHurtBefore(hurtEntity, ev);
     }
 })
 
