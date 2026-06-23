@@ -20,7 +20,7 @@ export class game {
         world.sendMessage(`§l§c====決着====\n§f勝者`)
         for (const s of this.gameJoinPlayers) {
             const kill = s.getDynamicProperty("killInGame")
-            world.sendMessage(`§f${s.nameTag} / キル数: ${kill}`)
+            world.sendMessage(`§f${s.name} / キル数: ${kill}`)
 
             rankPointManager.rankPointAdd(s, 400)
         }
@@ -42,6 +42,7 @@ export class game {
         this.gameJoinPlayers = []
 
         world.scoreboard.clearObjectiveAtDisplaySlot("Sidebar")
+        world.getDimension("overworld").runCommand("kill @e[type=gacha:gacha_area]")
         world.gameRules.pvp = false
         world.gameRules.fallDamage = false
         world.setDifficulty(Difficulty.Peaceful)
@@ -57,6 +58,11 @@ export class game {
         const dimension = world.getDimension("overworld")
         const gameInfo = world.scoreboard.getObjective("gameInfo")
 
+        if (world.getDynamicProperty("game")) {
+            world.sendMessage(`§cゲームは既に開始しています`)
+            return
+        }
+
         world.setDynamicProperty("game", true)
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
         gameInfo.setScore("§l§a残り時間", 620)
@@ -66,6 +72,8 @@ export class game {
         this.gameJoinPlayers = players
         const map = this.mapSelect()
         const spawnPos = await map.mapSpawnPos(players.length)
+
+        const area = dimension.spawnEntity("gacha:gacha_area", map.areaCenterPoint())
 
         for (let i = 0; i <= players.length - 1; i++) {
             gameInfo.addScore("§l§b残り人数", 1)
@@ -187,9 +195,15 @@ export class game {
             const gameInfo = world.scoreboard.getObjective("gameInfo")
 
             if (gameInfo.getScore("§l§a残り時間") <= 0) {
-                // 範囲用エンティティをキル
                 this.gameEnd()
                 return
+            }
+
+            const areas = world.getDimension("overworld").getEntities({type: "gacha:gacha_area"})
+
+            for (const a of areas) {
+                const size = a.getProperty("gacha:size")
+                a.setProperty("gacha:size", size - 1)
             }
 
             gameInfo.addScore("§l§a残り時間", -1)

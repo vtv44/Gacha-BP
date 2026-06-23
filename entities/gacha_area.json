@@ -8,8 +8,8 @@
             "properties": {
                 "gacha:size": {
                     "type": "float",
-                    "default": 10.0,
-                    "range": [0.0, 10.0],
+                    "default": 930.0,
+                    "range": [0.0, 930.0],
                     "client_sync": true
                 }
             }

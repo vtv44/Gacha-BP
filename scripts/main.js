@@ -67,7 +67,7 @@ world.beforeEvents.chatSend.subscribe(ev => {
 world.beforeEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
 
-    if (!hurtEntity.typeId === "minecraft:player") return;
+    if (hurtEntity.typeId !== "minecraft:player") return;
     // if (!world.getDynamicProperty("game")) ev.cancel = true;
     
     const armor = hurtEntity.getComponent("equippable");
