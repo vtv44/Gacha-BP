@@ -1,4 +1,4 @@
-import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay, Entity } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData } from "@minecraft/server-ui";
@@ -66,8 +66,10 @@ world.beforeEvents.chatSend.subscribe(ev => {
 
 world.beforeEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
-    // if (!world.getDynamicProperty("game")) ev.cancel = true;
 
+    if (!hurtEntity.typeId === "minecraft:player") return;
+    // if (!world.getDynamicProperty("game")) ev.cancel = true;
+    
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
        const item = armor.getEquipment(slot)
@@ -120,7 +122,9 @@ world.afterEvents.itemUse.subscribe(async ev => {
     }
 
     if (id === "minecraft:emerald") {
-        
+        const entities = world.getDimension("overworld").getEntities({type: "gacha:gacha_area"})
+        const pro = entities[0].getProperty("gacha:size");
+        entities[0].setProperty("gacha:size", pro - 1)
     }
 
     if (id === "minecraft:iron_ingot") {

@@ -31,7 +31,7 @@ export class theEyeOfOrdinSkill extends tickSkillBase {
             system.run(() => {
                 player.onScreenDisplay.setActionBar(`§l§b==DODGE==\n§f${rand} < ${percent}%`)
                 dimension.playSound("random.fizz", location, {pitch: 2.5})
-
+                dimension.spawnParticle("gacha:dodge", location)
             })
         } else {
             system.run(() => {
