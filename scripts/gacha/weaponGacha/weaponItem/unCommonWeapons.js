@@ -25,4 +25,14 @@ export const unCommonWeapons = [
         "右クリックで前方の敵をノックバックさせごく少量のダメージを与える"
         ],
     },
+
+    {
+        amount: 1,
+        id: "minecraft:wooden_sword",
+        name: "§a弱さの剣",
+        lore: [
+        "§6[弱化] §5攻撃",
+        "攻撃した相手に弱体化を付与する"
+        ],
+    },
 ]

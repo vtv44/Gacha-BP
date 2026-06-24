@@ -1,4 +1,3 @@
-import { world } from "@minecraft/server"
 import { tickSkillBase } from "../skillBase"
 
 export class speedBootsSkill extends tickSkillBase {
