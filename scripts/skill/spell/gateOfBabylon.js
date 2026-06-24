@@ -15,12 +15,47 @@ export class gateOfBabylonSkill extends skillBase {
         const location = player.location
         const dir = player.getViewDirection()
 
-        this.onCooldown(player)
-
         if (player.isSneaking) {
-            // 変える
-            
+            const targets = this.getTargets(player, location, 15)
+
+            if (!targets[0]) {
+                player.onScreenDisplay.setActionBar(`§c周囲に敵がいない`)
+                player.playSound("random.pop")
+                return
+            }
+
+            this.onCooldown(player)
+
+            for (const t of targets) {
+                t.runCommand("effect @s clear")
+
+                t.addEffect("weakness", this.cooldown, {amplifier: 3})
+                t.addEffect("slowness", this.cooldown, {amplifier: 4})
+                t.addEffect("blindness", this.cooldown, {amplifier: 3})
+                t.addEffect("wither", this.cooldown, {amplifier: 1})
+
+                dimension.spawnParticle("gacha:chain", t.location)
+                dimension.playSound("scrape", t.location, {pitch: 0.8})
+                t.playSound("mob.blaze.death", {pitch: 1.5})
+            }
+
+            player.spawnParticle("minecraft:example_flipbook")
+            player.playSound("block.bell.hit", {volume: 0.5, pitch: 3})
+
+            if (targets.length <= 2) {
+                player.addEffect("resistance", this.cooldown, {amplifier: 2, showParticles: false})
+            } else if (targets.length <= 4) {
+                player.addEffect("resistance", this.cooldown, {amplifier: 2, showParticles: false})
+                player.addEffect("regeneration", this.cooldown, {amplifier: 2, showParticles: false})
+            } else if (targets.length <= 6) {
+                player.addEffect("resistance", this.cooldown, {amplifier: 2, showParticles: false})
+                player.addEffect("regeneration", this.cooldown, {amplifier: 2, showParticles: false})
+                player.addEffect("instant_health", 2 * 20, {amplifier: 2, showParticles: false})
+            }
+
         } else {
+            // 攻撃判定を厳格化予定
+            this.onCooldown(player)
             const {x, y, z} = location
             dimension.playSound(`voice.harubagu_${Math.floor(Math.random() * 2) + 7}`, {
                 x: x + dir.x * 1,

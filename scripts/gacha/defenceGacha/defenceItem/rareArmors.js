@@ -4,8 +4,8 @@ export const rareArmors = [
         id: "minecraft:chain_boots",
         name: "§1スピードブーツ",
         lore: [
-            "§b[スピード！] 装備",
-            "走る速度が早くなる"
+            "§b[スピード！] §5装備",
+            "§5走る速度が早くなる"
         ],
     },
 
@@ -14,8 +14,8 @@ export const rareArmors = [
         id: "minecraft:iron_leggings",
         name: "§1スニーク加速レギンス",
         lore: [
-            "§b[スニークスピード！] 装備",
-            "スニーク時の速度が早くなる"
+            "§b[スニークスピード！] §5装備",
+            "§5スニーク時の速度が早くなる"
         ],
         encahnts: [
             {id: "soul_speed", level: 3}

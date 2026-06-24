@@ -7,7 +7,7 @@ export class theEyeOfOrdinSkill extends tickSkillBase {
     constructor() {
         super()
 
-        this.id = "§b=遺物= オーディンの目"
+        this.id = "§b=オーディンの目="
     }
 
     onHurtBefore(player, event) {

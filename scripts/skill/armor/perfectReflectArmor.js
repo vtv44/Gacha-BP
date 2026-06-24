@@ -5,7 +5,7 @@ export class perfectReflectArmorSkill extends skillBase {
     constructor() {
         super()
 
-        this.id = "§b完璧な反射脚"
+        this.id = "§d完璧な反射脚"
     }
 
     onHurt(player, event) {

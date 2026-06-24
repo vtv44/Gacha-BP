@@ -1,24 +1,13 @@
 export const divineArmors = [
     {
         amount: 1,
-        id: "minecraft:diamond_leggings",
-        name: "§b完璧な反射脚",
+        id: "gacha:eye_of_odin",
+        name: "§b=オーディンの目=",
         lore: [
-            "§d[パーフェクトリフレクト] §5被弾",
-            "§5攻撃を受けたとき、受けたダメージを反射する",
-            "§5受けたダメージの半分回復する"
+            "§c[回避] §5被弾",
+            "§5攻撃を受けたとき、100%の確率で攻撃を回避する",
+            "§5プレイヤーから攻撃を受けた場合、確率が1%下がる",
+            "§5回避確率の最低値は50%"
         ],
-        enchants: [
-            {id: "protection", level: 4},
-            {id: "unbreaking", level: 3},
-            {id: "thorns", level: 3}
-        ]
-    },
-
-    {
-        amount: 1,
-        id: "",
-        name: "",
-        lore: [],
     },
 ]
