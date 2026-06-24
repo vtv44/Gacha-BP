@@ -20,7 +20,7 @@ export class windSpearSkill extends skillBase {
             try { player.clearVelocity(); } catch(e) {}
 
             const viewDir = player.getViewDirection();
-            const dashPower = 5.0; 
+            const dashPower = 7.0; 
 
             player.applyKnockback({ x: viewDir.x * dashPower, z: viewDir.z * dashPower }, 0);
 

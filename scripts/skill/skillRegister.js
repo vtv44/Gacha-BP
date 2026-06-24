@@ -81,6 +81,8 @@ import { theEyeOfOrdinSkill } from "./armor/theEyeOfOdin";
 import { weaknessSwordSkill } from "./weapon/weaknessSword";
 import { sneakSpeedLeggingsSkill } from "./armor/sneakSpeedLeggings";
 import { windSpearSkill } from "./weapon/windSpear";
+import { administratorSkill } from "./weapon/administrator";
+import { windBurstSkill } from "./spell/windBurst";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -149,6 +151,8 @@ skillManager.register(new blowAwaySwordSkill());
 skillManager.register(new assassinBladeSkill());
 skillManager.register(new trueAssassinBladeSkill());
 skillManager.register(new assaultArmorSkill());
+skillManager.register(new administratorSkill());
+skillManager.register(new windBurstSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
