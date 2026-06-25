@@ -111,6 +111,7 @@ world.beforeEvents.effectAdd.subscribe(ev => {
 world.afterEvents.itemUse.subscribe(async ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
+    
 
     if (id === "minecraft:diamond") {
         const positions = await new theEnd().mapSpawnPos(1)

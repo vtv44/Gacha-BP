@@ -31,8 +31,12 @@ export const mythicSpells = [
 
     {
         amount: 1,
-        id: "",
-        name: "",
-        lore: [],
+        id: "minecraft:disc_fragment",
+        name: "§dフックショット",
+        lore: [
+            "§a[引き寄せ] §5右クリック",
+            "§5ブロックにヒットさせるとその場所に向かって飛ぶ",
+            "§5遠ければ遠いほど勢いは増す"
+        ],
     },
 ]

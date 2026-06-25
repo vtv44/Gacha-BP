@@ -83,6 +83,8 @@ import { sneakSpeedLeggingsSkill } from "./armor/sneakSpeedLeggings";
 import { windSpearSkill } from "./weapon/windSpear";
 import { administratorSkill } from "./weapon/administrator";
 import { windBurstSkill } from "./spell/windBurst";
+import { affectSwordSkill } from "./weapon/affectSword";
+import { hookshotSkill } from "./spell/hookshot";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -153,6 +155,8 @@ skillManager.register(new trueAssassinBladeSkill());
 skillManager.register(new assaultArmorSkill());
 skillManager.register(new administratorSkill());
 skillManager.register(new windBurstSkill());
+skillManager.register(new affectSwordSkill());
+skillManager.register(new hookshotSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
