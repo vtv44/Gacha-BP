@@ -17,7 +17,7 @@ export class hookshotSkill extends skillBase {
         for (let i = 1; i <= 120; i++) {
             const particlePos = {
                 x: pos.x + dir.x * (i / 2),
-                y: pos.y + dir.y * (i / 2) + 1.8,
+                y: pos.y + dir.y * (i / 2) + 1.52,
                 z: pos.z + dir.z * (i / 2)
             }
             const testBlock = dimension.getBlock(particlePos)

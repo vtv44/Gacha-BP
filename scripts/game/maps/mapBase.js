@@ -7,6 +7,9 @@ export class mapBase {
             {x: -1, y: -1, z: -1},
             {x: 1, y: 1, z: 1}
         ]
+        this.tickingPos = [
+            {x: 0, y: 0, z: 0, x2: 1, y2: 1, z2: 1},
+        ]
         this.structures = [
             {id: "id", x: -1, y: -1, z: -1}
         ]
@@ -20,35 +23,59 @@ export class mapBase {
         return {x: x + this.mapPos[0].x, y: y, z: z + this.mapPos[0].z}
     }
 
-    buildRepair() {
+    async buildRepair() {
+        await this.createTickingArea()
         for (let i = 0; i <= this.structures.length - 1; i++) {
+            const dimension = world.getDimension("overworld")
+            const pos = {
+                x: this.structures[i].x,
+                y: this.structures[i].y,
+                z: this.structures[i].z,
+            }
+
             system.runTimeout(() => {
                 world.structureManager.place(
                     this.structures[i].id,
-                    world.getDimension("overworld"),
-                    {
-                        x: this.structures[i].x,
-                        y: this.structures[i].y,
-                        z: this.structures[i].z,
-                    }
+                    dimension,
+                    pos
                 )
-            }, i * 5)
+                dimension.setBlockType(pos, "minecraft:air")
+            }, i * 5 + 5)
         }
 
         system.runTimeout(() => {
-            world.tickingAreaManager.removeTickingArea("mapLoad")
+            for (let i = 0; i <= this.tickingPos.length - 1; i++) {
+                world.tickingAreaManager.removeTickingArea(`mapLoad_${i}`)
+            }
         }, this.structures.length * 5)
     }
 
-    createTickingArea() {
-        world.tickingAreaManager.createTickingArea(
-            "mapLoad",
-            {
-                dimension: world.getDimension("overworld"),
-                from: this.mapPos[0],
-                to: this.mapPos[1]
+    async createTickingArea() {
+        return new Promise((resolve) => {
+            for (let i = 0; i <= this.tickingPos.length - 1; i++) {
+                const from = {
+                    x: this.tickingPos[i].x,
+                    y: this.tickingPos[i].y,
+                    z: this.tickingPos[i].z,
+                }
+
+                const to = {
+                    x: this.tickingPos[i].x2,
+                    y: this.tickingPos[i].y2,
+                    z: this.tickingPos[i].z2,
+                }
+
+                world.tickingAreaManager.createTickingArea(
+                    `mapLoad_${i}`,
+                    {
+                        dimension: world.getDimension("overworld"),
+                        from: from,
+                        to: to
+                    }
+                )
             }
-        )
+            resolve()
+        })
     }
 
     async mapSpawnPos(count) {
@@ -81,7 +108,9 @@ export class mapBase {
                     positions.push(spawnPos)
                 }
 
-                world.tickingAreaManager.removeTickingArea("mapLoad")
+                for (let i = 0; i <= this.tickingPos.length - 1; i++) {
+                    world.tickingAreaManager.removeTickingArea(`mapLoad_${i}`)
+                }
                 
                 resolve(positions)
             }, 20)

@@ -9,6 +9,7 @@ import { game } from "./game/game";
 import { skillBase } from "./skill/skillBase";
 import { theEnd } from "./game/maps/theEnd";
 import { rankPointManager } from "./game/rankPointManager";
+import { skyIsland } from "./game/maps/skyIsland";
 
 const slots = [
     EquipmentSlot.Head,
@@ -114,18 +115,15 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
 
     if (id === "minecraft:diamond") {
-        const positions = await new theEnd().mapSpawnPos(1)
-        source.teleport(positions[0])
+        
     }
 
     if (id === "minecraft:stick") {
-        game.gameStart()
+        new skyIsland().buildRepair()
     }
 
     if (id === "minecraft:emerald") {
-        const entities = world.getDimension("overworld").getEntities({type: "gacha:gacha_area"})
-        const pro = entities[0].getProperty("gacha:size");
-        entities[0].setProperty("gacha:size", pro - 1)
+        
     }
 
     if (id === "minecraft:iron_ingot") {
