@@ -218,6 +218,7 @@ world.afterEvents.entityHurt.subscribe(ev => {
 const blockedBlocks = [
     "minecraft:crying_obsidian",
     "minecraft:glowstone",
+    "minecraft:dandelion"
     // "minecraft:xxxx",
 ];
 

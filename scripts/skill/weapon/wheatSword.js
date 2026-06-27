@@ -17,7 +17,6 @@ export class wheatSwordSkill extends skillBase {
         this.onCooldown(player);
     }
 
-    // 殴った相手に saturation 1 1 を付与（ヒットエフェクトなし）
     onDamage(player, event) {
         event.hurtEntity.runCommand("effect @s saturation 1 0 true");
     }

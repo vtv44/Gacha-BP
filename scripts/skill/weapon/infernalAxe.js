@@ -55,7 +55,6 @@ export class infernalAxeSkill extends skillBase {
         });
     }
 
-    // ★エラー回避のため、呼び出しをシンプル化しました
     getCurrentStage(player) {
         const inv = player.getComponent("inventory");
         if (!inv || !inv.container) return -1;
@@ -64,7 +63,6 @@ export class infernalAxeSkill extends skillBase {
         return axeStages.findIndex(s => s.nameTag === held.nameTag);
     }
 
-    // ★絶対にエラーでクラッシュしない防弾仕様の進化ロジック
     evolve(player) {
         try {
             const stage = this.getCurrentStage(player);
@@ -74,26 +72,22 @@ export class infernalAxeSkill extends skillBase {
             const newItem = new ItemStack(next.typeId, 1);
             newItem.nameTag = next.nameTag;
 
-            // lore(説明文)をセットする関数が存在するかチェック
             const lore = axeLores[next.nameTag];
             if (lore && typeof newItem.setLore === "function") {
                 newItem.setLore(lore);
             }
 
-            // アイテムを置き換える関数が存在するかチェック
             const inv = player.getComponent("inventory");
             if (inv && inv.container && typeof inv.container.setItem === "function") {
                 inv.container.setItem(player.selectedSlotIndex, newItem);
             }
 
-            // 進化メッセージ（関数がないバージョンならコマンドで代用）
             if (typeof player.sendMessage === "function") {
                 player.sendMessage("§b武器が進化しました。");
             } else {
                 player.runCommandAsync(`tellraw @s {"rawtext":[{"text":"§b武器が進化しました。"}]}`);
             }
 
-            // 進化エフェクトと音（関数がないバージョンならコマンドで代用）
             if (player.dimension && typeof player.dimension.spawnParticle === "function") {
                 player.dimension.spawnParticle("ptl:golden_aura_1", player.location);
                 player.dimension.playSound("random.levelup", player.location, { volume: 1.0, pitch: 1.5 });
@@ -101,9 +95,7 @@ export class infernalAxeSkill extends skillBase {
                 player.runCommandAsync(`particle ptl:golden_aura_1 ~ ~ ~`);
                 player.runCommandAsync(`playsound random.levelup @s ~ ~ ~ 1.0 1.5`);
             }
-        } catch (e) {
-            // 万が一未知のエラーが出てもワールドをクラッシュさせずに無視する
-        }
+        } catch (e) {}
     }
 
     execute(player) {
@@ -111,6 +103,8 @@ export class infernalAxeSkill extends skillBase {
         if (stage < 0) return;
 
         if (stage === 0) return;
+
+        if (!this.canAddEffect(player)) return;
 
         const dimension = player.dimension;
         const location = player.location;
@@ -238,6 +232,9 @@ export class infernalAxeSkill extends skillBase {
                 }
             }, 1);
         }
+
+        // ★追加: 5秒間（100ティック）エフェクト上書き不可状態にする
+        this.clearEffectSetTime(player, 5 * 20);
 
         this.onCooldown(player);
     }

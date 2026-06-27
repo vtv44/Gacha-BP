@@ -1,7 +1,6 @@
 import { world, system } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
-// 判定ロジックの共通化
 function canAddEffect(player) {
     const cancelTime = player.getDynamicProperty("effectCancelTime") ?? 0;
     return system.currentTick >= cancelTime;
@@ -14,7 +13,6 @@ export class highSpeedSkill extends skillBase {
         this.cooldown = 2 * 20;
     }
 
-    // executeはそのまま（スキル使用時の加速ノックバックは許可）
     execute(player) {
         const dir = player.getViewDirection();
         player.applyKnockback({ x: dir.x * 10, z: dir.z * 10 }, -1);
@@ -37,11 +35,9 @@ system.runInterval(() => {
             continue;
         }
 
-        // --- パッシブのスピード付与だけをガード ---
         if (canAddEffect(player)) {
             player.addEffect("speed", 10, { amplifier: 6, showParticles: false });
         }
-        // -------------------------------------
 
         const vel = player.getVelocity();
         const isMoving = Math.abs(vel.x) > 0.7 || Math.abs(vel.z) > 0.7;

@@ -7,7 +7,7 @@ export class trueAssassinBladeSkill extends skillBase {
     constructor() {
         super();
         this.id = "§bアサシンブレード =極=";
-        this.cooldown = 0; // クールタイム0
+        this.cooldown = 0;
 
         world.afterEvents.entityDie.subscribe((event) => {
             const deadEntity = event.deadEntity;
