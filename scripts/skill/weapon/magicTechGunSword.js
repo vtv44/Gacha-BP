@@ -1,4 +1,4 @@
-import { EntityDamageCause, ItemStack, system, world } from "@minecraft/server";
+import { EntityDamageCause, ItemLockMode, ItemStack, system, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class magicTechGunSwordSkill extends skillBase {
@@ -100,6 +100,7 @@ export class magicTechGunSwordSkill extends skillBase {
                 "§5三発目に放たれる弾丸は強化される",
                 "§5[攻撃時] 対象に弾丸による追撃を放つ"
             ])
+            item.lockmode = ItemLockMode.inventory
             slot.setItem(item)
             return
         }
@@ -112,6 +113,7 @@ export class magicTechGunSwordSkill extends skillBase {
                 "§5周囲のプレイヤー全てを対象にし、背後から斬り付ける",
                 "§5[攻撃時] 対象に連撃攻撃を放つ"
             ])
+            item.lockmode = ItemLockMode.inventory
             slot.setItem(item)
             return
         }

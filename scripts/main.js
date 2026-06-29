@@ -10,6 +10,8 @@ import { skillBase } from "./skill/skillBase";
 import { theEnd } from "./game/maps/theEnd";
 import { rankPointManager } from "./game/rankPointManager";
 import { skyIsland } from "./game/maps/skyIsland";
+import { defenceGacha } from "./gacha/defenceGacha/defenceGacha";
+import { spellGacha } from "./gacha/spellGacha/spellGacha";
 
 const slots = [
     EquipmentSlot.Head,
@@ -96,9 +98,22 @@ world.afterEvents.worldLoad.subscribe(ev => {
 })
 
 world.afterEvents.buttonPush.subscribe(ev => {
-    // atkGacha -322 3 0
-    // defGacha 278 3 0
-    // spellGacha -22 3 300
+    const {block, dimension, source} = ev;
+    const pos = block.location;
+
+    if (!source.typeId === "minecraft:player") return;
+
+    if (locationCompare(pos, weaponGacha.buttonPos)) {
+        weaponGacha.rollGacha(source);
+    }
+
+    if (locationCompare(pos, defenceGacha.buttonPos)) {
+        defenceGacha.rollGacha(source);
+    }
+
+    if (locationCompare(pos, spellGacha.buttonPos)) {
+        spellGacha.rollGacha(source);
+    }
 })
 
 world.beforeEvents.effectAdd.subscribe(ev => {
@@ -115,15 +130,16 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
 
     if (id === "minecraft:diamond") {
-        
+        const dimension = world.getDimension("overworld")
+        world.sendMessage(`${dimension.getBlock({x: 320, y: 0, z: 2000}).typeId}`)
     }
 
     if (id === "minecraft:stick") {
-        new skyIsland().buildRepair()
+        new spellGacha().leaveGacha(source)
     }
 
     if (id === "minecraft:emerald") {
-        
+
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -215,6 +231,17 @@ world.afterEvents.entityHurt.subscribe(ev => {
     }
 })
 
+world.afterEvents.entitySpawn.subscribe(ev => {
+    const entity = ev.entity;
+
+    if (!entity.typeId === "minecraft:player") return;
+
+    if (
+        entity.typeId === "minecraft:snow_golem" ||
+        entity.typeId === "minecraft:iron_golem"
+    ) entity.remove()
+})
+
 const blockedBlocks = [
     "minecraft:crying_obsidian",
     "minecraft:glowstone",
@@ -249,3 +276,11 @@ world.afterEvents.playerSpawn.subscribe(ev => {
         }
     }
 })
+
+function locationCompare(pos1, pos2) {
+    return (
+        pos1.x === pos2.x &&
+        pos1.y === pos2.y &&
+        pos1.z === pos2.z
+    )
+}

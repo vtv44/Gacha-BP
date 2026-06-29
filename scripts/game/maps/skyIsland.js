@@ -1,3 +1,4 @@
+import { system, world } from "@minecraft/server";
 import { mapBase } from "./mapBase";
 
 export class skyIsland extends mapBase {
@@ -7,11 +8,6 @@ export class skyIsland extends mapBase {
         this.mapPos = [
             {x: 0, y: 0, z: 2000},
             {x: 320, y: 128, z: 2320}
-        ]
-
-        this.tickingPos = [
-            {x: 0, y: 0, z: 2000, x2: 160, y2: 128, z2: 2160},
-            {x: 161, y: 0, z: 2161, x2: 320, y2: 128, z2: 2320},
         ]
 
         this.structures = [
@@ -55,7 +51,24 @@ export class skyIsland extends mapBase {
             {id: "sky_island_32", x: 128, y: 0, z: 2320},
             {id: "sky_island_33", x: 192, y: 0, z: 2320},
             {id: "sky_island_34", x: 256, y: 0, z: 2320},
-            {id: "sky_island_35", x: 320, y: 0, z: 2320},
         ]
+    }
+
+    async createTickingArea() {
+        return new Promise((resolve) => {
+            const dimension = world.getDimension("overworld")
+
+            dimension.runCommand("tickingarea add 0 0 2000 159 128 2159 sky_island_1")
+            dimension.runCommand("tickingarea add 0 0 2160 159 128 2319 sky_island_2")
+            dimension.runCommand("tickingarea add 160 0 2000 319 128 2159 sky_island_3")
+            dimension.runCommand("tickingarea add 160 0 2160 319 128 2319 sky_island_4")
+
+            dimension.runCommand("tickingarea add 320 0 2000 350 128 2319 sky_island_5")
+            dimension.runCommand("tickingarea add 0 0 2320 319 128 2350 sky_island_6")
+
+            system.runTimeout(() => {
+                resolve()
+            }, 10)
+        })
     }
 }

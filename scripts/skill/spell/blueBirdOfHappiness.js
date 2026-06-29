@@ -1,4 +1,4 @@
-import { ItemStack, world } from "@minecraft/server";
+import { ItemLockMode, ItemStack, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class blueBirdOfHappinessSkill extends skillBase {
@@ -34,6 +34,7 @@ export class blueBirdOfHappinessSkill extends skillBase {
                 "§1[贈り物] §5右クリック",
                 "§5使うとどこかへ飛び去ってしまう"
             ])
+            bird.lockmode = ItemLockMode.inventory
 
             targets[rand].getComponent("inventory").container.addItem(bird)
 

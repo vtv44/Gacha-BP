@@ -1,4 +1,4 @@
-import { GameMode, ItemStack, system, world } from "@minecraft/server"
+import { GameMode, ItemLockMode, ItemStack, system, world } from "@minecraft/server"
 import { CooldownManager } from "./cooldownManager"
 
 export class skillBase {
@@ -34,6 +34,7 @@ export class skillBase {
         const newItem = new ItemStack(item.typeId, item.amount - 1)
         newItem.nameTag = item.nameTag
         newItem.setLore(item.getLore() ? item.getLore() : null)
+        newItem.lockmode = ItemLockMode.inventory
         mainHand.setItem(newItem)
     }
     

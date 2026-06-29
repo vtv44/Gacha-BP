@@ -1,3 +1,4 @@
+import { system, world } from "@minecraft/server";
 import { mapBase } from "./mapBase";
 
 export class theEnd extends mapBase {
@@ -15,5 +16,16 @@ export class theEnd extends mapBase {
             {id: "the_end_2", x: 2000, y: 0, z: 64},
             {id: "the_end_3", x: 2064, y: 0, z: 64},
         ]
+    }
+
+    async createTickingArea() {
+        return new Promise((resolve) => {
+            const dimension = world.getDimension("overworld")
+
+            dimension.runCommand("tickingarea add 2000 4 0 2127 80 127 the_end")
+            system.runTimeout(() => {
+                resolve()
+            }, 10)
+        })
     }
 }

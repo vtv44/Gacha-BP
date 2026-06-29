@@ -1,4 +1,4 @@
-import { world, system, ItemStack } from "@minecraft/server";
+import { world, system, ItemStack, ItemLockMode } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 const axeStages = [
@@ -71,6 +71,7 @@ export class infernalAxeSkill extends skillBase {
             const next = axeStages[stage + 1];
             const newItem = new ItemStack(next.typeId, 1);
             newItem.nameTag = next.nameTag;
+            newItem.lockmode = ItemLockMode.inventory
 
             const lore = axeLores[next.nameTag];
             if (lore && typeof newItem.setLore === "function") {

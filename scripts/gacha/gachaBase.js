@@ -1,24 +1,33 @@
-import { EnchantmentTypes, ItemStack, system, world } from "@minecraft/server"
+import { BlockPermutation, EnchantmentTypes, ItemLockMode, ItemStack, system, world } from "@minecraft/server"
 
 export class gachaBase {
 
-    constructor() {
-        this.cost = 0
-        this.chance = [
-            {id: "common", int: 3500},
-            {id: "unCommon", int: 2500},
-            {id: "rare", int: 2000},
-            {id: "epic", int: 1000},
-            {id: "legendary", int: 500},
-            {id: "mythic", int: 300},
-            {id: "divine", int: 100},
-            {id: "special", int: 100},
-        ]
-        this.gachaPos = {x: 0, y: 0, z: 0}
-        this.returnPos = {x: 0, y: 0, z: 0}
-    }
+    static cost = 0
+    static chance = [
+        {id: "common", int: 3500},
+        {id: "unCommon", int: 2500},
+        {id: "rare", int: 2000},
+        {id: "epic", int: 1000},
+        {id: "legendary", int: 500},
+        {id: "mythic", int: 300},
+        {id: "divine", int: 100},
+        {id: "special", int: 100},
+    ]
+    static buttonPos = {x: 0, y: 0, z: 0}
+    static cratePos = {x: 0, y: 0, z: 0}
+    static gachaPos = {x: 0, y: 0, z: 0}
+    static returnPos = {x: 0, y: 0, z: 0}
+    static initialRotation = 0
 
-    decision(rarity, player) {
+    static decision(rarity, player) {
+        const dimension = world.getDimension("overworld")
+
+        this.gachaParticles()
+
+        system.runTimeout(() => {
+            this.spawnCrate(dimension, this.cratePos)
+        }, 60)
+
         switch(rarity) {
             case "common": return this.common(player)
             case "unCommon": return this.unCommon(player)
@@ -28,19 +37,23 @@ export class gachaBase {
             case "mythic": return this.mythic(player)
             case "divine": return this.divine(player)
             case "special": return this.special(player) 
+
             default: 
                 console.error("無効な数字が入力されました")
                 break;
         }
     }
 
-    giveItem(player, itemInfo) {
+    static gachaParticles() {}
+
+    static giveItem(player, itemInfo) {
         const item = new ItemStack(itemInfo.id, itemInfo.amount)
         const enchant = item.getComponent("minecraft:enchantable")
         const e = itemInfo.enchants
 
         item.nameTag = itemInfo.name
         item.setLore(itemInfo.lore)
+        item.lockMode = ItemLockMode.inventory
 
         if (e && enchant) {
             for (let i = 0; i <= e.length - 1; i++) {
@@ -51,7 +64,7 @@ export class gachaBase {
         player.getComponent("inventory").container.addItem(item)
     }
 
-    hasCoin(player) {
+    static hasCoin(player) {
         const coinScore = world.scoreboard.getObjective("coin")
         const playerCoin = coinScore.getScore(player)
 
@@ -59,7 +72,24 @@ export class gachaBase {
         return true
     }
 
-    lottery() {
+    static leaveGacha(player) {
+        const dimension = world.getDimension("overworld")
+        dimension.getBlock(this.buttonPos).setPermutation(
+            BlockPermutation.resolve("minecraft:pale_oak_button", {
+                facing_direction: 1
+            })
+        )
+        const pos = {
+            x: this.buttonPos.x + 0.5,
+            y: this.buttonPos.y,
+            z: this.buttonPos.z + 0.5,
+        }
+        dimension.spawnParticle("minecraft:egg_destroy_emitter", pos)
+        dimension.playSound("random.pop2", pos)
+        player.teleport(this.returnPos)
+    }
+
+    static lottery() {
         const random = this.randomInt(10000)
         let int = 0
         for (let i = 0; i <= this.chance.length - 1; i++) {
@@ -70,12 +100,12 @@ export class gachaBase {
         }
     }
 
-    randomInt(max) {
+    static randomInt(max) {
         // 1 ~ max
         return Math.floor(Math.random() * max) + 1
     }
 
-    rollGacha(player) {
+    static rollGacha(player) {
         if (!this.hasCoin(player)) {
             player.sendMessage("§cガチャを回すにはコインが足りません")
             player.playSound("random.fizz", player.location)
@@ -86,23 +116,42 @@ export class gachaBase {
         player.teleport(this.gachaPos)
     }
 
-    spawnCrate(dimension, pos) {
-        const crate = dimension.spawnEntity("gacha:gacha_crate", pos)
+    static spawnCrate(dimension, pos) {
+        const crate = dimension.spawnEntity("gacha:gacha_crate", pos, {initialRotation: this.initialRotation})
+        const pPos = {
+            x: this.cratePos.x,
+            y: this.cratePos.y + 1.2,
+            z: this.cratePos.z,
+        }
+
         system.runTimeout(() => {
             crate.playAnimation("animation.gacha_crate.open", {blendOutTime: 999})
         }, 2)
+
         system.runTimeout(() => {
+            dimension.spawnParticle("minecraft:egg_destroy_emitter", pPos)
+            dimension.playSound("random.chestopen", pPos)
+        }, 21)
+
+        system.runTimeout(() => {
+            dimension.playSound("random.pop", pPos)
+        }, 32)
+
+        system.runTimeout(() => {
+            dimension.spawnParticle("ptl:java_flash", pPos)
+            dimension.spawnParticle("minecraft:knockback_roar_particle", this.cratePos)
+            dimension.playSound("random.fizz", pPos)
             if (!crate.isValid) return
             crate.remove()
         }, 40)
     }
 
-    common(player) {}
-    unCommon(player) {}
-    rare(player) {}
-    epic(player) {}
-    legendary(player) {}
-    mythic(player) {}
-    divine(player) {}
-    special(player) {}
+    static common(player) {}
+    static unCommon(player) {}
+    static rare(player) {}
+    static epic(player) {}
+    static legendary(player) {}
+    static mythic(player) {}
+    static divine(player) {}
+    static special(player) {}
 }

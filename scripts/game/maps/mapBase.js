@@ -23,10 +23,10 @@ export class mapBase {
         return {x: x + this.mapPos[0].x, y: y, z: z + this.mapPos[0].z}
     }
 
-    async buildRepair() {
-        await this.createTickingArea()
+    buildRepair() {
+        const dimension = world.getDimension("overworld")
+
         for (let i = 0; i <= this.structures.length - 1; i++) {
-            const dimension = world.getDimension("overworld")
             const pos = {
                 x: this.structures[i].x,
                 y: this.structures[i].y,
@@ -39,54 +39,25 @@ export class mapBase {
                     dimension,
                     pos
                 )
-                dimension.setBlockType(pos, "minecraft:air")
-            }, i * 5 + 5)
+            }, i * 10 + 5)
         }
 
         system.runTimeout(() => {
-            for (let i = 0; i <= this.tickingPos.length - 1; i++) {
-                world.tickingAreaManager.removeTickingArea(`mapLoad_${i}`)
-            }
-        }, this.structures.length * 5)
+            world.sendMessage("repair")
+            dimension.runCommand("tickingarea remove_all")
+        }, this.structures.length * 10 + 20)
     }
 
-    async createTickingArea() {
-        return new Promise((resolve) => {
-            for (let i = 0; i <= this.tickingPos.length - 1; i++) {
-                const from = {
-                    x: this.tickingPos[i].x,
-                    y: this.tickingPos[i].y,
-                    z: this.tickingPos[i].z,
-                }
-
-                const to = {
-                    x: this.tickingPos[i].x2,
-                    y: this.tickingPos[i].y2,
-                    z: this.tickingPos[i].z2,
-                }
-
-                world.tickingAreaManager.createTickingArea(
-                    `mapLoad_${i}`,
-                    {
-                        dimension: world.getDimension("overworld"),
-                        from: from,
-                        to: to
-                    }
-                )
-            }
-            resolve()
-        })
-    }
+    createTickingArea() {}
 
     async mapSpawnPos(count) {
         // 渡された数だけランダムな座標を返す
         // 難しい仕様とかは一旦抜き
         // 壁に埋まるのだけ対策
+        await this.createTickingArea()
         return new Promise((resolve) => {
             const positions = []
             const dimension = world.getDimension("overworld")
-
-            this.createTickingArea()
 
             system.runTimeout(() => {
                 for (let i = 0; i <= count - 1; i++) {
@@ -101,6 +72,13 @@ export class mapBase {
                         z: z + this.mapPos[0].z
                     }
 
+                    try {
+                        dimension.getBlock(spawnPos).below()
+                    } catch {
+                        i--
+                        continue
+                    }
+
                     if (!this.spawnTest(dimension, spawnPos)) {
                         i--
                         continue
@@ -108,9 +86,7 @@ export class mapBase {
                     positions.push(spawnPos)
                 }
 
-                for (let i = 0; i <= this.tickingPos.length - 1; i++) {
-                    world.tickingAreaManager.removeTickingArea(`mapLoad_${i}`)
-                }
+                dimension.runCommand("tickingarea remove_all")
                 
                 resolve(positions)
             }, 20)

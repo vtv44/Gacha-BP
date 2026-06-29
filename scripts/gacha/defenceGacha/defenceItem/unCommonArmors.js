@@ -11,7 +11,7 @@ export const unCommonArmors = [
 
     {
         amount: 1,
-        id: "minecraft:leatther_iron_boots",
+        id: "minecraft:iron_boots",
         name: "§aふわふわブーツ",
         lore: [
         "§e[低速落下] §5装備",

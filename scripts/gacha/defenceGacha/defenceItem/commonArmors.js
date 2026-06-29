@@ -1,7 +1,7 @@
 export const commonArmors = [
     {
         amount: 1,
-        id: "minecraft:leatther_helmet",
+        id: "minecraft:leather_helmet",
         name: "§f堅牢の頭",
         lore: [
         "§e[防御の構え] §5スニーク",

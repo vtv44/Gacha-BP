@@ -1,4 +1,4 @@
-import { world, system, ItemStack } from "@minecraft/server";
+import { world, system, ItemStack, ItemLockMode } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 const itemConfigs = {
@@ -51,6 +51,7 @@ export class breakerSkill extends skillBase {
         const newItem = new ItemStack(itemConfigs.crusher.id, 1);
         newItem.nameTag = itemConfigs.crusher.name;
         newItem.setLore?.(itemConfigs.crusher.lore);
+        newItem.lockmode = ItemLockMode.inventory
 
         inv.container.setItem(slotIndex, newItem);
 
@@ -76,6 +77,7 @@ export class crusherSkill extends skillBase {
         const newItem = new ItemStack(itemConfigs.breaker.id, 1);
         newItem.nameTag = itemConfigs.breaker.name;
         newItem.setLore?.(itemConfigs.breaker.lore);
+        newItem.lockmode = ItemLockMode.inventory
 
         inv.container.setItem(slotIndex, newItem);
 
