@@ -24,7 +24,7 @@ export const epicWeapons = [
     },
     {
         amount: 1,
-        id: "minecraft:stone_sword",
+        id: "gacha:dice_sword",
         name: "§5サイコロソード",
         lore: [
             "§4[ダメージボーナス] §5攻撃",
@@ -33,7 +33,7 @@ export const epicWeapons = [
     },
     {
         amount: 1,
-        id: "minecraft:stone_sword",
+        id: "gacha:affect_sword",
         name: "§5影響の剣",
         lore: [
             "§4[作用の反動] §5攻撃",

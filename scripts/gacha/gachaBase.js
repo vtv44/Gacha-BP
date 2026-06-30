@@ -111,6 +111,7 @@ export class gachaBase {
             player.playSound("random.fizz", player.location)
             return
         }
+        player.dimension.setBlockType(this.buttonPos, "minecraft:air")
         world.scoreboard.getObjective("coin").addScore(player, this.cost * -1)
         this.decision(this.lottery(), player)
         player.teleport(this.gachaPos)

@@ -1,7 +1,7 @@
 import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay, Entity } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
-import { ActionFormData } from "@minecraft/server-ui";
+import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
 import { gachaBase } from "./gacha/gachaBase";
 import { rareWeapons } from "./gacha/weaponGacha/weaponItem/rareWeapons";
 import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
@@ -116,6 +116,15 @@ world.afterEvents.buttonPush.subscribe(ev => {
     }
 })
 
+world.afterEvents.playerDimensionChange.subscribe(ev => {
+    const {player} = ev;
+    if (world.getDynamicProperty("game")) {
+        system.runTimeout(() => {
+            player.kill()
+        }, 20)
+    }
+})
+
 world.beforeEvents.effectAdd.subscribe(ev => {
     const {entity} = ev;
     const tick = system.currentTick;
@@ -130,8 +139,10 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
 
     if (id === "minecraft:diamond") {
-        const dimension = world.getDimension("overworld")
-        world.sendMessage(`${dimension.getBlock({x: 320, y: 0, z: 2000}).typeId}`)
+        const form = new ModalFormData().textField("aa", "aaa")
+        form.show(source).then((res) => {
+            world.sendMessage(`${res.formValues[0].length}`)
+        })
     }
 
     if (id === "minecraft:stick") {

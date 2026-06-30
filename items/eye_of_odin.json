@@ -4,7 +4,8 @@
     "description": {
       "identifier": "gacha:eye_of_odin",
       "menu_category": {
-        "category": "nature"
+        "category": "equipment",
+        "group": "itemGroup.name.helmet"
       }
     },
     "components": {
