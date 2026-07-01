@@ -49,6 +49,8 @@ export class hookshotSkill extends skillBase {
 
         player.applyImpulse(kb)
 
+        player.addEffect("hunger", 30, {amplifier: 9, showParticles: false})
+
         this.onCooldown(player)
     }
 

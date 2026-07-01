@@ -1,4 +1,4 @@
-import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay, Entity } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay, Entity, CommandPermissionLevel } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
@@ -12,6 +12,7 @@ import { rankPointManager } from "./game/rankPointManager";
 import { skyIsland } from "./game/maps/skyIsland";
 import { defenceGacha } from "./gacha/defenceGacha/defenceGacha";
 import { spellGacha } from "./gacha/spellGacha/spellGacha";
+import { commandFunctions } from "./commands";
 
 const slots = [
     EquipmentSlot.Head,
@@ -27,6 +28,36 @@ const slots2 = [
     EquipmentSlot.Legs,
     EquipmentSlot.Feet,
 ]
+
+system.beforeEvents.startup.subscribe(ev => {
+    const coinCommand = {
+        name: "gacha:coin",
+        description: "ガチャ用のコインを配ります",
+        permissionLevel: CommandPermissionLevel.Admin,
+        mandatoryParameters: [],
+        optionalParameters: []
+    }
+
+    const gameCommand = {
+        name: "gacha:game",
+        description: "ゲームに関連するいろいろ",
+        permissionLevel: CommandPermissionLevel.Admin,
+        mandatoryParameters: [],
+        optionalParameters: []
+    }
+
+    const repairCommand = {
+        name: "gacha:maprepair",
+        description: "マップを修復します",
+        permissionLevel: CommandPermissionLevel.Admin,
+        mandatoryParameters: [],
+        optionalParameters: []
+    }
+    
+    ev.customCommandRegistry.registerCommand(coinCommand, commandFunctions.coin)
+    ev.customCommandRegistry.registerCommand(gameCommand, commandFunctions.game)
+    ev.customCommandRegistry.registerCommand(repairCommand, commandFunctions.mapRepair)
+})
 
 system.runInterval(() => {
     const players = world.getAllPlayers()
@@ -137,20 +168,8 @@ world.afterEvents.itemUse.subscribe(async ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
     
-
     if (id === "minecraft:diamond") {
-        const form = new ModalFormData().textField("aa", "aaa")
-        form.show(source).then((res) => {
-            world.sendMessage(`${res.formValues[0].length}`)
-        })
-    }
-
-    if (id === "minecraft:stick") {
-        new spellGacha().leaveGacha(source)
-    }
-
-    if (id === "minecraft:emerald") {
-
+        // tester
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -165,8 +184,10 @@ world.afterEvents.itemUse.subscribe(async ev => {
         .button("§l§bDEFENCE")
         .button("§l§aMAGIC")
         .button("§l§dHUB");
+
         form.show(source).then((res) => {
             if (res.canceled) return;
+
             switch(res.selection) {
                 case 0: 
                     source.runCommand(`tp @s -300 0 0 90`);
@@ -181,8 +202,15 @@ world.afterEvents.itemUse.subscribe(async ev => {
                     source.runCommand(`tp @s 0 1 0 90`);
                     break;
             }
+
+            system.runTimeout(() => {
+                source.runCommand("playsound beacon.power @s");
+                source.runCommand("playsound mob.endermen.portal @s");
+            }, 1);
         }) 
     }
+
+    // if (!world.getDynamicProperty("game")) return;
 
     const skill = skillManager.get(itemStack.nameTag);
     if (skill) skill.use(source, ev);
@@ -256,16 +284,55 @@ world.afterEvents.entitySpawn.subscribe(ev => {
 const blockedBlocks = [
     "minecraft:crying_obsidian",
     "minecraft:glowstone",
-    "minecraft:dandelion"
+    "minecraft:dandelion",
     // "minecraft:xxxx",
 ];
 
+const cancelBlocks = [
+    // "minecraft:anvil",
+    "minecraft:furnace",
+    "minecraft:chipped_anvil",
+    "minecraft:damaged_anvil",
+    "minecraft:brewing_stand",
+    "minecraft:respawn_anchor",
+    "minecraft:smoker",
+    "minecraft:blast_furnace",
+    "minecraft:smithing_table",
+    "minecraft:cartography_table",
+    "minecraft:enchanting_table",
+    "minecraft:composter",
+    "minecraft:cauldron",
+    "minecraft:jukebox",
+    "minecraft:frame",
+    "minecraft:glow_frame",
+    "minecraft:stonecutter_block",
+    "minecraft:loom",
+    "minecraft:dropper",
+    "minecraft:dispenser",
+    "minecraft:hopper",
+    "minecraft:crafter",
+    "minecraft:chiseled_bookshelf",
+    "minecraft:barrel",
+    // クラフト用アイテム実装までキャンセル
+    "minecraft:crafting_table",
+]
+
 world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
-    const { player } = event;
+    const { player, block } = event;
     const held = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
     if (blockedBlocks.includes(held?.typeId)) {
         event.cancel = true;
     }
+
+    const id = block.typeId
+
+    if (
+        cancelBlocks.includes(id) ||
+        id.includes("chest") ||
+        id.includes("sign") ||
+        id.includes("shelf") ||
+        id.includes("shulker")
+    ) event.cancel = true;
 });
 
 world.afterEvents.playerSpawn.subscribe(ev => {
@@ -284,6 +351,7 @@ world.afterEvents.playerSpawn.subscribe(ev => {
 
         } else {
             player.sendMessage(`§l§bガチャPVPへようこそ\n \n§l§f現在はガチャフェーズです`);
+            world.scoreboard.getObjective("coin").setScore(player, 0)
         }
     }
 })

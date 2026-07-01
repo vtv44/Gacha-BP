@@ -9,6 +9,8 @@ export class greenMagicSKill extends skillBase {
     }
 
     execute(player) {
+        this.onCooldown(player)
+        
         const dimension = player.dimension
         const location = player.location
 

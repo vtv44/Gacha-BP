@@ -54,7 +54,7 @@ export class confessionSkill extends skillBase {
 
                     dimension.spawnParticle("minecraft:example_flipbook", {x: pos.x, y: pos.y + 1.2, z: pos.z})
                     dimension.playSound("random.levelup", pos, {pitch: 0.5})
-                    dimension.playSound("block.bell.hit")
+                    dimension.playSound("block.bell.hit", pos)
 
                 } else {
 

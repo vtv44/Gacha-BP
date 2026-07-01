@@ -14,7 +14,7 @@ export const legendarySpells = [
         id: "minecraft:bone",
         name: "§6気まずさの破片",
         lore: [
-            "§d[おはだけ] §5攻撃",
+            "§d[消失] §5攻撃",
             "§5攻撃するとお互いの服がはじけ飛ぶ"
         ],
     },

@@ -1,5 +1,6 @@
 import { world } from "@minecraft/server"
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui"
+import { game } from "./game"
 
 export class forms {
     static coinForm() {
@@ -8,6 +9,7 @@ export class forms {
         .body("配布方法を選択してください")
         .button("全員")
         .button("個人")
+        .button("全員リセット")
         
         return form
     }
@@ -20,10 +22,41 @@ export class forms {
         return form
     }
 
+    static gameForm() {
+        const form = new ActionFormData()
+        .title("ゲーム")
+        .button("ゲーム開始")
+        .button("ゲーム設定")
+        .button("チーム決定")
+        .button("ゲームリセット")
+
+        return form
+    }
+
+    static gameSettingForm() {
+        const form = new ModalFormData()
+        .title("ゲーム設定")
+        .dropdown("初期体力", ["20", "40", "60"])
+        .dropdown("範囲開始の時間", ["300", "600", "480", "180", "0"])
+        .dropdown("範囲によるダメージ量", ["3", "10", "7", "5", "2", "1"])
+
+        return form
+    }
+
+    static maps() {
+        const form = new ActionFormData()
+        .title("マップ")
+        .button("ザ・エンド")
+        .button("空島")
+
+        return form
+    }
+
     static playersForm() {
         // ワールドにいるプレイヤー全員
         const players = world.getAllPlayers()
         const form = new ActionFormData()
+        .title("プレイヤー")
         for (const p of players) {
             form.button(p.name)
         }

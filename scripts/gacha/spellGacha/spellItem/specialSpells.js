@@ -18,4 +18,13 @@ export const specialSpells = [
             "§5拘束中は一切の移動が不可能になり、ダメージを20%カットする"
         ]
     },
+    {
+        amount: 1,
+        id: "minecraft:lead",
+        name: "§4愛の告白",
+        lore: [
+            "§d[あなたの想い] §5右クリック",
+            "§d大好きな人に告白しちゃおう！"
+        ]
+    },
 ]

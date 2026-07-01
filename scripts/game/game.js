@@ -1,6 +1,8 @@
-import { Difficulty, GameMode, InputPermissionCategory, ItemStack, system, world } from "@minecraft/server"
+import { Difficulty, GameMode, InputPermissionCategory, ItemLockMode, ItemStack, system, world } from "@minecraft/server"
 import { theEnd } from "./maps/theEnd"
 import { rankPointManager } from "./rankPointManager"
+import { skyIsland } from "./maps/skyIsland"
+import { mapBase } from "./maps/mapBase"
 
 export class game {
 
@@ -14,6 +16,12 @@ export class game {
     constructor() {}
 
     static gameJoinPlayers = []
+    static areaSpawnPos = {x: 0, y: 0, z: 0}
+    static map = new mapBase()
+
+    static health = 0
+    static areaSpawnTime = 300
+    static areaDamage = 3
 
     static gameEnd() {
         // 途中?
@@ -30,13 +38,14 @@ export class game {
             const kill = p.getDynamicProperty("killInGame")
             rankPointManager.rankPointAdd(p, kill * 40)
         }
+
+        world.getDimension("overworld").runCommand("kill @e[type=gacha:gacha_area]")
         system.runTimeout(() => {
             this.gameReset()
         }, 10)
     }
 
     static gameReset() {
-        // 途中?
         world.setDynamicProperty("game", false)
 
         this.gameJoinPlayers = []
@@ -63,21 +72,36 @@ export class game {
             return
         }
 
+        const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
+        // if (players.length <= 1) {
+        //    world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
+        //   return
+        // }
+
         world.setDynamicProperty("game", true)
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
         gameInfo.setScore("§l§a残り時間", 620)
         gameInfo.setScore("§l§b残り人数", 0)
 
-        const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
         this.gameJoinPlayers = players
         const map = this.mapSelect()
         const spawnPos = await map.mapSpawnPos(players.length)
+        this.areaSpawnPos = await map.areaCenterPoint()
+        this.map = map
 
-        const area = dimension.spawnEntity("gacha:gacha_area", map.areaCenterPoint())
+        world.setDefaultSpawnLocation(this.areaSpawnPos)
+
+        const compass = new ItemStack("minecraft:compass", 1)
+        compass.nameTag = "§lどこかを指すコンパス"
+        compass.setLore([
+            "§l§5安全範囲の中心地を指し示す"
+        ])
+        compass.lockMode = ItemLockMode.inventory
 
         for (let i = 0; i <= players.length - 1; i++) {
             gameInfo.addScore("§l§b残り人数", 1)
             players[i].teleport(spawnPos[i])
+            players[i].runCommand("clear @s nether_star")
             players[i].runCommand("effect @s clear")
             players[i].addEffect("haste", 5 * 20, {amplifier: 255})
             players[i].addEffect("slow_falling", 20 * 20)
@@ -85,7 +109,12 @@ export class game {
             players[i].addEffect("resistance", 20 * 20)
             players[i].setGameMode(GameMode.Survival)
             players[i].nameTag = ""
+            players[i].getComponent("inventory").container.addItem(compass)
             rankPointManager.rankPointAdd(players[i], 50)
+
+            if (this.health > 0) {
+                players[i].addEffect("health_boost", 99999 * 20, {amplifier: this.health, showParticles: false})
+            }
         }
 
         system.runTimeout(() => {
@@ -95,17 +124,29 @@ export class game {
             world.sendMessage(` \n§lガチャPVPスタート！！\n `)
             dimension.runCommand("title @a title §l§aGAME START")
             dimension.runCommand("playsound random.explode @a")
-        }, 20 * 20)
+        }, 19 * 20)
+    }
+
+    static getTeam(number) {
+        return world.getDimension("overworld").getPlayers({
+            scoreOptions: [{
+                objective: "team",
+                minScore: number,
+                maxScore: number,
+                exclude: false
+            }],
+        })
     }
 
     static resetPlayer(player) {
-        // ok?
         player.setDynamicProperty("killInGame", 0)
         player.setDynamicProperty("effectCancelTime", 0);
         player.teleport({x: 0.5, y: 1, z: 0.5})
         player.setGameMode(GameMode.Adventure)
+        player.resetLevel()
         player.runCommand("hud @s reset all")
         player.runCommand("effect @s clear")
+        player.runCommand("clear @s")
 
         player.addEffect("instant_health", 999999 * 20, {amplifier: 255, showParticles: false})
         player.addEffect("saturation", 999999 * 20, {amplifier: 255, showParticles: false})
@@ -113,9 +154,10 @@ export class game {
         const netherStar = new ItemStack("minecraft:nether_star", 1)
         netherStar.nameTag = "§l§d移動装置 §f/ 右クリック"
         netherStar.setLore(["§5移動がちょっとだけ便利！"])
+        netherStar.lockMode = ItemLockMode.slot
         
         const container = player.getComponent("inventory").container
-        // container.clearAll()
+        container.clearAll()
         container.getSlot(8).setItem(netherStar)
 
         const input = player.inputPermissions
@@ -127,20 +169,25 @@ export class game {
     }
 
     static playerDie(event) {
-        // 途中 ゲームが終了できるか確かめる処理を入れる
         const {damageSource, deadEntity} = event
         if (deadEntity.typeId !== "minecraft:player") return
 
         this.resetPlayer(deadEntity)
         deadEntity.setGameMode(GameMode.Spectator)
+        system.run(() => {
+            deadEntity.teleport(this.gameJoinPlayers[0].location)
+        })
 
         if (this.testJoinGame) {
             this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== deadEntity.id)
         }
+
+        if (this.testEndGame()) {
+            this.gameEnd()
+        }
     }
 
     static teamClear() {
-        // ok
         const teamScore = world.scoreboard.getObjective("team")
         
         for (const p of world.getAllPlayers()) {
@@ -154,7 +201,6 @@ export class game {
     }
 
     static teamSelect() {
-        // ok
         const dimension = world.getDimension("overworld")
         const players = dimension.getPlayers()
         const teamObject = world.scoreboard.getObjective("team")
@@ -171,8 +217,18 @@ export class game {
         }
     }
 
+    static testEndGame() {
+        if (this.gameJoinPlayers.length <= 1) return true
+        
+        const teamScore = world.scoreboard.getObjective("team")
+        const ts = teamScore.getScore(this.gameJoinPlayers[0])
+
+        return this.gameJoinPlayers.every((player) => {
+            return teamScore.getScore(player) === ts
+        })
+    }
+
     static testJoinGame(player) {
-        // ok
         const id = player.id
         for (const p of this.gameJoinPlayers) {
             if (!p.id === id) continue
@@ -182,36 +238,53 @@ export class game {
     }
 
     static mapSelect() {
-        // ok
         // ランダムなマップクラスを返す
         const rand = Math.floor(Math.random() * maps.length)
         return maps[rand]
     }
 
     static onSecond() {
-        // 途中
         if (world.getDynamicProperty("game")) {
             // ゲーム中ならここが動く
             const gameInfo = world.scoreboard.getObjective("gameInfo")
+            const time = gameInfo.getScore("§l§a残り時間")
 
-            if (gameInfo.getScore("§l§a残り時間") <= 0) {
+            if (time <= 0) {
                 this.gameEnd()
                 return
             }
 
             const areas = world.getDimension("overworld").getEntities({type: "gacha:gacha_area"})
 
-            for (const a of areas) {
-                const size = a.getProperty("gacha:size")
-                a.setProperty("gacha:size", size - 1)
+            if (time === this.areaSpawnTime) {
+                world.sendMessage(` \n§lゲーム範囲が制限された！\n `)
+                this.map.spawnArea(this.areaSpawnPos)
+            }
+
+            if (time < this.areaSpawnTime - 1) {
+                for (const a of areas) {
+                    const size = a.getProperty("gacha:size")
+                    a.setProperty("gacha:size", size - 2)
+
+                    // 範囲用エンティティの縮小に合わせて範囲ダメ
+                    const d = size / 16.6
+                    const {x, y, z} = a.location
+                    a.runCommand(`tag @a[x=${x - d - 3},y=-50,z=${z - d - 3},dx=${d * 2 + 4},dy=300,dz=${d * 2 + 4}] remove area_damage`)
+                    a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage} magic`)
+                    a.runCommand("execute as @a[tag=area_damage] at @s run playsound note.harp @s ~~~ 1 0.5")
+                }
+            }
+
+            for (const p of world.getAllPlayers()) {
+                p.addTag("area_damage")
             }
 
             gameInfo.addScore("§l§a残り時間", -1)
-            // 範囲用エンティティの縮小に合わせて範囲ダメ
         }
     }
 }
 
 const maps = [
     new theEnd(),
+    new skyIsland(),
 ]
