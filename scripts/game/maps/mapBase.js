@@ -15,12 +15,17 @@ export class mapBase {
         ]
     }
 
-    areaCenterPoint() {
+    async areaCenterPoint() {
         // 範囲中心地のやつ
-        const x = Math.floor(Math.random() * (this.mapPos[1].x - this.mapPos[0].x)) 
-        const y = this.mapPos[0].y
-        const z = Math.floor(Math.random() * (this.mapPos[1].z - this.mapPos[0].z))
-        return {x: x + this.mapPos[0].x, y: y, z: z + this.mapPos[0].z}
+        const randX = this.mapPos[1].x - this.mapPos[0].x
+        const randZ = this.mapPos[1].z - this.mapPos[0].z
+
+        const x = Math.floor(Math.random() * (randX - (randX / 10)) + (randX / 10)) 
+        const y = this.mapPos[1].y / 2
+        const z = Math.floor(Math.random() * (randZ - (randZ / 10)) + (randZ / 10))
+        return new Promise((resolve) => {
+            resolve({x: x + this.mapPos[0].x, y: y, z: z + this.mapPos[0].z})
+        })
     }
 
     buildRepair() {
@@ -43,7 +48,7 @@ export class mapBase {
         }
 
         system.runTimeout(() => {
-            world.sendMessage("repair")
+            world.sendMessage("マップの修復が完了しました")
             dimension.runCommand("tickingarea remove_all")
         }, this.structures.length * 10 + 20)
     }
@@ -90,6 +95,17 @@ export class mapBase {
                 
                 resolve(positions)
             }, 20)
+        })
+    }
+
+    async spawnArea(areaPos) {
+        const dimension = world.getDimension("overworld")
+
+        await this.createTickingArea()
+
+        dimension.spawnEntity("gacha:gacha_area", areaPos)
+        system.run(() => {
+            dimension.runCommand("tickingarea remove_all")
         })
     }
 

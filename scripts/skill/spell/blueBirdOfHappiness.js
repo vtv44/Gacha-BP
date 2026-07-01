@@ -27,7 +27,7 @@ export class blueBirdOfHappinessSkill extends skillBase {
 
         const targets = this.getTargets(player, location, 100)
         if (targets[0]) {
-            const rand = Math.floor(Math.random() * targets.length - 1)
+            const rand = Math.floor(Math.random() * targets.length)
             const bird = new ItemStack("minecraft:lapis_lazuli")
             bird.nameTag = this.id
             bird.setLore([

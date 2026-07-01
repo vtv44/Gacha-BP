@@ -8,7 +8,6 @@ export const rareArmors = [
             "§5走る速度が早くなる"
         ],
     },
-
     {
         amount: 1,
         id: "minecraft:iron_leggings",
