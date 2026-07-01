@@ -168,7 +168,6 @@ world.afterEvents.itemUse.subscribe(async ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
     
-
     if (id === "minecraft:diamond") {
         // tester
     }

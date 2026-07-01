@@ -39,4 +39,14 @@ export const mythicSpells = [
             "§5遠ければ遠いほど勢いは増す"
         ],
     },
+
+    {
+        amount: 1,
+        id: "minecraft:magenta_dye",
+        name: "§dOVERWRITE",
+        lore: [
+            "§d[上書き] §5右クリック",
+            "§5全てのエフェクトを除去し、体力、満腹度を全回復する"
+        ],
+    },
 ]
