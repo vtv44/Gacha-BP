@@ -13,9 +13,12 @@ export const mythicWeapons = [
 
     {
         amount: 1,
-        id: "",
+        id: "minecraft:golden_sword",
         name: "§dファントムソード",
-        lore: [],
+        lore: [
+            "§d[ファントム] §5右クリック",
+            "§51秒間スペクテイターになる"
+        ],
     },
 
     {
@@ -31,7 +34,16 @@ export const mythicWeapons = [
             {id: "fire_aspect", level: 2}
         ]
     },
-
+    {   
+        amount: 1,
+        id: "gacha:breaker",
+        name: "§dブレイカー",
+        lore: [
+            "§u[変形] §5右クリック 攻撃",
+            "§5右クリックで§dクラッシャー§5に変形",
+            "§5この武器による採掘はブロックを即座に破壊する"
+        ]
+    },
     {
         amount: 1,
         id: "",
@@ -39,5 +51,6 @@ export const mythicWeapons = [
         lore: [],
         enchants: []
     },
+    
 
 ]

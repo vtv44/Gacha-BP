@@ -11,9 +11,12 @@ export const legendaryWeapons = [
 
     {
         amount: 1,
-        id: "",
+        id: "minecraft:iron_sword",
         name: "§6ジャイアントソード",
-        lore: [],
+        lore: [
+            "§6[巨大剣] §5右クリック",
+            "発動すると正面上空から剣を召喚する"
+        ],
     },
 
     {
@@ -43,8 +46,25 @@ export const legendaryWeapons = [
 
     {
         amount: 1,
-        id: "",
-        name: "",
-        lore: [],
+        id: "minecraft:golden_axe",
+        name: "§6リターンアックス",
+        lore: [
+            "§e[リターン] §5右クリック",
+            "§5発動すると3秒後に発動地点に戻る"
+              ],
+              enchants: [
+            {id: "sharpness", level: 3}
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:iron_sword",
+        name: "§6アサシンブレード",
+        lore: [
+            "§u[アサシン] §5攻撃 右クリック スニーク",
+            "§5殴った相手を記録する",
+            "§5右クリックで記録した敵の背後に移動する",
+            "§5スニーク右クリックで記録を削除する"
+        ],
     },
 ]

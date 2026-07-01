@@ -11,23 +11,24 @@ const axeStages = [
 
 const axeLores = {
     "§5斧": [
-        "§f[§5スキル§f] §5右クリック",
-        "§5スピード1付与"
+        "§5[加速] §5右クリック",
+        "§5発動するとスピード1が自身に付与される"
     ],
     "§6血の斧": [
-        "§f[§6スキル§f] §6右クリック",
-        "§6スピード2・力1・突進"
+        "§6[突進] §5右クリック",
+        "§5発動するとスピード2 力1が自身に付与され",
+        "§5前方に弱く突進する"
     ],
     "§d血まみれの斧": [
-        "§f[§dスキル§f] §d右クリック",
-        "§dスピード3・力2・ダッシュ斬り"
+        "§d[斬撃] §5右クリック",
+        "§5発動するとスピード3 力2が自身に付与され",
+        "§5前方に突進し近くの敵プレイヤーに対して斬撃を与える"
     ],
     "§b業火の斧": [
-        "§f[§bスキル§f] §b右クリック",
-        "§bスピード5・力4・耐性3付与",
-        "§b正面・上方向突進→着地で範囲大ダメージ・吹き飛ばし・延焼",
-        "§b【パッシブ】スキル発動中の落下ダメージ完全無効化",
-        "§b攻撃に常時炎付与"
+        "§b[破壊] §5右クリック",
+        "§5発動するとスピード5 力4 耐性3が自身に付与され",
+        "§5前方に飛び上がり急降下攻撃を行う",
+        "§5攻撃した相手を燃やす"
     ],
 };
 
@@ -101,11 +102,7 @@ export class infernalAxeSkill extends skillBase {
 
     execute(player) {
         const stage = this.getCurrentStage(player);
-        if (stage < 0) return;
-
-        if (stage === 0) return;
-
-        if (!this.canAddEffect(player)) return;
+        if (stage <= 0) return;
 
         const dimension = player.dimension;
         const location = player.location;
@@ -113,14 +110,18 @@ export class infernalAxeSkill extends skillBase {
         dimension.spawnParticle("minecraft:wax_on_particle", location);
 
         if (stage === 1) {
-            player.addEffect("speed", 5 * 20, { amplifier: 0, showParticles: false });
+            if (this.canAddEffect(player)) {
+                player.addEffect("speed", 5 * 20, { amplifier: 0, showParticles: false });
+            }
             dimension.playSound("random.pop", location, { volume: 1.0 });
             dimension.spawnParticle("rca:arrow_cyan", location);
         }
 
         if (stage === 2) {
-            player.addEffect("speed", 5 * 20, { amplifier: 1, showParticles: false });
-            player.addEffect("strength", 5 * 20, { amplifier: 0, showParticles: false });
+            if (this.canAddEffect(player)) {
+                player.addEffect("speed", 5 * 20, { amplifier: 1, showParticles: false });
+                player.addEffect("strength", 5 * 20, { amplifier: 0, showParticles: false });
+            }
             const dir = player.getViewDirection();
             player.applyKnockback({ x: dir.x * 2, z: dir.z * 2 }, 0);
 
@@ -130,8 +131,10 @@ export class infernalAxeSkill extends skillBase {
         }
 
         if (stage === 3) {
-            player.addEffect("speed", 5 * 20, { amplifier: 2, showParticles: false });
-            player.addEffect("strength", 5 * 20, { amplifier: 1, showParticles: false });
+            if (this.canAddEffect(player)) {
+                player.addEffect("speed", 5 * 20, { amplifier: 2, showParticles: false });
+                player.addEffect("strength", 5 * 20, { amplifier: 1, showParticles: false });
+            }
             
             const dir = player.getViewDirection();
             player.applyKnockback({ x: dir.x * 4.5, z: dir.z * 4.5 }, 0);
@@ -168,10 +171,12 @@ export class infernalAxeSkill extends skillBase {
         if (stage === 4) {
             activeMeteorPlayers.add(player.id);
 
-            player.addEffect("strength", 5 * 20, { amplifier: 3, showParticles: false });
-            player.addEffect("speed", 5 * 20, { amplifier: 4, showParticles: false });
-            player.addEffect("resistance", 5 * 20, { amplifier: 2, showParticles: false });
-            player.addEffect("regeneration", 5 * 20, { amplifier: 4, showParticles: false });
+            if (this.canAddEffect(player)) {
+                player.addEffect("strength", 5 * 20, { amplifier: 3, showParticles: false });
+                player.addEffect("speed", 5 * 20, { amplifier: 4, showParticles: false });
+                player.addEffect("resistance", 5 * 20, { amplifier: 2, showParticles: false });
+                player.addEffect("regeneration", 5 * 20, { amplifier: 4, showParticles: false });
+            }
 
             const dir = player.getViewDirection();
             player.applyKnockback({ x: dir.x * 3, z: dir.z * 3 }, 1.5);
@@ -233,9 +238,6 @@ export class infernalAxeSkill extends skillBase {
                 }
             }, 1);
         }
-
-        // ★追加: 5秒間（100ティック）エフェクト上書き不可状態にする
-        this.clearEffectSetTime(player, 5 * 20);
 
         this.onCooldown(player);
     }
