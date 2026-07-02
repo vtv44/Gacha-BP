@@ -116,7 +116,7 @@ export class administratorSkill extends skillBase {
         target.sendMessage(`§c[失敗: ${reason}] ハッキングが完了し、大ダメージを受けた！`);
         target.dimension.playSound("random.explode", target.location, { volume: 1.0, pitch: 1.0 });
         
-        target.applyDamage(10, {
+        target.applyDamage(5, {
             cause: "magic",
             damagingEntity: attacker
         });

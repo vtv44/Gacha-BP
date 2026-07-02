@@ -19,4 +19,13 @@ export const commonWeapons = [
             {id: "unbreaking", level: 3}
         ]
     },
+    {
+        amount: 1,
+        id: "minecraft:stick",
+        name: "§fふきとばソード",
+        lore: [
+            "§f[吹き飛ばし] §5攻撃",
+            "§5攻撃した相手を上に吹き飛ばす（少し）"
+        ],
+    },
 ]

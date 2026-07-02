@@ -15,6 +15,16 @@ export const specialWeapons = [
             "§5ーー最早、剣さえも見えなくなった",
         ]
     },
+    {
+        amount: 1,
+        id: "gacha:admin_weapon",
+        name: "§badministrator",
+        lore: [
+            "§b[知性] §5右クリック",
+            "§5右クリックするとターゲットを選択し、クイズを送りつける",
+            "§5相手が間違えるか画面を閉じると防具貫通ダメージを与える"
+        ],
+    },
 
     {
         amount: 1,

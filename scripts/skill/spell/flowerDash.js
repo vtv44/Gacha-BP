@@ -5,37 +5,37 @@ export class flowerDashSkill extends skillBase {
     constructor() {
         super();
         this.id = "§5フラワーダッシュ";
-        this.cooldown = 60 * 20;
+        this.cooldown = 30 * 20;
     }
 
     execute(player) {
-        if (!this.canAddEffect(player)) return;
-
         const duration = 10 * 20;
 
-        player.addEffect("speed", duration, { amplifier: 14, showParticles: false });
-        player.addEffect("resistance", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("jump_boost", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("strength", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("fire_resistance", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("night_vision", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("regeneration", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("water_breathing", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("wind_charged", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("infested", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("weaving", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("haste", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("oozing", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("mining_fatigue", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("health_boost", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("absorption", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("bad_omen", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("raid_omen", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("trial_omen", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("conduit_power", duration, { amplifier: 0, showParticles: false });
-        player.addEffect("village_hero", duration, { amplifier: 0, showParticles: false });
+        if (this.canAddEffect(player)) {
+            player.addEffect("speed", duration, { amplifier: 14, showParticles: false });
+            player.addEffect("resistance", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("jump_boost", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("strength", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("fire_resistance", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("night_vision", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("regeneration", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("water_breathing", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("wind_charged", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("infested", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("weaving", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("haste", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("oozing", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("mining_fatigue", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("health_boost", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("absorption", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("bad_omen", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("raid_omen", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("trial_omen", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("conduit_power", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("village_hero", duration, { amplifier: 0, showParticles: false });
+        }
 
-        player.sendMessage("a");
+        player.sendMessage("§5フラワーダッシュ！！");
 
         try {
             player.dimension.playSound("block.chorus_flower.grow", player.location, { volume: 1.0, pitch: 1.0 });
@@ -94,7 +94,6 @@ export class flowerDashSkill extends skillBase {
             } catch(e) {}
         }, 1);
 
-        this.clearEffectSetTime(player, duration);
         this.onCooldown(player);
     }
 }

@@ -1,9 +1,18 @@
 export const divineWeapons = [
     {
         amount: 1,
-        id: "gacha:cosmicannihilator",
-        name: "§1コズミックメテオ",
-        lore: [],
+        id: "minecraft:iron_sword",
+        name: "§bアサシンブレード =極=",
+        lore: [
+            "§u[アサシン] §5攻撃 右クリック スニーク",
+            "§5殴った相手を記録する",
+            "§5右クリックで記録した敵の背後に移動する",
+            "§5スニーク右クリックで記録を削除する"
+        ],
+              enchants: [
+            {id: "sharpness", level: 4},
+            {id: "knockback", level: 2}
+        ]
     },
     {
         amount: 1,

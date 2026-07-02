@@ -24,7 +24,6 @@ export class hellBladeSKill extends skillBase {
             let x = dir.x;
             let z = dir.z;
 
-            // 正規化するといい感じに出せるぞ！　ありがとうAI
             const len = Math.sqrt(x * x + z * z);
 
             if (len < 0.0001) return;
