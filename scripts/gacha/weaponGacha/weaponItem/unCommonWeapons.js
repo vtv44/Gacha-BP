@@ -1,14 +1,14 @@
 export const unCommonWeapons = [
     {
         amount: 1,
-        id: "",
+        id: "minecraft:stone_sword",
         name: "§a疾風の剣",
         lore: [],
     },
 
     {
         amount: 1,
-        id: "",
+        id: "minecraft:stone_axe",
         name: "§a突撃槍",
         lore: [
             "§b[拙い連撃] §5右クリック",

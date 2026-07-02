@@ -31,14 +31,14 @@ export class gateOfBabylonSkill extends skillBase {
                 t.addEffect("weakness", this.cooldown, {amplifier: 3})
                 t.addEffect("slowness", this.cooldown, {amplifier: 4})
                 t.addEffect("blindness", this.cooldown, {amplifier: 3})
-                t.addEffect("wither", this.cooldown, {amplifier: 1})
+                this.clearEffectSetTime(t, this.cooldown)
 
                 dimension.spawnParticle("gacha:chain", t.location)
                 dimension.playSound("scrape", t.location, {pitch: 0.8})
                 t.playSound("mob.blaze.death", {pitch: 1.5})
             }
 
-            player.spawnParticle("minecraft:example_flipbook")
+            player.spawnParticle("minecraft:example_flipbook", location)
             player.playSound("block.bell.hit", {volume: 0.5, pitch: 3})
 
             if (targets.length <= 2) {
@@ -75,9 +75,9 @@ export class gateOfBabylonSkill extends skillBase {
                 z: location.z + dir.z * 1.1
             })
 
-            for (let i = 0; i <= 29; i++) {
+            for (let i = 0; i <= 19; i++) {
                 
-                const offset = (Math.random() - 0.5) * 10
+                const offset = (Math.random() - 0.5) * 6
                 const rand = Math.random() * 3
                 const vector3 = {
                     x: location.x + right.x * offset,
@@ -86,38 +86,39 @@ export class gateOfBabylonSkill extends skillBase {
                 }
 
                 system.runTimeout(() => {
-                    this.arrowShot(player, vector3, dir, player.dimension, 20)
-
-                    const atkPos = {
-                        x: location.x + dir.x * 10,
-                        y: location.y + 1.2,
-                        z: location.z + dir.z * 10
-                    }
-                    const targets = this.getTargets(player, atkPos, 10)
-                    for (const t of targets) {
-                        if (this.posCheck(atkPos, t.location)) {
-                            t.applyDamage(4, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
-                        }
-                    }
+                    this.arrowShot(player, vector3, dir, player.dimension, 10)
                 }, i * 1);
             }
         }
     }
 
     arrowShot(player, location, dir, dimension, count = 20) {
-        let {x, y, z} = location;
-        dimension.runCommand(`particle gacha:babylon_gate ${x} ${y} ${z}`)
+        const atkPos = {
+            x: player.location.x + dir.x * 4,
+            y: player.location.y + 1.2,
+            z: player.location.z + dir.z * 4
+        }
+        
+        dimension.spawnParticle("gacha:babylon_gate", location)
         system.runTimeout(() => {
-            dimension.runCommand(`playsound mob.blaze.shoot @a ${x} ${y} ${z} 0.6 3`)
+
+            dimension.playSound("mob.blaze.shoot", location, {volme: 0.5, pitch: 3})
             for (let i = 0; i <= count; i++) {
                 const pos = {
                     x: location.x + dir.x * (i / 2),
                     y: location.y + dir.y * (i / 2),
                     z: location.z + dir.z * (i / 2),
                 }
-                const {x, y, z} = pos;
-                dimension.runCommand(`particle rpg:yellow_smoke ${x} ${y} ${z}`);
-                dimension.runCommand(`playsound random.pop @a ${x} ${y} ${z} 0.01 0.5`)
+
+                dimension.spawnParticle("rpg:yellow_smoke", pos)
+                dimension.playSound("random.pop", pos, {pitch: 0.35, volume: 0.01})
+            }
+
+            const targets = this.getTargets(player, atkPos, 7)
+            for (const t of targets) {
+                if (this.posCheck(atkPos, t.location)) {
+                    t.applyDamage(4, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
+                }
             }
         }, 20)
     }
@@ -126,9 +127,9 @@ export class gateOfBabylonSkill extends skillBase {
         const {x, y, z} = pos
 
         return (
-            x - 5 <= pos2.x <= x + 5 &&
-            y - 1 <= pos2.y <= y + 3.5 &&
-            z - 5 <= pos2.z <= z + 5 
+            x - 5 <= pos2.x && pos2.x <= x + 5 &&
+            y - 1 <= pos2.y && pos2.y <= y + 3.5 &&
+            z - 5 <= pos2.z && pos2.z <= z + 5
         )
     }
 }

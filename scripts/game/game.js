@@ -280,6 +280,13 @@ export class game {
             }
 
             gameInfo.addScore("§l§a残り時間", -1)
+        } else {
+            const players = world.getAllPlayers()
+            const coinScore = world.scoreboard.getObjective("coin")
+            for (const p of players) {
+                const coin = coinScore.getScore(p)
+                p.onScreenDisplay.setActionBar(`§l現在の所持コイン: §e${coin}`)
+            }
         }
     }
 }

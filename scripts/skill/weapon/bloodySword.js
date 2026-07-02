@@ -9,7 +9,7 @@ export class bloodySwordSkill extends skillBase {
         super()
 
         this.id = "§b血塗れの剣"
-        this.cooldown = 30
+        this.cooldown = 4 * 20
     }
 
     cooldownMessage(player) {
@@ -53,10 +53,11 @@ export class bloodySwordSkill extends skillBase {
                     const heal = tHealth.currentValue - 1
 
                     targets[0].applyDamage(heal, {damagingEntity: player, cause: EntityDamageCause.magic})
-                    targets[0].sendMessage(` \n§l§c${player.name}§r§4に体力をすべて奪われた\n `)
+                    targets[0].sendMessage(` \n§l§c${player.name}§r§4に体力をすべて奪われた\nエフェクトが付与されなくなった\n `)
                     targets[0].runCommand("effect @s clear")
                     targets[0].runCommand("hud @s hide health")
                     targets[0].addEffect("resistance", 10 * 20, {amplifier: 255})
+                    this.clearEffectSetTime(targets[0], 20 * 20)
 
                     system.runTimeout(() => {
                         targets[0].applyDamage(heal, {damagingEntity: player, cause: EntityDamageCause.magic})
@@ -67,16 +68,16 @@ export class bloodySwordSkill extends skillBase {
                     dimension.playSound("mob.zombie.remedy", location, {pitch: 1.8, volume: 0.8})
                     dimension.playSound("mob.elderguardian.curse", location, {pitch: 1.5})
 
-                    if (max < current + health) {
+                    if (max < current + heal) {
                         health.resetToMaxValue()
                     } else {
-                        health.setCurrentValue(current + health)
+                        health.setCurrentValue(current + heal)
                     }
-                    player.addEffect("resistance", 10 * 20, {amplifier: 255})
+                    if (this.canAddEffect(player)) player.addEffect("resistance", 10 * 20, {amplifier: 255})
 
                     dimension.spawnParticle("gacha:bloody_area_smoke", pPos)
                     for (let i = 0; i <= 5; i++) {
-                        system.runInterval(() => {
+                        system.runTimeout(() => {
                             dimension.spawnParticle("rca:guard_red", pPos)
                             dimension.playSound("firework.blast", pPos, {volume: 2})
                         }, i)
@@ -88,7 +89,7 @@ export class bloodySwordSkill extends skillBase {
             // 範囲攻撃
             this.onCooldown(player)
 
-            player.addEffect("resistance", 35, {amplifier: 255, showParticles: false})
+            player.addEffect("resistance", 30, {amplifier: 255, showParticles: false})
             player.addEffect("slowness", 15, {amplifier: 1, showParticles: false})
 
             dimension.spawnParticle("gacha:bloody_area_smoke", pPos)
@@ -101,7 +102,7 @@ export class bloodySwordSkill extends skillBase {
                         const targets = this.getTargets(player, pPos, 5)
 
                         for (const t of targets) {
-                            t.applyDamage(3, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
+                            t.applyDamage(1, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
                             
                             t.addEffect("slowness", 3 * 20)
                             t.addEffect("wither", 3 * 20, {amplifier: 2})
@@ -139,8 +140,8 @@ export class bloodySwordSkill extends skillBase {
                 dimension.spawnParticle("gacha:redstone_smoke", sPos)
                 dimension.playSound("mob.irongolem.throw", sPos)
                     
-                for (const t of this.getTargets(player, sPos, 1)) {
-                    t.applyDamage(5, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
+                for (const t of this.getTargets(player, {x: sPos.x, y: sPos.y - 1, z: sPos.z}, 2)) {
+                    t.applyDamage(1, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
                     t.addEffect("wither", 5 * 20, {amplifier: 3})
 
                     dimension.spawnParticle("rca:sweep_red_cross", {
