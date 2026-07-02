@@ -1,10 +1,11 @@
 export const specialWeapons = [
-    {
-        amount: 1,
-        id: "minecraft:iron_sword",
-        name: "Hyperion",
-        lore: []
-    },
+    // はよ作れ
+    // {
+    //     amount: 1,
+    //     id: "minecraft:iron_sword",
+    //     name: "Hyperion",
+    //     lore: []
+    // },
 
     {
         amount: 1,
@@ -24,12 +25,5 @@ export const specialWeapons = [
             "§5右クリックするとターゲットを選択し、クイズを送りつける",
             "§5相手が間違えるか画面を閉じると防具貫通ダメージを与える"
         ],
-    },
-
-    {
-        amount: 1,
-        id: "minecraft:iron_sword",
-        name: "Hyperion",
-        lore: []
     },
 ]

@@ -74,8 +74,8 @@ export class skillBase {
         })
     }
 
-    onCooldown(player) {
-        CooldownManager.set(player, this.id, this.cooldown)
+    onCooldown(player, ct = this.cooldown) {
+        CooldownManager.set(player, this.id, ct)
     }
 
     onDamage(player, event) {}

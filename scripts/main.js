@@ -170,6 +170,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
+        source.getComponent("health")
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -313,6 +314,8 @@ const cancelBlocks = [
     "minecraft:crafter",
     "minecraft:chiseled_bookshelf",
     "minecraft:barrel",
+    "minecraft:flower_pot",
+    "minecraft:decorated_pot",
     // クラフト用アイテム実装までキャンセル
     "minecraft:crafting_table",
 ]

@@ -2,7 +2,7 @@ export const mythicWeapons = [
 
     {
         amount: 1,
-        id: "",
+        id: "minecraft:breeze_rod",
         name: "§d=魔術銃= レボルブ",
         lore: [
             "§1[魔術の弾丸] §5右クリック",
@@ -44,13 +44,4 @@ export const mythicWeapons = [
             "§5この武器による採掘はブロックを即座に破壊する"
         ]
     },
-    {
-        amount: 1,
-        id: "",
-        name: "",
-        lore: [],
-        enchants: []
-    },
-    
-
 ]

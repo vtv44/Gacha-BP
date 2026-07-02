@@ -85,6 +85,7 @@ import { hookshotSkill } from "./spell/hookshot";
 import { flowerDashSkill } from "./spell/flowerDash";
 import { confessionSkill } from "./spell/confession";
 import { overwriteSkill } from "./spell/overwrite";
+import { bloodySwordSkill } from "./weapon/bloodySword";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -158,6 +159,7 @@ skillManager.register(new hookshotSkill());
 skillManager.register(new flowerDashSkill());
 skillManager.register(new confessionSkill());
 skillManager.register(new overwriteSkill());
+skillManager.register(new bloodySwordSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
