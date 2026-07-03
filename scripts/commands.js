@@ -1,4 +1,4 @@
-import { CustomCommandStatus, system, world } from "@minecraft/server";
+import { CustomCommandStatus, ItemLockMode, ItemStack, system, world } from "@minecraft/server";
 import { forms } from "./game/forms";
 import { game } from "./game/game";
 import { theEnd } from "./game/maps/theEnd";
@@ -199,6 +199,73 @@ export class commandFunctions {
                 return {
                     status: CustomCommandStatus.Success,
                     message: ""
+                }
+            })
+        })
+    }
+
+    static shop(origin) {
+        // 気が向いたらきれいにする
+        if (origin.sourceEntity?.typeId !== "minecraft:player") return {
+            status: CustomCommandStatus.Failure,
+            message: ""
+        }
+
+        if (world.getDynamicProperty("game")) return {
+            status: CustomCommandStatus.Failure,
+            message: "§cゲーム中にはショップを開けません"
+        }
+
+        const player = origin.sourceEntity
+        const coinScore = world.scoreboard.getObjective("coin")
+        const coin = coinScore.getScore(player)
+        const container = player.getComponent("inventory").container
+
+        system.runTimeout(() => {
+            forms.shopForm(player).show(player).then((res) => {
+                if (res.canceled) return
+
+                switch(res.selection) {
+                    case 0:
+                        if (coin < 15) return {
+                            status: CustomCommandStatus.Failure,
+                            message: "§cコインが足りていません"
+                        }
+                        const glass = new ItemStack("minecraft:glass", 32)
+                        glass.lockMode = ItemLockMode.inventory
+
+                        container.addItem(glass)
+                        coinScore.addScore(player, -15)
+                        break
+                    case 1:
+                        if (coin < 20) return {
+                            status: CustomCommandStatus.Failure,
+                            message: "§cコインが足りていません"
+                        }
+                        const carrot = new ItemStack("minecraft:golden_carrot", 8)
+                        carrot.lockMode = ItemLockMode.inventory
+
+                        container.addItem(carrot)
+                        coinScore.addScore(player, -20)
+                        break
+                    case 2:
+                        if (coin < 40) return {
+                            status: CustomCommandStatus.Failure,
+                            message: "§cコインが足りていません"
+                        }
+                        const steak = new ItemStack("minecraft:cooked_beef", 32)
+                        steak.lockMode = ItemLockMode.inventory
+
+                        container.addItem(steak)
+                        coinScore.addScore(player, -40)
+                        break
+                }
+
+                player.playSound("random.orb")
+
+                return {
+                    status: CustomCommandStatus.Success,
+                    message: "§a購入が完了しました"
                 }
             })
         })

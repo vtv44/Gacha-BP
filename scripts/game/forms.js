@@ -63,4 +63,22 @@ export class forms {
 
         return form
     }
+
+    static shopForm(player) {
+        let coin = 0
+        try {
+            coin = world.scoreboard.getObjective("coin").getScore(player)
+        } catch(e) {
+            coin = 0
+        }
+
+        const form = new ActionFormData()
+        .title("§l§eショップ！")
+        .body(`§l所持しているコインは§e${coin}コイン§r§lです`)
+        .button("§lガラス32個 §e15コイン", "textures/blocks/glass")
+        .button("§l金のニンジン8個 §e20コイン", "textures/items/carrot_golden")
+        .button("§lステーキ32個 §e40コイン", "textures/items/beef_cooked")
+
+        return form
+    }
 }

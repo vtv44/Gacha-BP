@@ -24,7 +24,6 @@ export class game {
     static areaDamage = 3
 
     static gameEnd() {
-        // 途中?
         world.sendMessage(`§l§c====決着====\n§f勝者`)
         for (const s of this.gameJoinPlayers) {
             const kill = s.getDynamicProperty("killInGame")
@@ -63,7 +62,6 @@ export class game {
     }
 
     static async gameStart() {
-        // ok
         const dimension = world.getDimension("overworld")
         const gameInfo = world.scoreboard.getObjective("gameInfo")
 
@@ -73,10 +71,10 @@ export class game {
         }
 
         const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
-        // if (players.length <= 1) {
-        //    world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
-        //   return
-        // }
+        if (players.length <= 1) {
+            world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
+            return
+        }
 
         world.setDynamicProperty("game", true)
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
@@ -266,7 +264,6 @@ export class game {
                     const size = a.getProperty("gacha:size")
                     a.setProperty("gacha:size", size - 2)
 
-                    // 範囲用エンティティの縮小に合わせて範囲ダメ
                     const d = size / 16.6
                     const {x, y, z} = a.location
                     a.runCommand(`tag @a[x=${x - d - 3},y=-50,z=${z - d - 3},dx=${d * 2 + 4},dy=300,dz=${d * 2 + 4}] remove area_damage`)

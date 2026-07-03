@@ -13,6 +13,7 @@ import { skyIsland } from "./game/maps/skyIsland";
 import { defenceGacha } from "./gacha/defenceGacha/defenceGacha";
 import { spellGacha } from "./gacha/spellGacha/spellGacha";
 import { commandFunctions } from "./commands";
+import { forms } from "./game/forms";
 
 const slots = [
     EquipmentSlot.Head,
@@ -53,10 +54,17 @@ system.beforeEvents.startup.subscribe(ev => {
         mandatoryParameters: [],
         optionalParameters: []
     }
+
+    const shopCommand = {
+        name: "gacha:shop",
+        description: "ショップを開きます",
+        permissionLevel: CommandPermissionLevel.Any
+    }
     
-    ev.customCommandRegistry.registerCommand(coinCommand, commandFunctions.coin)
-    ev.customCommandRegistry.registerCommand(gameCommand, commandFunctions.game)
-    ev.customCommandRegistry.registerCommand(repairCommand, commandFunctions.mapRepair)
+    ev.customCommandRegistry.registerCommand(coinCommand, commandFunctions.coin);
+    ev.customCommandRegistry.registerCommand(gameCommand, commandFunctions.game);
+    ev.customCommandRegistry.registerCommand(repairCommand, commandFunctions.mapRepair);
+    ev.customCommandRegistry.registerCommand(shopCommand, commandFunctions.shop);
 })
 
 system.runInterval(() => {
@@ -102,7 +110,7 @@ world.beforeEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
 
     if (hurtEntity.typeId !== "minecraft:player") return;
-    // if (!world.getDynamicProperty("game")) ev.cancel = true;
+    if (!world.getDynamicProperty("game")) ev.cancel = true;
     
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -170,7 +178,6 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
-        source.getComponent("health")
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -211,7 +218,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         }) 
     }
 
-    // if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const skill = skillManager.get(itemStack.nameTag);
     if (skill) skill.use(source, ev);
@@ -273,9 +280,6 @@ world.afterEvents.entityHurt.subscribe(ev => {
 
 world.afterEvents.entitySpawn.subscribe(ev => {
     const entity = ev.entity;
-
-    if (!entity.typeId === "minecraft:player") return;
-
     if (
         entity.typeId === "minecraft:snow_golem" ||
         entity.typeId === "minecraft:iron_golem"
@@ -291,7 +295,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    // "minecraft:anvil",
+    "minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",
@@ -342,13 +346,13 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
 world.afterEvents.playerSpawn.subscribe(ev => {
     const {player, initialSpawn} = ev;
     if (initialSpawn) {
-        game.resetPlayer(player)
+        game.resetPlayer(player);
 
         if (!player.getDynamicProperty("win")) player.setDynamicProperty("win", 0);
         if (!player.getDynamicProperty("kill")) player.setDynamicProperty("kill", 0);
         if (!player.getDynamicProperty("rp")) player.setDynamicProperty("rp", 0);
 
-        rankPointManager.rankConfirm(player)
+        rankPointManager.rankConfirm(player);
 
         if (world.getDynamicProperty("game")) {
             player.sendMessage(`§l§bガチャPVPへようこそ\n \n§l§f現在はバトルフェーズです`);

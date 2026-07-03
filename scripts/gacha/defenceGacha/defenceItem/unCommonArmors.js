@@ -27,4 +27,44 @@ export const unCommonArmors = [
             "§5攻撃すると体力を1回復する"
         ],
     },
+    {
+        amount: 1,
+        id: "minecraft:copper_helmet",
+        name: "§5コッぺーなヘルメット",
+        lore: ["§5間に合わせで入れられたようだ..."],
+        enchant: [
+            {id: "protection", level: 2},
+            {id: "unbreaking", level: 2}
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:copper_chestplate",
+        name: "§5コッぺーなチェストプレート",
+        lore: ["§5間に合わせで入れられたようだ..."],
+        enchant: [
+            {id: "protection", level: 2},
+            {id: "unbreaking", level: 2}
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:copper_leggings",
+        name: "§5コッぺーなレギンス",
+        lore: ["§5間に合わせで入れられたようだ..."],
+        enchant: [
+            {id: "protection", level: 2},
+            {id: "unbreaking", level: 2}
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:copper_boots",
+        name: "§5コッぺーなブーツ",
+        lore: ["§5間に合わせで入れられたようだ..."],
+        enchant: [
+            {id: "protection", level: 2},
+            {id: "unbreaking", level: 2}
+        ]
+    },
 ]
