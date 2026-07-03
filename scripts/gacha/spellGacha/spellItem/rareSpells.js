@@ -1,23 +1,33 @@
 export const rareSpells = [
     {
         amount: 1,
-        id: "",
+        id: "minecraft:cocoa_beans",
         name: "§1煙玉",
-        lore: []
+        lore: [
+            "§7[煙幕] §5右クリック",
+            "§5周囲に煙を出して透明化する"
+        ]
     },
 
     {
         amount: 1,
-        id: "",
+        id: "minecraft:recovery_compass",
         name: "§1スキャナー",
-        lore: []
+        lore: [
+            "§1[スキャン] §5右クリック",
+            "§5周囲にいるプレイヤーの名前を出力する",
+            "§5近くに敵がいない場合発動しない"
+        ]
     },
 
     {
         amount: 1,
-        id: "",
+        id: "minecraft:tnt",
         name: "§1TNTショット",
-        lore: []
+        lore: [
+            "§c[TNT射出！] §5右クリック",
+            "§5TNTを目の前へ発射する"
+        ]
     },
 
     {

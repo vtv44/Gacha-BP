@@ -18,11 +18,4 @@ export const legendarySpells = [
             "§5攻撃するとお互いの服がはじけ飛ぶ"
         ],
     },
-
-    {
-        amount: 1,
-        id: "",
-        name: "",
-        lore: [],
-    },
 ]

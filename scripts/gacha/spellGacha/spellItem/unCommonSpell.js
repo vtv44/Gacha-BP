@@ -1,9 +1,12 @@
 export const unCommonSpell = [
     {
         amount: 1,
-        id: "",
+        id: "minecraft:enchanted_book",
         name: "§a回復の本",
-        lore: []
+        lore: [
+            "§a[癒しの詩] §5右クリック",
+            "§5周囲のプレイヤーを再生させる"
+        ]
     },
     
     {
@@ -29,8 +32,11 @@ export const unCommonSpell = [
 
     {
         amount: 1,
-        id: "",
-        name: "",
-        lore: []
+        id: "minecraft:string",
+        name: "§aウィンドバースト",
+        lore: [
+            "§a[吹き飛ばし] §5右クリック",
+            "§5周囲にいるプレイヤーを吹き飛ばす"
+        ]
     },
 ]

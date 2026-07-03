@@ -86,7 +86,8 @@ import { flowerDashSkill } from "./spell/flowerDash";
 import { confessionSkill } from "./spell/confession";
 import { overwriteSkill } from "./spell/overwrite";
 import { bloodySwordSkill } from "./weapon/bloodySword";
-import { proteikosChestPlate } from "./armor/proteikosChestPlate";
+import { proteikosChestPlateSkill } from "./armor/proteikosChestPlate";
+import { explosiveChestPlateSkill } from "./armor/explosiveChestPlate";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -161,6 +162,7 @@ skillManager.register(new flowerDashSkill());
 skillManager.register(new confessionSkill());
 skillManager.register(new overwriteSkill());
 skillManager.register(new bloodySwordSkill());
+skillManager.register(new explosiveChestPlateSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -177,7 +179,7 @@ skillManager.tickSkillRegister(new fluffyBootsSkill());
 skillManager.tickSkillRegister(new assaultArmorSkill());
 skillManager.tickSkillRegister(new theEyeOfOrdinSkill());
 skillManager.tickSkillRegister(new sneakSpeedLeggingsSkill());
-skillManager.tickSkillRegister(new proteikosChestPlate());
+skillManager.tickSkillRegister(new proteikosChestPlateSkill());
 
 const axeSkill = new infernalAxeSkill();
 

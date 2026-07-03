@@ -4,7 +4,7 @@ import { skillBase } from "../skillBase";
 export class randomDiceSkill extends skillBase {
     constructor() {
         super();
-        this.id = "ランダムダイス";
+        this.id = "§5ランダムダイス";
         this.cooldown = 1 * 20;
     }
 

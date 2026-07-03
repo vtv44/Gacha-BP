@@ -1,0 +1,27 @@
+{
+    "format_version": "1.21.10",
+    "minecraft:item": {
+        "description": {
+            "identifier": "gacha:tnt_chestplate",
+            "menu_category": {
+                "category": "equipment",
+                "group": "itemGroup.name.chestplate"
+            }
+        },
+        "components": {
+            "minecraft:icon": "tnt_chestplate",
+            "minecraft:display_name": {
+                "value": "tntCP"
+            },
+            "minecraft:wearable": {
+                "slot": "slot.armor.chest",
+                "protection": 6
+            },
+            "minecraft:enchantable": {
+                "slot": "armor_torso",
+                "value": 30
+            },
+            "minecraft:max_stack_size": 1
+        }
+    }
+}

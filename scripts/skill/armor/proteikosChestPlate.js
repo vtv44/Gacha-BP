@@ -1,6 +1,6 @@
 import { skillBase, tickSkillBase } from "../skillBase";
 
-export class proteikosChestPlate extends tickSkillBase {
+export class proteikosChestPlateSkill extends tickSkillBase {
     constructor() {
         super()
 

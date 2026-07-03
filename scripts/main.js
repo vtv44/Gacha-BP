@@ -286,6 +286,7 @@ const blockedBlocks = [
     "minecraft:crying_obsidian",
     "minecraft:glowstone",
     "minecraft:dandelion",
+    "minecraft:campfire"
     // "minecraft:xxxx",
 ];
 

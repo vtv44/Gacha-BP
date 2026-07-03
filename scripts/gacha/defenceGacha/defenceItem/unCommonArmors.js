@@ -14,8 +14,17 @@ export const unCommonArmors = [
         id: "minecraft:iron_boots",
         name: "§aふわふわブーツ",
         lore: [
-        "§e[低速落下] §5装備",
-        "自身が空中にいる間自身に低速落下を与える"
+            "§e[低速落下] §5装備",
+            "自身が空中にいる間自身に低速落下を与える"
+        ],
+    },
+    {
+        amount: 1,
+        id: "minecraft:iron_boots",
+        name: "§aヴァンパイアヘルメット",
+        lore: [
+            "§e[吸血] §5装備 攻撃",
+            "§5攻撃すると体力を1回復する"
         ],
     },
 ]

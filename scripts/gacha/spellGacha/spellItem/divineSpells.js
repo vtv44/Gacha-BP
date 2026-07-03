@@ -19,11 +19,4 @@ export const divineSpells = [
             "§5スニークしたなら、視線の先にいる敵を大幅に弱体化させる"
         ]
     },
-
-    {
-        amount: 1,
-        id: "",
-        name: "§b",
-        lore: []
-    },
 ]

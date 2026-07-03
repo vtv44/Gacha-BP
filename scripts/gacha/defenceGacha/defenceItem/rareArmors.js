@@ -20,4 +20,31 @@ export const rareArmors = [
             {id: "soul_speed", level: 3}
         ]
     },
+    {
+        amount: 1,
+        id: "minecraft:chain_leggings",
+        name: "§1ジャンプレギンス",
+        lore: [
+            "§b[ジャンプ！] §5装備",
+            "§5ジャンプ力が強くなる"
+        ],
+    },
+    {
+        amount: 1,
+        id: "minecraft:chain_chestplate",
+        name: "§1リジェネレーションチェストプレート",
+        lore: [
+            "§b[リジェネ！] §5装備",
+            "§5再生力が高くなる"
+        ],
+    },
+    {
+        amount: 1,
+        id: "minecraft:chain_helmet",
+        name: "§1スローヘルメット",
+        lore: [
+            "§b[スロー！] §5装備",
+            "§5プレイヤーを見ると相手を動けなくする"
+        ],
+    },
 ]

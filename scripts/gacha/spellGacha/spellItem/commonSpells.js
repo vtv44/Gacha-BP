@@ -8,11 +8,4 @@ export const commonSpells = [
             "周囲のプレイヤーを燃やす"
         ]
     },
-    
-    {
-        amount: 1,
-        id: "",
-        name: "",
-        lore: [],
-    },
 ]
