@@ -43,8 +43,8 @@ export const legendaryArmors = [
         ]
     },
     {
-        amount: 1,
-        id: "gacha:cookie_helmet",
+        amount: 3,
+        id: "gacha:special_cookie",
         name: "§6スペシャルクッキー",
         lore: [
             "§6[クッキーパワー] §5右クリック",

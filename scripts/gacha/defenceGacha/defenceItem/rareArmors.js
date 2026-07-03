@@ -1,7 +1,7 @@
 export const rareArmors = [
     {
         amount: 1,
-        id: "minecraft:chain_boots",
+        id: "minecraft:chainmail_boots",
         name: "§1スピードブーツ",
         lore: [
             "§b[スピード！] §5装備",
@@ -22,7 +22,7 @@ export const rareArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:chain_leggings",
+        id: "minecraft:chainmail_leggings",
         name: "§1ジャンプレギンス",
         lore: [
             "§b[ジャンプ！] §5装備",
@@ -31,7 +31,7 @@ export const rareArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:chain_chestplate",
+        id: "minecraft:chainmail_chestplate",
         name: "§1リジェネレーションチェストプレート",
         lore: [
             "§b[リジェネ！] §5装備",
@@ -40,7 +40,7 @@ export const rareArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:chain_helmet",
+        id: "minecraft:chainmail_helmet",
         name: "§1スローヘルメット",
         lore: [
             "§b[スロー！] §5装備",

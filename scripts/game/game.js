@@ -137,6 +137,7 @@ export class game {
     }
 
     static resetPlayer(player) {
+        rankPointManager.rankConfirm(player)
         player.setDynamicProperty("killInGame", 0)
         player.setDynamicProperty("effectCancelTime", 0);
         player.teleport({x: 0.5, y: 1, z: 0.5})
@@ -208,10 +209,22 @@ export class game {
             teamObject.setScore(players[i], i + 5)
 
             const block = dimension.getBlock(location).below()
-            if (block.typeId === "minecraft:red_wool") teamObject.setScore(players[i], 1)
-            if (block.typeId === "minecraft:blue_wool") teamObject.setScore(players[i], 2)
-            if (block.typeId === "minecraft:green_wool") teamObject.setScore(players[i], 3)
-            if (block.typeId === "minecraft:yellow_wool") teamObject.setScore(players[i], 4)
+            if (block.typeId === "minecraft:red_wool") {
+            teamObject.setScore(players[i], 1)
+            players.addTag("red")
+            }
+            if (block.typeId === "minecraft:blue_wool") {
+            teamObject.setScore(players[i], 2)
+            players.addTag("blue")
+            }
+            if (block.typeId === "minecraft:green_wool") {
+            teamObject.setScore(players[i], 3)
+            players.addTag("green")
+            }
+            if (block.typeId === "minecraft:yellow_wool") {
+            teamObject.setScore(players[i], 4)
+            players.addTag("yellow")
+            }
         }
     }
 

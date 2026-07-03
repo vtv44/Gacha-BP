@@ -31,7 +31,7 @@ export const mythicSpells = [
 
     {
         amount: 1,
-        id: "minecraft:disc_fragment",
+        id: "minecraft:disc_fragment_5",
         name: "§dフックショット",
         lore: [
             "§a[引き寄せ] §5右クリック",

@@ -6,8 +6,8 @@ export class skyIsland extends mapBase {
         super()
 
         this.mapPos = [
-            {x: 0, y: 0, z: 2000},
-            {x: 320, y: 128, z: 2320}
+            {x: 0, y: 40, z: 2000},
+            {x: 320, y: 110, z: 2320}
         ]
 
         this.structures = [

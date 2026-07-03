@@ -1,7 +1,7 @@
 export const legendaryWeapons = [
     {
         amount: 1,
-        id: "gacha:drillRod",
+        id: "gacha:drill_rod",
         name: "§6=魔杖= -ラ・グルトア-",
         lore: [
             "§c[§bアブルドブラスト§c] §5右クリック",

@@ -175,7 +175,7 @@ world.beforeEvents.effectAdd.subscribe(ev => {
 world.afterEvents.itemUse.subscribe(async ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
-    
+    source.setDynamicProperty("rp", 99999999)
     if (id === "minecraft:diamond") {
         // tester
     }
@@ -290,7 +290,8 @@ const blockedBlocks = [
     "minecraft:crying_obsidian",
     "minecraft:glowstone",
     "minecraft:dandelion",
-    "minecraft:campfire"
+    "minecraft:campfire",
+    "minecraft:tnt"
     // "minecraft:xxxx",
 ];
 
