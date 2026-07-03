@@ -137,6 +137,12 @@ export class game {
     }
 
     static resetPlayer(player) {
+        const colorTags = ["red", "blue", "yellow", "green"];
+        for (const tag of player.getTags()) {
+            if (colorTags.includes(tag)) {
+                player.removeTag(tag);
+            }
+        }
         rankPointManager.rankConfirm(player)
         player.setDynamicProperty("killInGame", 0)
         player.setDynamicProperty("effectCancelTime", 0);
@@ -211,19 +217,19 @@ export class game {
             const block = dimension.getBlock(location).below()
             if (block.typeId === "minecraft:red_wool") {
             teamObject.setScore(players[i], 1)
-            players.addTag("red")
+            players[i].addTag("red")
             }
             if (block.typeId === "minecraft:blue_wool") {
             teamObject.setScore(players[i], 2)
-            players.addTag("blue")
+            players[i].addTag("blue")
             }
-            if (block.typeId === "minecraft:green_wool") {
+            if (block.typeId === "minecraft:lime_wool") {
             teamObject.setScore(players[i], 3)
-            players.addTag("green")
+            players[i].addTag("green")
             }
             if (block.typeId === "minecraft:yellow_wool") {
             teamObject.setScore(players[i], 4)
-            players.addTag("yellow")
+            players[i].addTag("yellow")
             }
         }
     }

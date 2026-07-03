@@ -175,9 +175,11 @@ world.beforeEvents.effectAdd.subscribe(ev => {
 world.afterEvents.itemUse.subscribe(async ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
-    source.setDynamicProperty("rp", 99999999)
     if (id === "minecraft:diamond") {
-        // tester
+        for (const t of world.getAllPlayers()) {
+        t.setDynamicProperty("rp", 10)
+        }
+        source.setDynamicProperty("rp", -50)
     }
 
     if (id === "minecraft:iron_ingot") {
