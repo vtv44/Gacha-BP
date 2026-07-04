@@ -177,9 +177,9 @@ export class game {
 
         this.resetPlayer(deadEntity)
         deadEntity.setGameMode(GameMode.Spectator)
-        system.run(() => {
+        system.runTimeout(() => {
             deadEntity.teleport(this.gameJoinPlayers[0].location)
-        })
+        }, 100)
 
         if (this.testJoinGame(deadEntity)) {
             this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== deadEntity.id)
