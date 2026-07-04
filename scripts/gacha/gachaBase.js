@@ -4,14 +4,14 @@ export class gachaBase {
 
     static cost = 0
     static chance = [
-        {id: "common", int: 3500},
-        {id: "unCommon", int: 2500},
-        {id: "rare", int: 2000},
-        {id: "epic", int: 1000},
-        {id: "legendary", int: 500},
+        {id: "common", int: 2000},
+        {id: "unCommon", int: 3000},
+        {id: "rare", int: 2500},
+        {id: "epic", int: 1500},
+        {id: "legendary", int: 600},
         {id: "mythic", int: 300},
-        {id: "divine", int: 100},
-        {id: "special", int: 100},
+        {id: "divine", int: 10},
+        {id: "special", int: 90},
     ]
     static buttonPos = {x: 0, y: 0, z: 0}
     static cratePos = {x: 0, y: 0, z: 0}
