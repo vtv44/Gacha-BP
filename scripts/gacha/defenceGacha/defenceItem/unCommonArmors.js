@@ -1,12 +1,16 @@
 export const unCommonArmors = [
     {
         amount: 1,
-        id: "minecraft:chainmail_helmet",
+        id: "minecraft:leather_helmet",
         name: "§a回復の帽子",
         lore: [
             "§a[微弱な癒し] §5被弾",
             "§5ダメージを受けたとき、体力を1回復する"
         ],
+        enchants: [
+            {id: "protection", level: 3},
+            {id: "unbreaking", level: 3}
+        ]
     },
 
     {
@@ -32,7 +36,7 @@ export const unCommonArmors = [
         id: "minecraft:copper_helmet",
         name: "§aコッぺーなヘルメット",
         lore: ["§5間に合わせで入れられたようだ..."],
-        enchant: [
+        enchants: [
             {id: "protection", level: 2},
             {id: "unbreaking", level: 2}
         ]
@@ -42,7 +46,7 @@ export const unCommonArmors = [
         id: "minecraft:copper_chestplate",
         name: "a5コッぺーなチェストプレート",
         lore: ["§5間に合わせで入れられたようだ..."],
-        enchant: [
+        enchants: [
             {id: "protection", level: 2},
             {id: "unbreaking", level: 2}
         ]
@@ -52,7 +56,7 @@ export const unCommonArmors = [
         id: "minecraft:copper_leggings",
         name: "§aコッぺーなレギンス",
         lore: ["§5間に合わせで入れられたようだ..."],
-        enchant: [
+        enchants: [
             {id: "protection", level: 2},
             {id: "unbreaking", level: 2}
         ]
@@ -62,7 +66,7 @@ export const unCommonArmors = [
         id: "minecraft:copper_boots",
         name: "§aコッぺーなブーツ",
         lore: ["§5間に合わせで入れられたようだ..."],
-        enchant: [
+        enchants: [
             {id: "protection", level: 2},
             {id: "unbreaking", level: 2}
         ]

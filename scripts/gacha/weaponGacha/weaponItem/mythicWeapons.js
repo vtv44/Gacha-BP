@@ -19,6 +19,9 @@ export const mythicWeapons = [
             "§d[ファントム] §5右クリック",
             "§51秒間スペクテイターになる"
         ],
+        enchants: [
+            {id: "unbreaking", level: 3}
+        ]
     },
 
     {

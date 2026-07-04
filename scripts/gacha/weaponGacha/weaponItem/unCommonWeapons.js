@@ -3,7 +3,13 @@ export const unCommonWeapons = [
         amount: 1,
         id: "minecraft:stone_sword",
         name: "§a疾風の剣",
-        lore: [],
+        lore: [
+            "§a[風のちから] §5右クリック",
+            "§5前方に加速する"
+        ],
+        enchants: [
+            {id: "unbreaking", level: 3}
+        ]
     },
 
     {
@@ -14,6 +20,10 @@ export const unCommonWeapons = [
             "§b[拙い連撃] §5右クリック",
             "§5攻撃を当てると一瞬だけ加速できる"
         ],
+        enchants: [
+            {id: "sharpness", level: 1},
+            {id: "unbreaking", level: 3}
+        ]
     },
     
     {

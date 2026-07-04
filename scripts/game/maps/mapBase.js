@@ -72,9 +72,9 @@ export class mapBase {
                     const z = Math.floor(Math.random() * (this.mapPos[1].z - this.mapPos[0].z))
 
                     const spawnPos = {
-                        x: x + this.mapPos[0].x, 
+                        x: x + this.mapPos[0].x + 0.5, 
                         y: y + this.mapPos[0].y, 
-                        z: z + this.mapPos[0].z
+                        z: z + this.mapPos[0].z + 0.5
                     }
 
                     try {

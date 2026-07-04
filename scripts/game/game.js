@@ -108,6 +108,7 @@ export class game {
             players[i].setGameMode(GameMode.Survival)
             players[i].nameTag = ""
             players[i].getComponent("inventory").container.addItem(compass)
+            players[i].runCommand("fill ~1~-1~1 ~-1~-1~-1 stone")
             rankPointManager.rankPointAdd(players[i], 50)
 
             if (this.health > 0) {
@@ -290,7 +291,7 @@ export class game {
 
                     const d = size / 16.6
                     const {x, y, z} = a.location
-                    a.runCommand(`tag @a[x=${x - d - 3},y=-50,z=${z - d - 3},dx=${d * 2 + 4},dy=300,dz=${d * 2 + 4}] remove area_damage`)
+                    a.runCommand(`tag @a[x=${x - d - 3},y=-50,z=${z - d - 3},dx=${d * 2 + 4},dy=150,dz=${d * 2 + 4}] remove area_damage`)
                     a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage} magic`)
                     a.runCommand("execute as @a[tag=area_damage] at @s run playsound note.harp @s ~~~ 1 0.5")
                 }

@@ -9,7 +9,6 @@ export const epicWeapons = [
         ],
         enchants: [
             {id: "sharpness", level: 3},
-            {id: "knockback", level: 1},
             {id: "unbreaking", level: 2}
         ]
     },

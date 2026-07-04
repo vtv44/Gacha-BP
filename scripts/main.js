@@ -1,4 +1,4 @@
-import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay, Entity, CommandPermissionLevel } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay, Entity, CommandPermissionLevel, EnchantmentType, EnchantmentTypes } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
@@ -15,6 +15,8 @@ import { spellGacha } from "./gacha/spellGacha/spellGacha";
 import { commandFunctions } from "./commands";
 import { forms } from "./game/forms";
 import { unCommonArmors } from "./gacha/defenceGacha/defenceItem/unCommonArmors";
+import { divineArmors } from "./gacha/defenceGacha/defenceItem/divineArmors";
+import { epicWeapons } from "./gacha/weaponGacha/weaponItem/epicWeapons";
 
 const slots = [
     EquipmentSlot.Head,
@@ -180,9 +182,10 @@ world.beforeEvents.effectAdd.subscribe(ev => {
 world.afterEvents.itemUse.subscribe(async ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
+    
     if (id === "minecraft:diamond") {
         // tester
-        defenceGacha.giveItem(source, unCommonArmors[3])
+        defenceGacha.giveItem(source, epicWeapons[0])
     }
 
     if (id === "minecraft:iron_ingot") {
