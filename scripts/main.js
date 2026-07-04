@@ -14,6 +14,7 @@ import { defenceGacha } from "./gacha/defenceGacha/defenceGacha";
 import { spellGacha } from "./gacha/spellGacha/spellGacha";
 import { commandFunctions } from "./commands";
 import { forms } from "./game/forms";
+import { unCommonArmors } from "./gacha/defenceGacha/defenceItem/unCommonArmors";
 
 const slots = [
     EquipmentSlot.Head,
@@ -68,6 +69,8 @@ system.beforeEvents.startup.subscribe(ev => {
 })
 
 system.runInterval(() => {
+    if (!world.getDynamicProperty("game")) return;
+
     const players = world.getAllPlayers()
     for (const p of players) {
         const item = p.getComponent("inventory").container.getSlot(p.selectedSlotIndex).getItem();
@@ -79,6 +82,8 @@ system.runInterval(() => {
 })
 
 system.runInterval(() => {
+    if (!world.getDynamicProperty("game")) return;
+
     const players = world.getAllPlayers()
     for (const p of players) {
         const armor = p.getComponent("equippable");
@@ -160,7 +165,7 @@ world.afterEvents.playerDimensionChange.subscribe(ev => {
     if (world.getDynamicProperty("game")) {
         system.runTimeout(() => {
             player.kill()
-        }, 20)
+        }, 100)
     }
 })
 
@@ -176,10 +181,8 @@ world.afterEvents.itemUse.subscribe(async ev => {
     const {source, itemStack} = ev;
     const id = itemStack.typeId;
     if (id === "minecraft:diamond") {
-        for (const t of world.getAllPlayers()) {
-        t.setDynamicProperty("rp", 10)
-        }
-        source.setDynamicProperty("rp", -50)
+        // tester
+        defenceGacha.giveItem(source, unCommonArmors[3])
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -187,7 +190,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         world.sendMessage(`${string}`);
     }
 
-    if (id === "minecraft:nether_star") {
+    if (id === "minecraft:nether_star" && !source.hasTag("gachaing")) {
         const form = new ActionFormData()
         .title("select")
         .button("§l§cWEAPON")
@@ -260,6 +263,8 @@ world.afterEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
     const damagingEntity = damageSource.damagingEntity;
     if (hurtEntity.typeId !== "minecraft:player") return;
+
+    if (!world.getDynamicProperty("game")) return;
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {

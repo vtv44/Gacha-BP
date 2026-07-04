@@ -20,7 +20,7 @@ export const unCommonArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:iron_boots",
+        id: "minecraft:iron_helmet",
         name: "§aヴァンパイアヘルメット",
         lore: [
             "§e[吸血] §5装備 攻撃",
@@ -30,7 +30,7 @@ export const unCommonArmors = [
     {
         amount: 1,
         id: "minecraft:copper_helmet",
-        name: "§5コッぺーなヘルメット",
+        name: "§aコッぺーなヘルメット",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchant: [
             {id: "protection", level: 2},
@@ -40,7 +40,7 @@ export const unCommonArmors = [
     {
         amount: 1,
         id: "minecraft:copper_chestplate",
-        name: "§5コッぺーなチェストプレート",
+        name: "a5コッぺーなチェストプレート",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchant: [
             {id: "protection", level: 2},
@@ -50,7 +50,7 @@ export const unCommonArmors = [
     {
         amount: 1,
         id: "minecraft:copper_leggings",
-        name: "§5コッぺーなレギンス",
+        name: "§aコッぺーなレギンス",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchant: [
             {id: "protection", level: 2},
@@ -60,7 +60,7 @@ export const unCommonArmors = [
     {
         amount: 1,
         id: "minecraft:copper_boots",
-        name: "§5コッぺーなブーツ",
+        name: "§aコッぺーなブーツ",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchant: [
             {id: "protection", level: 2},

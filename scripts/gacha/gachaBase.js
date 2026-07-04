@@ -74,11 +74,30 @@ export class gachaBase {
 
     static leaveGacha(player) {
         const dimension = world.getDimension("overworld")
+        
+        player.teleport(this.returnPos)
+        player.removeTag("gachaing")
+
+        if (!player.isValid) {
+            world.tickingAreaManager.createTickingArea(
+                `button_${this.buttonPos.x}`,
+                {
+                    dimension: dimension,
+                    from: this.buttonPos,
+                    to: this.buttonPos
+                }
+            )
+            system.run(() => {
+                world.tickingAreaManager.removeTickingArea(`button_${this.buttonPos.x}`)
+            })
+        }
+
         dimension.getBlock(this.buttonPos).setPermutation(
             BlockPermutation.resolve("minecraft:pale_oak_button", {
                 facing_direction: 1
             })
         )
+        
         const pos = {
             x: this.buttonPos.x + 0.5,
             y: this.buttonPos.y,
@@ -86,7 +105,6 @@ export class gachaBase {
         }
         dimension.spawnParticle("minecraft:egg_destroy_emitter", pos)
         dimension.playSound("random.pop2", pos)
-        player.teleport(this.returnPos)
     }
 
     static lottery() {
@@ -111,6 +129,7 @@ export class gachaBase {
             player.playSound("random.fizz", player.location)
             return
         }
+        player.addTag("gachaing")
         player.dimension.setBlockType(this.buttonPos, "minecraft:air")
         world.scoreboard.getObjective("coin").addScore(player, this.cost * -1)
         this.decision(this.lottery(), player)

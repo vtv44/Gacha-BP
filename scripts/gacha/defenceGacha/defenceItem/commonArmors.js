@@ -11,25 +11,25 @@ export const commonArmors = [
     {
         amount: 1, 
         id: "minecraft:chainmail_helmet",
-        name: "チェーンなヘルメット",
+        name: "§fチェーンなヘルメット",
         lore: []
     },
     {
         amount: 1, 
         id: "minecraft:chainmail_chestplate",
-        name: "チェーストプレート",
+        name: "§fチェーストプレート",
         lore: []
     },
     {
         amount: 1, 
         id: "minecraft:chainmail_leggings",
-        name: "チェーンなレギンス",
+        name: "§fチェーンなレギンス",
         lore: []
     },
     {
         amount: 1, 
         id: "minecraft:chainmail_boots",
-        name: "チェーンなブーツ",
+        name: "§fチェーンなブーツ",
         lore: []
     },
 ]

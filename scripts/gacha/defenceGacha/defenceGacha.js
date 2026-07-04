@@ -44,7 +44,8 @@ export class defenceGacha extends gachaBase {
         const randomArmor = commonArmors[this.randomInt(commonArmors.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomArmor)
-            player.onScreenDisplay.setActionBar(`§f-COMMON-`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§f-COMMON-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -61,7 +62,8 @@ export class defenceGacha extends gachaBase {
         const randomArmor = unCommonArmors[this.randomInt(unCommonArmors.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomArmor)
-            player.onScreenDisplay.setActionBar(`§a-UNCOMMON-`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§a-UNCOMMON-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -73,7 +75,8 @@ export class defenceGacha extends gachaBase {
         const randomArmor = rareArmors[this.randomInt(rareArmors.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomArmor)
-            player.onScreenDisplay.setActionBar(`§1=RARE=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§1=RARE=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -85,7 +88,8 @@ export class defenceGacha extends gachaBase {
         const randomArmor = epicArmors[this.randomInt(epicArmors.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomArmor)
-            player.onScreenDisplay.setActionBar(`§5=EPIC=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§5=EPIC=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -97,7 +101,8 @@ export class defenceGacha extends gachaBase {
         const randomArmor = legendaryArmors[this.randomInt(legendaryArmors.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomArmor)
-            player.onScreenDisplay.setActionBar(`§l§5=LEGENDARY=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§l§6=LEGENDARY=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -109,7 +114,8 @@ export class defenceGacha extends gachaBase {
         const randomArmor = mythicArmors[this.randomInt(mythicArmors.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomArmor)
-            player.onScreenDisplay.setActionBar(`§l§d=MYTHIC=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§l§d=MYTHIC=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -121,7 +127,8 @@ export class defenceGacha extends gachaBase {
         const randomArmor = divineArmors[this.randomInt(divineArmors.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomArmor)
-            player.onScreenDisplay.setActionBar(`§l§o§b-=DIVINE=-`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§l§o§b-=DIVINE=-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -133,7 +140,8 @@ export class defenceGacha extends gachaBase {
         const randomArmor = specialArmors[this.randomInt(specialArmors.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomArmor)
-            player.onScreenDisplay.setActionBar(`§l§k§4mm§r§l§4 !!SPECIAL!! §kmm`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§l§k§4mm§r§l§4 !!SPECIAL!! §kmm`)
         }, 90)
 
         system.runTimeout(() => {

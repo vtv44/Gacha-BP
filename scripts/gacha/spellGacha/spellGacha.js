@@ -44,7 +44,8 @@ export class spellGacha extends gachaBase {
         const randomSpell = commonSpells[this.randomInt(commonSpells.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
-            player.onScreenDisplay.setActionBar(`§f-COMMON-`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§f-COMMON-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -61,7 +62,8 @@ export class spellGacha extends gachaBase {
         const randomSpell = unCommonSpell[this.randomInt(unCommonSpell.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
-            player.onScreenDisplay.setActionBar(`§a-UNCOMMON-`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§a-UNCOMMON-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -73,6 +75,7 @@ export class spellGacha extends gachaBase {
         const randomSpell = rareSpells[this.randomInt(rareSpells.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
+            player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.setActionBar(`§1=RARE=`)
         }, 90)
 
@@ -85,6 +88,7 @@ export class spellGacha extends gachaBase {
         const randomSpell = epicSpells[this.randomInt(epicSpells.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
+            player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.setActionBar(`§5=EPIC=`)
         }, 90)
 
@@ -97,7 +101,8 @@ export class spellGacha extends gachaBase {
         const randomSpell = legendarySpells[this.randomInt(legendarySpells.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
-            player.onScreenDisplay.setActionBar(`§l§5=LEGENDARY=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.setActionBar(`§l§6=LEGENDARY=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -109,6 +114,7 @@ export class spellGacha extends gachaBase {
         const randomSpell = mythicSpells[this.randomInt(mythicSpells.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
+            player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.setActionBar(`§l§d=MYTHIC=`)
         }, 90)
 
@@ -121,6 +127,7 @@ export class spellGacha extends gachaBase {
         const randomSpell = divineSpells[this.randomInt(divineSpells.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
+            player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.setActionBar(`§l§o§b-=DIVINE=-`)
         }, 90)
 
@@ -133,6 +140,7 @@ export class spellGacha extends gachaBase {
         const randomSpell = specialSpells[this.randomInt(specialSpells.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
+            player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.setActionBar(`§l§k§4mm§r§l§4 !!SPECIAL!! §kmm`)
         }, 90)
 

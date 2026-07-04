@@ -150,9 +150,9 @@ export class commandFunctions {
                         game.teamSelect()
                         
                         const redTeam = game.getTeam(1).map(p => p.name).join("§f, §c")
-                        const blueTeam = game.getTeam(2).map(p => p.name).join("§f, §c")
-                        const greenTeam = game.getTeam(3).map(p => p.name).join("§f, §c")
-                        const yellowTeam = game.getTeam(4).map(p => p.name).join("§f, §c")
+                        const blueTeam = game.getTeam(2).map(p => p.name).join("§f, §b")
+                        const greenTeam = game.getTeam(3).map(p => p.name).join("§f, §a")
+                        const yellowTeam = game.getTeam(4).map(p => p.name).join("§f, §e")
 
                         world.sendMessage(`§l§c赤: ${redTeam}\n§b青: ${blueTeam}\n§a緑: ${greenTeam}\n§e黄: ${yellowTeam}`)
 

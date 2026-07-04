@@ -45,7 +45,8 @@ export class weaponGacha extends gachaBase {
         const randomWeapon = commonWeapons[this.randomInt(commonWeapons.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomWeapon)
-            player.onScreenDisplay.setActionBar(`§f-COMMON-`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§f-COMMON-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -62,7 +63,8 @@ export class weaponGacha extends gachaBase {
         const randomWeapon = unCommonWeapons[this.randomInt(unCommonWeapons.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomWeapon)
-            player.onScreenDisplay.setActionBar(`§a-UNCOMMON-`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§a-UNCOMMON-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -74,7 +76,8 @@ export class weaponGacha extends gachaBase {
         const randomWeapon = rareWeapons[this.randomInt(rareWeapons.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomWeapon)
-            player.onScreenDisplay.setActionBar(`§1=RARE=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§1=RARE=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -86,7 +89,8 @@ export class weaponGacha extends gachaBase {
         const randomWeapon = epicWeapons[this.randomInt(epicWeapons.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomWeapon)
-            player.onScreenDisplay.setActionBar(`§5=EPIC=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§5=EPIC=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -98,7 +102,8 @@ export class weaponGacha extends gachaBase {
         const randomWeapon = legendaryWeapons[this.randomInt(legendaryWeapons.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomWeapon)
-            player.onScreenDisplay.setActionBar(`§l§5=LEGENDARY=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§l§6=LEGENDARY=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -110,7 +115,8 @@ export class weaponGacha extends gachaBase {
         const randomWeapon = mythicWeapons[this.randomInt(mythicWeapons.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomWeapon)
-            player.onScreenDisplay.setActionBar(`§l§d=MYTHIC=`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§l§d=MYTHIC=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -122,7 +128,8 @@ export class weaponGacha extends gachaBase {
         const randomWeapon = divineWeapons[this.randomInt(divineWeapons.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomWeapon)
-            player.onScreenDisplay.setActionBar(`§l§o§b-=DIVINE=-`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§l§o§b-=DIVINE=-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -134,7 +141,8 @@ export class weaponGacha extends gachaBase {
         const randomWeapon = specialWeapons[this.randomInt(specialWeapons.length) - 1]
         system.runTimeout(() => {
             this.giveItem(player, randomWeapon)
-            player.onScreenDisplay.setActionBar(`§l§k§4mm§r§l§4 !!SPECIAL!! §kmm`)
+            player.onScreenDisplay.setTitle(" ")
+            player.onScreenDisplay.updateSubtitle(`§l§k§4mm§r§l§4 !!SPECIAL!! §kmm`)
         }, 90)
 
         system.runTimeout(() => {

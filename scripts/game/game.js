@@ -137,11 +137,8 @@ export class game {
     }
 
     static resetPlayer(player) {
-        const colorTags = ["red", "blue", "yellow", "green"];
         for (const tag of player.getTags()) {
-            if (colorTags.includes(tag)) {
-                player.removeTag(tag);
-            }
+            player.removeTag(tag)
         }
         rankPointManager.rankConfirm(player)
         player.setDynamicProperty("killInGame", 0)
@@ -183,8 +180,16 @@ export class game {
             deadEntity.teleport(this.gameJoinPlayers[0].location)
         })
 
-        if (this.testJoinGame) {
+        if (this.testJoinGame(deadEntity)) {
             this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== deadEntity.id)
+            world.scoreboard.getObjective("gameInfo").addScore("§l§b残り人数", -1)
+
+            const damagingEntity = damageSource.damagingEntity;
+
+            if (damagingEntity !== undefined && this.testJoinGame(damagingEntity)) {
+                const kill = damagingEntity.getDynamicProperty("killInGame") ?? 0
+                damagingEntity.setDynamicProperty("killInGame", kill + 1)
+            }
         }
 
         if (this.testEndGame()) {
@@ -216,20 +221,20 @@ export class game {
 
             const block = dimension.getBlock(location).below()
             if (block.typeId === "minecraft:red_wool") {
-            teamObject.setScore(players[i], 1)
-            players[i].addTag("red")
+                teamObject.setScore(players[i], 1)
+                players[i].addTag("red")
             }
             if (block.typeId === "minecraft:blue_wool") {
-            teamObject.setScore(players[i], 2)
-            players[i].addTag("blue")
+                teamObject.setScore(players[i], 2)
+                players[i].addTag("blue")
             }
             if (block.typeId === "minecraft:lime_wool") {
-            teamObject.setScore(players[i], 3)
-            players[i].addTag("green")
+                teamObject.setScore(players[i], 3)
+                players[i].addTag("green")
             }
             if (block.typeId === "minecraft:yellow_wool") {
-            teamObject.setScore(players[i], 4)
-            players[i].addTag("yellow")
+                teamObject.setScore(players[i], 4)
+                players[i].addTag("yellow")
             }
         }
     }
@@ -302,6 +307,8 @@ export class game {
             for (const p of players) {
                 const coin = coinScore.getScore(p)
                 p.onScreenDisplay.setActionBar(`§l現在の所持コイン: §e${coin}`)
+
+                p.addEffect("speed", 25, {amplifier: 2, showParticles: false})
             }
         }
     }
