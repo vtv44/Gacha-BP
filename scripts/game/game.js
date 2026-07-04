@@ -24,6 +24,8 @@ export class game {
     static areaDamage = 3
 
     static gameEnd() {
+        if (!world.getDynamicProperty("game")) return
+        world.setDynamicProperty("game", false)
         world.sendMessage(`§l§c====決着====\n§f勝者`)
         for (const s of this.gameJoinPlayers) {
             const kill = s.getDynamicProperty("killInGame")
@@ -178,6 +180,7 @@ export class game {
         this.resetPlayer(deadEntity)
         deadEntity.setGameMode(GameMode.Spectator)
         system.runTimeout(() => {
+            if (!world.getDynamicProperty("game")) return
             deadEntity.teleport(this.gameJoinPlayers[0].location)
         }, 100)
 
