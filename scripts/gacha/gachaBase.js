@@ -137,7 +137,7 @@ export class gachaBase {
     }
 
     static spawnCrate(dimension, pos) {
-        const crate = dimension.spawnEntity("gacha:gacha_crate", pos, {initialRotation: this.initialRotation})
+        const crate = dimension.spawnEntity("gacha:hightier_chest", pos, {initialRotation: this.initialRotation})
         const pPos = {
             x: this.cratePos.x,
             y: this.cratePos.y + 1.2,
@@ -145,7 +145,7 @@ export class gachaBase {
         }
 
         system.runTimeout(() => {
-            crate.playAnimation("animation.gacha_crate.open", {blendOutTime: 999})
+            crate.playAnimation("animation.hightier_chest.open", {blendOutTime: 999})
         }, 2)
 
         system.runTimeout(() => {

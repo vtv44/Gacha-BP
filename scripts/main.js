@@ -321,7 +321,6 @@ const cancelBlocks = [
     "minecraft:cauldron",
     "minecraft:jukebox",
     "minecraft:frame",
-    "minecraft:glow_frame",
     "minecraft:stonecutter_block",
     "minecraft:loom",
     "minecraft:dropper",
