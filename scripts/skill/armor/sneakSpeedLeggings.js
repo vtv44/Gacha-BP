@@ -10,6 +10,6 @@ export class sneakSpeedLeggingsSkill extends tickSkillBase {
 
     equip(player) {
         if (!this.canAddEffect(player) || !player.isSneaking) return;
-        player.addEffect("speed", 6, {amplifier: 7})
+        player.addEffect("speed", 10, {amplifier: 7})
     }
 }

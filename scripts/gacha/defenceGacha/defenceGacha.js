@@ -10,7 +10,7 @@ import { specialArmors } from "./defenceItem/specialArmors";
 import { unCommonArmors } from "./defenceItem/unCommonArmors";
 
 export class defenceGacha extends gachaBase {
-    static cost = 10
+    static cost = 5
     static buttonPos = {x: 278, y: 3, z: 0}
     static cratePos = {x: 264.5, y: 3, z: 0.5}
     static gachaPos = {x: 271.5, y: 2, z: 0.5}

@@ -15,7 +15,7 @@ export const legendaryArmors = [
 
     {
         amount: 1,
-        id: "minecraft:iron_sword",
+        id: "minecraft:golden_chestplate",
         name: "§6トーテムチェストプレート",
         lore: [
             "§a[不死] §5被弾",

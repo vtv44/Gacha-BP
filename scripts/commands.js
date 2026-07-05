@@ -227,7 +227,7 @@ export class commandFunctions {
 
                 switch(res.selection) {
                     case 0:
-                        if (coin < 15) return {
+                        if (coin < 5) return {
                             status: CustomCommandStatus.Failure,
                             message: "§cコインが足りていません"
                         }
@@ -235,10 +235,10 @@ export class commandFunctions {
                         glass.lockMode = ItemLockMode.inventory
 
                         container.addItem(glass)
-                        coinScore.addScore(player, -15)
+                        coinScore.addScore(player, -5)
                         break
                     case 1:
-                        if (coin < 20) return {
+                        if (coin < 5) return {
                             status: CustomCommandStatus.Failure,
                             message: "§cコインが足りていません"
                         }
@@ -246,10 +246,10 @@ export class commandFunctions {
                         carrot.lockMode = ItemLockMode.inventory
 
                         container.addItem(carrot)
-                        coinScore.addScore(player, -20)
+                        coinScore.addScore(player, -5)
                         break
                     case 2:
-                        if (coin < 40) return {
+                        if (coin < 15) return {
                             status: CustomCommandStatus.Failure,
                             message: "§cコインが足りていません"
                         }
@@ -257,7 +257,7 @@ export class commandFunctions {
                         steak.lockMode = ItemLockMode.inventory
 
                         container.addItem(steak)
-                        coinScore.addScore(player, -40)
+                        coinScore.addScore(player, -15)
                         break
                 }
 

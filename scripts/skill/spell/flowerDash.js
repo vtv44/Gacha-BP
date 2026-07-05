@@ -32,7 +32,7 @@ export class flowerDashSkill extends skillBase {
             player.addEffect("raid_omen", duration, { amplifier: 0, showParticles: false });
             player.addEffect("trial_omen", duration, { amplifier: 0, showParticles: false });
             player.addEffect("conduit_power", duration, { amplifier: 0, showParticles: false });
-            player.addEffect("village_hero", duration, { amplifier: 0, showParticles: false });
+            player.addEffect("breath_of_the_nautilus", duration, { amplifier: 0, showParticles: false });
         }
 
         player.sendMessage("§5フラワーダッシュ！！");

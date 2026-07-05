@@ -331,6 +331,8 @@ const cancelBlocks = [
     "minecraft:barrel",
     "minecraft:flower_pot",
     "minecraft:decorated_pot",
+    "minecraft:bed",
+    "minecraft:beacon",
     // クラフト用アイテム実装までキャンセル
     "minecraft:crafting_table",
 ]
