@@ -91,6 +91,7 @@ import { explosiveChestPlateSkill } from "./armor/explosiveChestPlate";
 import { nightShroudSkill } from "./armor/nightShroud";
 import { surviveBootsSkill } from "./armor/surviveBoots";
 import { damageCutLeggingsSkill } from "./armor/damageCutLeggings";
+import { disLoveSword } from "./weapon/disLoveSword";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -168,6 +169,7 @@ skillManager.register(new bloodySwordSkill());
 skillManager.register(new explosiveChestPlateSkill());
 skillManager.register(new surviveBootsSkill());
 skillManager.register(new damageCutLeggingsSkill());
+skillManager.register(new disLoveSword());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
