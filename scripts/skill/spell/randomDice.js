@@ -14,14 +14,14 @@ export class randomDiceSkill extends skillBase {
         const duration = 200; 
 
         if (Math.random() < 0.5) {
-            player.runCommand("effect @s clear");
+            this.claerAllEffect(player)
             this.clearEffectSetTime(player, duration);
             player.runCommand("playsound voice.harubagu_4 @s ~ ~ ~");
         } else {
             const targets = this.getTargets(player, player.location, 100, 0, true);
             
             for (const target of targets) {
-                target.runCommand("effect @s clear");
+                this.claerAllEffect(target)
                 this.clearEffectSetTime(target, duration);
             }
             player.runCommand("playsound voice.harubagu_5 @a ~ ~ ~");

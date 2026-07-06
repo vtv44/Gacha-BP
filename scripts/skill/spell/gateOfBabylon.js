@@ -26,11 +26,11 @@ export class gateOfBabylonSkill extends skillBase {
             this.onCooldown(player)
 
             for (const t of targets) {
-                t.runCommand("effect @s clear")
-
                 t.addEffect("weakness", this.cooldown, {amplifier: 3})
                 t.addEffect("slowness", this.cooldown, {amplifier: 4})
                 t.addEffect("blindness", this.cooldown, {amplifier: 3})
+
+                this.claerAllEffect(t)
                 this.clearEffectSetTime(t, this.cooldown)
 
                 dimension.spawnParticle("gacha:chain", t.location)

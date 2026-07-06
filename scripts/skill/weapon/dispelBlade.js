@@ -15,9 +15,7 @@ export class dispelBladeSkill extends skillBase {
 
         const duration = 3 * 20; 
 
-        target.runCommand("effect @s clear");
-
-
+        this.claerAllEffect(target)
         this.clearEffectSetTime(target, duration);
 
         target.dimension.playSound("random.glass", target.location, { volume: 1.0, pitch: 1.5 });

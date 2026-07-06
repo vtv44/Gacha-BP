@@ -54,8 +54,8 @@ export class bloodySwordSkill extends skillBase {
 
                     targets[0].applyDamage(heal, {damagingEntity: player, cause: EntityDamageCause.magic})
                     targets[0].sendMessage(` \n§l§c${player.name}§r§4に体力をすべて奪われた\nエフェクトが付与されなくなった\n `)
-                    targets[0].runCommand("effect @s clear")
                     targets[0].runCommand("hud @s hide health")
+                    this.claerAllEffect(targets[0])
                     targets[0].addEffect("resistance", 10 * 20, {amplifier: 255})
                     this.clearEffectSetTime(targets[0], 20 * 20)
 
