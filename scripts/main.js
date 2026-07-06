@@ -117,7 +117,7 @@ world.beforeEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
 
     if (hurtEntity.typeId !== "minecraft:player") return;
-    if (!world.getDynamicProperty("game")) ev.cancel = true;
+    // if (!world.getDynamicProperty("game")) ev.cancel = true;
     
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -126,6 +126,10 @@ world.beforeEvents.entityHurt.subscribe(ev => {
        if (!skill) continue;
        skill.onHurtBefore(hurtEntity, ev);
     }
+})
+
+world.beforeEvents.playerLeave.subscribe(ev => {
+    if (world.getDynamicProperty("game")) game.playerLeave(ev.player);
 })
 
 world.afterEvents.worldLoad.subscribe(ev => {
@@ -185,7 +189,6 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
-        defenceGacha.giveItem(source, epicWeapons[0])
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -204,7 +207,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         form.show(source).then((res) => {
             if (res.canceled) return;
 
-            switch(res.selection) {
+            switch(res.selection || world.getDynamicProperty("game") || source.hasTag("gachaing")) {
                 case 0: 
                     source.runCommand(`tp @s -300 0 0 90`);
                     break;
@@ -226,7 +229,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         }) 
     }
 
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const skill = skillManager.get(itemStack.nameTag);
     if (skill) skill.use(source, ev);
@@ -306,7 +309,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    "minecraft:anvil",
+    // "minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",
@@ -353,6 +356,10 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
         id.includes("shelf") ||
         id.includes("shulker")
     ) event.cancel = true;
+
+    if (world.getDynamicProperty("game")) {
+        game.blockPlace(event);
+    }
 });
 
 world.afterEvents.playerSpawn.subscribe(ev => {

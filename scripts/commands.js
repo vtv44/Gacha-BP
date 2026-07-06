@@ -153,8 +153,17 @@ export class commandFunctions {
                         const blueTeam = game.getTeam(2).map(p => p.name).join("§f, §b")
                         const greenTeam = game.getTeam(3).map(p => p.name).join("§f, §a")
                         const yellowTeam = game.getTeam(4).map(p => p.name).join("§f, §e")
+                        const other = world.getDimension("overworld").getPlayers({
+                            scoreOptions: [{
+                                objective: "team",
+                                minScore: 1,
+                                maxScore: 4,
+                                exclude: true
+                            }]
+                        }).map(p => p.name).join("§f, §7")
 
                         world.sendMessage(`§l§c赤: ${redTeam}\n§b青: ${blueTeam}\n§a緑: ${greenTeam}\n§e黄: ${yellowTeam}`)
+                        world.sendMessage(`§l§7その他: ${other}`)
 
                         for (const p of players) {
                             p.playSound("random.levelup", {pitch: 0.5, volume: 0.7})

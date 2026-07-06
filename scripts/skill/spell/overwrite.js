@@ -25,7 +25,7 @@ export class overwriteSkill extends skillBase {
         player.getComponent("player.hunger").resetToMaxValue()
         player.getComponent("player.saturation").resetToMaxValue()
 
-        player.runCommand("effect @s clear")
+        this.claerAllEffect(player)
 
         dimension.spawnParticle("rca:error_pink", pPos)
         dimension.spawnParticle("rpg:tame_heart_emitter", pPos)

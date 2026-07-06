@@ -46,7 +46,7 @@ export class harubaguSpecialLevySKill extends skillBase {
     drainEffect(player, target) {
         const effects = target.getEffects()
         for (const e of effects) {
-            if (!e) return
+            if (!e || e.typeId === "minecraft:health_boost") continue
 
             player.addEffect(e.typeId, e.duration, {amplifier: e.amplifier})
             target.removeEffect(e.typeId)

@@ -1,4 +1,4 @@
-import { system } from "@minecraft/server";
+import { system, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class flowerDashSkill extends skillBase {
@@ -48,7 +48,7 @@ export class flowerDashSkill extends skillBase {
         const intervalId = system.runInterval(() => {
             tickCount++;
             
-            if (tickCount > duration || !player || !player.isValid) {
+            if (tickCount > duration || !player || !player.isValid || !world.getDynamicProperty("game")) {
                 system.clearRun(intervalId);
                 return;
             }

@@ -23,6 +23,16 @@ export class game {
     static areaSpawnTime = 300
     static areaDamage = 3
 
+    static blockPlace(event) {
+        const { block, itemStack, player } = event
+
+        if (
+            block.x <= this.map.mapPos[0].x || this.map.mapPos[1].x <= block.x ||
+            block.y <= 1 || 127 <= block.y ||
+            block.z <= this.map.mapPos[0].z || this.map.mapPos[1].z <= block.z
+        ) event.cancel = true
+    }
+
     static gameEnd() {
         if (!world.getDynamicProperty("game")) return
         world.setDynamicProperty("game", false)
@@ -73,10 +83,10 @@ export class game {
         }
 
         const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
-        if (players.length <= 1) {
-            world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
-            return
-        }
+        //if (players.length <= 1) {
+        //    world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
+        //    return
+        //}
 
         world.setDynamicProperty("game", true)
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
@@ -175,25 +185,31 @@ export class game {
 
     static playerDie(event) {
         const {damageSource, deadEntity} = event
+        const damagingEntity = damageSource.damagingEntity
+
         if (deadEntity.typeId !== "minecraft:player") return
 
-        this.resetPlayer(deadEntity)
-        deadEntity.setGameMode(GameMode.Spectator)
+        this.playerLeave(deadEntity)
+
         system.runTimeout(() => {
             if (!world.getDynamicProperty("game")) return
-            deadEntity.teleport(this.gameJoinPlayers[0].location)
+            damagingEntity.teleport(this.gameJoinPlayers[0].location)
         }, 100)
+        
+        if (damagingEntity !== undefined && this.testJoinGame(damagingEntity)) {
+            const kill = damagingEntity.getDynamicProperty("killInGame") ?? 0
+            damagingEntity.setDynamicProperty("killInGame", kill + 1)
+        }
+    }
+
+    static playerLeave(player) {
+
+        this.resetPlayer(player)
+        player.setGameMode(GameMode.Spectator)
 
         if (this.testJoinGame(deadEntity)) {
             this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== deadEntity.id)
             world.scoreboard.getObjective("gameInfo").addScore("§l§b残り人数", -1)
-
-            const damagingEntity = damageSource.damagingEntity;
-
-            if (damagingEntity !== undefined && this.testJoinGame(damagingEntity)) {
-                const kill = damagingEntity.getDynamicProperty("killInGame") ?? 0
-                damagingEntity.setDynamicProperty("killInGame", kill + 1)
-            }
         }
 
         if (this.testEndGame()) {
@@ -305,14 +321,16 @@ export class game {
             }
 
             gameInfo.addScore("§l§a残り時間", -1)
+
         } else {
             const players = world.getAllPlayers()
             const coinScore = world.scoreboard.getObjective("coin")
+
             for (const p of players) {
                 const coin = coinScore.getScore(p)
                 p.onScreenDisplay.setActionBar(`§l現在の所持コイン: §e${coin}`)
 
-                p.addEffect("speed", 25, {amplifier: 2, showParticles: false})
+                p.addEffect("speed", 30 * 20, {amplifier: 2, showParticles: false})
             }
         }
     }

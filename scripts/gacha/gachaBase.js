@@ -39,7 +39,7 @@ export class gachaBase {
             case "special": return this.special(player) 
 
             default: 
-                console.error("無効な数字が入力されました")
+                console.error(`[GACHA] 無効な数字が入力されました 入力された数字: ${rarity}`)
                 break;
         }
     }

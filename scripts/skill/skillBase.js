@@ -46,6 +46,17 @@ export class skillBase {
         )
     }
 
+    claerAllEffect(player) {
+        for (const e of player.getEffects()) {
+            const name = e.typeId
+
+            world.sendMessage(name)
+
+            if (name === "minecraft:health_boost") continue
+            player.removeEffect(name)
+        }
+    }
+
     clearEffectSetTime(player, tick) {
         player.setDynamicProperty("effectCancelTime", system.currentTick + tick)
         player.sendMessage(` \n§l${tick / 20}秒間、エフェクトが付与されなくなった\n `)
