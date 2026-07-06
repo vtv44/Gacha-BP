@@ -19,6 +19,15 @@ export class gachaBase {
     static returnPos = {x: 0, y: 0, z: 0}
     static initialRotation = 0
 
+    static buttonPlace() {
+        const dimension = world.getDimension("overworld")
+        dimension.getBlock(this.buttonPos).setPermutation(
+            BlockPermutation.resolve("minecraft:pale_oak_button", {
+                facing_direction: 1
+            })
+        )
+    }
+
     static decision(rarity, player) {
         const dimension = world.getDimension("overworld")
 
@@ -78,25 +87,7 @@ export class gachaBase {
         player.teleport(this.returnPos)
         player.removeTag("gachaing")
 
-        if (!player.isValid) {
-            world.tickingAreaManager.createTickingArea(
-                `button_${this.buttonPos.x}`,
-                {
-                    dimension: dimension,
-                    from: this.buttonPos,
-                    to: this.buttonPos
-                }
-            )
-            system.run(() => {
-                world.tickingAreaManager.removeTickingArea(`button_${this.buttonPos.x}`)
-            })
-        }
-
-        dimension.getBlock(this.buttonPos).setPermutation(
-            BlockPermutation.resolve("minecraft:pale_oak_button", {
-                facing_direction: 1
-            })
-        )
+        this.buttonPlace()
         
         const pos = {
             x: this.buttonPos.x + 0.5,

@@ -134,25 +134,25 @@ world.beforeEvents.playerLeave.subscribe(ev => {
 
 world.afterEvents.worldLoad.subscribe(ev => {
     const dimension = world.getDimension("overworld");
+    const tickManager = world.tickingAreaManager;
+    
     game.gameReset();
 
-    world.tickingAreaManager.createTickingArea("weaponGacha", {
-        dimension: dimension,
-        from: weaponGacha.buttonPos,
-        to: weaponGacha.buttonPos
-    });
+    const wPos = weaponGacha.buttonPos
+    const dPos = defenceGacha.buttonPos
+    const sPos = spellGacha.buttonPos
 
-    world.tickingAreaManager.createTickingArea("defenceGacha", {
-        dimension: dimension,
-        from: defenceGacha.buttonPos,
-        to: defenceGacha.buttonPos
-    });
+    tickManager.createTickingArea("weaponGacha", {dimension: dimension, from: wPos, to: wPos});
 
-    world.tickingAreaManager.createTickingArea("spellGacha", {
-        dimension: dimension,
-        from: spellGacha.buttonPos,
-        to: spellGacha.buttonPos
-    });
+    tickManager.createTickingArea("defenceGacha", {dimension: dimension, from: dPos, to: dPos});
+
+    tickManager.createTickingArea("spellGacha", {dimension: dimension, from: sPos, to: sPos});
+
+    system.runTimeout(() => {
+        weaponGacha.buttonPlace();
+        defenceGacha.buttonPlace();
+        spellGacha.buttonPlace();
+    }, 40)
 
     const score = world.scoreboard;
     if (!score.getObjective("team")) {
@@ -208,6 +208,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
+        world.sendMessage(`${world.getDynamicProperty("game")}`)
     }
 
     if (id === "minecraft:iron_ingot") {
@@ -224,9 +225,9 @@ world.afterEvents.itemUse.subscribe(async ev => {
         .button("§l§dHUB");
 
         form.show(source).then((res) => {
-            if (res.canceled) return;
+            if (res.canceled || world.getDynamicProperty("game") || source.hasTag("gachaing")) return;
 
-            switch(res.selection || world.getDynamicProperty("game") || source.hasTag("gachaing")) {
+            switch(res.selection) {
                 case 0: 
                     source.runCommand(`tp @s -300 0 0 90`);
                     break;
