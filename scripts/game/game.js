@@ -37,11 +37,16 @@ export class game {
         if (!world.getDynamicProperty("game")) return
         world.setDynamicProperty("game", false)
         world.sendMessage(`§l§c====決着====\n§f勝者`)
+
         for (const s of this.gameJoinPlayers) {
             const kill = s.getDynamicProperty("killInGame")
             world.sendMessage(`§f${s.name} / キル数: ${kill}`)
 
             rankPointManager.rankPointAdd(s, 400)
+
+            s.addEffect("health_boost", 5 * 20, {amplifier: 255, showParticles: false})
+            s.addEffect("instant_health", 5 * 20, {amplifier: 255, showParticles: false})
+            s.addEffect("resistance", 5 * 20, {amplifier: 255, showParticles: false})
         }
 
         for (const p of world.getAllPlayers()) {
@@ -53,7 +58,7 @@ export class game {
         world.getDimension("overworld").runCommand("kill @e[type=gacha:gacha_area]")
         system.runTimeout(() => {
             this.gameReset()
-        }, 10)
+        }, 100)
     }
 
     static gameReset() {

@@ -71,7 +71,7 @@ system.beforeEvents.startup.subscribe(ev => {
 })
 
 system.runInterval(() => {
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -84,7 +84,7 @@ system.runInterval(() => {
 })
 
 system.runInterval(() => {
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -133,7 +133,26 @@ world.beforeEvents.playerLeave.subscribe(ev => {
 })
 
 world.afterEvents.worldLoad.subscribe(ev => {
-    world.setDynamicProperty("game", false);
+    const dimension = world.getDimension("overworld");
+    game.gameReset();
+
+    world.tickingAreaManager.createTickingArea("weaponGacha", {
+        dimension: dimension,
+        from: weaponGacha.buttonPos,
+        to: weaponGacha.buttonPos
+    });
+
+    world.tickingAreaManager.createTickingArea("defenceGacha", {
+        dimension: dimension,
+        from: defenceGacha.buttonPos,
+        to: defenceGacha.buttonPos
+    });
+
+    world.tickingAreaManager.createTickingArea("spellGacha", {
+        dimension: dimension,
+        from: spellGacha.buttonPos,
+        to: spellGacha.buttonPos
+    });
 
     const score = world.scoreboard;
     if (!score.getObjective("team")) {
@@ -270,7 +289,7 @@ world.afterEvents.entityHurt.subscribe(ev => {
     const damagingEntity = damageSource.damagingEntity;
     if (hurtEntity.typeId !== "minecraft:player") return;
 
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
