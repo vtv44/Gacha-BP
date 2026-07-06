@@ -335,7 +335,7 @@ export class game {
                 const coin = coinScore.getScore(p)
                 p.onScreenDisplay.setActionBar(`§l現在の所持コイン: §e${coin}`)
 
-                p.addEffect("speed", 30 * 20, {amplifier: 2, showParticles: false})
+                // p.addEffect("speed", 30 * 20, {amplifier: 2, showParticles: false})
             }
         }
     }

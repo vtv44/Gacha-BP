@@ -46,7 +46,7 @@ export class skillBase {
         )
     }
 
-    claerAllEffect(player) {
+    clearAllEffect(player) {
         for (const e of player.getEffects()) {
             const name = e.typeId
 

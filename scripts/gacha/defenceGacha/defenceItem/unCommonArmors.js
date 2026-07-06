@@ -8,7 +8,7 @@ export const unCommonArmors = [
             "§5ダメージを受けたとき、体力を1回復する"
         ],
         enchants: [
-            {id: "protection", level: 3},
+            {id: "protection", level: 2},
             {id: "unbreaking", level: 3}
         ]
     },
@@ -69,6 +69,19 @@ export const unCommonArmors = [
         enchants: [
             {id: "protection", level: 2},
             {id: "unbreaking", level: 2}
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:leather_boots",
+        name: "§a生存者のブーツ",
+        lore: [
+            "§b[素早い逃亡] §5被弾",
+            "攻撃を受けると足が速くなる"
+        ],
+        enchants: [
+            {id: "protection", level: 2},
+            {id: "unbreaking", level: 3}
         ]
     },
 ]

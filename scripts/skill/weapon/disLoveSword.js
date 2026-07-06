@@ -13,6 +13,8 @@ export class disLoveSword extends skillBase {
         const hurtEntity = event.hurtEntity
         const dimension = player.dimension
 
+        world.sendMessage(`${hurtEntity.id}, ${confessionSkill.love.get(player.id)}`)
+
         if (hurtEntity.id === confessionSkill.love.get(player.id)) {
             const pos = hurtEntity.location
 

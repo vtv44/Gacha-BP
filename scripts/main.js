@@ -136,7 +136,7 @@ world.afterEvents.worldLoad.subscribe(ev => {
     const dimension = world.getDimension("overworld");
     const tickManager = world.tickingAreaManager;
     
-    game.gameReset();
+    // game.gameReset();
 
     const wPos = weaponGacha.buttonPos
     const dPos = defenceGacha.buttonPos
@@ -212,8 +212,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
     }
 
     if (id === "minecraft:iron_ingot") {
-        const string = new gachaBase().lottery();
-        world.sendMessage(`${string}`);
+        
     }
 
     if (id === "minecraft:nether_star" && !source.hasTag("gachaing")) {

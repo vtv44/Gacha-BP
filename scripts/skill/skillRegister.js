@@ -88,6 +88,9 @@ import { overwriteSkill } from "./spell/overwrite";
 import { bloodySwordSkill } from "./weapon/bloodySword";
 import { proteikosChestPlateSkill } from "./armor/proteikosChestPlate";
 import { explosiveChestPlateSkill } from "./armor/explosiveChestPlate";
+import { nightShroudSkill } from "./armor/nightShroud";
+import { surviveBootsSkill } from "./armor/surviveBoots";
+import { damageCutLeggingsSkill } from "./armor/damageCutLeggings";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -163,6 +166,8 @@ skillManager.register(new confessionSkill());
 skillManager.register(new overwriteSkill());
 skillManager.register(new bloodySwordSkill());
 skillManager.register(new explosiveChestPlateSkill());
+skillManager.register(new surviveBootsSkill());
+skillManager.register(new damageCutLeggingsSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -180,6 +185,7 @@ skillManager.tickSkillRegister(new assaultArmorSkill());
 skillManager.tickSkillRegister(new theEyeOfOrdinSkill());
 skillManager.tickSkillRegister(new sneakSpeedLeggingsSkill());
 skillManager.tickSkillRegister(new proteikosChestPlateSkill());
+skillManager.tickSkillRegister(new nightShroudSkill());
 
 const axeSkill = new infernalAxeSkill();
 

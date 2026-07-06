@@ -38,5 +38,19 @@ export const epicArmors = [
             {id: "feather_falling", level: 4},
             {id: "unbreaking", level: 2}
         ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:copper_leggings",
+        name: "§5ダメージカットのレギンス",
+        lore: [
+            "§2[ダメージ軽減] §5被弾",
+            "§5受けるダメージを-2する",
+            "§5ダメージが0以下になったら、耐性が付与される"
+        ],
+        enchants: [
+            {id: "protection", level: 3},
+            {id: "unbreaking", level: 3}
+        ]
     }
 ]
