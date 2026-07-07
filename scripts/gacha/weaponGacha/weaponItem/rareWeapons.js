@@ -61,4 +61,13 @@ export const rareWeapons = [
             "§5敵がいなかった場合回復しない"
         ],
     },
+    {
+        amount: 1,
+        id: "minecraft:iron_sword",
+        name: "§1衝撃的な剣",
+        lore: [
+            "§g[金色のハート] §5攻撃",
+            "§5攻撃するたびに一時的な体力を得る"
+        ],
+    },
 ]

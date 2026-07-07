@@ -50,8 +50,6 @@ export class skillBase {
         for (const e of player.getEffects()) {
             const name = e.typeId
 
-            world.sendMessage(name)
-
             if (name === "minecraft:health_boost") continue
             player.removeEffect(name)
         }

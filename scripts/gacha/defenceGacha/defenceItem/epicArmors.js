@@ -42,6 +42,32 @@ export const epicArmors = [
     {
         amount: 1,
         id: "minecraft:copper_leggings",
+        name: "§5反逆のブーツ",
+        lore: [
+            "§2[反逆の意思] §5装備",
+            "§5体力が半分以下の時、強くなる"
+        ],
+        enchants: [
+            {id: "protection", level: 4},
+            {id: "unbreaking", level: 3}
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:copper_leggings",
+        name: "§5反撃のレギンス",
+        lore: [
+            "§2[カウンター] §5被弾",
+            "§5スニークしながらダメージを食らうと周囲を巻き込んでカウンターする"
+        ],
+        enchants: [
+            {id: "protection", level: 2},
+            {id: "unbreaking", level: 3}
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:copper_leggings",
         name: "§5ダメージカットのレギンス",
         lore: [
             "§2[ダメージ軽減] §5被弾",
