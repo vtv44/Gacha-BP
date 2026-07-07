@@ -10,12 +10,13 @@ export class disLoveSword extends skillBase {
     }
 
     onDamage(player, event) {
-        const hurtEntity = event.hurtEntity
+        const { damageSource, hurtEntity } = event
         const dimension = player.dimension
 
-        world.sendMessage(`${hurtEntity.id}, ${confessionSkill.love.get(player.id)}`)
-
-        if (hurtEntity.id === confessionSkill.love.get(player.id)) {
+        if (
+            hurtEntity.id === confessionSkill.love.get(player.id) && 
+            damageSource.cause === EntityDamageCause.entityAttack
+        ) {
             const pos = hurtEntity.location
 
             player.sendMessage("§4ようやく見つけたね。あなたの想いを棄てるなんてことをしたクズを。")

@@ -15,7 +15,7 @@
         },
         "minecraft:wearable": {
             "slot": "slot.armor.chest",
-            "protection": 40
+            "protection": 30
         },
         "minecraft:enchantable": {
             "slot": "armor_torso",

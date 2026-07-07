@@ -26,7 +26,7 @@ export class nightShroudSkill extends tickSkillBase {
         if (this.canAddEffect(player)) {
             player.addEffect("speed", 10 * 20, {amplifier: 1, showParticles: false})
             player.addEffect("jump_boost", 10 * 20, {amplifier: 4, showParticles: false})
-            player.addEffect("regeneration", 10 * 20, {amplifier: 1, showParticles: false})
+            player.addEffect("regeneration", 10 * 20, {amplifier: 0, showParticles: false})
             player.addEffect("fire_resistance", 10 * 20, {amplifier: 4, showParticles: false})
         }
     }
@@ -86,7 +86,7 @@ export class nightShroudSkill extends tickSkillBase {
         const dimension = player.dimension
         const pos = player.location
 
-        for (let i = 0; i <= 10; i++) {
+        for (let i = 0; i <= 15; i++) {
             system.runTimeout(() => {
                 dimension.spawnParticle("gacha:night_shroud_smoke", player.location)
             }, i)

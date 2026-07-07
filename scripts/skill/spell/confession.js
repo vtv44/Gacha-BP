@@ -24,7 +24,7 @@ export class confessionSkill extends skillBase {
 
         const form = new ActionFormData().title("§l§d告白§r§lする相手は...？")
         for (const p of players) {
-            form.button(`§l${player.name}`)
+            form.button(`§l${p.name}`)
         }
         form.show(player).then((res) => {
             if (res.canceled) return

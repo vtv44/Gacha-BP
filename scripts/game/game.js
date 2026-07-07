@@ -161,7 +161,6 @@ export class game {
         rankPointManager.rankConfirm(player)
         player.setDynamicProperty("killInGame", 0)
         player.setDynamicProperty("effectCancelTime", 0);
-        player.teleport({x: 0.5, y: 1, z: 0.5})
         player.setGameMode(GameMode.Adventure)
         player.resetLevel()
         player.runCommand("hud @s reset all")
@@ -170,6 +169,10 @@ export class game {
 
         player.addEffect("instant_health", 999999 * 20, {amplifier: 255, showParticles: false})
         player.addEffect("saturation", 999999 * 20, {amplifier: 255, showParticles: false})
+
+        const spawnPos = {x: 0.5, y: 1, z: 0.5}
+        player.teleport(spawnPos)
+        world.setDefaultSpawnLocation(spawnPos)
 
         const netherStar = new ItemStack("minecraft:nether_star", 1)
         netherStar.nameTag = "§l§d移動装置 §f/ 右クリック"

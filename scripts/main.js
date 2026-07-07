@@ -208,7 +208,6 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
-        world.sendMessage(`${world.getDynamicProperty("game")}`)
     }
 
     if (id === "minecraft:iron_ingot") {

@@ -84,8 +84,10 @@ export class gachaBase {
     static leaveGacha(player) {
         const dimension = world.getDimension("overworld")
         
-        player.teleport(this.returnPos)
-        player.removeTag("gachaing")
+        if (player.isValid) {
+            player.teleport(this.returnPos)
+            player.removeTag("gachaing")
+        }
 
         this.buttonPlace()
         
