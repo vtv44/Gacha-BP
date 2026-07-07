@@ -95,6 +95,13 @@ import { disLoveSword } from "./weapon/disLoveSword";
 import { absorptionSwordSkill } from "./weapon/absorptionSword";
 import { counterLeggingsSkill } from "./armor/counterLeggings";
 import { fightBackBootsSkill } from "./armor/fightBackBoots";
+import { blowAwayArmorSkill } from "./armor/blowAwayArmor";
+import { craftPickaxeSkill } from "./weapon/craftPickaxe";
+import { dirtSwordSkill } from "./weapon/dirtSword";
+import { stoneSwordSkill } from "./weapon/stoneSword";
+import { phantomArmorSkill } from "./armor/phantomArmor";
+import { endstoneSwordSkill } from "./weapon/endstoneSword";
+import { wheatArmorSkill } from "./armor/wheatArmor";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -175,6 +182,12 @@ skillManager.register(new damageCutLeggingsSkill());
 skillManager.register(new disLoveSword());
 skillManager.register(new absorptionSwordSkill());
 skillManager.register(new counterLeggingsSkill());
+skillManager.register(new blowAwayArmorSkill());
+skillManager.register(new craftPickaxeSkill());
+skillManager.register(new dirtSwordSkill());
+skillManager.register(new stoneSwordSkill());
+skillManager.register(new endstoneSwordSkill());
+skillManager.register(new phantomArmorSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -194,7 +207,7 @@ skillManager.tickSkillRegister(new sneakSpeedLeggingsSkill());
 skillManager.tickSkillRegister(new proteikosChestPlateSkill());
 skillManager.tickSkillRegister(new nightShroudSkill());
 skillManager.tickSkillRegister(new fightBackBootsSkill());
-
+skillManager.tickSkillRegister(new wheatArmorSkill());
 const axeSkill = new infernalAxeSkill();
 
 const axeNames = [

@@ -32,4 +32,13 @@ export const commonArmors = [
         name: "§fチェーンなブーツ",
         lore: []
     },
+    {
+        amount: 1,
+        id: "minecraft:copper_leggings", 
+        name: "ふきとばアーマー",
+        lore: [
+            "§f[カウンター] §5被弾",
+            "§5自分を直接攻撃してきた相手を弾き飛ばす"
+        ],
+    }
 ]

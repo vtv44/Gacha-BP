@@ -71,4 +71,13 @@ export const mythicArmors = [
             "§5ノックバックを無効化する"
         ],
     },
+    {
+        amount: 1,
+        id: "minecraft:golden_chestplate",
+        name: "§dファントムアーマー",
+        lore: [
+            "§f[霊体化] §5被弾",
+            "§5プレイヤーから直接攻撃を受けた際、一瞬だけ無敵(スペクテイター)になる"
+        ],
+    },
 ]

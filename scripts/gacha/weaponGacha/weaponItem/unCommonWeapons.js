@@ -45,4 +45,14 @@ export const unCommonWeapons = [
         "§5攻撃した相手に弱体化を付与する"
         ],
     },
+    {
+        amount: 1,
+        id: "minecraft:wooden_pickaxe",
+        name: "§aクラフトピッケル",
+        lore: [
+            "§f[錬成] §5ブロック破壊",
+            "§5壊したブロックの素材に応じて",
+            "§5様々な武器や防具に変化する"
+        ],
+    }
 ]

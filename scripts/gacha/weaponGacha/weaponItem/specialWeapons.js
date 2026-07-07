@@ -18,7 +18,7 @@ export const specialWeapons = [
     },
     {
         amount: 1,
-        id: "minecraft:iron_sword",
+        id: "gacha:admin_rod",
         name: "§badministrator",
         lore: [
             "§b[知性] §5右クリック",

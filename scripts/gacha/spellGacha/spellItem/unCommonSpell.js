@@ -32,7 +32,7 @@ export const unCommonSpell = [
 
     {
         amount: 1,
-        id: "minecraft:string",
+        id: "minecraft:lime_dye",
         name: "§aウィンドバースト",
         lore: [
             "§a[吹き飛ばし] §5右クリック",

@@ -54,7 +54,7 @@ export const epicSpells = [
     },
     {
         amount: 1,
-        id: "minecraft:amethyst_shard",
+        id: "minecraft:blaze_rod",
         name: "§5ジャイロキネティックワンド",
         lore: [
             "§7[収縮] §5右クリック",

@@ -408,3 +408,18 @@ function locationCompare(pos1, pos2) {
         pos1.z === pos2.z
     )
 }
+
+world.afterEvents.playerBreakBlock.subscribe(ev => {
+    const { player } = ev;
+    
+    //if (!world.getDynamicProperty("game")) return;
+
+    const item = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
+    if (!item) return;
+
+    const skill = skillManager.get(item.nameTag);
+    
+    if (skill && typeof skill.onBreakBlock === "function") {
+        skill.onBreakBlock(player, ev);
+    }
+});
