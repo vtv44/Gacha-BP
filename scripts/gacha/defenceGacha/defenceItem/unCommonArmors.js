@@ -98,10 +98,20 @@ export const unCommonArmors = [
     {
         amount: 1,
         id: "gacha:wheat_chestplate",
-        name: "§a麦麦アーマー",
+        name: "§a麦麦ヘルメット",
         lore: [
             "§f[豊穣] §5装備",
             "§5満腹度が減らなくなる"
+        ],
+    },
+    {
+        amount: 1,
+        id: "gacha:fifth_leggings",
+        name: "§aフィフスレギンス",
+        lore: [
+            "[5] §5装備",
+            "§5圧倒的な防御力を誇るが",
+            "§55回の攻撃で壊れてしまう"
         ],
     },
 ]
