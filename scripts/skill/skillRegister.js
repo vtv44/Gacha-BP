@@ -188,6 +188,7 @@ skillManager.register(new dirtSwordSkill());
 skillManager.register(new stoneSwordSkill());
 skillManager.register(new endstoneSwordSkill());
 skillManager.register(new phantomArmorSkill());
+skillManager.register(new vampireHelmetSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -198,7 +199,6 @@ skillManager.tickSkillRegister(new superRegenerationChestPlateSkill());
 skillManager.tickSkillRegister(new jumpLeggingsSkill());
 skillManager.tickSkillRegister(new superJumpLeggingsSkill());
 skillManager.tickSkillRegister(new revengeChestPlateSkill());
-skillManager.tickSkillRegister(new vampireHelmetSkill());
 skillManager.tickSkillRegister(new robustHelmetSkill());
 skillManager.tickSkillRegister(new fluffyBootsSkill());
 skillManager.tickSkillRegister(new assaultArmorSkill());
