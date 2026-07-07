@@ -94,6 +94,7 @@ import { damageCutLeggingsSkill } from "./armor/damageCutLeggings";
 import { disLoveSword } from "./weapon/disLoveSword";
 import { absorptionSwordSkill } from "./weapon/absorptionSword";
 import { counterLeggingsSkill } from "./armor/counterLeggings";
+import { fightBackBootsSkill } from "./armor/fightBackBoots";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -174,7 +175,7 @@ skillManager.register(new damageCutLeggingsSkill());
 skillManager.register(new disLoveSword());
 skillManager.register(new absorptionSwordSkill());
 skillManager.register(new counterLeggingsSkill());
-skillManager.register(new absorptionSwordSkill());
+skillManager.register(new fightBackBootsSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
