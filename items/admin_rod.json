@@ -2,7 +2,7 @@
   "format_version": "1.20.80",
   "minecraft:item": {
     "description": {
-      "identifier": "gacha:dirt_sword",
+      "identifier": "gacha:admin_rod",
       "menu_category": {
         "category": "equipment",
         "group": "itemGroup.name.sword"
@@ -10,7 +10,7 @@
     },
     "components": {
       "minecraft:icon": "dirt_sword",
-      "minecraft:display_name": { "value": "土の剣" },
+      "minecraft:display_name": { "value": "" },
       "minecraft:max_stack_size": 1,
       "minecraft:hand_equipped": true,
       "minecraft:damage": 5,
