@@ -1,40 +1,23 @@
-import { EquipmentSlot } from "@minecraft/server";
-import { tickSkillBase } from "../skillBase";
+import { skillBase } from "../skillBase";
 
-export class vampireHelmetSkill extends tickSkillBase {
+export class vampireHelmetSkill extends skillBase {
     constructor() {
         super();
         this.id = "§aヴァンパイアヘルメット";
-        this.cooldown = 0;
+        this.cooldown = 100;
     }
-
-    has(player) {
-        if (!player || !player.isValid) return false;
-
-        const equippable = player.getComponent("equippable");
-        if (!equippable) return false;
-
-        const headItem = equippable.getEquipment(EquipmentSlot.Head);
-        
-        return headItem ? headItem.nameTag === this.id : false;
-    }
-
-    equip(player) {}
 
     onDamage(player, event) {
-        if (!player || !player.isValid) return;
+        const target = event.hurtEntity;
+        
+        if (!target) return;
 
-        const healthComponent = player.getComponent("health");
-        if (!healthComponent) return;
+        this.onCooldown(player);
 
-        const currentHealth = healthComponent.currentValue;
-        const maxHealth = healthComponent.effectiveMaxValue;
+        player.addEffect("instant_health", 1, { amplifier: 0, showParticles: false });
 
-        if (currentHealth < maxHealth) {
-            healthComponent.setCurrentValue(Math.min(currentHealth + 1, maxHealth));
-            
+        target.dimension.playSound("mob.phantom.bite", target.location, { volume: 1.0, pitch: 1.0 });
 
-            player.dimension.playSound("random.orb", player.location, { volume: 0.4, pitch: 1.8 });
-        }
+        player.dimension.spawnParticle("minecraft:heart_particle", player.location);
     }
 }
