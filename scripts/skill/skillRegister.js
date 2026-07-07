@@ -175,7 +175,6 @@ skillManager.register(new damageCutLeggingsSkill());
 skillManager.register(new disLoveSword());
 skillManager.register(new absorptionSwordSkill());
 skillManager.register(new counterLeggingsSkill());
-skillManager.register(new fightBackBootsSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -194,6 +193,7 @@ skillManager.tickSkillRegister(new theEyeOfOrdinSkill());
 skillManager.tickSkillRegister(new sneakSpeedLeggingsSkill());
 skillManager.tickSkillRegister(new proteikosChestPlateSkill());
 skillManager.tickSkillRegister(new nightShroudSkill());
+skillManager.tickSkillRegister(new fightBackBootsSkill());
 
 const axeSkill = new infernalAxeSkill();
 

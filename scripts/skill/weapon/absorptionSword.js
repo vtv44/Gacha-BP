@@ -8,6 +8,7 @@ export class absorptionSwordSkill extends skillBase {
     }
 
     onDamage(player, event) {
-        
+        player.addEffect("absorption", 15 * 20, {amplifier: 1})
+        player.playSound("mob.endermite.hit")
     }
 }
