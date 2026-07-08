@@ -90,5 +90,17 @@ export const epicArmors = [
         enchants: [
             {id: "protection", level: 3}
         ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:leather_leggings",
+        name: "§5休憩レギンス",
+        lore: [
+            "§b[ブレイクタイム] §5装備 スニーク",
+            "§5満腹度を2消費して体力を1回復する"
+        ],
+        enchants: [
+            {id: "unbreaking", level: 3}
+        ]
     }
 ]

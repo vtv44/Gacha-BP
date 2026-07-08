@@ -103,6 +103,7 @@ import { phantomArmorSkill } from "./armor/phantomArmor";
 import { endstoneSwordSkill } from "./weapon/endstoneSword";
 import { wheatArmorSkill } from "./armor/wheatArmor";
 import { scanHelmetSkill } from "./armor/scanHelmet";
+import { breakTimeLeggings } from "./armor/breakTimeLeggings";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -210,6 +211,7 @@ skillManager.tickSkillRegister(new nightShroudSkill());
 skillManager.tickSkillRegister(new fightBackBootsSkill());
 skillManager.tickSkillRegister(new wheatArmorSkill());
 skillManager.tickSkillRegister(new scanHelmetSkill());
+skillManager.tickSkillRegister(new breakTimeLeggings());
 
 const axeSkill = new infernalAxeSkill();
 
