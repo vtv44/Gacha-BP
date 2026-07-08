@@ -104,6 +104,7 @@ import { endstoneSwordSkill } from "./weapon/endstoneSword";
 import { wheatArmorSkill } from "./armor/wheatArmor";
 import { scanHelmetSkill } from "./armor/scanHelmet";
 import { breakTimeLeggings } from "./armor/breakTimeLeggings";
+import { hyperKineticPositionReverser } from "./spell/hyperKineticPositionReverser";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -191,6 +192,7 @@ skillManager.register(new stoneSwordSkill());
 skillManager.register(new endstoneSwordSkill());
 skillManager.register(new phantomArmorSkill());
 skillManager.register(new vampireHelmetSkill());
+skillManager.register(new hyperKineticPositionReverser());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());

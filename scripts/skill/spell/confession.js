@@ -1,4 +1,4 @@
-import { GameMode, ItemStack, world } from "@minecraft/server";
+import { GameMode, ItemLockMode, ItemStack, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
 
@@ -64,6 +64,7 @@ export class confessionSkill extends skillBase {
                         "§4[他人の愛] §5攻撃",
                         "§5告白対象に追加で999ダメージを与える"
                     ])
+                    loveSword.lockMode = ItemLockMode.slot
 
                     player.sendMessage("§4あの子はあなたの想いを踏み躙った...許せない許せない許せない許せない")
                     player.sendMessage(` \n§l${loveSword.nameTag}を手に入れた\n `)

@@ -58,7 +58,7 @@ export class game {
         world.getDimension("overworld").runCommand("kill @e[type=gacha:gacha_area]")
         system.runTimeout(() => {
             this.gameReset()
-        }, 100)
+        }, 120)
     }
 
     static gameReset() {

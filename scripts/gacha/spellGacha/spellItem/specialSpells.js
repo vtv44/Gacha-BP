@@ -20,11 +20,20 @@ export const specialSpells = [
     },
     {
         amount: 1,
-        id: "minecraft:lead",
+        id: "minecraft:paper",
         name: "§4愛の告白",
         lore: [
             "§d[あなたの想い] §5右クリック",
             "§d大好きな人に告白しちゃおう！"
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:copper_ingot",
+        name: "§4HKPR",
+        lore: [
+            "§d[ﾊｲﾊﾟｰｷﾈﾃｨｯｸﾎﾟｼﾞｼｮﾝﾘﾊﾞｰｻｰ] §5右クリック",
+            "§dランダムなプレイヤーと位置を入れ替える"
         ]
     },
 ]
