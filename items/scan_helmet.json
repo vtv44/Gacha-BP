@@ -1,0 +1,27 @@
+{
+    "format_version": "1.21.10",
+    "minecraft:item": {
+        "description": {
+        "identifier": "gacha:scan_helmet",
+        "menu_category": {
+            "category": "equipment",
+            "group": "itemGroup.name.helmet"
+        }
+        },
+        "components": {
+        "minecraft:icon": "scan_helmet",
+        "minecraft:display_name": {
+            "value": "ぶらは"
+        },
+        "minecraft:wearable": {
+            "slot": "slot.armor.head",
+            "protection": 3
+        },
+        "minecraft:enchantable": {
+            "slot": "armor_head",
+            "value": 30
+        },
+        "minecraft:max_stack_size": 1
+        }
+    }
+}

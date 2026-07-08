@@ -78,5 +78,17 @@ export const epicArmors = [
             {id: "protection", level: 3},
             {id: "unbreaking", level: 3}
         ]
+    },
+    {
+        amount: 1,
+        id: "gacha:scan_helmet",
+        name: "§5スキャンヘルメット",
+        lore: [
+            "§b[オートスキャン] §5装備",
+            "§5周囲のプレイヤーと自分のネームタグを定期的に表示させる"
+        ],
+        enchants: [
+            {id: "protection", level: 3}
+        ]
     }
 ]
