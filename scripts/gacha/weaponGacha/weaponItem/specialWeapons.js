@@ -19,7 +19,7 @@ export const specialWeapons = [
     {
         amount: 1,
         id: "gacha:admin_rod",
-        name: "§badministrator",
+        name: "§4administrator",
         lore: [
             "§b[知性] §5右クリック",
             "§5右クリックするとターゲットを選択し、クイズを送りつける",

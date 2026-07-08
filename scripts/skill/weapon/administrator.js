@@ -25,7 +25,7 @@ const quizList = [
 export class administratorSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§badministrator";
+        this.id = "§4administrator";
         this.cooldown = 20 * 20; 
     }
 

@@ -14,7 +14,7 @@ export class craftPickaxeSkill extends skillBase {
         const slot = player.selectedSlotIndex;
 
         if (blockName === "minecraft:dirt" || blockName === "minecraft:grass_block") {
-            const dirtSword = new ItemStack("minecraft:wooden_sword", 1);
+            const dirtSword = new ItemStack("gacha:dirt_sword", 1);
             dirtSword.nameTag = "§n土の剣";
             dirtSword.setLore([
                 "§f[埋没] §5攻撃時",

@@ -9,15 +9,22 @@ export class vampireHelmetSkill extends skillBase {
 
     onDamage(player, event) {
         const target = event.hurtEntity;
-        
         if (!target) return;
+
+        if (!this.canUse(player)) return;
 
         this.onCooldown(player);
 
-        player.addEffect("instant_health", 1, { amplifier: 0, showParticles: false });
+        const health = player.getComponent("minecraft:health");
+        if (health) {
+            const healAmount = 4;
+
+            const newHealth = Math.min(health.currentValue + healAmount, health.effectiveMax);
+            
+            health.setCurrentValue(newHealth);
+        }
 
         target.dimension.playSound("mob.phantom.bite", target.location, { volume: 1.0, pitch: 1.0 });
-
         player.dimension.spawnParticle("minecraft:heart_particle", player.location);
     }
 }

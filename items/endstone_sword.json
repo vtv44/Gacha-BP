@@ -2,18 +2,18 @@
   "format_version": "1.20.80",
   "minecraft:item": {
     "description": {
-      "identifier": "gacha:dirt_sword",
+      "identifier": "gacha:endstone_sword",
       "menu_category": {
         "category": "equipment",
         "group": "itemGroup.name.sword"
       }
     },
     "components": {
-      "minecraft:icon": "dirt_sword",
-      "minecraft:display_name": { "value": "土の剣" },
+      "minecraft:icon": "endstone_sword",
+      "minecraft:display_name": { "value": "administrator" },
       "minecraft:max_stack_size": 1,
       "minecraft:hand_equipped": true,
-      "minecraft:damage": 2,
+      "minecraft:damage": 4,
       "minecraft:enchantable": {
         "slot": "sword",
         "value": 30

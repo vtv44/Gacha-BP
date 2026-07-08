@@ -44,6 +44,9 @@ export class endstoneSwordSkill extends skillBase {
         }
 
         player.teleport(tpLoc, { dimension: player.dimension });
+        
         player.dimension.playSound("mob.endermen.portal", player.location, { volume: 1.0, pitch: 1.0 });
+
+        player.dimension.spawnParticle("minecraft:witchspell_emitter", player.location);
     }
 }

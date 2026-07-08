@@ -19,7 +19,10 @@ export class deadbushSwordSkill extends skillBase {
         for (const target of targets) {
             hitAnyTarget = true;
 
-            target.runCommand("effect @s hunger 4 99 true");
+            const targetHunger = target.getComponent("minecraft:player.hunger");
+            if (targetHunger) {
+                targetHunger.setCurrentValue(0);
+            }
             
             const tLoc = target.location;
             target.dimension.spawnParticle("rca:carrot", { x: tLoc.x, y: tLoc.y + 1, z: tLoc.z });
@@ -31,7 +34,10 @@ export class deadbushSwordSkill extends skillBase {
 
         if (hitAnyTarget) {
             player.sendMessage("§b敵から満腹度を奪った!");
-            player.addEffect("saturation", 20, { amplifier: 255, showParticles: false });
+            const hunger = player.getComponent("minecraft:player.hunger");
+            if (hunger) {
+                hunger.setCurrentValue(hunger.effectiveMax);
+            }
         } else {
             player.sendMessage("§b敵は近くにいなかった...");
         }
@@ -40,6 +46,13 @@ export class deadbushSwordSkill extends skillBase {
     }
 
     onDamage(player, event) {
-        event.hurtEntity.runCommand("effect @s hunger 10 0 true");
+        const target = event.hurtEntity;
+        if (!target) return;
+
+        const targetHunger = target.getComponent("minecraft:player.hunger");
+        if (targetHunger) {
+            const newHunger = Math.max(targetHunger.currentValue - 2, 0);
+            targetHunger.setCurrentValue(newHunger);
+        }
     }
 }

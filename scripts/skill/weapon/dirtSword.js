@@ -3,7 +3,7 @@ import { skillBase } from "../skillBase";
 export class dirtSwordSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§a土の剣";
+        this.id = "§n土の剣";
         this.cooldown = 0;
     }
 

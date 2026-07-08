@@ -9,14 +9,14 @@
       }
     },
     "components": {
-      "minecraft:icon": "dirt_sword",
-      "minecraft:display_name": { "value": "" },
+      "minecraft:icon": "admin_rod",
+      "minecraft:display_name": { "value": "administrator" },
       "minecraft:max_stack_size": 1,
       "minecraft:hand_equipped": true,
-      "minecraft:damage": 5,
+      "minecraft:damage": 1,
       "minecraft:enchantable": {
         "slot": "sword",
-        "value": 3
+        "value": 30
       },
       "minecraft:tags": {
         "tags": [
