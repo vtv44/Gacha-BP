@@ -102,5 +102,19 @@ export const epicArmors = [
         enchants: [
             {id: "unbreaking", level: 3}
         ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:iron_chestplate",
+        name: "§5緊急脱出胸当て",
+        lore: [
+            "§b[ベイルアウト] §5被弾",
+            "§5プレイヤーから死に至るダメージを受けたとき、ランダムなプレイヤーと位置を入れ替える",
+            "§5この能力には180秒間のクールタイムがある"
+        ],
+        enchants: [
+            {id: "protection", level: 1},
+            {id: "unbreaking", level: 3}
+        ]
     }
 ]

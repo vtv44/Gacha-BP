@@ -14,7 +14,8 @@ export class hyperKineticPositionReverser extends skillBase {
         const dimension = player.dimension
         const pos = player.location
 
-        const players = dimension.getPlayers({minDistance: 2, excludeGameModes: [GameMode.Spectator]})
+        const players = world.getAllPlayers()
+        .filter((p) => p.id !== player.id && p.getGameMode() !== GameMode.spectator)
         const rand = Math.floor(Math.random() * players.length)
         const p = players[rand]
 

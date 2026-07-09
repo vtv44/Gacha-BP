@@ -23,7 +23,7 @@ export class subMachineGunSkill extends skillBase {
                 const pos = player.location
                 const dir = player.getViewDirection()
 
-                dimension.playSound("mob.blaze.shoot", pos, {pitch: 0.5, volume: 0.7})
+                dimension.playSound("mob.blaze.shoot", pos, {pitch: 1.8, volume: 0.7})
 
                 let ammo = subMachineGunSkill.ammo.get(player.id)
                 if (ammo === undefined) ammo = 35
@@ -61,7 +61,8 @@ export class subMachineGunSkill extends skillBase {
 
                 if (ammo - 1 <= 0) {
                     this.onCooldown(player)
-                    player.sendMessage("reload")
+                    player.onScreenDisplay.setActionBar(`§l§c- RELOADING -`)
+                    player.playSound("camera.take_picture", {pitch: 0.6})
 
                     system.runTimeout(() => {
                         subMachineGunSkill.ammo.set(player.id, 35)

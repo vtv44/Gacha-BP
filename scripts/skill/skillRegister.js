@@ -107,6 +107,8 @@ import { breakTimeLeggings } from "./armor/breakTimeLeggings";
 import { hyperKineticPositionReverser } from "./spell/hyperKineticPositionReverser";
 import { ironDaggerSkill } from "./weapon/ironDagger";
 import { subMachineGunSkill } from "./weapon/submachinegun";
+import { igniteChestPlateSkill } from "./armor/igniteChestPlate";
+import { bailoutChestPlate } from "./armor/bailoutChestPlate";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -196,6 +198,8 @@ skillManager.register(new phantomArmorSkill());
 skillManager.register(new vampireHelmetSkill());
 skillManager.register(new hyperKineticPositionReverser());
 skillManager.register(new subMachineGunSkill());
+skillManager.register(new igniteChestPlateSkill());
+skillManager.register(new bailoutChestPlate());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
