@@ -15,8 +15,8 @@ jobs:
           username: vtv
           key: ${{ secrets.VPS_KEY }}
           script: |
-            rm -rf /home/vtv/BDS/behavior_packs/Gacha-BP
-            mkdir -p /home/vtv/BDS/behavior_packs/Gacha-BP
+            rm -rf /home/vtv/BDS/development_behavior_packs/Gacha-BP
+            mkdir -p /home/vtv/BDS/development_behavior_packs/Gacha-BP
       - name: Copy files to server
         uses: appleboy/scp-action@v1
         with:
@@ -24,4 +24,4 @@ jobs:
           username: vtv
           key: ${{ secrets.VPS_KEY }}
           source: "*"
-          target: /home/vtv/BDS/behavior_packs/Gacha-BP
+          target: /home/vtv/BDS/development_behavior_packs/Gacha-BP
