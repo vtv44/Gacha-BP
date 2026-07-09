@@ -1,4 +1,4 @@
-import { Difficulty, GameMode, InputPermissionCategory, ItemLockMode, ItemStack, system, world } from "@minecraft/server"
+import { Difficulty, EquipmentSlot, GameMode, InputPermissionCategory, ItemLockMode, ItemStack, system, world } from "@minecraft/server"
 import { theEnd } from "./maps/theEnd"
 import { rankPointManager } from "./rankPointManager"
 import { skyIsland } from "./maps/skyIsland"
@@ -266,6 +266,41 @@ export class game {
                 teamObject.setScore(players[i], 4)
                 players[i].addTag("yellow")
             }
+        }
+    }
+
+    static teamWool() {
+        const red = new ItemStack("minecraft:red_wool", 1)
+        red.nameTag = "§l§c仲間の証"
+        red.setLore = ["§5どこへ行こうと、この赤羊毛が仲間の証だ！"]
+        red.lockMode = ItemLockMode.slot
+
+        const blue = new ItemStack("minecraft:blue_wool", 1)
+        blue.nameTag = "§l§b仲間の証"
+        blue.setLore = ["§5どこへ行こうと、この青羊毛が仲間の証だ！"]
+        blue.lockMode = ItemLockMode.slot
+
+        const green = new ItemStack("minecraft:green_wool", 1)
+        green.nameTag = "§l§a仲間の証"
+        green.setLore = ["§5どこへ行こうと、この緑羊毛が仲間の証だ！"]
+        green.lockMode = ItemLockMode.slot
+
+        const yellow = new ItemStack("minecraft:yellow_wool", 1)
+        yellow.nameTag = "§l§e仲間の証"
+        yellow.setLore = ["§5どこへ行こうと、この黄羊毛が仲間の証だ！"]
+        yellow.lockMode = ItemLockMode.slot
+
+        for (const t of this.getTeam(1)) {
+            t.getComponent("equippable").setEquipment(EquipmentSlot.Offhand, red)
+        }
+        for (const t of this.getTeam(2)) {
+            t.getComponent("equippable").setEquipment(EquipmentSlot.Offhand, blue)
+        }
+        for (const t of this.getTeam(3)) {
+            t.getComponent("equippable").setEquipment(EquipmentSlot.Offhand, green)
+        }
+        for (const t of this.getTeam(4)) {
+            t.getComponent("equippable").setEquipment(EquipmentSlot.Offhand, yellow)
         }
     }
 
