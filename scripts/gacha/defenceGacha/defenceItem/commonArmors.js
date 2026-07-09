@@ -40,5 +40,18 @@ export const commonArmors = [
             "§f[カウンター] §5被弾",
             "§5自分を直接攻撃してきた相手を弾き飛ばす"
         ],
-    }
+    },
+    {
+        amount: 1,
+        id: "minecraft:leather_chestplate", 
+        name: "§f着火胸当て",
+        lore: [
+            "§c[着火] §5被弾",
+            "§5攻撃してきた相手をちょっとだけ燃やす"
+        ],
+        enchants: [
+            {id: "protection", level: 2},
+            {id: "unbreaking", level: 2}
+        ]
+    },
 ]
