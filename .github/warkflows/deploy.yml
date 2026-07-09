@@ -1,0 +1,19 @@
+name: deploy
+on:
+  push:
+    branches: main
+  workflow_dispatch:
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Copy artifacts to server
+        uses: appleboy/scp-action@v1
+        with:
+          host: 220.158.23.26
+          username: vtv
+          key: ${{ secrets.VPS_KEY }}
+          source: .
+          target: ~/BDS/behavior_packs```
