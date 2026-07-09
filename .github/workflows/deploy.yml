@@ -16,4 +16,4 @@ jobs:
           username: vtv
           key: ${{ secrets.VPS_KEY }}
           source: .
-          target: ~/BDS/behavior_packs```
+          target: ~/BDS/behavior_pack
