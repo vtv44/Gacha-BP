@@ -8,12 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-
-      - name: Copy artifacts to server
+      - name: Clean remote behavior pack folder
+        uses: appleboy/ssh-action@v1
+        with:
+          host: 220.158.23.26
+          username: vtv
+          key: ${{ secrets.VPS_KEY }}
+          script: |
+            rm -rf /home/vtv/BDS/behavior_packs/Gacha-BP
+            mkdir -p /home/vtv/BDS/behavior_packs/Gacha-BP
+      - name: Copy files to server
         uses: appleboy/scp-action@v1
         with:
           host: 220.158.23.26
           username: vtv
           key: ${{ secrets.VPS_KEY }}
-          source: .
-          target: ~/BDS/behavior_pack
+          source: "*"
+          target: /home/vtv/BDS/behavior_packs/Gacha-BP
