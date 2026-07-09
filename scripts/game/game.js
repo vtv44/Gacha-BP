@@ -215,8 +215,8 @@ export class game {
         this.resetPlayer(player)
         player.setGameMode(GameMode.Spectator)
 
-        if (this.testJoinGame(deadEntity)) {
-            this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== deadEntity.id)
+        if (this.testJoinGame(player)) {
+            this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== player.id)
             world.scoreboard.getObjective("gameInfo").addScore("§l§b残り人数", -1)
         }
 

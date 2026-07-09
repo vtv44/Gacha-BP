@@ -28,4 +28,13 @@ export const commonWeapons = [
             "§5攻撃した相手を上に吹き飛ばす（少し）"
         ],
     },
+    {
+        amount: 1,
+        id: "gacha:iron_dagger",
+        name: "§fダガー",
+        lore: [
+            "§f[小柄] §5所持",
+            "§5移動速度がちょっと上がる"
+        ],
+    },
 ]

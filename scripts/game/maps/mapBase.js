@@ -30,6 +30,7 @@ export class mapBase {
 
     buildRepair() {
         const dimension = world.getDimension("overworld")
+        world.gameRules.doTileDrops = false
 
         for (let i = 0; i <= this.structures.length - 1; i++) {
             const pos = {
@@ -50,6 +51,7 @@ export class mapBase {
         system.runTimeout(() => {
             world.sendMessage("マップの修復が完了しました")
             dimension.runCommand("tickingarea remove_all")
+            world.gameRules.doTileDrops = true
         }, this.structures.length * 10 + 20)
     }
 

@@ -15,6 +15,10 @@
             },
             "minecraft:damage": {
                 "value": 5
+            },
+            "minecraft:enchantable": {
+                "slot": "sword",
+                "value": 10
             }
         }
     }

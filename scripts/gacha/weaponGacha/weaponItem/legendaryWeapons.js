@@ -67,4 +67,14 @@ export const legendaryWeapons = [
             "§5スニーク右クリックで記録を削除する"
         ],
     },
+    {
+        amount: 1,
+        id: "gacha:submachinegun",
+        name: "§6軽量機関銃",
+        lore: [
+            "§7[射撃] §5右クリック",
+            "§5五点バーストのサブマシンガン",
+            "§5大容量マガジン三十五発が付属"
+        ],
+    },
 ]
