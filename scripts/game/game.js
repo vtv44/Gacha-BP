@@ -70,6 +70,7 @@ export class game {
         world.getDimension("overworld").runCommand("kill @e[type=gacha:gacha_area]")
         world.gameRules.pvp = false
         world.gameRules.fallDamage = false
+        world.gameRules.doTileDrops = false
         world.setDifficulty(Difficulty.Peaceful)
         this.teamClear()
 
@@ -105,6 +106,7 @@ export class game {
         this.map = map
 
         world.setDefaultSpawnLocation(this.areaSpawnPos)
+        world.gameRules.doTileDrops = true
 
         const compass = new ItemStack("minecraft:compass", 1)
         compass.nameTag = "§lどこかを指すコンパス"

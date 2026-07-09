@@ -51,7 +51,6 @@ export class mapBase {
         system.runTimeout(() => {
             world.sendMessage("マップの修復が完了しました")
             dimension.runCommand("tickingarea remove_all")
-            world.gameRules.doTileDrops = true
         }, this.structures.length * 10 + 20)
     }
 
