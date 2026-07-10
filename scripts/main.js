@@ -207,7 +207,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
     const id = itemStack.typeId;
     
     if (id === "minecraft:diamond") {
-        // tester
+        source.setDynamicProperty("rp", -999999)
     }
 
     if (id === "minecraft:iron_ingot") {

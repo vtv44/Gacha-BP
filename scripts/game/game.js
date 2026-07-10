@@ -98,7 +98,7 @@ export class game {
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
         gameInfo.setScore("§l§a残り時間", 620)
         gameInfo.setScore("§l§b残り人数", 0)
-
+        this.teamWool()
         this.gameJoinPlayers = players
         const map = this.mapSelect()
         const spawnPos = await map.mapSpawnPos(players.length)
@@ -270,22 +270,22 @@ export class game {
     }
 
     static teamWool() {
-        const red = new ItemStack("gacha:red_wool", 1)
+        const red = new ItemStack("gacha:red_team", 1)
         red.nameTag = "§l§c仲間の証"
         red.setLore = ["§5どこへ行こうと、この赤羊毛が仲間の証だ！"]
         red.lockMode = ItemLockMode.slot
 
-        const blue = new ItemStack("gacha:blue_wool", 1)
+        const blue = new ItemStack("gacha:blue_team", 1)
         blue.nameTag = "§l§b仲間の証"
         blue.setLore = ["§5どこへ行こうと、この青羊毛が仲間の証だ！"]
         blue.lockMode = ItemLockMode.slot
 
-        const green = new ItemStack("gacha:green_wool", 1)
+        const green = new ItemStack("gacha:green_team", 1)
         green.nameTag = "§l§a仲間の証"
         green.setLore = ["§5どこへ行こうと、この緑羊毛が仲間の証だ！"]
         green.lockMode = ItemLockMode.slot
 
-        const yellow = new ItemStack("gacha:yellow_wool", 1)
+        const yellow = new ItemStack("gacha:yellow_team", 1)
         yellow.nameTag = "§l§e仲間の証"
         yellow.setLore = ["§5どこへ行こうと、この黄羊毛が仲間の証だ！"]
         yellow.lockMode = ItemLockMode.slot
