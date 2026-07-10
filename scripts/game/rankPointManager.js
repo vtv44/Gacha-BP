@@ -11,7 +11,9 @@ export class rankPointManager {
         {point: 20000, rank: "§b[DIAMOND]§r"},
         {point: 30000, rank: "§q[ASCENDANT]§r"},
         {point: 50000, rank: "§4[IMMORTAL]§r"},
-        {point: 50000, rank: "§l§e[RADIANT]§r"},
+        {point: 100000, rank: "§l§e[RADIANT§f+§e]§r"},
+        {point: 300000, rank: "§l§e[RADIANT§f++§e]§r"},
+        {point: 9999999, rank: "§l§e[RADIANT§f+++§e]§r"},
     ]
     
     static rankConfirm(player) {
