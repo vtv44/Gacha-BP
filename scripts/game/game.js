@@ -200,10 +200,11 @@ export class game {
         if (deadEntity.typeId !== "minecraft:player") return
 
         this.playerLeave(deadEntity)
-
+        this.resetPlayer(deadEntity)
+        deadEntity.setGameMode(GameMode.Spectator)
         system.runTimeout(() => {
             if (!world.getDynamicProperty("game")) return
-            damagingEntity.teleport(this.gameJoinPlayers[0].location)
+            deadEntity.teleport(this.gameJoinPlayers[0].location)
         }, 100)
         
         if (damagingEntity !== undefined && this.testJoinGame(damagingEntity)) {
@@ -213,10 +214,7 @@ export class game {
     }
 
     static playerLeave(player) {
-
-        this.resetPlayer(player)
-        player.setGameMode(GameMode.Spectator)
-
+        
         if (this.testJoinGame(player)) {
             this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== player.id)
             world.scoreboard.getObjective("gameInfo").addScore("§l§b残り人数", -1)
