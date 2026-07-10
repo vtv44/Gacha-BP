@@ -270,22 +270,22 @@ export class game {
     }
 
     static teamWool() {
-        const red = new ItemStack("minecraft:red_wool", 1)
+        const red = new ItemStack("gacha:red_wool", 1)
         red.nameTag = "§l§c仲間の証"
         red.setLore = ["§5どこへ行こうと、この赤羊毛が仲間の証だ！"]
         red.lockMode = ItemLockMode.slot
 
-        const blue = new ItemStack("minecraft:blue_wool", 1)
+        const blue = new ItemStack("gacha:blue_wool", 1)
         blue.nameTag = "§l§b仲間の証"
         blue.setLore = ["§5どこへ行こうと、この青羊毛が仲間の証だ！"]
         blue.lockMode = ItemLockMode.slot
 
-        const green = new ItemStack("minecraft:green_wool", 1)
+        const green = new ItemStack("gacha:green_wool", 1)
         green.nameTag = "§l§a仲間の証"
         green.setLore = ["§5どこへ行こうと、この緑羊毛が仲間の証だ！"]
         green.lockMode = ItemLockMode.slot
 
-        const yellow = new ItemStack("minecraft:yellow_wool", 1)
+        const yellow = new ItemStack("gacha:yellow_wool", 1)
         yellow.nameTag = "§l§e仲間の証"
         yellow.setLore = ["§5どこへ行こうと、この黄羊毛が仲間の証だ！"]
         yellow.lockMode = ItemLockMode.slot

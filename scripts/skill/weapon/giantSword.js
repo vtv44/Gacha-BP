@@ -54,7 +54,10 @@ export class giantSwordSkill extends skillBase {
                     try {
                         const targets = this.getTargets(player, landPos, 4.0);
                         for (const target of targets) {
-                            target.applyDamage(5);
+                            target.applyDamage(5, {
+                                cause: "entityAttack",
+                                damagingEntity: player
+                            });
                         }
                     } catch {}
 

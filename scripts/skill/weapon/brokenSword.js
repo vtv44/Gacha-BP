@@ -29,7 +29,7 @@ export class brokenSwordSkill extends skillBase {
         const targets = this.getTargets(player, particleLoc, 3);
         for (const target of targets) {
 
-            target.applyDamage(1, { cause: EntityDamageCause.none });
+            target.applyDamage(1, { cause: EntityDamageCause.none, damagingEntity: player });
 
 
             target.applyKnockback(

@@ -158,7 +158,10 @@ export class infernalAxeSkill extends skillBase {
                     if (hitTargets.has(target.id)) continue;
                     hitTargets.add(target.id);
 
-                    target.applyDamage(5);
+                    target.applyDamage(5, {
+                        cause: "entityAttack",
+                        damagingEntity: player
+                    });
                     const tLoc = target.location;
                     player.dimension.spawnParticle("rca:sweep_lightblue_v", { x: tLoc.x, y: tLoc.y + 1, z: tLoc.z });
                     
@@ -227,7 +230,10 @@ export class infernalAxeSkill extends skillBase {
 
                     const targets = this.getTargets(player, landPos, 4);
                     for (const target of targets) {
-                        target.applyDamage(20);
+                        target.applyDamage(20, {
+                            cause: "entityAttack",
+                            damagingEntity: player
+                        });
                         target.setOnFire(5);
                         const loc = target.location;
                         const dx = loc.x - landPos.x;

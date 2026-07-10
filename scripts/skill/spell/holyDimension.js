@@ -5,7 +5,7 @@ export class holyDimensionSkill extends skillBase {
     constructor() {
         super();
         this.id = "§5ホーリーディメンション";
-        this.cooldown = 1 * 20;
+        this.cooldown = 30 * 20;
     }
 
     execute(player) {
@@ -14,7 +14,7 @@ export class holyDimensionSkill extends skillBase {
         
         this.onCooldown(player);
 
-        const targets = this.getTargets(player, location, 10);
+        const targets = this.getTargets(player, location, 20);
         if (targets.length === 0) return;
 
         for (const target of targets) {
@@ -29,7 +29,10 @@ export class holyDimensionSkill extends skillBase {
                 const damaged = this.getTargets(player, pos, 3);
                 if (!damaged.includes(target)) return;
 
-                target.applyDamage(20);
+                target.applyDamage(20, {
+                    cause: "entityAttack",
+                    damagingEntity: player
+                });
                 dimension.spawnParticle("ptl:golden_ambition", pos);
                 dimension.spawnParticle("ptl:golden_burn", { x: pos.x, y: pos.y + 25, z: pos.z });
                 dimension.spawnParticle("ptl:golden_burn", { x: pos.x, y: pos.y + 25, z: pos.z });
