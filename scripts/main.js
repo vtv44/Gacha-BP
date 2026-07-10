@@ -45,7 +45,7 @@ system.beforeEvents.startup.subscribe(ev => {
     const gameCommand = {
         name: "gacha:game",
         description: "ゲームに関連するいろいろ",
-        permissionLevel: CommandPermissionLevel.Admin,
+        permissionLevel: CommandPermissionLevel.GameDirectors,
         mandatoryParameters: [],
         optionalParameters: []
     }
@@ -53,7 +53,7 @@ system.beforeEvents.startup.subscribe(ev => {
     const repairCommand = {
         name: "gacha:maprepair",
         description: "マップを修復します",
-        permissionLevel: CommandPermissionLevel.Owner,
+        permissionLevel: CommandPermissionLevel.GameDirectors,
         mandatoryParameters: [],
         optionalParameters: []
     }
