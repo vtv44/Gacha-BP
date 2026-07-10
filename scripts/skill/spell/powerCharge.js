@@ -32,7 +32,7 @@ export class powerChargeSkill extends skillBase {
 
         player.setDynamicProperty("powerChargeTick", 0);
 
-        target.applyDamage(2, { cause: EntityDamageCause.none });
+        target.applyDamage(2, { cause: EntityDamageCause.none, damagingEntity: player});
 
         player.onScreenDisplay.setActionBar("§e力溜め発動！");
         player.playSound("random.orb", { volume: 1.0, pitch: 0.8 });

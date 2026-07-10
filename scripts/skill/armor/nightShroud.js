@@ -20,6 +20,7 @@ export class nightShroudSkill extends tickSkillBase {
         armor.setEquipment(EquipmentSlot.Head)
         armor.setEquipment(EquipmentSlot.Legs)
         armor.setEquipment(EquipmentSlot.Feet)
+        armor.setEquipment(EquipmentSlot.Offhand)
 
         player.addEffect("invisibility", 10 * 20, {amplifier: 4, showParticles: false})
 
