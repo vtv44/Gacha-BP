@@ -208,6 +208,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
+        source.onScreenDisplay.setTitle("雷管劇選露爆社製")
     }
 
     if (id === "minecraft:iron_ingot") {
