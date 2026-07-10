@@ -107,7 +107,7 @@ export class game {
 
         world.setDefaultSpawnLocation(this.areaSpawnPos)
         world.gameRules.doTileDrops = true
-
+        this.teamWool
         const compass = new ItemStack("minecraft:compass", 1)
         compass.nameTag = "§lどこかを指すコンパス"
         compass.setLore([

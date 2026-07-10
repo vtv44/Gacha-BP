@@ -36,7 +36,12 @@ export class dashSwordSkill extends skillBase {
                 hitEntities.add(target.id);
 
                 if (!target.isValid) continue;
-                target.applyDamage(5);
+                
+                target.applyDamage(5, {
+                    cause: "entityAttack",
+                    damagingEntity: player
+                });
+                
                 dimension.spawnParticle("rca:sweep_white", {
                     x: target.location.x,
                     y: target.location.y + 1,

@@ -1,4 +1,4 @@
-import { world } from "@minecraft/server";
+import { world, system } from "@minecraft/server";
 import { ActionFormData } from "@minecraft/server-ui";
 import { skillBase } from "../skillBase";
 
@@ -26,7 +26,7 @@ export class administratorSkill extends skillBase {
     constructor() {
         super();
         this.id = "§4administrator";
-        this.cooldown = 20 * 20; 
+        this.cooldown = 0 * 0; 
     }
 
     async execute(player) {
@@ -90,8 +90,12 @@ export class administratorSkill extends skillBase {
 
         target.sendMessage("§c[警告] 画面にクイズが表示されます！急いで解答してください！");
         target.dimension.playSound("random.toast", target.location, { volume: 1.0, pitch: 1.0 });
+        
+        await new Promise(resolve => system.runTimeout(resolve, 20));
 
         try {
+            if (!target.isValid) return;
+
             const res = await form.show(target);
 
             if (res.canceled) {
@@ -117,7 +121,7 @@ export class administratorSkill extends skillBase {
         target.dimension.playSound("random.explode", target.location, { volume: 1.0, pitch: 1.0 });
         
         target.applyDamage(5, {
-            cause: "magic",
+            cause: "entityAttack",
             damagingEntity: attacker
         });
 
