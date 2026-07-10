@@ -109,6 +109,7 @@ import { ironDaggerSkill } from "./weapon/ironDagger";
 import { subMachineGunSkill } from "./weapon/submachinegun";
 import { igniteChestPlateSkill } from "./armor/igniteChestPlate";
 import { bailoutChestPlate } from "./armor/bailoutChestPlate";
+import { railgunSkill } from "./spell/railgun";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -200,6 +201,7 @@ skillManager.register(new hyperKineticPositionReverser());
 skillManager.register(new subMachineGunSkill());
 skillManager.register(new igniteChestPlateSkill());
 skillManager.register(new bailoutChestPlate());
+skillManager.register(new railgunSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());

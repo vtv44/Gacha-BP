@@ -208,9 +208,6 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
-        source.getEntitiesFromViewDirection({
-            
-        })
     }
 
     if (id === "minecraft:iron_ingot") {
