@@ -16,6 +16,8 @@ export class railgunSkill extends skillBase {
 
         this.consumeItem(player)
 
+        dimension.playSound("voice.chicken_1", pos)
+
         player.addEffect("slowness", 20, {amplifier: 255, showParticles: false})
         const input = player.inputPermissions
         input.setPermissionCategory(InputPermissionCategory.Camera, false)
