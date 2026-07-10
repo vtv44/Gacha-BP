@@ -1,4 +1,4 @@
-import { EntityDamageCause, system } from "@minecraft/server";
+import { EntityDamageCause, InputPermissionCategory, system } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class railgunSkill extends skillBase {
@@ -16,7 +16,15 @@ export class railgunSkill extends skillBase {
 
         this.consumeItem(player)
 
+        player.addEffect("slowness", 20, {amplifier: 255, showParticles: false})
+        const input = player.inputPermissions
+        input.setPermissionCategory(InputPermissionCategory.Camera, false)
+
         system.runTimeout(() => {
+            input.setPermissionCategory(InputPermissionCategory.Camera, true)
+
+            dimension.playSound("mob.warden.sonic_boom", pos, {volume: 0.8, pitch: 0.7})
+
             for (let i = 1; i <= 20; i++) {
                 let x = dir.x;
                 let z = dir.z;
@@ -37,12 +45,11 @@ export class railgunSkill extends skillBase {
                 if (atkPos.y > -58) {
                     dimension.spawnParticle("gacha:railgun_center", atkPos)
                     dimension.spawnParticle("gacha:railgun_volt", atkPos)
-                    dimension.playSound("mob.warden.sonic_boom", pos, {volume: 0.8, pitch: 0.7})
 
                     dimension.runCommand(
                         `fill 
                         ${atkPos.x + 2} ${atkPos.y + 2} ${atkPos.z + 2} 
-                        ${atkPos.x - 2} ${atkPos.y - 2} ${atkPos.z - 2}
+                        ${atkPos.x - 2} ${atkPos.y - 1} ${atkPos.z - 2}
                         air`
                     )
                 }
@@ -66,7 +73,7 @@ export class railgunSkill extends skillBase {
 
         const targets = this.getTargets(player, location, 4)
         for (const t of targets) {
-            t.applyDamage(5, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
+            t.applyDamage(5, {damagingEntity: player, cause: EntityDamageCause.magic})
             if (this.canAddEffect(player)) {
                 t.addEffect("slowness", 2 * 20, {amplifier: 255})
             }

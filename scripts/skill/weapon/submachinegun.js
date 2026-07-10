@@ -33,7 +33,7 @@ export class subMachineGunSkill extends skillBase {
                 const teamScore = world.scoreboard.getObjective("team").getScore(player)
                 const targets = player.getEntitiesFromViewDirection({
                     maxDistance: 25,
-                    ignoreBlockCollision: true,
+                    ignoreBlockCollision: false,
                     scoreOptions: [{
                         objective: "team",
                         minScore: teamScore,
@@ -44,7 +44,7 @@ export class subMachineGunSkill extends skillBase {
 
                 for (const t of targets) {
                     t.entity.applyDamage(1, {cause: EntityDamageCause.selfDestruct})
-                    player.playSound("random.bowhit", {volume: 0.6, pitch: 0.8})
+                    player.playSound("random.bowhit", {volume: 0.8, pitch: 0.8})
                 }
 
                 for (let i = 0; i <= 25; i++) {
@@ -54,7 +54,7 @@ export class subMachineGunSkill extends skillBase {
                         z: pos.z + dir.z * i
                     }
 
-                    if (!dimension.getBlock(pPos).isAir) continue
+                    if (!dimension.getBlock(pPos).isAir) break
 
                     dimension.spawnParticle("minecraft:basic_flame_particle", pPos)
                 }
