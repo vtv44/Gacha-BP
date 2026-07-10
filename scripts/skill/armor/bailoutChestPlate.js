@@ -23,6 +23,8 @@ export class bailoutChestPlate extends skillBase {
 
         if (current - damage < 0 && damageSource.cause === EntityDamageCause.entityAttack) {
             event.cancel = true
+
+            this.onCooldown(player)
             
             const players = world.getAllPlayers()
             .filter((p) => p.id !== player.id && p.getGameMode() !== GameMode.spectator)

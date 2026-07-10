@@ -19,6 +19,11 @@
             "minecraft:enchantable": {
                 "slot": "all",
                 "value": 10
+            },
+            "minecraft:use_animation": "crossbow",
+            "minecraft:use_modifiers": {
+                "movement_modifier": 0.9,
+                "use_duration": 0.5
             }
         }
     }

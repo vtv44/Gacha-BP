@@ -110,6 +110,7 @@ import { subMachineGunSkill } from "./weapon/submachinegun";
 import { igniteChestPlateSkill } from "./armor/igniteChestPlate";
 import { bailoutChestPlate } from "./armor/bailoutChestPlate";
 import { railgunSkill } from "./spell/railgun";
+import { starChaserBootsSkill } from "./armor/starChaserBoots";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -224,6 +225,7 @@ skillManager.tickSkillRegister(new wheatArmorSkill());
 skillManager.tickSkillRegister(new scanHelmetSkill());
 skillManager.tickSkillRegister(new breakTimeLeggings());
 skillManager.tickSkillRegister(new ironDaggerSkill());
+skillManager.tickSkillRegister(new starChaserBootsSkill());
 
 const axeSkill = new infernalAxeSkill();
 

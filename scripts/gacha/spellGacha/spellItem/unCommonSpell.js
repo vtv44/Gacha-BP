@@ -39,4 +39,16 @@ export const unCommonSpell = [
             "§5周囲にいるプレイヤーを吹き飛ばす"
         ]
     },
+    {
+        amount: 8,
+        id: "gacha:diamond_food",
+        name: "§a食べられるダイヤモンド",
+        lore: ["§5とても硬いけどそこそこお腹に溜まる"]
+    },
+    {
+        amount: 24,
+        id: "gacha:emerald_food",
+        name: "§a食べられるエメラルド",
+        lore: ["§5あんまりお腹に溜まらないけどめっちゃ軟らかい"]
+    },
 ]

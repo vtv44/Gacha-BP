@@ -89,10 +89,10 @@ export class game {
         }
 
         const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
-        //if (players.length <= 1) {
-        //    world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
-        //    return
-        //}
+        if (players.length <= 1) {
+            world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
+            return
+        }
 
         world.setDynamicProperty("game", true)
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
@@ -107,7 +107,7 @@ export class game {
 
         world.setDefaultSpawnLocation(this.areaSpawnPos)
         world.gameRules.doTileDrops = true
-        this.teamWool
+        
         const compass = new ItemStack("minecraft:compass", 1)
         compass.nameTag = "§lどこかを指すコンパス"
         compass.setLore([
@@ -375,7 +375,7 @@ export class game {
                 const coin = coinScore.getScore(p)
                 p.onScreenDisplay.setActionBar(`§l現在の所持コイン: §e${coin}`)
 
-                // p.addEffect("speed", 30 * 20, {amplifier: 2, showParticles: false})
+                p.addEffect("speed", 30 * 20, {amplifier: 2, showParticles: false})
             }
         }
     }

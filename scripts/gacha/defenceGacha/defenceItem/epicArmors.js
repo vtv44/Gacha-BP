@@ -116,5 +116,19 @@ export const epicArmors = [
             {id: "protection", level: 1},
             {id: "unbreaking", level: 3}
         ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:golden_boots",
+        name: "§5スターチェイサーブーツ",
+        lore: [
+            "§e[星の贈り物] §5攻撃",
+            "§5攻撃した時、星が即座に追撃する",
+            "§5一部のスキルによる攻撃にも乗る"
+        ],
+        enchants: [
+            {id: "protection", level: 4},
+            {id: "unbreaking", level: 3}
+        ]
     }
 ]
