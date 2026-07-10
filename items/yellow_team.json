@@ -1,0 +1,16 @@
+{
+  "format_version": "1.20.80",
+  "minecraft:item": {
+    "description": {
+      "identifier": "gacha:yellow_team",
+      "menu_category": {
+        "category": "equipment"
+      }
+    },
+    "components": {
+      "minecraft:icon": "yellow_team",
+      "minecraft:display_name": { "value": "§e黄色チーム" },
+      "minecraft:allow_off_hand": true
+    }
+  }
+}
