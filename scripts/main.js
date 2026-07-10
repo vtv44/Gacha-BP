@@ -1,4 +1,4 @@
-import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay, Entity, CommandPermissionLevel, EnchantmentType, EnchantmentTypes } from "@minecraft/server";
+import { world, system, ItemCompostableComponent, ItemStack, GameMode, InputPermissionCategory, EquipmentSlot, Dimension, TicksPerDay, Entity, CommandPermissionLevel, EnchantmentType, EnchantmentTypes, ItemLockMode } from "@minecraft/server";
 import { skillManager } from "./skill/skillManager";
 import "./skill/skillRegister";
 import { ActionFormData, ModalFormData } from "@minecraft/server-ui";
@@ -17,6 +17,7 @@ import { forms } from "./game/forms";
 import { unCommonArmors } from "./gacha/defenceGacha/defenceItem/unCommonArmors";
 import { divineArmors } from "./gacha/defenceGacha/defenceItem/divineArmors";
 import { epicWeapons } from "./gacha/weaponGacha/weaponItem/epicWeapons";
+
 
 const slots = [
     EquipmentSlot.Head,
@@ -354,18 +355,96 @@ const cancelBlocks = [
     "minecraft:decorated_pot",
     "minecraft:bed",
     "minecraft:beacon",
-    // クラフト用アイテム実装までキャンセル
     "minecraft:crafting_table",
 ]
+
+function craftArmor(player, resultId, costId, costAmount) {
+    const inventory = player.getComponent("minecraft:inventory").container;
+    
+    let total = 0;
+    for (let i = 0; i < inventory.size; i++) {
+        const item = inventory.getItem(i);
+        if (item && item.typeId === costId) {
+            total += item.amount;
+        }
+    }
+
+    if (total < costAmount) {
+        player.sendMessage(`§6スペシャルクッキー§rが足りません！`);
+        player.playSound("note.bass");
+        return;
+    }
+
+    let remainingToConsume = costAmount;
+    for (let i = 0; i < inventory.size; i++) {
+        if (remainingToConsume <= 0) break;
+        const item = inventory.getItem(i);
+        if (item && item.typeId === costId) {
+            if (item.amount > remainingToConsume) {
+                item.amount -= remainingToConsume;
+                inventory.setItem(i, item);
+                remainingToConsume = 0;
+            } else {
+                remainingToConsume -= item.amount;
+                inventory.setItem(i, undefined);
+            }
+        }
+    }
+
+    const newItem = new ItemStack(resultId, 1);
+    
+    newItem.nameTag = "§6クッキーアーマー";
+    newItem.setLore([
+        "§6[あーまいアーマー] §5装備",
+        "§5お腹が減りにくくなる"
+    ]);
+    
+    newItem.lockMode = ItemLockMode.inventory;
+
+    inventory.addItem(newItem);
+    
+    player.sendMessage(`§a防具を作成しました！`);
+    player.playSound("random.anvil_use");
+}
+
+function showCustomCrafting(player) {
+    const form = new ActionFormData();
+    form.title("§lカスタム作業台");
+    form.body("作成する防具を選んでください。");
+    form.button("§6クッキーヘルメット\n§8(§6スペシャルクッキー§81個)");
+    form.button("§6クッキーチェストプレート\n§8(§6スペシャルクッキー§82個)");
+    form.button("§6クッキーレギンス\n§8(§6スペシャルクッキー§82個)");
+    form.button("§6クッキーブーツ\n§8(§6スペシャルクッキー§81個)");
+    form.button("キャンセル");
+
+    form.show(player).then(response => {
+        if (response.canceled || response.selection === 4) return;
+        const costId = "gacha:special_cookie";
+        switch (response.selection) {
+            case 0: craftArmor(player, "gacha:cookie_helmet", costId, 1); break;
+            case 1: craftArmor(player, "gacha:cookie_chestplate", costId, 2); break;
+            case 2: craftArmor(player, "gacha:cookie_leggings", costId, 2); break;
+            case 3: craftArmor(player, "gacha:cookie_boots", costId, 1); break;
+        }
+    });
+}
 
 world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     const { player, block } = event;
     const held = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
+    
     if (blockedBlocks.includes(held?.typeId)) {
         event.cancel = true;
     }
 
-    const id = block.typeId
+    const id = block.typeId;
+    const { x, y, z } = block.location;
+
+    if (id === "minecraft:crafting_table" && x === 23 && y === 0 && z === -1) {
+        system.run(() => {
+            showCustomCrafting(player);
+        });
+    }
 
     if (
         cancelBlocks.includes(id) ||
@@ -373,7 +452,9 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
         id.includes("sign") ||
         id.includes("shelf") ||
         id.includes("shulker")
-    ) event.cancel = true;
+    ) {
+        event.cancel = true;
+    }
 
     if (world.getDynamicProperty("game")) {
         game.blockPlace(event);

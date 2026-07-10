@@ -111,6 +111,7 @@ import { igniteChestPlateSkill } from "./armor/igniteChestPlate";
 import { bailoutChestPlate } from "./armor/bailoutChestPlate";
 import { railgunSkill } from "./spell/railgun";
 import { starChaserBootsSkill } from "./armor/starChaserBoots";
+import { cookieArmorSkill } from "./armor/cookieArmor";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -226,6 +227,7 @@ skillManager.tickSkillRegister(new scanHelmetSkill());
 skillManager.tickSkillRegister(new breakTimeLeggings());
 skillManager.tickSkillRegister(new ironDaggerSkill());
 skillManager.tickSkillRegister(new starChaserBootsSkill());
+skillManager.tickSkillRegister(new cookieArmorSkill());
 
 const axeSkill = new infernalAxeSkill();
 
