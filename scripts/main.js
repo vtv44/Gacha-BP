@@ -34,10 +34,10 @@ const slots2 = [
 ]
 
 system.beforeEvents.startup.subscribe(ev => {
-    const coinCommand = {
+        const coinCommand = {
         name: "gacha:coin",
         description: "ガチャ用のコインを配ります",
-        permissionLevel: CommandPermissionLevel.Admin,
+        permissionLevel: CommandPermissionLevel.GameDirectors,
         mandatoryParameters: [],
         optionalParameters: []
     }
@@ -45,7 +45,7 @@ system.beforeEvents.startup.subscribe(ev => {
     const gameCommand = {
         name: "gacha:game",
         description: "ゲームに関連するいろいろ",
-        permissionLevel: CommandPermissionLevel.Admin,
+        permissionLevel: CommandPermissionLevel.GameDirectors,
         mandatoryParameters: [],
         optionalParameters: []
     }
@@ -53,7 +53,7 @@ system.beforeEvents.startup.subscribe(ev => {
     const repairCommand = {
         name: "gacha:maprepair",
         description: "マップを修復します",
-        permissionLevel: CommandPermissionLevel.Admin,
+        permissionLevel: CommandPermissionLevel.GameDirectors,
         mandatoryParameters: [],
         optionalParameters: []
     }
