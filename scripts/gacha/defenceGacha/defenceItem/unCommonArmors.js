@@ -114,4 +114,13 @@ export const unCommonArmors = [
             "§55回の攻撃で壊れてしまう"
         ],
     },
+    {
+        amount: 1,
+        id: "minecraft:iron_ingot",
+        name: "§aウォール",
+        lore: [
+            "[壁] §5右クリック",
+            "§5発動すると正面に壁を出す"
+        ],
+    },
 ]

@@ -13,7 +13,7 @@ export class stoneSwordSkill extends skillBase {
         player.addEffect("resistance", 100, { amplifier: 1 });
 
         player.dimension.playSound("your.sound.id.here", player.location, { volume: 1.0, pitch: 1.0 });
-        player.dimension.spawnParticle("minecraft:your_particle_id_here", player.location);
+        player.dimension.spawnParticle("rca:arrow_gray", player.location);
 
         const targets = this.getTargets(player, player.location, 5);
         

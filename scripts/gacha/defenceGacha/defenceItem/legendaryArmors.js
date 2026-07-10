@@ -52,4 +52,15 @@ export const legendaryArmors = [
             "§549%未満の時は防御的なバフに変更される"
         ],
     },
+    {
+        amount: 3,
+        id: "gacha:special_cookie",
+        name: "§6スペシャルクッキー！",
+        lore: [
+            "§6[YUMMY] §5食事 素材",
+            "§5食べると体力と満腹度が全回復し耐性が付与される",
+            "§5作業台で防具も作れる"
+        ],
+    }
+    
 ]
