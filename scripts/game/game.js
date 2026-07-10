@@ -217,12 +217,16 @@ export class game {
 
         if (this.testJoinGame(player)) {
             this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== player.id)
-            world.scoreboard.getObjective("gameInfo").addScore("§l§b残り人数", -1)
+            system.run(() => {
+                world.scoreboard.getObjective("gameInfo").addScore("§l§b残り人数", -1)
+            })
         }
 
-        if (this.testEndGame()) {
-            this.gameEnd()
-        }
+        system.run(() => {
+            if (this.testEndGame()) {
+                this.gameEnd()
+            }
+        })
     }
 
     static teamClear() {
