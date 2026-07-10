@@ -214,7 +214,7 @@ export class game {
     }
 
     static playerLeave(player) {
-        
+
         if (this.testJoinGame(player)) {
             this.gameJoinPlayers = this.gameJoinPlayers.filter(p => p.id !== player.id)
             world.scoreboard.getObjective("gameInfo").addScore("§l§b残り人数", -1)
@@ -316,7 +316,7 @@ export class game {
     static testJoinGame(player) {
         const id = player.id
         for (const p of this.gameJoinPlayers) {
-            if (!p.id === id) continue
+            if (p.id !== id) continue
             return true
         }
         return false
