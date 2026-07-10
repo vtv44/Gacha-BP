@@ -248,6 +248,7 @@ export class game {
         const teamObject = world.scoreboard.getObjective("team")
 
         for (let i = 0; i <= players.length - 1; i++) {
+            if (!players[i].isValid) continue
             const location = players[i].location
             teamObject.setScore(players[i], i + 5)
 
