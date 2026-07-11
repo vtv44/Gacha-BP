@@ -35,6 +35,12 @@ const slots2 = [
 ]
 
 system.beforeEvents.startup.subscribe(ev => {
+
+    const repairCommand = {
+        name: "gacha:rankpoint",
+        description: "ランクポイントを管理します",
+        permissionLevel: CommandPermissionLevel.GameDirectors,
+    }
         const coinCommand = {
         name: "gacha:coin",
         description: "ガチャ用のコインを配ります",

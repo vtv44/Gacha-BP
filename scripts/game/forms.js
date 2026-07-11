@@ -82,4 +82,24 @@ export class forms {
 
         return form
     }
+
+    static rankPointForm() {
+        const form = new ActionFormData()
+        .title("ランクポイントの設定")
+        .button("ランクポイントの付与")
+        .button("ランクポイントの消去")
+        .button("ランクポイントの表示")
+        .button("権限者になる")
+
+        return form
+    }
+
+    static addRankPointForm() {
+        const form = new ModalFormData()
+        .title("ランクポイントの付与")
+        .textField("付与するランクポイントを入力してください", "")
+
+        return form
+    }
 }
+
