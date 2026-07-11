@@ -76,7 +76,7 @@ export class spellGacha extends gachaBase {
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
             player.onScreenDisplay.setTitle(" ")
-            player.onScreenDisplay.setActionBar(`§1=RARE=`)
+            player.onScreenDisplay.updateSubtitle(`§1=RARE=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -89,7 +89,7 @@ export class spellGacha extends gachaBase {
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
             player.onScreenDisplay.setTitle(" ")
-            player.onScreenDisplay.setActionBar(`§5=EPIC=`)
+            player.onScreenDisplay.updateSubtitle(`§5=EPIC=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -102,7 +102,7 @@ export class spellGacha extends gachaBase {
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
             player.onScreenDisplay.setTitle(" ")
-            player.onScreenDisplay.setActionBar(`§l§6=LEGENDARY=`)
+            player.onScreenDisplay.updateSubtitle(`§l§6=LEGENDARY=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -115,7 +115,7 @@ export class spellGacha extends gachaBase {
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
             player.onScreenDisplay.setTitle(" ")
-            player.onScreenDisplay.setActionBar(`§l§d=MYTHIC=`)
+            player.onScreenDisplay.updateSubtitle(`§l§d=MYTHIC=`)
         }, 90)
 
         system.runTimeout(() => {
@@ -128,7 +128,7 @@ export class spellGacha extends gachaBase {
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
             player.onScreenDisplay.setTitle(" ")
-            player.onScreenDisplay.setActionBar(`§l§o§b-=DIVINE=-`)
+            player.onScreenDisplay.updateSubtitle(`§l§o§b-=DIVINE=-`)
         }, 90)
 
         system.runTimeout(() => {
@@ -141,7 +141,7 @@ export class spellGacha extends gachaBase {
         system.runTimeout(() => {
             this.giveItem(player, randomSpell)
             player.onScreenDisplay.setTitle(" ")
-            player.onScreenDisplay.setActionBar(`§l§k§4mm§r§l§4 !!SPECIAL!! §kmm`)
+            player.onScreenDisplay.updateSubtitle(`§l§k§4mm§r§l§4 !!SPECIAL!! §kmm`)
         }, 90)
 
         system.runTimeout(() => {
