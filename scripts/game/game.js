@@ -66,7 +66,7 @@ export class game {
         world.setDynamicProperty("game", false)
 
         this.gameJoinPlayers = []
-
+        world.setDefaultSpawnLocation(spawnPos)
         world.scoreboard.clearObjectiveAtDisplaySlot("Sidebar")
         world.getDimension("overworld").runCommand("kill @e[type=gacha:gacha_area]")
         world.gameRules.pvp = false
@@ -175,7 +175,6 @@ export class game {
 
         const spawnPos = {x: 0.5, y: 1, z: 0.5}
         player.teleport(spawnPos)
-        world.setDefaultSpawnLocation(spawnPos)
 
         const netherStar = new ItemStack("minecraft:nether_star", 1)
         netherStar.nameTag = "§l§d移動装置 §f/ 右クリック"
@@ -423,5 +422,5 @@ export class game {
 
 const maps = [
     new theEnd(),
-    new skyIsland(),
+    //new skyIsland(),
 ]
