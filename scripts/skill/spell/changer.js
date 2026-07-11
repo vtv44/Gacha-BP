@@ -4,7 +4,7 @@ import { skillBase } from "../skillBase";
 export class changerSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§6チェンジャー";
+        this.id = "§5チェンジャー";
         this.cooldown = 1 * 20;
         this.TEAM_OBJECTIVE = "team"; // ここを実際のスコアボード名に変更してください
     }
