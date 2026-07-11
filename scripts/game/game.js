@@ -1,4 +1,5 @@
 import { Difficulty, EquipmentSlot, GameMode, InputPermissionCategory, ItemLockMode, ItemStack, system, world } from "@minecraft/server"
+import { ActionFormData } from "@minecraft/server-ui" // ← ショップUIのために追加
 import { theEnd } from "./maps/theEnd"
 import { rankPointManager } from "./rankPointManager"
 import { skyIsland } from "./maps/skyIsland"
@@ -6,7 +7,7 @@ import { mapBase } from "./maps/mapBase"
 
 export class game {
 
-    // メモ　gameJoinPlayersはplayerクラスが入ってる配列の変数
+    // メモ gameJoinPlayersはplayerクラスが入ってる配列の変数
     // 今あるdynamicProperty
     // win 累計勝利数
     // kill 累計キル数
@@ -332,6 +333,42 @@ export class game {
         const rand = Math.floor(Math.random() * maps.length)
         return maps[rand]
     }
+    static openShop(player) {
+        const form = new ActionFormData();
+        form.title("§lコインショップ");
+        form.body("購入するアイテムを選んでください。");
+        form.button("§eテレポート\n§8(5コイン)");
+        form.button("キャンセル");
+
+        form.show(player).then(response => {
+            if (response.canceled || response.selection === 1) return;
+
+            if (response.selection === 0) {
+                const coinScore = world.scoreboard.getObjective("coin");
+                const currentCoins = coinScore ? (coinScore.getScore(player) ?? 0) : 0;
+
+                if (currentCoins >= 5) {
+                    coinScore.setScore(player, currentCoins - 5);
+                    
+                    const teleportItem = new ItemStack("minecraft:amethyst_shard", 2);
+                    teleportItem.nameTag = "§eテレポート";
+                    teleportItem.setLore([
+                        "§e[味方の元へ！] §5右クリック 消費",
+                        "§5生存している味方を選択してその味方にテレポートする！"
+                    ]);
+                    teleportItem.lockMode = ItemLockMode.inventory;
+                    
+                    player.getComponent("inventory").container.addItem(teleportItem);
+                    
+                    player.sendMessage("§aテレポートを2つ購入しました！");
+                    player.playSound("random.levelup", { volume: 0.5 });
+                } else {
+                    player.sendMessage("§cコインが足りません！");
+                    player.playSound("note.bass");
+                }
+            }
+        });
+    }
 
     static onSecond() {
         if (world.getDynamicProperty("game")) {
@@ -375,7 +412,7 @@ export class game {
             const coinScore = world.scoreboard.getObjective("coin")
 
             for (const p of players) {
-                const coin = coinScore.getScore(p)
+                const coin = coinScore ? (coinScore.getScore(p) ?? 0) : 0
                 p.onScreenDisplay.setActionBar(`§l現在の所持コイン: §e${coin}`)
 
                 p.addEffect("speed", 30 * 20, {amplifier: 2, showParticles: false})

@@ -78,6 +78,7 @@ export class forms {
         .button("§lガラス32個 §e5コイン", "textures/blocks/glass")
         .button("§l金のニンジン8個 §e5コイン", "textures/items/carrot_golden")
         .button("§lステーキ32個 §e15コイン", "textures/items/beef_cooked")
+        .button("§lテレポート2個 §e5コイン", "textures/items/amethyst_shard")
 
         return form
     }

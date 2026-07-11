@@ -214,7 +214,6 @@ export class commandFunctions {
     }
 
     static shop(origin) {
-        // 気が向いたらきれいにする
         if (origin.sourceEntity?.typeId !== "minecraft:player") return {
             status: CustomCommandStatus.Failure,
             message: ""
@@ -268,6 +267,22 @@ export class commandFunctions {
                         container.addItem(steak)
                         coinScore.addScore(player, -15)
                         break
+                    case 3:
+                        if (coin < 5) return {
+                            status: CustomCommandStatus.Failure,
+                            message: "§cコインが足りていません"
+                        }
+                        const teleportItem = new ItemStack("minecraft:amethyst_shard", 2);
+                        teleportItem.nameTag = "§eテレポート";
+                        teleportItem.setLore([
+                            "§e[味方の元へ！] §5右クリック 消費",
+                            "§5生存している味方を選択してその味方にテレポートする！"
+                        ]);
+                        teleportItem.lockMode = ItemLockMode.inventory;
+                        
+                        container.addItem(teleportItem);
+                        coinScore.addScore(player, -5);
+                        break;
                 }
 
                 player.playSound("random.orb")
