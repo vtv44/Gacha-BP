@@ -13,49 +13,27 @@ export class endstoneSwordSkill extends skillBase {
         const viewDir = player.getViewDirection();
         const dimension = player.dimension;
         const maxDist = 8;
-        const step = 0.25; // 判定の細かさ(小さいほど正確だが処理が増える)
+        const step = 0.25;
 
-        const headLoc = {
-            x: player.location.x,
-            y: player.location.y + 1.62,
-            z: player.location.z
-        };
-
-        let safeLoc = { ...player.location }; // 最後に安全だった座標(足元基準)
+        const startFeet = { ...player.location };
+        let safeLoc = { ...startFeet };
 
         for (let d = step; d <= maxDist; d += step) {
-            const checkHead = {
-                x: headLoc.x + viewDir.x * d,
-                y: headLoc.y + viewDir.y * d,
-                z: headLoc.z + viewDir.z * d
+            const feet = {
+                x: startFeet.x + viewDir.x * d,
+                y: startFeet.y + viewDir.y * d,
+                z: startFeet.z + viewDir.z * d
             };
+            const body = { x: feet.x, y: feet.y + 1, z: feet.z };
 
-            // 足元(プレイヤーの立ち位置基準)も同時にチェック
-            const checkFeet = {
-                x: checkHead.x,
-                y: checkHead.y - 1.62,
-                z: checkHead.z
-            };
-            const checkBody = {
-                x: checkHead.x,
-                y: checkHead.y - 0.9,
-                z: checkHead.z
-            };
+            const feetBlock = dimension.getBlock(feet);
+            const bodyBlock = dimension.getBlock(body);
 
-            const headBlock = dimension.getBlock(checkHead);
-            const bodyBlock = dimension.getBlock(checkBody);
-            const feetBlock = dimension.getBlock(checkFeet);
-
-            // どこか1点でも埋まっていたら、そこで打ち切り
-            if (
-                !headBlock?.isAir ||
-                !bodyBlock?.isAir ||
-                !feetBlock?.isAir
-            ) {
-                break;
+            if (!feetBlock?.isAir || !bodyBlock?.isAir) {
+                break; // ここでsafeLocは更新しない = 1つ前の安全地点で止まる
             }
 
-            safeLoc = checkFeet;
+            safeLoc = feet;
         }
 
         player.teleport(safeLoc, { dimension: dimension });

@@ -1,14 +1,15 @@
 import { skillBase } from "../skillBase";
+import { world } from "@minecraft/server";
 
 export class swapperSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§6スワッパー"; // ※元のID（スワッパー等）に合わせて変更してください
+        this.id = "§6スワッパー"; // ※元のID(スワッパー等)に合わせて変更してください
         this.cooldown = 20 * 15; 
     }
 
     execute(player) {
-        // ▼ 追加: 空中にいる（地面に足がついていない）場合は不発にする
+        // 空中にいる(地面に足がついていない)場合は不発にする
         if (!player.isOnGround) {
             player.onScreenDisplay.setActionBar("§c空中では使用できません");
             return;
@@ -30,7 +31,11 @@ export class swapperSkill extends skillBase {
             );
         }
 
-        // 2. 視線の先にあるエンティティ（プレイヤー）を取得
+        // 2. チーム判定用のオブジェクティブを取得
+        const teamObjective = world.scoreboard.getObjective("team");
+        const myTeam = teamObjective ? teamObjective.getScore(player) : undefined;
+
+        // 3. 視線の先にあるエンティティ(敵プレイヤーのみ)を取得
         const entities = player.getEntitiesFromViewDirection({ maxDistance: maxDistance });
         let targetPlayer = null;
 
@@ -41,18 +46,25 @@ export class swapperSkill extends skillBase {
                 if (hit.distance > blockDistance) {
                     break;
                 }
+
+                // 同じチームならスキップして次の候補を探す
+                const targetTeam = teamObjective ? teamObjective.getScore(entity) : undefined;
+                if (teamObjective && myTeam !== undefined && targetTeam === myTeam) {
+                    continue;
+                }
+
                 targetPlayer = entity;
                 break;
             }
         }
 
-        // 3. ターゲットが見つからなかった場合はスキル不発
+        // 4. ターゲットが見つからなかった場合はスキル不発
         if (!targetPlayer) {
             player.onScreenDisplay.setActionBar("§c有効なターゲットが見つかりません");
             return;
         }
 
-        // 4. 入れ替え処理
+        // 5. 入れ替え処理
         const playerLoc = player.location;
         const targetLoc = targetPlayer.location;
 
@@ -65,7 +77,7 @@ export class swapperSkill extends skillBase {
         player.sendMessage("§6[スキル] §e対象と位置を入れ替えました！");
         targetPlayer.sendMessage("§6[スキル] §c能力によって位置を入れ替えられました！");
 
-        // 5. 成功した時のみクールタイムを発生させる
+        // 6. 成功した時のみクールタイムを発生させる
         this.onCooldown(player);
     }
 }

@@ -6,7 +6,7 @@ export class phantomSwordSkill extends skillBase {
     constructor() {
         super();
         this.id = "§dファントムソード";
-        this.cooldown = 20 * 2;
+        this.cooldown = 20 * 4;
     }
 
     execute(player) {
