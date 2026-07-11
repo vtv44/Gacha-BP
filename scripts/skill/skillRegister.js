@@ -112,6 +112,7 @@ import { railgunSkill } from "./spell/railgun";
 import { starChaserBootsSkill } from "./armor/starChaserBoots";
 import { cookieArmorSkill } from "./armor/cookieArmor";
 import { teleportSkill } from "./spell/teleport";
+import { rainbowArmorSkill } from "./armor/rainbowArmor";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -228,6 +229,7 @@ skillManager.tickSkillRegister(new breakTimeLeggings());
 skillManager.tickSkillRegister(new ironDaggerSkill());
 skillManager.tickSkillRegister(new starChaserBootsSkill());
 skillManager.tickSkillRegister(new cookieArmorSkill());
+skillManager.tickSkillRegister(new rainbowArmorSkill());
 
 const axeSkill = new infernalAxeSkill();
 

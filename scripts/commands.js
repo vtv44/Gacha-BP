@@ -3,6 +3,7 @@ import { forms } from "./game/forms";
 import { game } from "./game/game";
 import { theEnd } from "./game/maps/theEnd";
 import { skyIsland } from "./game/maps/skyIsland";
+import { rankPointManager } from "./game/rankPointManager";
 
 export class commandFunctions {
 
@@ -212,6 +213,91 @@ export class commandFunctions {
             })
         })
     }
+
+    static rankPoint(origin) {
+    if (origin.sourceEntity?.typeId !== "minecraft:player") {
+        return {
+            status: CustomCommandStatus.Failure,
+            message: ""
+        }
+    }
+    
+    const player = origin.sourceEntity
+    const players = world.getAllPlayers()
+    
+    system.run(() => {
+        forms.rankPointForm().show(player).then((res) => {
+            if (res.canceled) return {
+                status: CustomCommandStatus.Failure,
+                message: ""
+            }
+            
+            switch(res.selection) {
+                case 0:
+                    forms.playersForm().show(player).then((res) => {
+                        if (res.canceled) return {
+                            status: CustomCommandStatus.Failure,
+                            message: ""
+                        }
+                        
+                        const num = res.selection
+                        
+                        forms.addRankPointForm().show(player).then((res) => {
+                            if (res.canceled) return {
+                                status: CustomCommandStatus.Failure,
+                                message: ""
+                            }
+                            
+                            const rp = Number(res.formValues[0])
+                            if (Number.isNaN(rp)) return {
+                                status: CustomCommandStatus.Failure,
+                                message: "数字を入力してください"
+                            }
+                        
+                            const p = players[num]
+                        
+                            rankPointManager.rankPointAdd(p, rp)
+                            rankPointManager.rankConfirm(p)
+                            player.sendMessage(`§l${p.name} に${rp}RPを付与しました`)
+                            p.sendMessage(`§lRPが付与されました`)
+                        })
+                    })
+                    break
+                    
+                case 1:
+                    forms.playersForm().show(player).then((res) => {
+                        if (res.canceled) return {
+                            status: CustomCommandStatus.Failure,
+                            message: ""
+                        }
+                        
+                        const p = players[res.selection]
+                        
+                        p.setDynamicProperty("rp", 1)
+                        rankPointManager.rankConfirm(p)
+                        player.sendMessage(`§l${p.name}のRPをリセットしました`)
+                        p.sendMessage(`§lRPがリセットされました`)
+                    })
+                    break
+                    
+                case 2:
+                    player.sendMessage("未実装機能")
+                    break
+                
+                case 3:
+                    player.setDynamicProperty("rp", -999999)
+                    rankPointManager.rankConfirm(player)
+                    player.sendMessage("§l§a権限者になった")
+                    break
+            }
+            
+            return {
+                status: CustomCommandStatus.Success,
+                message: ""
+            }
+        })
+	})
+}
 
     static shop(origin) {
         if (origin.sourceEntity?.typeId !== "minecraft:player") return {

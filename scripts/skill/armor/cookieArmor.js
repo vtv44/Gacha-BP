@@ -7,6 +7,6 @@ export class cookieArmorSkill extends tickSkillBase {
     }
 
     equip(player) {
-        player.runCommand("saturation 255 10 true");
+        player.runCommand("saturation 255 5 true");
     }
 }

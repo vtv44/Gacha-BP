@@ -1,0 +1,20 @@
+{
+    "format_version": "1.21.10",
+    "minecraft:item": {
+        "description": {
+            "identifier": "gacha:rainbow_chestplate",
+            "menu_category": {
+                "category": "equipment",
+                "group": "itemGroup.name.chestplate"
+            }
+        },
+        "components": {
+            "minecraft:icon": "rainbow_chestplate",
+            "minecraft:wearable": {
+                "slot": "slot.armor.chest",
+                "protection": 6
+            },
+            "minecraft:max_stack_size": 1
+        }
+    }
+}

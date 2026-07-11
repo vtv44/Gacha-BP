@@ -36,7 +36,7 @@ const slots2 = [
 
 system.beforeEvents.startup.subscribe(ev => {
 
-    const repairCommand = {
+    const rankPointCommand = {
         name: "gacha:rankpoint",
         description: "ランクポイントを管理します",
         permissionLevel: CommandPermissionLevel.GameDirectors,
@@ -72,6 +72,7 @@ system.beforeEvents.startup.subscribe(ev => {
     }
     
     ev.customCommandRegistry.registerCommand(coinCommand, commandFunctions.coin);
+    ev.customCommandRegistry.registerCommand(rankPointCommand, commandFunctions.rankPoint);
     ev.customCommandRegistry.registerCommand(gameCommand, commandFunctions.game);
     ev.customCommandRegistry.registerCommand(repairCommand, commandFunctions.mapRepair);
     ev.customCommandRegistry.registerCommand(shopCommand, commandFunctions.shop);
@@ -334,7 +335,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    //"minecraft:anvil",
+    "minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",
@@ -413,24 +414,89 @@ function craftArmor(player, resultId, costId, costAmount) {
     player.playSound("random.anvil_use");
 }
 
+function craftRainbowArmor(player, resultId, costId, costAmount) {
+    const inventory = player.getComponent("minecraft:inventory").container;
+    
+    let total = 0;
+    for (let i = 0; i < inventory.size; i++) {
+        const item = inventory.getItem(i);
+        if (item && item.typeId === costId) {
+            total += item.amount;
+        }
+    }
+
+    if (total < costAmount) {
+        player.sendMessage(`§bプリズム§rが足りません！`);
+        player.playSound("note.bass");
+        return;
+    }
+
+    let remainingToConsume = costAmount;
+    for (let i = 0; i < inventory.size; i++) {
+        if (remainingToConsume <= 0) break;
+        const item = inventory.getItem(i);
+        if (item && item.typeId === costId) {
+            if (item.amount > remainingToConsume) {
+                item.amount -= remainingToConsume;
+                inventory.setItem(i, item);
+                remainingToConsume = 0;
+            } else {
+                remainingToConsume -= item.amount;
+                inventory.setItem(i, undefined);
+            }
+        }
+    }
+
+    const newItem = new ItemStack(resultId, 1);
+
+    newItem.nameTag = "§eレインボーアーマー";
+    newItem.setLore([
+        "§e[虹の輝き] §5装備",
+        "§5様々な力が宿る防具"
+    ]);
+    
+    newItem.lockMode = ItemLockMode.inventory;
+
+    inventory.addItem(newItem);
+    
+    player.sendMessage(`§aレインボーアーマーを作成しました！`);
+    player.playSound("random.levelup", { volume: 0.5 });
+}
+
+
 function showCustomCrafting(player) {
     const form = new ActionFormData();
     form.title("§lカスタム作業台");
     form.body("作成する防具を選んでください。");
+
     form.button("§6クッキーヘルメット\n§8(§6スペシャルクッキー§81個)");
     form.button("§6クッキーチェストプレート\n§8(§6スペシャルクッキー§82個)");
     form.button("§6クッキーレギンス\n§8(§6スペシャルクッキー§82個)");
     form.button("§6クッキーブーツ\n§8(§6スペシャルクッキー§81個)");
+
+    form.button("§eレインボーヘルメット\n§8(§bプリズム§81個)");
+    form.button("§eレインボーチェストプレート\n§8(§bプリズム§82個)");
+    form.button("§eレインボーレギンス\n§8(§bプリズム§82個)");
+    form.button("§eレインボーブーツ\n§8(§bプリズム§81個)");
+    
     form.button("キャンセル");
 
     form.show(player).then(response => {
-        if (response.canceled || response.selection === 4) return;
-        const costId = "gacha:special_cookie";
+        if (response.canceled || response.selection === 8) return;
+        
+        const cookieCost = "gacha:special_cookie";
+        const prismCost = "gacha:prism";
+
         switch (response.selection) {
-            case 0: craftArmor(player, "gacha:cookie_helmet", costId, 1); break;
-            case 1: craftArmor(player, "gacha:cookie_chestplate", costId, 2); break;
-            case 2: craftArmor(player, "gacha:cookie_leggings", costId, 2); break;
-            case 3: craftArmor(player, "gacha:cookie_boots", costId, 1); break;
+            case 0: craftArmor(player, "gacha:cookie_helmet", cookieCost, 1); break;
+            case 1: craftArmor(player, "gacha:cookie_chestplate", cookieCost, 2); break;
+            case 2: craftArmor(player, "gacha:cookie_leggings", cookieCost, 2); break;
+            case 3: craftArmor(player, "gacha:cookie_boots", cookieCost, 1); break;
+
+            case 4: craftRainbowArmor(player, "gacha:rainbow_helmet", prismCost, 1); break;
+            case 5: craftRainbowArmor(player, "gacha:rainbow_chestplate", prismCost, 2); break;
+            case 6: craftRainbowArmor(player, "gacha:rainbow_leggings", prismCost, 2); break;
+            case 7: craftRainbowArmor(player, "gacha:rainbow_boots", prismCost, 1); break;
         }
     });
 }

@@ -1,0 +1,18 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "gacha:prism",
+      "menu_category": {
+        "category": "nature",
+        "group": "itemGroup.name.cookedFood"
+      }
+    },
+    "components": {
+      "minecraft:icon": "prism",
+      "minecraft:display_name": {
+        "value": "輝くプリズム"
+      }
+    }
+  }
+}
