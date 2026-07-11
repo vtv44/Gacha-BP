@@ -5,7 +5,7 @@ export const epicArmors = [
         name: "§5アイアンなヘルメット",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchants: [
-            {id: "fire_protection", level: 4},
+            {id: "protection", level: 4},
             {id: "unbreaking", level: 2}
         ]
     },
@@ -15,7 +15,7 @@ export const epicArmors = [
         name: "§5アイアンなチェストプレート",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchants: [
-            {id: "blast_protection", level: 4},
+            {id: "protection", level: 4},
             {id: "unbreaking", level: 2}
         ]
     },
@@ -25,7 +25,7 @@ export const epicArmors = [
         name: "§5アイアンなレギンス",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchants: [
-            {id: "projectile_protection", level: 4},
+            {id: "protection", level: 4},
             {id: "unbreaking", level: 2}
         ]
     },
@@ -35,7 +35,7 @@ export const epicArmors = [
         name: "§5アイアンなブーツ",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchants: [
-            {id: "feather_falling", level: 4},
+            {id: "protection", level: 4},
             {id: "unbreaking", level: 2}
         ]
     },
