@@ -56,6 +56,7 @@ export class skillBase {
     }
 
     clearEffectSetTime(player, tick) {
+        player.addEffect("village_hero", tick, {showParticles: false})
         player.setDynamicProperty("effectCancelTime", system.currentTick + tick)
         player.sendMessage(` \n§l${tick / 20}秒間、エフェクトが付与されなくなった\n `)
         player.playSound("note.bit", {pitch: 0.5})
