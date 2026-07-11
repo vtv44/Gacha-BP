@@ -11,42 +11,56 @@ export class endstoneSwordSkill extends skillBase {
         this.onCooldown(player);
 
         const viewDir = player.getViewDirection();
+        const dimension = player.dimension;
+        const maxDist = 8;
+        const step = 0.25; // 判定の細かさ(小さいほど正確だが処理が増える)
+
         const headLoc = {
             x: player.location.x,
             y: player.location.y + 1.62,
             z: player.location.z
         };
-        const maxDist = 8; 
 
-        const raycast = player.dimension.getBlockFromRay(headLoc, viewDir, { maxDistance: maxDist });
+        let safeLoc = { ...player.location }; // 最後に安全だった座標(足元基準)
 
-        let tpLoc;
-        if (raycast) {
-            const hitDist = Math.sqrt(
-                Math.pow(raycast.block.location.x - headLoc.x, 2) +
-                Math.pow(raycast.block.location.y - headLoc.y, 2) +
-                Math.pow(raycast.block.location.z - headLoc.z, 2)
-            );
-            
-            const safeDist = Math.max(0, hitDist - 1.5); 
-            
-            tpLoc = {
-                x: headLoc.x + viewDir.x * safeDist,
-                y: (headLoc.y - 1.62) + viewDir.y * safeDist,
-                z: headLoc.z + viewDir.z * safeDist
+        for (let d = step; d <= maxDist; d += step) {
+            const checkHead = {
+                x: headLoc.x + viewDir.x * d,
+                y: headLoc.y + viewDir.y * d,
+                z: headLoc.z + viewDir.z * d
             };
-        } else {
-            tpLoc = {
-                x: headLoc.x + viewDir.x * maxDist,
-                y: (headLoc.y - 1.62) + viewDir.y * maxDist,
-                z: headLoc.z + viewDir.z * maxDist
+
+            // 足元(プレイヤーの立ち位置基準)も同時にチェック
+            const checkFeet = {
+                x: checkHead.x,
+                y: checkHead.y - 1.62,
+                z: checkHead.z
             };
+            const checkBody = {
+                x: checkHead.x,
+                y: checkHead.y - 0.9,
+                z: checkHead.z
+            };
+
+            const headBlock = dimension.getBlock(checkHead);
+            const bodyBlock = dimension.getBlock(checkBody);
+            const feetBlock = dimension.getBlock(checkFeet);
+
+            // どこか1点でも埋まっていたら、そこで打ち切り
+            if (
+                !headBlock?.isAir ||
+                !bodyBlock?.isAir ||
+                !feetBlock?.isAir
+            ) {
+                break;
+            }
+
+            safeLoc = checkFeet;
         }
 
-        player.teleport(tpLoc, { dimension: player.dimension });
-        
-        player.dimension.playSound("mob.endermen.portal", player.location, { volume: 1.0, pitch: 1.0 });
+        player.teleport(safeLoc, { dimension: dimension });
 
+        player.dimension.playSound("mob.endermen.portal", player.location, { volume: 1.0, pitch: 1.0 });
         player.dimension.spawnParticle("minecraft:witchspell_emitter", player.location);
     }
 }
