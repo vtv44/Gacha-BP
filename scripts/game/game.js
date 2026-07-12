@@ -64,7 +64,11 @@ export class game {
 
     static gameReset() {
         world.setDynamicProperty("game", false)
-
+        const spawnPos = {
+        x: 0.5,
+        y: 0.5,
+        z: 0.5
+        }
         this.gameJoinPlayers = []
         world.setDefaultSpawnLocation(spawnPos)
         world.scoreboard.clearObjectiveAtDisplaySlot("Sidebar")
