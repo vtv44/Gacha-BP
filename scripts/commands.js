@@ -7,6 +7,7 @@ import { rankPointManager } from "./game/rankPointManager";
 import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
 import { defenceGacha } from "./gacha/defenceGacha/defenceGacha";
 import { spellGacha } from "./gacha/spellGacha/spellGacha";
+import { school } from "./game/maps/school";
 
 export class commandFunctions {
 
@@ -243,7 +244,7 @@ export class commandFunctions {
 
                 switch(res.selection) {
                     case 0: new theEnd().buildRepair(); break
-                    case 1: new skyIsland().buildRepair(); break
+                    case 1: new school().buildRepair(); break
                 }
 
                 return {
