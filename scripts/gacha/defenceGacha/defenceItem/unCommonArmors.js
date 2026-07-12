@@ -45,7 +45,7 @@ export const unCommonArmors = [
     {
         amount: 1,
         id: "minecraft:copper_chestplate",
-        name: "a5コッぺーなチェストプレート",
+        name: "§aコッぺーなチェストプレート",
         lore: ["§5間に合わせで入れられたようだ..."],
         enchants: [
             {id: "protection", level: 2},

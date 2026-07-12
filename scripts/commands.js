@@ -4,6 +4,9 @@ import { game } from "./game/game";
 import { theEnd } from "./game/maps/theEnd";
 import { skyIsland } from "./game/maps/skyIsland";
 import { rankPointManager } from "./game/rankPointManager";
+import { weaponGacha } from "./gacha/weaponGacha/weaponGacha";
+import { defenceGacha } from "./gacha/defenceGacha/defenceGacha";
+import { spellGacha } from "./gacha/spellGacha/spellGacha";
 
 export class commandFunctions {
 
@@ -84,6 +87,43 @@ export class commandFunctions {
                         }
                         break
                 }
+                return {
+                    status: CustomCommandStatus.Success,
+                    message: ""
+                }
+            })
+        })
+    }
+
+    static gacha(origin) {
+        if (origin.sourceEntity?.typeId !== "minecraft:player") {
+            return {
+                status: CustomCommandStatus.Failure,
+                message: ""
+            }
+        }
+
+        const player = origin.sourceEntity
+
+        system.run(() => {
+            forms.gachaForm(player).show(player).then((res) => {
+                if (res.canceled) return {
+                    status: CustomCommandStatus.Failure,
+                    message: ""
+                }
+
+                switch(res.selection) {
+                    case 0:
+                        weaponGacha.gachaCommand(player)
+                        break
+                    case 1:
+                        defenceGacha.gachaCommand(player)
+                        break
+                    case 2:
+                        spellGacha.gachaCommand(player)
+                        break
+                }
+
                 return {
                     status: CustomCommandStatus.Success,
                     message: ""

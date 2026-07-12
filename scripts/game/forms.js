@@ -22,6 +22,19 @@ export class forms {
         return form
     }
 
+    static gachaForm(player) {
+        const coin = world.scoreboard.getObjective("coin").getScore(player)
+
+        const form = new ActionFormData()
+        .title("§l引くガチャを選択してください")
+        .body(`§l所持しているコイン: §e${coin}`)
+        .button("§l§cWEAPON")
+        .button("§l§bDEFENCE")
+        .button("§l§aMAGIC")
+
+        return form
+    }
+
     static gameForm() {
         const form = new ActionFormData()
         .title("ゲーム")

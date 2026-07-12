@@ -66,7 +66,7 @@ export class game {
         world.setDynamicProperty("game", false)
 
         this.gameJoinPlayers = []
-        world.setDefaultSpawnLocation(spawnPos)
+        world.setDefaultSpawnLocation({x: 0.5, y: 0.5, z: 0.5})
         world.scoreboard.clearObjectiveAtDisplaySlot("Sidebar")
         world.getDimension("overworld").runCommand("kill @e[type=gacha:gacha_area]")
         world.gameRules.pvp = false

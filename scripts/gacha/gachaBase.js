@@ -29,14 +29,6 @@ export class gachaBase {
     }
 
     static decision(rarity, player) {
-        const dimension = world.getDimension("overworld")
-
-        this.gachaParticles()
-
-        system.runTimeout(() => {
-            this.spawnCrate(dimension, this.cratePos)
-        }, 60)
-
         switch(rarity) {
             case "common": return this.common(player)
             case "unCommon": return this.unCommon(player)
@@ -53,7 +45,41 @@ export class gachaBase {
         }
     }
 
+    static gachaCommand(player) {
+        if (!this.hasCoin(player)) {
+            player.sendMessage("§cガチャを回すにはコインが足りません")
+            player.playSound("random.fizz")
+            return
+        }
+
+        if (player.hasTag("gachaing")) {
+            player.sendMessage("§cガチャを回している間には引けません")
+            player.playSound("random.fizz")
+            return
+        }
+
+        player.addTag("gachaing")
+        world.scoreboard.getObjective("coin").addScore(player, this.cost * -1)
+        this.decision(this.lottery(), player)
+
+        this.gachaParticleCommand(player)
+
+        system.runTimeout(() => {
+            player.removeTag("gachaing")
+        }, 90)
+    }
+
     static gachaParticles() {}
+
+    static gachaParticleCommand(player) {
+        for (let i = 1; i <= 17; i ++) {
+            system.runTimeout(() => {
+                player.playSound("random.toast", {volume: 0.3, pitch: 2})
+                player.onScreenDisplay.setTitle(" ")
+                player.onScreenDisplay.updateSubtitle(`§8${this.lottery()}`)
+            }, i * 5)
+        }
+    }
 
     static giveItem(player, itemInfo) {
         const item = new ItemStack(itemInfo.id, itemInfo.amount)
@@ -71,6 +97,7 @@ export class gachaBase {
         }
 
         player.getComponent("inventory").container.addItem(item)
+        player.playSound("block.enchanting_table.use")
     }
 
     static hasCoin(player) {
@@ -119,7 +146,7 @@ export class gachaBase {
     static rollGacha(player) {
         if (!this.hasCoin(player)) {
             player.sendMessage("§cガチャを回すにはコインが足りません")
-            player.playSound("random.fizz", player.location)
+            player.playSound("random.fizz")
             return
         }
         player.addTag("gachaing")
@@ -127,6 +154,18 @@ export class gachaBase {
         world.scoreboard.getObjective("coin").addScore(player, this.cost * -1)
         this.decision(this.lottery(), player)
         player.teleport(this.gachaPos)
+
+        const dimension = world.getDimension("overworld")
+
+        this.gachaParticles()
+
+        system.runTimeout(() => {
+            this.spawnCrate(dimension, this.cratePos)
+        }, 60)
+
+        system.runTimeout(() => {
+            this.leaveGacha(player)
+        }, 110)
     }
 
     static spawnCrate(dimension, pos) {

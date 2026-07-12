@@ -48,10 +48,6 @@ export class weaponGacha extends gachaBase {
             player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.updateSubtitle(`§f-COMMON-`)
         }, 90)
-
-        system.runTimeout(() => {
-            this.leaveGacha(player)
-        }, 110)
         // const {pos, tick} = commonAnimation[this.randomInt(commonAnimation) - 1]
         // player.runCommand(`setblock ${pos.x} ${pos.y} ${pos.z} redstone_block`)
         // system.runTimeout(() => {
@@ -66,10 +62,6 @@ export class weaponGacha extends gachaBase {
             player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.updateSubtitle(`§a-UNCOMMON-`)
         }, 90)
-
-        system.runTimeout(() => {
-            this.leaveGacha(player)
-        }, 110)
     }
 
     static rare(player) {
@@ -79,10 +71,6 @@ export class weaponGacha extends gachaBase {
             player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.updateSubtitle(`§1=RARE=`)
         }, 90)
-
-        system.runTimeout(() => {
-            this.leaveGacha(player)
-        }, 110)
     }
 
     static epic(player) {
@@ -92,10 +80,6 @@ export class weaponGacha extends gachaBase {
             player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.updateSubtitle(`§5=EPIC=`)
         }, 90)
-
-        system.runTimeout(() => {
-            this.leaveGacha(player)
-        }, 110)
     }
 
     static legendary(player) {
@@ -105,10 +89,6 @@ export class weaponGacha extends gachaBase {
             player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.updateSubtitle(`§l§6=LEGENDARY=`)
         }, 90)
-
-        system.runTimeout(() => {
-            this.leaveGacha(player)
-        }, 110)
     }
 
     static mythic(player) {
@@ -118,10 +98,6 @@ export class weaponGacha extends gachaBase {
             player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.updateSubtitle(`§l§d=MYTHIC=`)
         }, 90)
-
-        system.runTimeout(() => {
-            this.leaveGacha(player)
-        }, 110)
     }
 
     static divine(player) {
@@ -131,10 +107,6 @@ export class weaponGacha extends gachaBase {
             player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.updateSubtitle(`§l§o§b-=DIVINE=-`)
         }, 90)
-
-        system.runTimeout(() => {
-            this.leaveGacha(player)
-        }, 110)
     }
 
     static special(player) {
@@ -144,10 +116,6 @@ export class weaponGacha extends gachaBase {
             player.onScreenDisplay.setTitle(" ")
             player.onScreenDisplay.updateSubtitle(`§l§k§4mm§r§l§4 !!SPECIAL!! §kmm`)
         }, 90)
-
-        system.runTimeout(() => {
-            this.leaveGacha(player)
-        }, 110)
     }
 }
 

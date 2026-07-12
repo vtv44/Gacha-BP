@@ -17,6 +17,7 @@ import { forms } from "./game/forms";
 import { unCommonArmors } from "./gacha/defenceGacha/defenceItem/unCommonArmors";
 import { divineArmors } from "./gacha/defenceGacha/defenceItem/divineArmors";
 import { epicWeapons } from "./gacha/weaponGacha/weaponItem/epicWeapons";
+import { epicSpells } from "./gacha/spellGacha/spellItem/epicSpells";
 
 
 const slots = [
@@ -36,17 +37,18 @@ const slots2 = [
 
 system.beforeEvents.startup.subscribe(ev => {
 
-    const rankPointCommand = {
-        name: "gacha:rankpoint",
-        description: "ランクポイントを管理します",
-        permissionLevel: CommandPermissionLevel.GameDirectors,
-    }
-        const coinCommand = {
+    const coinCommand = {
         name: "gacha:coin",
         description: "ガチャ用のコインを配ります",
         permissionLevel: CommandPermissionLevel.GameDirectors,
         mandatoryParameters: [],
         optionalParameters: []
+    }
+
+    const gachaCommand = {
+        name: "gacha:gacha",
+        description: "ガチャを引けます",
+        permissionLevel: CommandPermissionLevel.Any
     }
 
     const gameCommand = {
@@ -55,6 +57,12 @@ system.beforeEvents.startup.subscribe(ev => {
         permissionLevel: CommandPermissionLevel.GameDirectors,
         mandatoryParameters: [],
         optionalParameters: []
+    }
+
+    const rankPointCommand = {
+        name: "gacha:rankpoint",
+        description: "ランクポイントを管理します",
+        permissionLevel: CommandPermissionLevel.GameDirectors,
     }
 
     const repairCommand = {
@@ -72,8 +80,9 @@ system.beforeEvents.startup.subscribe(ev => {
     }
     
     ev.customCommandRegistry.registerCommand(coinCommand, commandFunctions.coin);
-    ev.customCommandRegistry.registerCommand(rankPointCommand, commandFunctions.rankPoint);
+    ev.customCommandRegistry.registerCommand(gachaCommand, commandFunctions.gacha);
     ev.customCommandRegistry.registerCommand(gameCommand, commandFunctions.game);
+    ev.customCommandRegistry.registerCommand(rankPointCommand, commandFunctions.rankPoint);
     ev.customCommandRegistry.registerCommand(repairCommand, commandFunctions.mapRepair);
     ev.customCommandRegistry.registerCommand(shopCommand, commandFunctions.shop);
 })
@@ -215,11 +224,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
     const id = itemStack.typeId;
     
     if (id === "minecraft:diamond") {
-        source.setDynamicProperty("rp", -999999)
-    }
-
-    if (id === "minecraft:iron_ingot") {
-        
+        // tester
     }
 
     if (id === "minecraft:nether_star" && !source.hasTag("gachaing")) {
