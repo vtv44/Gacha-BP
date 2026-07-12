@@ -41,7 +41,7 @@ export const mythicSpells = [
     },
     {
         amount: 1,
-        id: "minecraft:campfire",
+        id: "minecraft:pink_dye",
         name: "§d癒しの焚火",
         lore: [
             "§d[憩いの場] §5右クリック",

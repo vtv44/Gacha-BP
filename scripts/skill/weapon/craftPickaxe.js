@@ -55,5 +55,38 @@ export class craftPickaxeSkill extends skillBase {
             player.dimension.playSound("random.levelup", player.location, { volume: 0.5, pitch: 1.5 });
             player.sendMessage("§e[クラフト] §eエンドストーンソード§fを作成しました！");
         }
+        else if (
+            blockName === "minecraft:snow" || 
+            blockName === "minecraft:snow_layer" || 
+            blockName === "minecraft:snow_block" || 
+            blockName === "minecraft:blue_ice"
+        ) {
+            const snowArmor = new ItemStack("gacha:snow_armor", 1);
+            snowArmor.nameTag = "§wスノーアーマー";
+            snowArmor.setLore([
+                "§w[氷結] §5攻撃時",
+                "§5自分が殴った相手に移動速度低下を付与する"
+            ]);
+            snowArmor.lockMode = ItemLockMode.inventory;
+            
+            inventory.setItem(slot, snowArmor);
+            
+            player.dimension.playSound("random.levelup", player.location, { volume: 0.5, pitch: 1.5 });
+            player.sendMessage("§e[クラフト] §wスノーアーマー§fを作成しました！");
+        }
+        else if (blockName.includes("leaves")) {
+            const leafArmor = new ItemStack("gacha:leef_armor", 1);
+            leafArmor.nameTag = "§aリーフアーマー";
+            leafArmor.setLore([
+                "§a[風の力] §5装備",
+                "§5自分が殴った相手が上に飛ばされる"
+            ]);
+            leafArmor.lockMode = ItemLockMode.inventory;
+            
+            inventory.setItem(slot, leafArmor);
+            
+            player.dimension.playSound("random.levelup", player.location, { volume: 0.5, pitch: 1.5 });
+            player.sendMessage("§e[クラフト] §aリーフアーマー§fを作成しました！");
+        }
     }
 }

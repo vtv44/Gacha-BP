@@ -1,0 +1,18 @@
+{
+  "format_version": "1.21.10",
+  "minecraft:item": {
+    "description": {
+      "identifier": "gacha:flower",
+      "menu_category": {
+        "category": "nature",
+        "group": "itemGroup.name.cookedFood"
+      }
+    },
+    "components": {
+      "minecraft:icon": "flower",
+      "minecraft:display_name": {
+        "value": "花"
+      }
+    }
+  }
+}

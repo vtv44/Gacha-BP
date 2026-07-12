@@ -340,7 +340,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    "minecraft:anvil",
+    //"minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",

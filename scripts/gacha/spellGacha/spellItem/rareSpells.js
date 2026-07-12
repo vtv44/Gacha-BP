@@ -22,7 +22,7 @@ export const rareSpells = [
 
     {
         amount: 1,
-        id: "minecraft:tnt",
+        id: "minecraft:gunpowder",
         name: "§1TNTショット",
         lore: [
             "§c[TNT射出！] §5右クリック",

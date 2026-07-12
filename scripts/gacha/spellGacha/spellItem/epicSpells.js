@@ -11,7 +11,7 @@ export const epicSpells = [
     
     {
         amount: 1,
-        id: "crying_obsidian",
+        id: "minecraft:echo_shard",
         name: "§5崩壊する重力",
         lore: [
             "§5[重力操作] §5右クリック",
@@ -45,7 +45,7 @@ export const epicSpells = [
     },
     {
         amount: 1,
-        id: "minecraft:golden_dandelion",
+        id: "gacha:flower",
         name: "§5フラワーダッシュ",
         lore: [
             "§7[ジャローナ] §5右クリック",
@@ -74,7 +74,7 @@ export const epicSpells = [
     },
     {
         amount: 1,
-        id: "minecraft:glowstone",
+        id: "minecraft:glowstone_dust",
         name: "§5ホーリーディメンション",
         lore: [
             "§e[聖なる一撃] §5右クリック",

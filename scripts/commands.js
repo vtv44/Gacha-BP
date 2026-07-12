@@ -369,7 +369,6 @@ export class commandFunctions {
                             message: "§cコインが足りていません"
                         }
                         const glass = new ItemStack("minecraft:glass", 32)
-                        glass.lockMode = ItemLockMode.inventory
 
                         container.addItem(glass)
                         coinScore.addScore(player, -5)
@@ -380,7 +379,6 @@ export class commandFunctions {
                             message: "§cコインが足りていません"
                         }
                         const carrot = new ItemStack("minecraft:golden_carrot", 8)
-                        carrot.lockMode = ItemLockMode.inventory
 
                         container.addItem(carrot)
                         coinScore.addScore(player, -5)
@@ -391,7 +389,6 @@ export class commandFunctions {
                             message: "§cコインが足りていません"
                         }
                         const steak = new ItemStack("minecraft:cooked_beef", 32)
-                        steak.lockMode = ItemLockMode.inventory
 
                         container.addItem(steak)
                         coinScore.addScore(player, -15)
@@ -407,7 +404,6 @@ export class commandFunctions {
                             "§e[味方の元へ！] §5右クリック 消費",
                             "§5生存している味方を選択してその味方にテレポートする！"
                         ]);
-                        teleportItem.lockMode = ItemLockMode.inventory;
                         
                         container.addItem(teleportItem);
                         coinScore.addScore(player, -5);

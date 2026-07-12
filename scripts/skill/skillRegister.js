@@ -113,6 +113,8 @@ import { starChaserBootsSkill } from "./armor/starChaserBoots";
 import { cookieArmorSkill } from "./armor/cookieArmor";
 import { teleportSkill } from "./spell/teleport";
 import { rainbowArmorSkill } from "./armor/rainbowArmor";
+import { snowArmorSkill } from "./armor/snowArmor";
+import { leafArmorSkill } from "./armor/leafArmor";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -205,6 +207,8 @@ skillManager.register(new igniteChestPlateSkill());
 skillManager.register(new bailoutChestPlate());
 skillManager.register(new railgunSkill());
 skillManager.register(new teleportSkill());
+skillManager.register(new snowArmorSkill());
+skillManager.register(new leafArmorSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
