@@ -4,6 +4,7 @@ import { theEnd } from "./maps/theEnd"
 import { rankPointManager } from "./rankPointManager"
 import { skyIsland } from "./maps/skyIsland"
 import { mapBase } from "./maps/mapBase"
+import { school } from "./maps/school"
 
 export class game {
 
@@ -426,5 +427,6 @@ export class game {
 
 const maps = [
     new theEnd(),
+    new school(),
     //new skyIsland(),
 ]
