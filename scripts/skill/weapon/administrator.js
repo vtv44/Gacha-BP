@@ -26,7 +26,7 @@ export class administratorSkill extends skillBase {
     constructor() {
         super();
         this.id = "§4administrator";
-        this.cooldown = 0 * 0; 
+        this.cooldown = 20 * 10; 
     }
 
     async execute(player) {
