@@ -74,7 +74,7 @@ export class craftPickaxeSkill extends skillBase {
             player.dimension.playSound("random.levelup", player.location, { volume: 0.5, pitch: 1.5 });
             player.sendMessage("§e[クラフト] §wスノーアーマー§fを作成しました！");
         }
-        else if (blockName.includes("leaves")) {
+        else if (blockName.includes("minecraft:azalea_leaves")) {
             const leafArmor = new ItemStack("gacha:leef_armor", 1);
             leafArmor.nameTag = "§aリーフアーマー";
             leafArmor.setLore([
