@@ -9,7 +9,7 @@ export class magicRevolverSkill extends skillBase {
         super()
 
         this.id = "§d=魔術銃= レボルブ"
-        this.cooldown = 6 * 20
+        this.cooldown = 9 * 20
     }
 
     execute(player) {

@@ -26,7 +26,7 @@ export class subMachineGunSkill extends skillBase {
                 dimension.playSound("mob.blaze.shoot", pos, {pitch: 1.8, volume: 0.7})
 
                 let ammo = subMachineGunSkill.ammo.get(player.id)
-                if (ammo === undefined) ammo = 35
+                if (ammo === undefined) ammo = 30
                 subMachineGunSkill.ammo.set(player.id, ammo - 1)
                 player.onScreenDisplay.setActionBar(`§l§3AMMO: §f${ammo - 1}`)
 
@@ -43,7 +43,7 @@ export class subMachineGunSkill extends skillBase {
                 })
 
                 for (const t of targets) {
-                    t.entity.applyDamage(1, {cause: EntityDamageCause.selfDestruct})
+                    t.entity.applyDamage(2, {cause: EntityDamageCause.selfDestruct})
                     player.playSound("random.bowhit", {volume: 0.8, pitch: 0.8})
                 }
 
@@ -65,7 +65,7 @@ export class subMachineGunSkill extends skillBase {
                     player.playSound("camera.take_picture", {pitch: 0.6})
 
                     system.runTimeout(() => {
-                        subMachineGunSkill.ammo.set(player.id, 35)
+                        subMachineGunSkill.ammo.set(player.id, 30)
                     }, this.cooldown)
                 }
             }, i)
