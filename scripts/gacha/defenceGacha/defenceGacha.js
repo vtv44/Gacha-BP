@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { world, system, EnchantmentTypes, ItemLockMode, ItemStack } from "@minecraft/server";
 import { gachaBase } from "../gachaBase";
 import { commonArmors } from "./defenceItem/commonArmors";
 import { divineArmors } from "./defenceItem/divineArmors";
@@ -38,6 +38,25 @@ export class defenceGacha extends gachaBase {
             dimension.playSound("random.totem", upPos, {pitch: 3, volume: 0.8})
             dimension.playSound("random.levelup", upPos, {pitch: 0.5})
         }, 60)
+    }
+
+    static giveItem(player, itemInfo) {
+        // 防具だけロックなし
+        const item = new ItemStack(itemInfo.id, itemInfo.amount)
+        const enchant = item.getComponent("minecraft:enchantable")
+        const e = itemInfo.enchants
+
+        item.nameTag = itemInfo.name
+        item.setLore(itemInfo.lore)
+
+        if (e && enchant) {
+            for (let i = 0; i <= e.length - 1; i++) {
+                enchant.addEnchantment({type: EnchantmentTypes.get(e[i].id), level: e[i].level})
+            }
+        }
+
+        player.getComponent("inventory").container.addItem(item)
+        player.playSound("block.enchanting_table.use")
     }
 
     static common(player) {

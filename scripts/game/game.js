@@ -4,6 +4,7 @@ import { theEnd } from "./maps/theEnd"
 import { rankPointManager } from "./rankPointManager"
 import { skyIsland } from "./maps/skyIsland"
 import { mapBase } from "./maps/mapBase"
+import { school } from "./maps/school"
 
 export class game {
 
@@ -65,10 +66,11 @@ export class game {
     static gameReset() {
         world.setDynamicProperty("game", false)
         const spawnPos = {
-        x: 0.5,
-        y: 0.5,
-        z: 0.5
+            x: 0.5,
+            y: 0.5,
+            z: 0.5
         }
+
         this.gameJoinPlayers = []
         world.setDefaultSpawnLocation({x: 0.5, y: 0.5, z: 0.5})
         world.scoreboard.clearObjectiveAtDisplaySlot("Sidebar")
@@ -78,6 +80,8 @@ export class game {
         world.gameRules.doTileDrops = false
         world.setDifficulty(Difficulty.Peaceful)
         this.teamClear()
+
+        world.getDimension("overworld").runCommand("kill @e[type=item]")
 
         for (const player of world.getAllPlayers()) {
             this.resetPlayer(player)
@@ -426,5 +430,6 @@ export class game {
 
 const maps = [
     new theEnd(),
+    new school(),
     //new skyIsland(),
 ]
