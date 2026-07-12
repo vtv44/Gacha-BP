@@ -12,8 +12,6 @@ export class rainbowArmorSkill extends tickSkillBase {
 
         player.addEffect("speed", 100, { amplifier: 1, showParticles: false });
         player.addEffect("strength", 100, { amplifier: 0, showParticles: false });
-        player.addEffect("resistance", 100, { amplifier: 0, showParticles: false });
-        player.addEffect("regeneration", 100, { amplifier: 0, showParticles: false });
         player.addEffect("jump_boost", 100, { amplifier: 0, showParticles: false });
     }
 }
