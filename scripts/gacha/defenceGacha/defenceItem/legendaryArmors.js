@@ -55,7 +55,7 @@ export const legendaryArmors = [
     {
         amount: 3,
         id: "gacha:special_cookie",
-        name: "§6スペシャルクッキー！",
+        name: "§6スペシャルクッキー",
         lore: [
             "§6[YUMMY] §5食事 素材",
             "§5食べると体力と満腹度が全回復し耐性が付与される",

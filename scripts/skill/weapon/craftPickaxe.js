@@ -75,7 +75,7 @@ export class craftPickaxeSkill extends skillBase {
             player.sendMessage("§e[クラフト] §wスノーアーマー§fを作成しました！");
         }
         else if (blockName.includes("minecraft:azalea_leaves")) {
-            const leafArmor = new ItemStack("gacha:leef_armor", 1);
+            const leafArmor = new ItemStack("gacha:leaf_armor", 1);
             leafArmor.nameTag = "§aリーフアーマー";
             leafArmor.setLore([
                 "§a[風の力] §5装備",
