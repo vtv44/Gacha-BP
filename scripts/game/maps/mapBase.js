@@ -7,6 +7,7 @@ export class mapBase {
             {x: -1, y: -1, z: -1},
             {x: 1, y: 1, z: 1}
         ]
+        this.blockCancelHeight = {min: 0, max: 128}
         this.tickingPos = [
             {x: 0, y: 0, z: 0, x2: 1, y2: 1, z2: 1},
         ]

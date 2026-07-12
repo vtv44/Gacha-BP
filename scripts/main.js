@@ -18,6 +18,7 @@ import { unCommonArmors } from "./gacha/defenceGacha/defenceItem/unCommonArmors"
 import { divineArmors } from "./gacha/defenceGacha/defenceItem/divineArmors";
 import { epicWeapons } from "./gacha/weaponGacha/weaponItem/epicWeapons";
 import { epicSpells } from "./gacha/spellGacha/spellItem/epicSpells";
+import { school } from "./game/maps/school";
 
 
 const slots = [
@@ -225,6 +226,8 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
+        const p = await new school().areaCenterPoint()
+        source.teleport(p)
     }
 
     if (id === "minecraft:nether_star" && !source.hasTag("gachaing")) {

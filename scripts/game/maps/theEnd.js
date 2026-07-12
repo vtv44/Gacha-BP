@@ -10,6 +10,10 @@ export class theEnd extends mapBase {
             {x: 2127, y: 53, z: 127}
         ]
 
+        this.blockCancelHeight = [
+            {min: 0, max: 100}
+        ]
+
         this.structures = [
             {id: "the_end_0", x: 2000, y: 0, z: 0},
             {id: "the_end_1", x: 2064, y: 0, z: 0},

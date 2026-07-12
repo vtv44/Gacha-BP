@@ -29,7 +29,7 @@ export class game {
 
         if (
             block.x <= this.map.mapPos[0].x || this.map.mapPos[1].x <= block.x ||
-            block.y <= 1 || 127 <= block.y ||
+            block.y <= this.map.blockCancelHeight.min || this.map.blockCancelHeight.max <= block.y ||
             block.z <= this.map.mapPos[0].z || this.map.mapPos[1].z <= block.z
         ) event.cancel = true
     }
