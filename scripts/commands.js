@@ -49,7 +49,7 @@ export class commandFunctions {
                         })
                         break
                     case 1:
-                        forms.playersForm().show(player).then((res) => {
+                        forms.playersForm(players).show(player).then((res) => {
                             if (res.canceled) return {
                                 status: CustomCommandStatus.Failure,
                                 message: ""
@@ -234,7 +234,7 @@ export class commandFunctions {
             
             switch(res.selection) {
                 case 0:
-                    forms.playersForm().show(player).then((res) => {
+                    forms.playersForm(players).show(player).then((res) => {
                         if (res.canceled) return {
                             status: CustomCommandStatus.Failure,
                             message: ""
@@ -265,7 +265,7 @@ export class commandFunctions {
                     break
                     
                 case 1:
-                    forms.playersForm().show(player).then((res) => {
+                    forms.playersForm(players).show(player).then((res) => {
                         if (res.canceled) return {
                             status: CustomCommandStatus.Failure,
                             message: ""
@@ -282,6 +282,9 @@ export class commandFunctions {
                     
                 case 2:
                     player.sendMessage("未実装機能")
+                    for (let i = 0; i <= players.length - 1; i++) {
+                        world.sendMessage(`§l${players[i].name} の現在のポイント: ${players[i].getDynamicProperty("rp")}`)
+                    }
                     break
                 
                 case 3:

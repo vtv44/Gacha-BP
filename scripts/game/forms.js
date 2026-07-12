@@ -52,9 +52,8 @@ export class forms {
         return form
     }
 
-    static playersForm() {
+    static playersForm(players) {
         // ワールドにいるプレイヤー全員
-        const players = world.getAllPlayers()
         const form = new ActionFormData()
         .title("プレイヤー")
         for (const p of players) {
