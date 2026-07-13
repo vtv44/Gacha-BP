@@ -12,7 +12,7 @@ export class damageCutLeggingsSkill extends skillBase {
 
     onHurtBefore(player, event) {
         const { damage, damageSource } = event
-        const damagingEntity = damageSource.damagingEntity;
+        const damagingEntity = damageSource.damagingEntity
         const dimension = player.dimension
         const pos = player.location
 

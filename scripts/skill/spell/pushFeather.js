@@ -32,10 +32,10 @@ export class pushFeatherSkill extends skillBase {
                     t.applyKnockback({x: dir.x * 4, z: dir.z * 4}, dir.y)
                 }
 
-                if (emitterPos.y < -64) return
-                dimension.spawnParticle("rca:sweep_white", emitterPos)
-                dimension.spawnParticle("rca:star_blue", emitterPos)
-                dimension.playSound("wind_charge.burst", emitterPos, {volume: 0.3, pitch: 1.2})
+                if (atkPos.y < -64) return
+                dimension.spawnParticle("rca:sweep_white", atkPos)
+                dimension.spawnParticle("rca:star_blue", atkPos)
+                dimension.playSound("wind_charge.burst", atkPos, {volume: 0.3, pitch: 1.2})
             }, i)
         }
     }

@@ -22,7 +22,9 @@ export class explosiveChestPlateSkill extends skillBase {
         const dimension = player.dimension
         const pos = player.location
 
-        dimension.createExplosion(pos, 4, {
+        if (pos.y < -64) return
+
+        dimension.createExplosion(pos, 3, {
             breaksBlocks: true,
             causesFire: false,
             source: player

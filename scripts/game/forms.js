@@ -60,7 +60,7 @@ export class forms {
         const form = new ActionFormData()
         .title("マップ")
         .button("ザ・エンド")
-        .button("空島")
+        .button("学校")
 
         return form
     }
