@@ -10,7 +10,7 @@
     },
     "components": {
       "minecraft:icon": "assassin_blade",
-      "minecraft:display_name": { "value": "hyperion" },
+      "minecraft:display_name": { "value": "true_assassin_blade" },
       "minecraft:max_stack_size": 1,
       "minecraft:hand_equipped": true,
       "minecraft:damage": 10,
