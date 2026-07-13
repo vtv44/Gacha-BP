@@ -5,8 +5,8 @@ export class medicalKitSkill extends skillBase {
         super()
 
         this.id = "§5回復キット"
-        this.cooldown = 30 * 20
-        this.heal = 10
+        this.cooldown = 10 * 20
+        this.heal = 12
     }
 
     execute(player) {

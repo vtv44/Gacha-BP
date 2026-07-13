@@ -16,7 +16,7 @@ export class fightBackBootsSkill extends tickSkillBase {
 
         if (current < max / 2) {
             player.addEffect("speed", 3 * 20, {amplifier: 1, showParticles: false})
-            player.addEffect("strength", 3 * 20, {amplifier: 1, showParticles: false})
+            player.addEffect("strength", 3 * 20, {amplifier: 0, showParticles: false})
             player.addEffect("resistance", 3 * 20, {amplifier: 0, showParticles: false})
         }
     }

@@ -23,7 +23,8 @@ export const mythicArmors = [
             "§5プレイヤーを見ると相手を動けなくする"
         ],
         enchants: [
-            {id: "protection", level: 2}
+            {id: "protection", level: 4},
+            {id: "unbreaking", level: 3}
         ]
     },
     {
@@ -35,7 +36,8 @@ export const mythicArmors = [
             "§5再生2が付与される"
         ],
         enchants: [
-            {id: "protection", level: 2}
+            {id: "protection", level: 4},
+            {id: "unbreaking", level: 3}
         ]
     },
     {
@@ -47,7 +49,8 @@ export const mythicArmors = [
             "§5ジャンプすると前方に加速する"
         ],
         enchants: [
-            {id: "protection", level: 2}
+            {id: "protection", level: 4},
+            {id: "unbreaking", level: 3}
         ]
     },
     {
@@ -59,7 +62,8 @@ export const mythicArmors = [
             "§5スピード5が付与される"
         ],
         enchants: [
-            {id: "protection", level: 2}
+            {id: "protection", level: 4},
+            {id: "unbreaking", level: 3}
         ]
     },
     {
@@ -79,5 +83,18 @@ export const mythicArmors = [
             "§f[霊体化] §5被弾",
             "§5プレイヤーから直接攻撃を受けた際、一瞬だけ無敵(スペクテイター)になる"
         ],
+    },
+    {
+        amount: 1,
+        id: "gacha:proteikos_chestplate",
+        name: "§dプロテコスチェストプレート",
+        lore: [
+            "§6[不安定な体] §5装備",
+            "§5体力が50%以上の時、攻撃的なバフが付与される",
+            "§549%未満の時は防御的なバフに変更される"
+        ],
+        enchants: [
+            {id: "protection", level: 2}
+        ]
     },
 ]

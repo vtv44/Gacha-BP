@@ -1,16 +1,6 @@
 export const unCommonSpell = [
     {
         amount: 1,
-        id: "minecraft:enchanted_book",
-        name: "§a回復の本",
-        lore: [
-            "§a[癒しの詩] §5右クリック",
-            "§5周囲のプレイヤーを再生させる"
-        ]
-    },
-    
-    {
-        amount: 1,
         id: "minecraft:prismarine_crystals",
         name: "§aスピードアップ",
         lore: [
@@ -60,5 +50,14 @@ export const unCommonSpell = [
             "§5周囲のプレイヤーのエフェクトを消し、10秒間エフェクトが付与されなくなる",
             "§5もしも二分の一を外せば、対象は自分だけになる"
         ],
+    },
+    {
+        amount: 1,
+        id: "minecraft:cocoa_beans",
+        name: "§a煙玉",
+        lore: [
+            "§7[煙幕] §5右クリック",
+            "§5周囲に煙を出して透明化する"
+        ]
     },
 ]

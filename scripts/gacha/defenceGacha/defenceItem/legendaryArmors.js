@@ -43,16 +43,6 @@ export const legendaryArmors = [
         ]
     },
     {
-        amount: 1,
-        id: "gacha:proteikos_chestplate",
-        name: "§6プロテコスチェストプレート",
-        lore: [
-            "§6[不安定な体] §5装備",
-            "§5体力が50%以上の時、攻撃的なバフが付与される",
-            "§549%未満の時は防御的なバフに変更される"
-        ],
-    },
-    {
         amount: 3,
         id: "gacha:special_cookie",
         name: "§6スペシャルクッキー",

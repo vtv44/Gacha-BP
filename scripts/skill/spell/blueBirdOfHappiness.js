@@ -6,7 +6,7 @@ export class blueBirdOfHappinessSkill extends skillBase {
         super()
 
         this.id = "§6幸せを運ぶ青色の鳥"
-        this.cooldown = 40 * 20
+        this.cooldown = 50 * 20
     }
 
     execute(player) {

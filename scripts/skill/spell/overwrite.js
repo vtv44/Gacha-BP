@@ -5,7 +5,7 @@ export class overwriteSkill extends skillBase {
     constructor() {
         super()
 
-        this.id = "§dOVERWRITE"
+        this.id = "§6OVERWRITE"
         this.cooldown = 10 * 20
     }
 

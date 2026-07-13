@@ -20,8 +20,8 @@ export class greenMagicSKill extends skillBase {
         dimension.spawnParticle("rca:spell_green", location)
         dimension.playSound("mob.witch.celebrate", location)
 
-        for (const t of this.getTargets(player, location, 4)) {
-            if (this.canAddEffect(player)) t.addEffect("poison", 5 * 20)
+        for (const t of this.getTargets(player, location, 7)) {
+            if (this.canAddEffect(player)) t.addEffect("poison", 5 * 20, {amplifier: 1})
         }
     }
 }

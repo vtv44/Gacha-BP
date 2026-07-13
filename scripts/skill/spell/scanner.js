@@ -1,4 +1,4 @@
-import { world, GameMode } from "@minecraft/server";
+import { world, GameMode, system } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class scannerSkill extends skillBase {
@@ -22,6 +22,13 @@ export class scannerSkill extends skillBase {
             player.sendMessage({
                 rawtext: [{ text: `§1[スキャナー] §r${target.name}を発見` }]
             });
+            if (target.nameTag === " ") continue
+
+            target.nameTag = target.name
+
+            system.runTimeout(() => {
+                target.nameTag = " "
+            }, this.cooldown - 1)
         }
     }
 }

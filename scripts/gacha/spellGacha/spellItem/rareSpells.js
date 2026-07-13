@@ -1,16 +1,6 @@
 export const rareSpells = [
     {
         amount: 1,
-        id: "minecraft:cocoa_beans",
-        name: "§1煙玉",
-        lore: [
-            "§7[煙幕] §5右クリック",
-            "§5周囲に煙を出して透明化する"
-        ]
-    },
-
-    {
-        amount: 1,
         id: "minecraft:recovery_compass",
         name: "§1スキャナー",
         lore: [
@@ -56,8 +46,18 @@ export const rareSpells = [
         name: "§1ミニ回復キット",
         lore: [
             "§d[応急手当] §5右クリック",
-            "§5自分の体力を即座に4回復する",
+            "§5自分の体力を即座に7回復する",
             "§5消耗品"
         ],
+    },
+
+    {
+        amount: 1,
+        id: "minecraft:enchanted_book",
+        name: "§1回復の本",
+        lore: [
+            "§a[癒しの詩] §5右クリック",
+            "§5周囲のプレイヤーを再生させる"
+        ]
     },
 ]

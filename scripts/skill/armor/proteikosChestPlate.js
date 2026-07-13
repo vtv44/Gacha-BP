@@ -4,7 +4,7 @@ export class proteikosChestPlateSkill extends tickSkillBase {
     constructor() {
         super()
 
-        this.id = "§6プロテコスチェストプレート"
+        this.id = "§dプロテコスチェストプレート"
     }
 
     equip(player) {
@@ -22,7 +22,7 @@ export class proteikosChestPlateSkill extends tickSkillBase {
             player.addEffect("speed", 10, {amplifier: 1, showParticles: false})
         } else {
             player.addEffect("resistance", 10, {amplifier: 2, showParticles: false})
-            player.addEffect("regeneration", 10, {amplifier: 0, showParticles: false})
+            player.addEffect("regeneration", 10, {amplifier: 1, showParticles: false})
         }
     }
 }

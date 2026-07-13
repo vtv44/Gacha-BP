@@ -5,11 +5,13 @@ export class absorptionSwordSkill extends skillBase {
         super()
 
         this.id = "§1衝撃的な剣"
+        this.cooldown = 7 * 20
     }
 
     onDamage(player, event) {
-        if (this.canAddEffect(player)) {
-            player.addEffect("absorption", 15 * 20, {amplifier: 0})
+        if (this.canUse(player) && this.canAddEffect(player)) {
+            this.onCooldown(player)
+            player.addEffect("absorption", 5 * 20, {amplifier: 0})
             player.playSound("mob.endermite.hit")
         }
     }

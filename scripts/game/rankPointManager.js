@@ -4,8 +4,8 @@ export class rankPointManager {
     static rankPoint = [
         {point: -1, rank: "§l§a[ADMIN]§r§a"},
         {point: 300, rank: "§8[IRON-I]§r"},
-        {point: 700, rank: "§8[IRON-II]"},
-        {point: 1100, rank: "§8[IRON-III]"},
+        {point: 700, rank: "§8[IRON-II]§r"},
+        {point: 1100, rank: "§8[IRON-III]§r"},
         {point: 1500, rank: "§n[BRONZE-I]§r"},
         {point: 2250, rank: "§n[BRONZE-II]§r"},
         {point: 3000, rank: "§n[BRONZE-III]§r"},

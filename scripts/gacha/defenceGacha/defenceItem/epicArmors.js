@@ -41,7 +41,7 @@ export const epicArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:copper_leggings",
+        id: "minecraft:copper_boots",
         name: "§5反逆のブーツ",
         lore: [
             "§2[反逆の意思] §5装備",

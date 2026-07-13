@@ -5,7 +5,7 @@ export class breakArmorSKill extends skillBase {
     constructor() {
         super()
 
-        this.id = "§6気まずさの破片"
+        this.id = "§d気まずさの破片"
         this.cooldown = 15 * 20
     }
 

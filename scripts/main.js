@@ -89,7 +89,7 @@ system.beforeEvents.startup.subscribe(ev => {
 })
 
 system.runInterval(() => {
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -102,7 +102,7 @@ system.runInterval(() => {
 })
 
 system.runInterval(() => {
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -135,7 +135,7 @@ world.beforeEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
 
     if (hurtEntity.typeId !== "minecraft:player") return;
-    if (!world.getDynamicProperty("game")) ev.cancel = true;
+    // if (!world.getDynamicProperty("game")) ev.cancel = true;
     
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -154,7 +154,7 @@ world.afterEvents.worldLoad.subscribe(ev => {
     const dimension = world.getDimension("overworld");
     const tickManager = world.tickingAreaManager;
     
-    game.gameReset();
+    // game.gameReset();
 
     const wPos = weaponGacha.buttonPos
     const dPos = defenceGacha.buttonPos
@@ -226,8 +226,6 @@ world.afterEvents.itemUse.subscribe(async ev => {
     
     if (id === "minecraft:diamond") {
         // tester
-        const p = await new school().areaCenterPoint()
-        source.teleport(p)
     }
 
     if (id === "minecraft:nether_star" && !source.hasTag("gachaing")) {
@@ -263,7 +261,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         }) 
     }
 
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const skill = skillManager.get(itemStack.nameTag);
     if (skill) skill.use(source, ev);
@@ -304,7 +302,7 @@ world.afterEvents.entityHurt.subscribe(ev => {
     const damagingEntity = damageSource.damagingEntity;
     if (hurtEntity.typeId !== "minecraft:player") return;
 
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -573,7 +571,7 @@ function locationCompare(pos1, pos2) {
 world.afterEvents.playerBreakBlock.subscribe(ev => {
     const { player } = ev;
     
-    if (!world.getDynamicProperty("game")) return;
+    // if (!world.getDynamicProperty("game")) return;
 
     const item = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
     if (!item) return;

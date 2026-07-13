@@ -6,10 +6,11 @@ export class hyperKineticPositionReverser extends skillBase {
         super()
 
         this.id = "§4HKPR"
+        this.cooldown = 20 * 20
     }
 
     execute(player) {
-        this.consumeItem(player)
+        this.onCooldown(player)
 
         const dimension = player.dimension
         const pos = player.location

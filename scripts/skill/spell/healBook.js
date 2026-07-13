@@ -4,7 +4,7 @@ import { skillBase } from "../skillBase";
 export class healBookSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§a回復の本";
+        this.id = "§1回復の本";
         this.cooldown = 20 * 10;
     }
 

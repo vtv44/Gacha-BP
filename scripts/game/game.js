@@ -37,24 +37,37 @@ export class game {
 
     static gameEnd() {
         if (!world.getDynamicProperty("game")) return
+        let winnerTeams = []
+
         world.setDynamicProperty("game", false)
         world.sendMessage(`§l§c====決着====\n§f勝者`)
 
         for (const s of this.gameJoinPlayers) {
             const kill = s.getDynamicProperty("killInGame")
+            const team = world.scoreboard.getObjective("team").getScore(s)
             world.sendMessage(`§f${s.name} / キル数: ${kill}`)
 
-            rankPointManager.rankPointAdd(s, 400)
+            rankPointManager.rankPointAdd(s, 100)
 
             s.addEffect("health_boost", 5 * 20, {amplifier: 255, showParticles: false})
             s.addEffect("instant_health", 5 * 20, {amplifier: 255, showParticles: false})
             s.addEffect("resistance", 5 * 20, {amplifier: 255, showParticles: false})
+
+            if (!winnerTeams.includes(team)) {
+                winnerTeams.push(team)
+            }
+        }
+
+        for (const t of winnerTeams) {
+            for (const w of this.getTeam(t)) {
+                rankPointManager.rankPointAdd(w, 100)
+            }
         }
 
         for (const p of world.getAllPlayers()) {
             p.playSound("random.explode", {volume: 0.6})
             const kill = p.getDynamicProperty("killInGame")
-            rankPointManager.rankPointAdd(p, kill * 40)
+            rankPointManager.rankPointAdd(p, kill * 50)
         }
 
         world.getDimension("overworld").runCommand("kill @e[type=gacha:gacha_area]")
@@ -98,10 +111,10 @@ export class game {
         }
 
         const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
-        if (players.length <= 1) {
-            world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
-            return
-        }
+        //if (players.length <= 1) {
+        //    world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
+        //    return
+        //}
 
         world.setDynamicProperty("game", true)
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
@@ -398,13 +411,20 @@ export class game {
             if (time < this.areaSpawnTime - 1) {
                 for (const a of areas) {
                     const size = a.getProperty("gacha:size")
-                    a.setProperty("gacha:size", size - 2)
+                    a.setProperty("gacha:size", size - 2.5)
 
                     const d = size / 16.6
                     const {x, y, z} = a.location
                     a.runCommand(`tag @a[x=${x - d - 3},y=-50,z=${z - d - 3},dx=${d * 2 + 4},dy=150,dz=${d * 2 + 4}] remove area_damage`)
-                    a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage} magic`)
                     a.runCommand("execute as @a[tag=area_damage] at @s run playsound note.harp @s ~~~ 1 0.5")
+                    
+                    if (time < this.areaSpawnTime / 4) {
+                        a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage * 2} magic`)
+                    } else if (time < this.areaSpawnTime / 2) {
+                        a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage * 1.5} magic`)
+                    } else if (time < this.areaSpawnTime - 1) {
+                        a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage} magic`)
+                    }
                 }
             }
 

@@ -26,7 +26,7 @@ export class dicerollSwordSkill extends skillBase {
             player.onScreenDisplay.setActionBar(`§l- §g${dice} §f-`)
             hurtEntity.runCommand("particle minecraft:critical_hit_emitter ~~1.4~")
 
-            hurtEntity.applyDamage(dice, {cause: EntityDamageCause.none})
+            hurtEntity.applyDamage(dice, {cause: EntityDamageCause.selfDestruct})
         }, 30)
     }
 }

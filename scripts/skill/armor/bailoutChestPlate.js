@@ -20,6 +20,7 @@ export class bailoutChestPlate extends skillBase {
 
         const health = player.getComponent("health")
         const current = health.currentValue
+        const max = health.effectiveMax
 
         if (current - damage < 0 && damageSource.cause === EntityDamageCause.entityAttack) {
             event.cancel = true
@@ -41,6 +42,8 @@ export class bailoutChestPlate extends skillBase {
                 dimension.playSound("mob.endermen.portal", pos)
 
                 player.playSound("random.fizz")
+
+                health.setCurrentValue(max / 4)
             })
         }
     }

@@ -4,7 +4,7 @@ import { skillBase } from "../skillBase";
 export class smokeBombSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§1煙玉";
+        this.id = "§a煙玉";
         this.cooldown = 20 * 20;
     }
 

@@ -29,16 +29,6 @@ export const mythicSpells = [
             "§5遠ければ遠いほど勢いは増す"
         ],
     },
-
-    {
-        amount: 1,
-        id: "minecraft:magenta_dye",
-        name: "§dOVERWRITE",
-        lore: [
-            "§d[上書き] §5右クリック",
-            "§5全てのエフェクトを除去し、体力、満腹度を全回復する"
-        ],
-    },
     {
         amount: 1,
         id: "minecraft:pink_dye",
@@ -47,6 +37,15 @@ export const mythicSpells = [
             "§d[憩いの場] §5右クリック",
             "§5持続回復可能な焚火を設置する",
             "§5一定時間経過か破壊すると回復できなくなる"
+        ],
+    },
+    {
+        amount: 1,
+        id: "minecraft:bone",
+        name: "§d気まずさの破片",
+        lore: [
+            "§d[消失] §5攻撃",
+            "§5攻撃するとお互いの服がはじけ飛ぶ"
         ],
     },
 ]

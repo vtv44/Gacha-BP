@@ -15,18 +15,24 @@ export class explosiveChestPlateSkill extends skillBase {
             cause === EntityDamageCause.blockExplosion || 
             cause === EntityDamageCause.entityExplosion ||
             cause === EntityDamageCause.fireTick ||
-            cause === EntityDamageCause.fire
+            cause === EntityDamageCause.fire || 
+            cause === EntityDamageCause.selfDestruct
         ) return
 
         const dimension = player.dimension
         const pos = player.location
 
-        player.addEffect("resistance", 2, {amplifier: 255, showParticles: false})
-
         dimension.createExplosion(pos, 4, {
             breaksBlocks: true,
-            causesFire: true,
+            causesFire: false,
             source: player
         })
+
+        const damagingEntity = event.damageSource.damagingEntity
+        if (damagingEntity) {
+            player.applyDamage(5, {damagingEntity: damagingEntity, cause: EntityDamageCause.selfDestruct})
+        } else {
+            player.applyDamage(5, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
+        }
     }
 }

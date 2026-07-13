@@ -34,7 +34,7 @@ export class skillBase {
         const newItem = new ItemStack(item.typeId, item.amount - 1)
         newItem.nameTag = item.nameTag
         newItem.setLore(item.getLore() ? item.getLore() : null)
-        newItem.lockmode = ItemLockMode.inventory
+        newItem.lockMode = ItemLockMode.inventory
         mainHand.setItem(newItem)
     }
     

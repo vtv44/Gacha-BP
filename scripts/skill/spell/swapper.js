@@ -1,5 +1,5 @@
 import { skillBase } from "../skillBase";
-import { world } from "@minecraft/server";
+import { GameMode, world } from "@minecraft/server";
 
 export class swapperSkill extends skillBase {
     constructor() {
@@ -36,7 +36,10 @@ export class swapperSkill extends skillBase {
         const myTeam = teamObjective ? teamObjective.getScore(player) : undefined;
 
         // 3. 視線の先にあるエンティティ(敵プレイヤーのみ)を取得
-        const entities = player.getEntitiesFromViewDirection({ maxDistance: maxDistance });
+        const entities = player.getEntitiesFromViewDirection({ 
+            maxDistance: maxDistance,
+            excludeGameModes: [GameMode.Spectator],    
+        });
         let targetPlayer = null;
 
         for (const hit of entities) {

@@ -6,12 +6,9 @@ export class affectSwordSkill extends skillBase {
         super()
 
         this.id = "§5影響の剣"
-        this.cooldown = 3 * 20
     }
 
     onDamage(player, event) {
-        if (!this.canUse(player)) return
-        this.onCooldown(player)
         const hurtEntity = event.hurtEntity
         const dimension = hurtEntity.dimension
         const pos = hurtEntity.location

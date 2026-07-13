@@ -43,7 +43,7 @@ export class scanHelmetSkill extends tickSkillBase {
             player.nameTag = ""
 
             for (const t of targets) {
-                if (!t.inValid) continue
+                if (!t.isValid) continue
 
                 t.nameTag = ""
                 t.playSound("mob.skeleton.death", {volume: 0.8, pitch: 1.4})
