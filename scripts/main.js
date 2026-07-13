@@ -376,13 +376,12 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     
     let hasBaseWeapon = false;
     let materialTotal = 0;
-    
-    // インベントリのアイテムをチェック
+
     for (let i = 0; i < inventory.size; i++) {
         const item = inventory.getItem(i);
         if (item) {
             if (item.typeId === baseWeaponId && !hasBaseWeapon) {
-                hasBaseWeapon = true; // ベース武器は1つあればOKとする
+                hasBaseWeapon = true;
             }
             if (item.typeId === materialId) {
                 materialTotal += item.amount;
@@ -401,7 +400,6 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
         return;
     }
 
-    // ベース武器を1つ消費
     let weaponConsumed = false;
     for (let i = 0; i < inventory.size; i++) {
         const item = inventory.getItem(i);
@@ -417,7 +415,6 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
         }
     }
 
-    // 素材を消費
     let remainingToConsume = materialAmount;
     for (let i = 0; i < inventory.size; i++) {
         if (remainingToConsume <= 0) break;
@@ -434,7 +431,6 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
         }
     }
 
-    // 新しい武器を付与
     const newItem = new ItemStack(resultId, 1);
     newItem.nameTag = newName;
     newItem.setLore(newLore);
@@ -446,11 +442,9 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     player.playSound("random.anvil_use");
 }
 
-// ★追加：Hyperion専用の合成関数
 function craftHyperion(player) {
     const inventory = player.getComponent("minecraft:inventory").container;
     
-    // 対象となる武器のIDリスト
     const targetIds = [
         "gacha:bloody_sword", 
         "gacha:magic_tech_gun", 
@@ -459,7 +453,6 @@ function craftHyperion(player) {
     
     let totalCount = 0;
     
-    // 1. 対象の武器がインベントリに合計いくつあるか数える
     for (let i = 0; i < inventory.size; i++) {
         const item = inventory.getItem(i);
         if (item && targetIds.includes(item.typeId)) {
@@ -467,14 +460,11 @@ function craftHyperion(player) {
         }
     }
 
-    // 2つ未満ならエラーを出す
     if (totalCount < 2) {
-        player.sendMessage(`§c対象の武器（ブラッディソード、魔導銃、アサシンブレード）が合計2つ必要です！`);
+        player.sendMessage(`§cDivineレアリティの武器が合計2つ必要です！`);
         player.playSound("note.bass");
         return;
     }
-
-    // 2. 対象の武器を合計2つ消費する
     let remainingToConsume = 2;
     for (let i = 0; i < inventory.size; i++) {
         if (remainingToConsume <= 0) break;
@@ -510,7 +500,6 @@ function craftHyperion(player) {
     player.playSound("ui.toast.challenge_complete");
 }
 
-// 武器合成メニュー
 function showWeaponSynthesisMenu(player) {
     const form = new ActionFormData();
     form.title("§l武器合成メニュー");
@@ -519,8 +508,7 @@ function showWeaponSynthesisMenu(player) {
     form.button("§c炎の剣\n§8(鉄の剣1個 + ブレイズパウダー2個)");
     form.button("§b氷の剣\n§8(鉄の剣1個 + ダイヤモンド1個)");
     
-    // ★追加：Hyperionのボタン
-    form.button("§bHyperion\n§8(指定の武器どれか2つ)");
+    form.button("§bHyperion\n§8(Divineレアリティの武器2つ)");
     
     form.button("キャンセル");
 
