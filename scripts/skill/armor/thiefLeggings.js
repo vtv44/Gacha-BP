@@ -10,6 +10,7 @@ export class thiefLeggingsSkill extends skillBase {
 
     onHurt(player, event) {
         const damager = event.damageSource.damagingEntity
+        if (!damager) return
 
         const mainHand = damager.getComponent("inventory").container.getSlot(damager.selectedSlotIndex)
         const item = mainHand.getItem()

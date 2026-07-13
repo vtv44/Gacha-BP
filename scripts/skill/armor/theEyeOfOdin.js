@@ -25,7 +25,7 @@ export class theEyeOfOrdinSkill extends tickSkillBase {
 
         if (rand < percent) {
             event.cancel = true
-            if (percent >= 50 && damageSource.damagingEntity?.typeId === "minecraft:player") {
+            if (percent > 50 && damageSource.damagingEntity?.typeId === "minecraft:player") {
                 dp.set(player.id, percent - 1)
                 system.run(() => {
                     dimension.spawnParticle("minecraft:critical_hit_emitter", {x: x, y: y + 1.4, z: z})

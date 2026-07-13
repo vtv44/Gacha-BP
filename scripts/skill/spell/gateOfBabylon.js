@@ -6,7 +6,7 @@ export class gateOfBabylonSkill extends skillBase {
         super()
 
         this.id = "§b王の財宝",
-        this.cooldown = 1 * 20
+        this.cooldown = 15 * 20
     }
 
     execute(player) {
@@ -75,9 +75,9 @@ export class gateOfBabylonSkill extends skillBase {
                 z: location.z + dir.z * 1.1
             })
 
-            for (let i = 0; i <= 19; i++) {
+            for (let i = 0; i <= 39; i++) {
                 
-                const offset = (Math.random() - 0.5) * 6
+                const offset = (Math.random() - 0.5) * 7
                 const rand = Math.random() * 3
                 const vector3 = {
                     x: location.x + right.x * offset,
@@ -86,7 +86,7 @@ export class gateOfBabylonSkill extends skillBase {
                 }
 
                 system.runTimeout(() => {
-                    this.arrowShot(player, vector3, dir, player.dimension, 10)
+                    this.arrowShot(player, vector3, dir, player.dimension, 20)
                 }, i * 1);
             }
         }
@@ -94,9 +94,9 @@ export class gateOfBabylonSkill extends skillBase {
 
     arrowShot(player, location, dir, dimension, count = 20) {
         const atkPos = {
-            x: player.location.x + dir.x * 4,
+            x: player.location.x + dir.x * 2.5,
             y: player.location.y + 1.2,
-            z: player.location.z + dir.z * 4
+            z: player.location.z + dir.z * 2.5
         }
         
         dimension.spawnParticle("gacha:babylon_gate", location)
@@ -116,9 +116,7 @@ export class gateOfBabylonSkill extends skillBase {
 
             const targets = this.getTargets(player, atkPos, 7)
             for (const t of targets) {
-                if (this.posCheck(atkPos, t.location)) {
-                    t.applyDamage(4, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
-                }
+                t.applyDamage(4, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
             }
         }, 20)
     }

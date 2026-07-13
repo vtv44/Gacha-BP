@@ -49,4 +49,13 @@ export const epicWeapons = [
             "§5さらに3秒間、新たなエフェクトの付与を封じる"
         ],
     },
+    {
+        amount: 1,
+        id: "gacha:violence_sword",
+        name: "§5暴虐剣 ガスト",
+        lore: [
+            "§4[暴虐-封] §5右クリック",
+            "§5前方に素早い斬撃を飛ばす",
+        ],
+    },
 ]

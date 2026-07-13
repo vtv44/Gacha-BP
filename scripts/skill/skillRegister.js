@@ -116,6 +116,8 @@ import { rainbowArmorSkill } from "./armor/rainbowArmor";
 import { snowArmorSkill } from "./armor/snowArmor";
 import { leafArmorSkill } from "./armor/leafArmor";
 import { hyperionSkill } from "./weapon/hyperion";
+import { vionlenceSwordSkill } from "./weapon/violenceSword";
+import { valflameLeggingsSkill } from "./armor/valflameLeggings";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -211,6 +213,7 @@ skillManager.register(new teleportSkill());
 skillManager.register(new snowArmorSkill());
 skillManager.register(new leafArmorSkill());
 skillManager.register(new hyperionSkill());
+skillManager.register(new vionlenceSwordSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -237,6 +240,7 @@ skillManager.tickSkillRegister(new starChaserBootsSkill());
 skillManager.tickSkillRegister(new cookieArmorSkill());
 skillManager.tickSkillRegister(new rainbowArmorSkill());
 skillManager.tickSkillRegister(new hyperionSkill());
+skillManager.tickSkillRegister(new valflameLeggingsSkill());
 
 const axeSkill = new infernalAxeSkill();
 

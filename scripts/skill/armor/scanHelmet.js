@@ -23,11 +23,8 @@ export class scanHelmetSkill extends tickSkillBase {
 
         const targets = this.getTargets(player, pos, 15)
 
-        if (player.nameTag !== player.name) {
-            player.nameTag = player.name
-            dimension.spawnParticle("gacha:blue_volt", pos)
-            dimension.playSound("block.enchanting_table.use", pos)
-        }
+        dimension.spawnParticle("gacha:blue_volt", pos)
+        dimension.playSound("block.enchanting_table.use", pos)
 
         for (const t of targets) {
             if (t.nameTag === t.name) continue

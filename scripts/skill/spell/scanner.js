@@ -27,7 +27,7 @@ export class scannerSkill extends skillBase {
             target.nameTag = target.name
 
             system.runTimeout(() => {
-                target.nameTag = " "
+                if (world.getDynamicProperty("game")) target.nameTag = " "
             }, this.cooldown - 1)
         }
     }

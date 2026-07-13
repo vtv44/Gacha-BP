@@ -40,7 +40,7 @@ export const divineArmors = [
             "§5この防具以外を装備できない",
         ],
         enchants: [
-            {id: "mending", level: 4}
+            {id: "mending", level: 1}
         ]
     },
 ]
