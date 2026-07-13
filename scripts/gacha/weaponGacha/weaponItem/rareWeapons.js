@@ -49,6 +49,10 @@ export const rareWeapons = [
         "§f[???] §5攻撃",
         "§5力を示すことで進化する。"
         ],
+            enchants: [
+            {id: "sharpness", level: 3},
+            {id: "unbreaking", level: 2}
+        ]
     },
     {
         amount: 1,

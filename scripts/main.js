@@ -341,7 +341,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    //"minecraft:anvil",
+    "minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",
@@ -370,6 +370,198 @@ const cancelBlocks = [
     "minecraft:beacon",
     "minecraft:crafting_table",
 ]
+
+function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAmount, newName, newLore) {
+    const inventory = player.getComponent("minecraft:inventory").container;
+    
+    let hasBaseWeapon = false;
+    let materialTotal = 0;
+    
+    // インベントリのアイテムをチェック
+    for (let i = 0; i < inventory.size; i++) {
+        const item = inventory.getItem(i);
+        if (item) {
+            if (item.typeId === baseWeaponId && !hasBaseWeapon) {
+                hasBaseWeapon = true; // ベース武器は1つあればOKとする
+            }
+            if (item.typeId === materialId) {
+                materialTotal += item.amount;
+            }
+        }
+    }
+
+    if (!hasBaseWeapon) {
+        player.sendMessage(`§cベースとなる武器が足りません！`);
+        player.playSound("note.bass");
+        return;
+    }
+    if (materialTotal < materialAmount) {
+        player.sendMessage(`§c合成素材が足りません！`);
+        player.playSound("note.bass");
+        return;
+    }
+
+    // ベース武器を1つ消費
+    let weaponConsumed = false;
+    for (let i = 0; i < inventory.size; i++) {
+        const item = inventory.getItem(i);
+        if (item && item.typeId === baseWeaponId && !weaponConsumed) {
+            if (item.amount > 1) {
+                item.amount -= 1;
+                inventory.setItem(i, item);
+            } else {
+                inventory.setItem(i, undefined);
+            }
+            weaponConsumed = true;
+            break;
+        }
+    }
+
+    // 素材を消費
+    let remainingToConsume = materialAmount;
+    for (let i = 0; i < inventory.size; i++) {
+        if (remainingToConsume <= 0) break;
+        const item = inventory.getItem(i);
+        if (item && item.typeId === materialId) {
+            if (item.amount > remainingToConsume) {
+                item.amount -= remainingToConsume;
+                inventory.setItem(i, item);
+                remainingToConsume = 0;
+            } else {
+                remainingToConsume -= item.amount;
+                inventory.setItem(i, undefined);
+            }
+        }
+    }
+
+    // 新しい武器を付与
+    const newItem = new ItemStack(resultId, 1);
+    newItem.nameTag = newName;
+    newItem.setLore(newLore);
+    newItem.lockMode = ItemLockMode.inventory;
+
+    inventory.addItem(newItem);
+    
+    player.sendMessage(`§a${newName}§aを合成しました！`);
+    player.playSound("random.anvil_use");
+}
+
+// ★追加：Hyperion専用の合成関数
+function craftHyperion(player) {
+    const inventory = player.getComponent("minecraft:inventory").container;
+    
+    // 対象となる武器のIDリスト
+    const targetIds = [
+        "gacha:bloody_sword", 
+        "gacha:magic_tech_gun", 
+        "gacha:assassin_blade"
+    ];
+    
+    let totalCount = 0;
+    
+    // 1. 対象の武器がインベントリに合計いくつあるか数える
+    for (let i = 0; i < inventory.size; i++) {
+        const item = inventory.getItem(i);
+        if (item && targetIds.includes(item.typeId)) {
+            totalCount += item.amount;
+        }
+    }
+
+    // 2つ未満ならエラーを出す
+    if (totalCount < 2) {
+        player.sendMessage(`§c対象の武器（ブラッディソード、魔導銃、アサシンブレード）が合計2つ必要です！`);
+        player.playSound("note.bass");
+        return;
+    }
+
+    // 2. 対象の武器を合計2つ消費する
+    let remainingToConsume = 2;
+    for (let i = 0; i < inventory.size; i++) {
+        if (remainingToConsume <= 0) break;
+        const item = inventory.getItem(i);
+        
+        if (item && targetIds.includes(item.typeId)) {
+            if (item.amount > remainingToConsume) {
+                item.amount -= remainingToConsume;
+                inventory.setItem(i, item);
+                remainingToConsume = 0;
+            } else {
+                remainingToConsume -= item.amount;
+                inventory.setItem(i, undefined);
+            }
+        }
+    }
+
+    // 3. Hyperionを付与する
+    const newItem = new ItemStack("gacha:hyperion", 1);
+    newItem.nameTag = "§bHyperion";
+    newItem.setLore([
+        "§b[頂点] §5右クリック",
+        "§5常時力150が付与される",
+        "§5右クリックすると視線方向にテレポート",
+        "§5さらにテレポートした先で爆発し200万ダメージを与える",
+        "§5さらにhpが増える"
+    ]);
+    newItem.lockMode = ItemLockMode.inventory; 
+
+    inventory.addItem(newItem);
+    
+    player.sendMessage(`§bHyperion§aを合成しました！`);
+    player.playSound("ui.toast.challenge_complete");
+}
+
+// 武器合成メニュー
+function showWeaponSynthesisMenu(player) {
+    const form = new ActionFormData();
+    form.title("§l武器合成メニュー");
+    form.body("合成する武器を選んでください。");
+
+    form.button("§c炎の剣\n§8(鉄の剣1個 + ブレイズパウダー2個)");
+    form.button("§b氷の剣\n§8(鉄の剣1個 + ダイヤモンド1個)");
+    
+    // ★追加：Hyperionのボタン
+    form.button("§bHyperion\n§8(指定の武器どれか2つ)");
+    
+    form.button("キャンセル");
+
+    form.show(player).then(response => {
+        if (response.canceled || response.selection === 3) return;
+        
+        switch (response.selection) {
+            case 0: 
+                synthesizeWeapon(player, "minecraft:golden_sword", "minecraft:iron_sword", "minecraft:blaze_powder", 2, "§c炎の剣", ["§c[炎の力] §5武器"]);
+                break;
+            case 1: 
+                synthesizeWeapon(player, "minecraft:diamond_sword", "minecraft:iron_sword", "minecraft:diamond", 1, "§b氷の剣", ["§b[氷の力] §5武器"]);
+                break;
+            case 2:
+                // ★追加：Hyperion合成を呼び出す
+                craftHyperion(player);
+                break;
+        }
+    });
+}
+
+// かなどこメニュー
+function showAnvilMenu(player) {
+    const form = new ActionFormData();
+    form.title("§lかなどこメニュー");
+    form.body("何をしますか？");
+    form.button("武器を合成する");
+    form.button("エンチャントする");
+
+    form.show(player).then(response => {
+        if (response.canceled) return;
+        
+        if (response.selection === 0) {
+            // 合成メニューを開く
+            showWeaponSynthesisMenu(player);
+        } else if (response.selection === 1) {
+            // エンチャントメニュー（準備中）
+            player.sendMessage("§eエンチャント機能は現在準備中です。");
+        }
+    });
+}
 
 function craftArmor(player, resultId, costId, costAmount) {
     const inventory = player.getComponent("minecraft:inventory").container;
@@ -521,6 +713,12 @@ world.beforeEvents.playerInteractWithBlock.subscribe((event) => {
     if (id === "minecraft:crafting_table" && x === 23 && y === 0 && z === -1) {
         system.run(() => {
             showCustomCrafting(player);
+        });
+    }
+    if (id.includes("anvil") && x === -15 && y === 1 && z === 10) {
+        event.cancel = true; 
+        system.run(() => {
+            showAnvilMenu(player);
         });
     }
 
