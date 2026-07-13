@@ -1,7 +1,7 @@
 export const divineWeapons = [
     {
         amount: 1,
-        id: "minecraft:iron_sword",
+        id: "gacha:assassin_blade",
         name: "§bアサシンブレード =極=",
         lore: [
             "§u[アサシン] §5攻撃 右クリック スニーク",
@@ -39,5 +39,5 @@ export const divineWeapons = [
             "§5一番近い対象の体力が1になるようダメージを与え、その分自分を回復させる",
             "§5発動から一定時間経過後、同量のダメージを再度与える"
         ]
-    }
+    },
 ]
