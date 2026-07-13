@@ -421,7 +421,7 @@ export class game {
                     if (time < this.areaSpawnTime / 4) {
                         a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage * 2} magic`)
                     } else if (time < this.areaSpawnTime / 2) {
-                        a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage * 1.5} magic`)
+                        a.runCommand(`damage @a[tag=area_damage] ${Math.floor(this.areaDamage * 1.5)} magic`)
                     } else if (time < this.areaSpawnTime - 1) {
                         a.runCommand(`damage @a[tag=area_damage] ${this.areaDamage} magic`)
                     }
