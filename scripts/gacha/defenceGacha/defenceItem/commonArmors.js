@@ -7,6 +7,9 @@ export const commonArmors = [
             "§e[防御の構え] §5スニーク",
             "スニーク中自身に耐性1を与える"
         ],
+        enchants: [
+            {id: "protection", level: 2}
+        ]
     },
     {
         amount: 1, 

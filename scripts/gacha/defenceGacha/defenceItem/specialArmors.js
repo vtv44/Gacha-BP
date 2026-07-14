@@ -17,5 +17,9 @@ export const specialArmors = [
             "§5自分と周囲のプレイヤーを燃やし続ける",
             "§5燃えているプレイヤーから受けるダメージを-5する"
         ],
+        enchants: [
+            {id: "protection", level: 2},
+            {id: "unbreaking", level: 3}
+        ]
     },
 ]

@@ -403,9 +403,19 @@ export class game {
 
             const areas = world.getDimension("overworld").getEntities({type: "gacha:gacha_area"})
 
+            if (time === this.areaSpawnTime + 20) {
+                this.map.spawnArea(this.areaSpawnPos)
+                world.sendMessage(` \n§lゲーム範囲が表示された！\n残り時間${this.areaSpawnTime}秒までに中へ入れ！\n `)
+                for (const p of world.getAllPlayers()) {
+                    p.playSound("mob.stary.death")
+                }
+            }
+
             if (time === this.areaSpawnTime) {
                 world.sendMessage(` \n§lゲーム範囲が制限された！\n `)
-                this.map.spawnArea(this.areaSpawnPos)
+                for (const p of world.getAllPlayers()) {
+                    p.playSound("mob.ghast.moan")
+                }
             }
 
             if (time < this.areaSpawnTime - 1) {

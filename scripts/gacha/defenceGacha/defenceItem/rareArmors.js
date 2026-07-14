@@ -47,4 +47,16 @@ export const rareArmors = [
             "§5プレイヤーを見ると相手を動けなくする"
         ],
     },
+    {
+        amount: 1,
+        id: "minecraft:iron_helmet",
+        name: "§1怒りのヘルメット",
+        lore: [
+            "§c[込み上げる怒り] §5被弾",
+            "§5ダメージを受けるとバフがつく"
+        ],
+        enchants: [
+            {id: "protection", level: 2}
+        ]
+    },
 ]

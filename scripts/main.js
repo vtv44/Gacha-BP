@@ -336,12 +336,13 @@ const blockedBlocks = [
     "minecraft:glowstone",
     "minecraft:dandelion",
     "minecraft:campfire",
-    "minecraft:tnt"
+    "minecraft:tnt",
+    "minecraft:wooden_hoe"
     // "minecraft:xxxx",
 ];
 
 const cancelBlocks = [
-    "minecraft:anvil",
+    // "minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",

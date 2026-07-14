@@ -118,6 +118,8 @@ import { leafArmorSkill } from "./armor/leafArmor";
 import { hyperionSkill } from "./weapon/hyperion";
 import { vionlenceSwordSkill } from "./weapon/violenceSword";
 import { valflameLeggingsSkill } from "./armor/valflameLeggings";
+import { handgunSkill } from "./weapon/handgun";
+import { furyHelmetSkill } from "./armor/furyHelmet";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -214,6 +216,8 @@ skillManager.register(new snowArmorSkill());
 skillManager.register(new leafArmorSkill());
 skillManager.register(new hyperionSkill());
 skillManager.register(new vionlenceSwordSkill());
+skillManager.register(new handgunSkill());
+skillManager.register(new furyHelmetSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());

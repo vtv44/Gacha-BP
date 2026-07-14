@@ -50,7 +50,7 @@ export class subMachineGunSkill extends skillBase {
                 for (let i = 0; i <= 25; i++) {
                     const pPos = {
                         x: pos.x + dir.x * i,
-                        y: pos.y + dir.y * i + 1.4,
+                        y: pos.y + dir.y * i + 1.52,
                         z: pos.z + dir.z * i
                     }
 

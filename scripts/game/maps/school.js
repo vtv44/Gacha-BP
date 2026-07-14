@@ -28,6 +28,19 @@ export class school extends mapBase {
         ]
     }
 
+    async areaCenterPoint() {
+        // 範囲中心地のやつ
+        const randX = this.mapPos[1].x - this.mapPos[0].x
+        const randZ = this.mapPos[1].z - this.mapPos[0].z
+
+        const x = Math.floor(Math.random() * (randX - (randX / 10)) + (randX / 10)) 
+        const y = 12
+        const z = Math.floor(Math.random() * (randZ - (randZ / 10)) + (randZ / 10))
+        return new Promise((resolve) => {
+            resolve({x: x + this.mapPos[0].x, y: y, z: z + this.mapPos[0].z})
+        })
+    }
+
     async createTickingArea() {
         return new Promise((resolve) => {
             const dimension = world.getDimension("overworld")

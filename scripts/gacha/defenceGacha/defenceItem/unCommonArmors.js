@@ -21,6 +21,9 @@ export const unCommonArmors = [
             "§e[低速落下] §5装備",
             "これを装備して空中にいる間自身に低速落下を付与する."
         ],
+        enchants: [
+            {id: "feather_falling", level: 4}
+        ]
     },
     {
         amount: 1,
