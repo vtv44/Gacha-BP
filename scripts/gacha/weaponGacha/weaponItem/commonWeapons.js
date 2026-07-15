@@ -9,7 +9,7 @@ export const commonWeapons = [
     },
     {
         amount: 1,
-        id: "minecraft:wooden_sword",
+        id: "gacha:cinder_sword",
         name: "§f燃え残った剣",
         lore: [
             "§c[炎の記憶] §5攻撃",

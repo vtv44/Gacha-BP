@@ -1,0 +1,30 @@
+// def
+common = 7
+uncommon = 11
+rare = 6
+epic = 11
+legendary = 5 (素材から作れるもの全部を足すなら+6)
+mythic = 8
+divine = 3
+special = 2
+
+
+// spell
+common = 4
+uncommon = 7
+rare = 6
+epic = 9
+legendary = 5
+mythic = 5
+divine = 2
+special= 4
+
+// atk
+common = 4
+uncommon = 5
+rare = 8
+epic = 6
+legendary = 7
+mythic = 4
+divine = 3
+special = 2

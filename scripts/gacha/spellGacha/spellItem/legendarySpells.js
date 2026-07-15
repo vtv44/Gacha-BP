@@ -38,4 +38,13 @@ export const legendarySpells = [
             "§5全てのエフェクトを除去し、体力、満腹度を全回復する"
         ],
     },
+    {
+        amount: 1,
+        id: "minecraft:torchflower_seed",
+        name: "§6ジャグリング",
+        lore: [
+            "§l[カスケード] §r§5右クリック",
+            "§5自分以外の全てのプレイヤーの位置を入れ替える"
+        ],
+    },
 ]

@@ -50,7 +50,7 @@ export class forms {
         const form = new ModalFormData()
         .title("ゲーム設定")
         .dropdown("初期体力", ["20", "40", "60"])
-        .dropdown("範囲開始の時間", ["300", "600", "480", "180", "0"])
+        .dropdown("範囲開始の時間", ["300", "580", "480", "180", "0"])
         .dropdown("範囲によるダメージ量", ["3", "10", "7", "5", "2", "1"])
 
         return form

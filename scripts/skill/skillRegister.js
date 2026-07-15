@@ -120,6 +120,9 @@ import { vionlenceSwordSkill } from "./weapon/violenceSword";
 import { valflameLeggingsSkill } from "./armor/valflameLeggings";
 import { handgunSkill } from "./weapon/handgun";
 import { furyHelmetSkill } from "./armor/furyHelmet";
+import { jugglingSkill } from "./spell/juggling";
+import { blackholeSkill } from "./spell/blackhole";
+import { blazingSword } from "./weapon/blazingSword";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -218,6 +221,8 @@ skillManager.register(new hyperionSkill());
 skillManager.register(new vionlenceSwordSkill());
 skillManager.register(new handgunSkill());
 skillManager.register(new furyHelmetSkill());
+skillManager.register(new jugglingSkill());
+skillManager.register(new blackholeSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
@@ -245,6 +250,7 @@ skillManager.tickSkillRegister(new cookieArmorSkill());
 skillManager.tickSkillRegister(new rainbowArmorSkill());
 skillManager.tickSkillRegister(new hyperionSkill());
 skillManager.tickSkillRegister(new valflameLeggingsSkill());
+skillManager.tickSkillRegister(new blazingSword());
 
 const axeSkill = new infernalAxeSkill();
 

@@ -506,10 +506,11 @@ function showWeaponSynthesisMenu(player) {
     form.title("§l武器合成メニュー");
     form.body("合成する武器を選んでください。");
 
-    form.button("§c炎の剣\n§8(鉄の剣1個 + ブレイズパウダー2個)");
-    form.button("§b氷の剣\n§8(鉄の剣1個 + ダイヤモンド1個)");
+    form.button("§c炎の剣\n§8(鉄の剣1個 + ブレイズパウダー2個)", "textures/items/gold_sword");
+    form.button("§b氷の剣\n§8(鉄の剣1個 + ダイヤモンド1個)", "textures/items/diamond_sword");
+    form.button("§5燃え盛る剣\n§8(§f燃え残った剣 §8+ §f赤色の魔力§8)", "textures/items/blazing_sword");
     
-    form.button("§bHyperion\n§8(Divineレアリティの武器2つ)");
+    form.button("§bHyperion\n§8(Divineレアリティの武器2つ)", "textures/items/hyperion");
     
     form.button("キャンセル");
 
@@ -524,6 +525,13 @@ function showWeaponSynthesisMenu(player) {
                 synthesizeWeapon(player, "minecraft:diamond_sword", "minecraft:iron_sword", "minecraft:diamond", 1, "§b氷の剣", ["§b[氷の力] §5武器"]);
                 break;
             case 2:
+                synthesizeWeapon(player, "gacha:blazing_sword", "gacha:cinder_sword", "minecraft:red_dye", 1, "§5燃え盛る剣", [
+                    "§c[燃え盛る激情] §5右クリック 攻撃",
+                    "§5視点の方向へ突進しながら敵を斬り、自分と相手に火をつける",
+                    "§5自分が燃えているとき、通常攻撃に追加で防御無視の2ダメージが付与される"
+                ])
+                break;
+            case 3:
                 // ★追加：Hyperion合成を呼び出す
                 craftHyperion(player);
                 break;
@@ -656,15 +664,15 @@ function showCustomCrafting(player) {
     form.title("§lカスタム作業台");
     form.body("作成する防具を選んでください。");
 
-    form.button("§6クッキーヘルメット\n§8(§6スペシャルクッキー§81個)");
-    form.button("§6クッキーチェストプレート\n§8(§6スペシャルクッキー§82個)");
-    form.button("§6クッキーレギンス\n§8(§6スペシャルクッキー§82個)");
-    form.button("§6クッキーブーツ\n§8(§6スペシャルクッキー§81個)");
+    form.button("§6クッキーヘルメット\n§8(§6スペシャルクッキー§81個)", "textures/items/cookie");
+    form.button("§6クッキーチェストプレート\n§8(§6スペシャルクッキー§82個)", "textures/items/cookie");
+    form.button("§6クッキーレギンス\n§8(§6スペシャルクッキー§82個)", "textures/items/cookie");
+    form.button("§6クッキーブーツ\n§8(§6スペシャルクッキー§81個)", "textures/items/cookie");
 
-    form.button("§eレインボーヘルメット\n§8(§bプリズム§81個)");
-    form.button("§eレインボーチェストプレート\n§8(§bプリズム§82個)");
-    form.button("§eレインボーレギンス\n§8(§bプリズム§82個)");
-    form.button("§eレインボーブーツ\n§8(§bプリズム§81個)");
+    form.button("§eレインボーヘルメット\n§8(§bプリズム§81個)", "textures/items/rainbow_helmet");
+    form.button("§eレインボーチェストプレート\n§8(§bプリズム§82個)", "textures/items/rainbow_chestplate");
+    form.button("§eレインボーレギンス\n§8(§bプリズム§82個)", "textures/items/rainbow_leggings");
+    form.button("§eレインボーブーツ\n§8(§bプリズム§81個)", "textures/items/rainbow_boots");
     
     form.button("キャンセル");
 

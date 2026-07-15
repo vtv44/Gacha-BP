@@ -34,7 +34,7 @@ export class school extends mapBase {
         const randZ = this.mapPos[1].z - this.mapPos[0].z
 
         const x = Math.floor(Math.random() * (randX - (randX / 10)) + (randX / 10)) 
-        const y = 12
+        const y = 4
         const z = Math.floor(Math.random() * (randZ - (randZ / 10)) + (randZ / 10))
         return new Promise((resolve) => {
             resolve({x: x + this.mapPos[0].x, y: y, z: z + this.mapPos[0].z})

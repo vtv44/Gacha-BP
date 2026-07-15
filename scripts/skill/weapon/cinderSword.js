@@ -11,7 +11,7 @@ export class cinderSwordSkill extends skillBase {
     onDamage(player, event) {
         const hurtEntity = event.hurtEntity
         if (player.getComponent("onfire")) {
-            hurtEntity.applyDamage(1, {damagingEntity: player, cause: EntityDamageCause.none})
+            hurtEntity.applyDamage(1, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
             hurtEntity.setOnFire(2)
 
             const dimension = player.dimension

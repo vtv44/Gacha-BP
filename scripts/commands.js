@@ -170,7 +170,7 @@ export class commandFunctions {
 
                             switch(res.formValues[1]) {
                                 case 0: game.areaSpawnTime = 300; break
-                                case 1: game.areaSpawnTime = 600; break
+                                case 1: game.areaSpawnTime = 580; break
                                 case 2: game.areaSpawnTime = 480; break
                                 case 3: game.areaSpawnTime = 180; break
                                 case 4: game.areaSpawnTime = 0; break
