@@ -15,7 +15,7 @@ const itemConfigs = {
         id: "gacha:crusher",
         name: "§dクラッシャー",
         lore: [
-            "§9+4 攻撃力",
+            "§9+6 攻撃力",
             "§u[変形] §5右クリック 攻撃",
             "§5右クリックで§dブレイカー§5に変形",
             "§5この武器の攻撃は相手の防御を貫通する",
@@ -94,8 +94,10 @@ export class crusherSkill extends skillBase {
         
         if (item?.nameTag === this.id) {
             system.run(() => {
-                target?.applyDamage(5, { cause: "override" });
+                target?.applyDamage(6, { 
+                    cause: "override",
+                    damagingEntity: player 
+                });
             });
         }
-    }
-}
+    }}

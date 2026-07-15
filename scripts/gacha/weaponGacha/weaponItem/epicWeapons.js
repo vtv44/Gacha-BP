@@ -14,15 +14,6 @@ export const epicWeapons = [
     },
     {
         amount: 1,
-        id: "minecraft:wooden_sword",
-        name: "§5カースソード",
-        lore: [
-            "§4[呪い] §5攻撃",
-            "§5殴った相手に毒、ウィザー、炎のどれかが付与される。"
-        ],
-    },
-    {
-        amount: 1,
         id: "gacha:dice_sword",
         name: "§5サイコロソード",
         lore: [
