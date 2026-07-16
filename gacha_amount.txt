@@ -4,7 +4,7 @@ uncommon = 11
 rare = 6
 epic = 11
 legendary = 5 (素材から作れるもの全部を足すなら+6)
-mythic = 8
+mythic = 9
 divine = 3
 special = 2
 

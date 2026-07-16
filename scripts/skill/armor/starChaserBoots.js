@@ -27,7 +27,7 @@ export class starChaserBootsSkill extends tickSkillBase {
         }
 
         system.runTimeout(() => {
-            hurtEntity.applyDamage(3, {damagingEntity: player, cause: EntityDamageCause.magic})
+            hurtEntity.applyDamage(4, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
 
             dimension.spawnParticle("gacha:star_chaser", pPos)
             dimension.playSound("mob.shulker.shoot", pPos, {volume: 0.7, pitch: 1.4})

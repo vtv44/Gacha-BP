@@ -97,4 +97,19 @@ export const mythicArmors = [
             {id: "protection", level: 2}
         ]
     },
+    {
+        amount: 1,
+        id: "minecraft:golden_leggings",
+        name: "§d吸収レギンス",
+        lore: [
+            "§d[] §5被弾",
+            "§5常に受けたダメージの半分を回復する",
+            "§5衝撃吸収と短時間の再生が付与される",
+            "§5この能力には20秒のクールタイムが存在する"
+        ],
+        enchants: [
+            {id: "protection", level: 4},
+            {id: "unbreaking", level: 3},
+        ]
+    },
 ]
