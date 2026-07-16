@@ -123,6 +123,8 @@ import { furyHelmetSkill } from "./armor/furyHelmet";
 import { jugglingSkill } from "./spell/juggling";
 import { blackholeSkill } from "./spell/blackhole";
 import { blazingSword } from "./weapon/blazingSword";
+import { largePeopleBootsSkill } from "./armor/largePeopleBoots";
+import { fewPeopleBootsSkill } from "./armor/fewPeopleBoots";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -251,6 +253,8 @@ skillManager.tickSkillRegister(new rainbowArmorSkill());
 skillManager.tickSkillRegister(new hyperionSkill());
 skillManager.tickSkillRegister(new valflameLeggingsSkill());
 skillManager.tickSkillRegister(new blazingSword());
+skillManager.tickSkillRegister(new largePeopleBootsSkill());
+skillManager.tickSkillRegister(new fewPeopleBootsSkill());
 
 const axeSkill = new infernalAxeSkill();
 

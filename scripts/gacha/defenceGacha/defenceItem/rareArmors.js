@@ -59,4 +59,29 @@ export const rareArmors = [
             {id: "protection", level: 2}
         ]
     },
+    {
+        amount: 1,
+        id: "minecraft:copper_boots",
+        name: "§1大人数ブーツ",
+        lore: [
+            "§w[大勢の協力] §5装備",
+            "§5生存しているプレイヤーが多ければ多いほど強力なバフが付与される",
+            "§54人以下ならバフが消える"
+        ],
+        enchants: [
+            {id: "protection", level: 2}
+        ]
+    },
+    {
+        amount: 1,
+        id: "minecraft:copper_boots",
+        name: "§1少人数ブーツ",
+        lore: [
+            "§u[孤独な力] §5装備",
+            "§5生存しているプレイヤーが少なければ少ないほど強力なバフが付与される"
+        ],
+        enchants: [
+            {id: "protection", level: 2}
+        ]
+    },
 ]
