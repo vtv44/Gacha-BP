@@ -28,5 +28,9 @@ export class miniMedicalKitSkill extends skillBase {
 
         player.playSound("random.levelup", {pitch: 0.8})
         player.dimension.spawnParticle("rpg:tame_heart_emitter", {x: x, y: y + 1.3, z: z})
+
+        if (this.canAddEffect(player)) {
+            player.addEffect("regeneration", 5 * 20, {amplifier: 1})
+        }
     }
 }
