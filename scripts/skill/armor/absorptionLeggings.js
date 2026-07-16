@@ -1,3 +1,4 @@
+import { world } from "@minecraft/server";
 import { CooldownManager } from "../cooldownManager";
 import { skillBase } from "../skillBase";
 
@@ -32,14 +33,16 @@ export class absorptionLeggings extends skillBase {
         const current = health.currentValue
         const max = health.effectiveMax
 
-        dimension.spawnParticle("rca:lightning", pPos)
-        dimension.playSound("respawn_anchor.charge", pPos, {volume: 0.8})
-
         if (max < current + damage / 2) {
             health.resetToMaxValue()
         } else {
             health.setCurrentValue(current + damage / 2)
         }
+
+        if (pPos.y < -64) return
+
+        dimension.spawnParticle("rca:lightning", pPos)
+        dimension.playSound("respawn_anchor.charge", pPos, {volume: 0.8})
 
         if (this.canUse(player)) {
             this.onCooldown(player)
