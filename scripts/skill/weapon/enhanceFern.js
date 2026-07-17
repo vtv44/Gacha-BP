@@ -56,7 +56,7 @@ export class enhanceFernSkill extends skillBase {
             }
 
             for (const t of targets) {
-                this.iceDrop(t)
+                this.iceDrop(t,player)
 
                 dimension.spawnParticle("ptl:fire_spark", {x: pos.x, y: pos.y + 1.2, z: pos.z})
                 dimension.playSound("mob.evocation_illager.cast_spell", pos)
@@ -64,7 +64,7 @@ export class enhanceFernSkill extends skillBase {
         }
     }
 
-    iceDrop(t) {
+    iceDrop(t,player) {
         const dimension = t.dimension
         const p = t.location
         const ice = dimension.spawnEntity("gacha:ice_lump", {x: p.x, y: p.y + 10, z: p.z})

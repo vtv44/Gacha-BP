@@ -90,7 +90,7 @@ system.beforeEvents.startup.subscribe(ev => {
 })
 
 system.runInterval(() => {
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -103,7 +103,7 @@ system.runInterval(() => {
 })
 
 system.runInterval(() => {
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -136,7 +136,7 @@ world.beforeEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
 
     if (hurtEntity.typeId !== "minecraft:player") return;
-    if (!world.getDynamicProperty("game")) ev.cancel = true;
+    //if (!world.getDynamicProperty("game")) ev.cancel = true;
     
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -262,7 +262,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         }) 
     }
 
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const skill = skillManager.get(itemStack.nameTag);
     if (skill) skill.use(source, ev);
@@ -303,7 +303,7 @@ world.afterEvents.entityHurt.subscribe(ev => {
     const damagingEntity = damageSource.damagingEntity;
     if (hurtEntity.typeId !== "minecraft:player") return;
 
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -343,7 +343,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    "minecraft:anvil",
+    //"minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",
