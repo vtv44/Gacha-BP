@@ -125,6 +125,7 @@ import { blackholeSkill } from "./spell/blackhole";
 import { blazingSword } from "./weapon/blazingSword";
 import { largePeopleBootsSkill } from "./armor/largePeopleBoots";
 import { fewPeopleBootsSkill } from "./armor/fewPeopleBoots";
+import { enhanceFernSkill } from "./weapon/enhanceFern";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -225,6 +226,7 @@ skillManager.register(new handgunSkill());
 skillManager.register(new furyHelmetSkill());
 skillManager.register(new jugglingSkill());
 skillManager.register(new blackholeSkill());
+skillManager.register(new enhanceFernSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());

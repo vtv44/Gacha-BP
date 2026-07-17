@@ -5,6 +5,7 @@ import { rankPointManager } from "./rankPointManager"
 import { skyIsland } from "./maps/skyIsland"
 import { mapBase } from "./maps/mapBase"
 import { school } from "./maps/school"
+import { discardMount } from "./maps/discardMount"
 
 export class game {
 
@@ -461,5 +462,6 @@ export class game {
 const maps = [
     new theEnd(),
     new school(),
+    new discardMount(),
     //new skyIsland(),
 ]
