@@ -516,7 +516,7 @@ function showWeaponSynthesisMenu(player) {
     form.button("キャンセル");
 
     form.show(player).then(response => {
-        if (response.canceled || response.selection === 3) return;
+        if (response.canceled || response.selection === 4) return;
         
         switch (response.selection) {
             case 0: 
