@@ -5,7 +5,7 @@ export class gyroKineticWandSkill extends skillBase {
     constructor() {
         super();
         this.id = "§5ジャイロキネティックワンド";
-        this.cooldown = 15 * 20;
+        this.cooldown = 40 * 20;
     }
 
     execute(player) {
