@@ -382,10 +382,10 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     for (let i = 0; i < inventory.size; i++) {
         const item = inventory.getItem(i);
         if (item) {
-            if ((item.nameTag === baseWeaponId || item.typeId === baseWeaponId) && !hasBaseWeapon) {
+            if (item.nameTag === baseWeaponId && !hasBaseWeapon) {
                 hasBaseWeapon = true;
             }
-            if (item.nameTag === materialId || item.typeId === materialId) {
+            if (item.nameTag === materialId) {
                 materialTotal += item.amount;
             }
         }
@@ -405,7 +405,7 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     let weaponConsumed = false;
     for (let i = 0; i < inventory.size; i++) {
         const item = inventory.getItem(i);
-        if (item && (item.nameTag === baseWeaponId || item.typeId === baseWeaponId) && !weaponConsumed) {
+        if (item && item.nameTag === baseWeaponId && !weaponConsumed) {
             if (item.amount > 1) {
                 item.amount -= 1;
                 inventory.setItem(i, item);
@@ -421,7 +421,7 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     for (let i = 0; i < inventory.size; i++) {
         if (remainingToConsume <= 0) break;
         const item = inventory.getItem(i);
-        if (item && (item.nameTag === materialId || item.typeId === materialId)) {
+        if (item && item.nameTag === materialId) {
             if (item.amount > remainingToConsume) {
                 item.amount -= remainingToConsume;
                 inventory.setItem(i, item);
@@ -447,17 +447,17 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
 function craftHyperion(player) {
     const inventory = player.getComponent("minecraft:inventory").container;
     
-    const targetIds = [
-        "gacha:bloody_sword", 
-        "gacha:magic_tech_gun", 
-        "gacha:assassin_blade"
+    const targetNames = [
+        "§b血塗れの剣",
+        "§b=魔銃剣= ディエゴ・ラ・イーフォルト",
+        "§bアサシンブレード =極="
     ];
-    
+
     let totalCount = 0;
-    
+
     for (let i = 0; i < inventory.size; i++) {
         const item = inventory.getItem(i);
-        if (item && targetIds.includes(item.typeId)) {
+        if (item && targetNames.includes(item.nameTag)) {
             totalCount += item.amount;
         }
     }
@@ -471,8 +471,8 @@ function craftHyperion(player) {
     for (let i = 0; i < inventory.size; i++) {
         if (remainingToConsume <= 0) break;
         const item = inventory.getItem(i);
-        
-        if (item && targetIds.includes(item.typeId)) {
+
+        if (item && targetNames.includes(item.nameTag)) {
             if (item.amount > remainingToConsume) {
                 item.amount -= remainingToConsume;
                 inventory.setItem(i, item);
@@ -507,7 +507,7 @@ function showWeaponSynthesisMenu(player) {
     form.title("§l武器合成メニュー");
     form.body("合成する武器を選んでください。");
 
-    form.button("§c炎の剣\n§8(鉄の剣1個 + ブレイズパウダー2個)", "textures/items/gold_sword");
+    form.button("§6フロストチェストプレート\n§8(§f壊れた防具 §8+ §5バカデカ氷§8)", "textures/items/frost_armor");
     form.button("§6エンハンスファーン\n§8(§5バカデカ氷 §8+ §a壊れた剣§8)", "textures/items/enhance_fern");
     form.button("§5燃え盛る剣\n§8(§f燃え残った剣 §8+ §f赤色の魔力§8)", "textures/items/blazing_sword");
     
@@ -519,8 +519,8 @@ function showWeaponSynthesisMenu(player) {
         if (response.canceled || response.selection === 4) return;
         
         switch (response.selection) {
-            case 0: 
-                synthesizeWeapon(player, "minecraft:golden_sword", "minecraft:iron_sword", "minecraft:blaze_powder", 2, "§c炎の剣", ["§c[炎の力] §5武器"]);
+            case 0:
+                synthesizeWeapon(player, "gacha:frost_armor", "§f壊れた防具", "§5バカデカ氷", 1, "§6フロストチェストプレート", []);
                 break;
             case 1:
                 synthesizeWeapon(player, "gacha:enhance_fern", "§a壊れた剣", "§5バカデカ氷", 1, "§6エンハンスファーン", [
@@ -530,11 +530,11 @@ function showWeaponSynthesisMenu(player) {
                 ]);
                 break;
             case 2:
-                synthesizeWeapon(player, "gacha:blazing_sword", "gacha:cinder_sword", "minecraft:red_dye", 1, "§5燃え盛る剣", [
+                synthesizeWeapon(player, "gacha:blazing_sword", "§f燃え残った剣", "§f赤色の魔力", 1, "§5燃え盛る剣", [
                     "§c[燃え盛る激情] §5右クリック 攻撃",
                     "§5視点の方向へ突進しながら敵を斬り、自分と相手に火をつける",
                     "§5自分が燃えているとき、通常攻撃に追加で防御無視の2ダメージが付与される"
-                ])
+                ]);
                 break;
             case 3:
                 // ★追加：Hyperion合成を呼び出す
