@@ -40,7 +40,7 @@ export const legendarySpells = [
     },
     {
         amount: 1,
-        id: "minecraft:torchflower_seed",
+        id: "minecraft:torchflower_seeds",
         name: "§6ジャグリング",
         lore: [
             "§l[カスケード] §r§5右クリック",
