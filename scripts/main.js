@@ -649,7 +649,7 @@ function craftRainbowArmor(player, resultId, costId, costAmount) {
 
     const newItem = new ItemStack(resultId, 1);
 
-    newItem.nameTag = "§eレインボーアーマー";
+    newItem.nameTag = "§eプリズムアーマー";
     newItem.setLore([
         "§e[虹の輝き] §5装備",
         "§5様々な力が宿る防具"
@@ -659,7 +659,7 @@ function craftRainbowArmor(player, resultId, costId, costAmount) {
 
     inventory.addItem(newItem);
     
-    player.sendMessage(`§aレインボーアーマーを作成しました！`);
+    player.sendMessage(`§aプリズムアーマーを作成しました！`);
     player.playSound("random.levelup", { volume: 0.5 });
 }
 
@@ -674,10 +674,10 @@ function showCustomCrafting(player) {
     form.button("§6クッキーレギンス\n§8(§6スペシャルクッキー§82個)", "textures/items/cookie");
     form.button("§6クッキーブーツ\n§8(§6スペシャルクッキー§81個)", "textures/items/cookie");
 
-    form.button("§eレインボーヘルメット\n§8(§bプリズム§81個)", "textures/items/rainbow_helmet");
-    form.button("§eレインボーチェストプレート\n§8(§bプリズム§82個)", "textures/items/rainbow_chestplate");
-    form.button("§eレインボーレギンス\n§8(§bプリズム§82個)", "textures/items/rainbow_leggings");
-    form.button("§eレインボーブーツ\n§8(§bプリズム§81個)", "textures/items/rainbow_boots");
+    form.button("§eプリズムヘルメット\n§8(§bプリズム§81個)", "textures/items/rainbow_helmet");
+    form.button("§eプリズムチェストプレート\n§8(§bプリズム§82個)", "textures/items/rainbow_chestplate");
+    form.button("§eプリズムレギンス\n§8(§bプリズム§82個)", "textures/items/rainbow_leggings");
+    form.button("§eプリズムブーツ\n§8(§bプリズム§81個)", "textures/items/rainbow_boots");
     
     form.button("キャンセル");
 
