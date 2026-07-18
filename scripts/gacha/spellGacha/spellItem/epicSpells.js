@@ -74,7 +74,7 @@ export const epicSpells = [
     },
     {
         amount: 1,
-        id: "minecraft:glowstone_dust",
+        id: "minecraft:nether_star",
         name: "§5ホーリーディメンション",
         lore: [
             "§e[聖なる一撃] §5右クリック",
