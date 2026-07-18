@@ -4,7 +4,7 @@ import { EntityDamageCause } from "@minecraft/server";
 export class brokenSwordSkill extends skillBase {
     constructor() {
         super();
-        this.id = "§a壊れた星輝剣";
+        this.id = "§a壊れた剣";
         this.cooldown = 10 * 20;
     }
 
