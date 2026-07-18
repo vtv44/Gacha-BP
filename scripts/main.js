@@ -382,10 +382,10 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     for (let i = 0; i < inventory.size; i++) {
         const item = inventory.getItem(i);
         if (item) {
-            if (item.typeId === baseWeaponId && !hasBaseWeapon) {
+            if ((item.nameTag === baseWeaponId || item.typeId === baseWeaponId) && !hasBaseWeapon) {
                 hasBaseWeapon = true;
             }
-            if (item.typeId === materialId) {
+            if (item.nameTag === materialId || item.typeId === materialId) {
                 materialTotal += item.amount;
             }
         }
@@ -405,7 +405,7 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     let weaponConsumed = false;
     for (let i = 0; i < inventory.size; i++) {
         const item = inventory.getItem(i);
-        if (item && item.typeId === baseWeaponId && !weaponConsumed) {
+        if (item && (item.nameTag === baseWeaponId || item.typeId === baseWeaponId) && !weaponConsumed) {
             if (item.amount > 1) {
                 item.amount -= 1;
                 inventory.setItem(i, item);
@@ -421,7 +421,7 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     for (let i = 0; i < inventory.size; i++) {
         if (remainingToConsume <= 0) break;
         const item = inventory.getItem(i);
-        if (item && item.typeId === materialId) {
+        if (item && (item.nameTag === materialId || item.typeId === materialId)) {
             if (item.amount > remainingToConsume) {
                 item.amount -= remainingToConsume;
                 inventory.setItem(i, item);
@@ -508,7 +508,7 @@ function showWeaponSynthesisMenu(player) {
     form.body("合成する武器を選んでください。");
 
     form.button("§c炎の剣\n§8(鉄の剣1個 + ブレイズパウダー2個)", "textures/items/gold_sword");
-    form.button("§b氷の剣\n§8(鉄の剣1個 + ダイヤモンド1個)", "textures/items/diamond_sword");
+    form.button("§6エンハンスファーン\n§8(§5バカデカ氷 §8+ §a壊れた剣§8)", "textures/items/enhance_fern");
     form.button("§5燃え盛る剣\n§8(§f燃え残った剣 §8+ §f赤色の魔力§8)", "textures/items/blazing_sword");
     
     form.button("§bHyperion\n§8(Divineレアリティの武器2つ)", "textures/items/hyperion");
@@ -522,8 +522,12 @@ function showWeaponSynthesisMenu(player) {
             case 0: 
                 synthesizeWeapon(player, "minecraft:golden_sword", "minecraft:iron_sword", "minecraft:blaze_powder", 2, "§c炎の剣", ["§c[炎の力] §5武器"]);
                 break;
-            case 1: 
-                synthesizeWeapon(player, "minecraft:diamond_sword", "minecraft:iron_sword", "minecraft:diamond", 1, "§b氷の剣", ["§b[氷の力] §5武器"]);
+            case 1:
+                synthesizeWeapon(player, "gacha:enhance_fern", "§a壊れた剣", "§5バカデカ氷", 1, "§6エンハンスファーン", [
+                    "§w[フロストウェーブ / レインシャーベット] §5右クリック スニーク",
+                    "§5通常の右クリックなら前方に氷の衝撃波を放つ",
+                    "§5スニークの右クリックなら周囲の敵に氷を落とす"
+                ]);
                 break;
             case 2:
                 synthesizeWeapon(player, "gacha:blazing_sword", "gacha:cinder_sword", "minecraft:red_dye", 1, "§5燃え盛る剣", [
