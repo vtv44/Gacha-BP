@@ -1,4 +1,4 @@
-import { EntityDamageCause, world } from "@minecraft/server";
+import { EntityDamageCause, system, world } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class handgunSkill extends skillBase {
@@ -6,6 +6,7 @@ export class handgunSkill extends skillBase {
         super()
 
         this.id = "§1ハンドガン"
+        this.cooldown = 10 * 20
     }
 
     static ammo = new Map
@@ -34,6 +35,13 @@ export class handgunSkill extends skillBase {
         }
         player.onScreenDisplay.setActionBar(message)
 
+        if (ammo - 1 <= 0) {
+            system.runTimeout(() => {
+                player.onScreenDisplay.setActionBar("§lRELOADED")
+                handgunSkill.ammo.set(player.id, 16)
+            }, this.cooldown)
+        }
+
         dimension.playSound("break.heavy_core", pos, {pitch: 0.4})
 
         const teamScore = world.scoreboard.getObjective("team").getScore(player)
@@ -49,7 +57,7 @@ export class handgunSkill extends skillBase {
         })
 
         for (const t of targets) {
-            t.applyDamage(5, {cause: EntityDamageCause.projectile})
+            t.entity.applyDamage(5, {cause: EntityDamageCause.projectile})
         }
 
         for (let i = 1; i <= 30; i++) {

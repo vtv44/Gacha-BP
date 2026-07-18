@@ -126,6 +126,7 @@ import { blazingSword } from "./weapon/blazingSword";
 import { largePeopleBootsSkill } from "./armor/largePeopleBoots";
 import { fewPeopleBootsSkill } from "./armor/fewPeopleBoots";
 import { enhanceFernSkill } from "./weapon/enhanceFern";
+import { dimensinalDriftSkill } from "./spell/dimensionalDrift";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -227,6 +228,7 @@ skillManager.register(new furyHelmetSkill());
 skillManager.register(new jugglingSkill());
 skillManager.register(new blackholeSkill());
 skillManager.register(new enhanceFernSkill());
+skillManager.register(new dimensinalDriftSkill());
 
 skillManager.tickSkillRegister(new speedBootsSkill());
 skillManager.tickSkillRegister(new superSpeedBootsSkill());
