@@ -15,7 +15,7 @@ uncommon = 7
 rare = 6
 epic = 9
 legendary = 5
-mythic = 5
+mythic = 6
 divine = 2
 special= 4
 

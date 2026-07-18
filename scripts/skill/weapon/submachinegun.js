@@ -44,7 +44,7 @@ export class subMachineGunSkill extends skillBase {
 
                 for (const t of targets) {
                     t.entity.applyDamage(2, {cause: EntityDamageCause.selfDestruct})
-                    player.playSound("random.bowhit", {volume: 0.8, pitch: 0.8})
+                    player.playSound("random.orb", {volume: 0.8, pitch: 0.5})
                 }
 
                 for (let i = 0; i <= 25; i++) {
