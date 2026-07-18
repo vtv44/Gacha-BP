@@ -392,7 +392,7 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     }
 
     if (!hasBaseWeapon) {
-        player.sendMessage(`§cベースとなる武器が足りません！`);
+        player.sendMessage(`§cベースとなるアイテムが足りません！`);
         player.playSound("note.bass");
         return;
     }
@@ -504,10 +504,10 @@ function craftHyperion(player) {
 
 function showWeaponSynthesisMenu(player) {
     const form = new ActionFormData();
-    form.title("§l武器合成メニュー");
-    form.body("合成する武器を選んでください。");
+    form.title("§lアイテム合成メニュー");
+    form.body("合成するアイテムを選んでください。");
 
-    form.button("§6フロストチェストプレート\n§8(§f壊れた防具 §8+ §5バカデカ氷§8)", "textures/items/frost_armor");
+    form.button("§6フロストチェストプレート\n§8(§f壊れた防具 §8+ §5バカデカ氷§8)", "textures/items/ice_armor");
     form.button("§6エンハンスファーン\n§8(§5バカデカ氷 §8+ §a壊れた剣§8)", "textures/items/enhance_fern");
     form.button("§5燃え盛る剣\n§8(§f燃え残った剣 §8+ §f赤色の魔力§8)", "textures/items/blazing_sword");
     
@@ -520,7 +520,11 @@ function showWeaponSynthesisMenu(player) {
         
         switch (response.selection) {
             case 0:
-                synthesizeWeapon(player, "gacha:frost_armor", "§f壊れた防具", "§5バカデカ氷", 1, "§6フロストチェストプレート", []);
+                synthesizeWeapon(player, "gacha:ice_armor", "§f壊れた防具", "§5バカデカ氷", 1, "§6フロストチェストプレート", [
+                    "§w[アイシクルタイム] §5スニーク",
+                    "§5スニークすると周りに氷を召喚してダメージと鈍化を与える",
+                    "§510秒のクールタイムがある"
+                ]);
                 break;
             case 1:
                 synthesizeWeapon(player, "gacha:enhance_fern", "§a壊れた剣", "§5バカデカ氷", 1, "§6エンハンスファーン", [
@@ -537,7 +541,6 @@ function showWeaponSynthesisMenu(player) {
                 ]);
                 break;
             case 3:
-                // ★追加：Hyperion合成を呼び出す
                 craftHyperion(player);
                 break;
         }
@@ -549,7 +552,7 @@ function showAnvilMenu(player) {
     const form = new ActionFormData();
     form.title("§lかなどこメニュー");
     form.body("何をしますか？");
-    form.button("武器を合成する");
+    form.button("アイテムを合成する");
     form.button("エンチャントする");
 
     form.show(player).then(response => {
@@ -605,11 +608,9 @@ function craftArmor(player, resultId, costId, costAmount) {
         "§6[あーまいアーマー] §5装備",
         "§5お腹が減りにくくなる"
     ]);
-    
-    newItem.lockMode = ItemLockMode.inventory;
 
     inventory.addItem(newItem);
-    
+
     player.sendMessage(`§a防具を作成しました！`);
     player.playSound("random.anvil_use");
 }
@@ -654,8 +655,6 @@ function craftRainbowArmor(player, resultId, costId, costAmount) {
         "§e[虹の輝き] §5装備",
         "§5様々な力が宿る防具"
     ]);
-    
-    newItem.lockMode = ItemLockMode.inventory;
 
     inventory.addItem(newItem);
     

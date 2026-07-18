@@ -57,4 +57,13 @@ export const commonArmors = [
             {id: "unbreaking", level: 2}
         ]
     },
+    {
+        amount: 1,
+        id: "gacha:broken_armor", 
+        name: "§f壊れた防具",
+        lore: [
+            "§4[破損] §5素材",
+            "§5壊れているため装備もできない..."
+        ],
+    },
 ]

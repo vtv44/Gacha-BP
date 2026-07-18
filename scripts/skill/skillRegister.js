@@ -128,6 +128,7 @@ import { fewPeopleBootsSkill } from "./armor/fewPeopleBoots";
 import { enhanceFernSkill } from "./weapon/enhanceFern";
 import { iceBlockSkill } from "./spell/iceBlock";
 import { dimensinalDriftSkill } from "./spell/dimensionalDrift";
+import { frostChestPlateSkill } from "./armor/frostChestPlate";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -261,6 +262,7 @@ skillManager.tickSkillRegister(new blazingSword());
 skillManager.tickSkillRegister(new largePeopleBootsSkill());
 skillManager.tickSkillRegister(new fewPeopleBootsSkill());
 skillManager.tickSkillRegister(new iceBlockSkill());
+skillManager.tickSkillRegister(new frostChestPlateSkill());
 
 const axeSkill = new infernalAxeSkill();
 

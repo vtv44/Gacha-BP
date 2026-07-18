@@ -4,7 +4,7 @@ import { tickSkillBase } from "../skillBase";
 export class rainbowArmorSkill extends tickSkillBase {
     constructor() {
         super();
-        this.id = "§eレインボーアーマー";
+        this.id = "§eプリズムアーマー";
     }
 
     equip(player) {
