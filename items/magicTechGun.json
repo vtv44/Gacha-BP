@@ -16,7 +16,11 @@
             "minecraft:damage": {
                 "value": 6
             },
-            "minecraft:hand_equipped": true
+            "minecraft:hand_equipped": true,
+            "minecraft:enchantable": {
+                "slot": "sword",
+                "value": 10
+            }
         }
     }
 }

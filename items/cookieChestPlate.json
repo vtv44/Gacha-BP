@@ -14,7 +14,11 @@
                 "slot": "slot.armor.chest",
                 "protection": 2
             },
-            "minecraft:max_stack_size": 1
+            "minecraft:max_stack_size": 1,
+            "minecraft:enchantable": {
+                "slot": "armor_torso",
+                "value": 10
+            }
         }
     }
 }

@@ -126,11 +126,8 @@ import { blazingSword } from "./weapon/blazingSword";
 import { largePeopleBootsSkill } from "./armor/largePeopleBoots";
 import { fewPeopleBootsSkill } from "./armor/fewPeopleBoots";
 import { enhanceFernSkill } from "./weapon/enhanceFern";
-<<<<<<< HEAD
-import { iceBlockSkill } from "./armor/iceBlock";
-=======
+import { iceBlockSkill } from "./spell/iceBlock";
 import { dimensinalDriftSkill } from "./spell/dimensionalDrift";
->>>>>>> 5840e9b293a834d8f5aa2410c50ef293678d909f
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());

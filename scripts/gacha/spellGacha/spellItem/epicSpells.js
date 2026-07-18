@@ -91,4 +91,17 @@ export const epicSpells = [
             "§5消耗品"
         ]
     },
+    {
+        amount: 1,
+        id: "gacha:iceee",
+        name: "§5バカデカ氷",
+        lore: [
+            "§w[凍結] §5装備 素材",
+            "§5装備している間、鈍化が付与される",
+            "§5素材として剣、防具が作れる"
+        ],
+        enchants: [
+            {id: "protection", level: 4}
+        ]
+    },
 ]
