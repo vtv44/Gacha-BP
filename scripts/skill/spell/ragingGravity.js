@@ -5,7 +5,7 @@ export class ragingGravitySkill extends skillBase {
     constructor() {
         super();
         this.id = "§5崩壊する重力";
-        this.cooldown = 5 * 20;
+        this.cooldown = 15 * 20;
     }
 
     execute(player) {
