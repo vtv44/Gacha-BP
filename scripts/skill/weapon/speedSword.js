@@ -1,11 +1,13 @@
 import { system, EntityDamageCause } from "@minecraft/server";
 import { skillBase } from "../skillBase";
+import { CooldownManager } from "../cooldownManager";
 
 export class speedSwordSkill extends skillBase {
     constructor() {
         super()
         this.id = "§5レイピア"
         this.cooldown = 5 * 20
+        this.attackCooldown = 1 * 20
     }
 
     execute(player) {
@@ -18,6 +20,9 @@ export class speedSwordSkill extends skillBase {
     onDamage(player, event) {
         const target = event.hurtEntity;
         if (!target) return;
+        if (CooldownManager.has(player, this.id + "_atk")) return;
+
+        CooldownManager.set(player, this.id + "_atk", this.attackCooldown);
 
         system.runTimeout(() => {
             if (!target.isValid) return;
