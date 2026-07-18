@@ -129,8 +129,12 @@ import { enhanceFernSkill } from "./weapon/enhanceFern";
 import { iceBlockSkill } from "./spell/iceBlock";
 import { dimensinalDriftSkill } from "./spell/dimensionalDrift";
 import { frostChestPlateSkill } from "./armor/frostChestPlate";
+import { shockWeaknessSwordSkill } from "./weapon/shockWeaknessSword";
+import { speedSwordSkill } from "./weapon/speedSword";
 
 skillManager.register(new redMagicSkill());
+skillManager.register(new shockWeaknessSwordSkill());
+skillManager.register(new speedSwordSkill());
 skillManager.register(new giantSwordSkill());
 skillManager.register(new heroSwordSkill());
 skillManager.register(new drillRodSkill());

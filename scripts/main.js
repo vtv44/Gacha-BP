@@ -511,12 +511,13 @@ function showWeaponSynthesisMenu(player) {
     form.button("§6エンハンスファーン\n§8(§5バカデカ氷 §8+ §a壊れた剣§8)", "textures/items/enhance_fern");
     form.button("§5燃え盛る剣\n§8(§f燃え残った剣 §8+ §f赤色の魔力§8)", "textures/items/blazing_sword");
     
+    form.button("§6衝撃的な弱さの剣\n§8(§1衝撃的な剣 §8+ §a弱さの剣§8)", "textures/items/veryweakness_sword");
     form.button("§bHyperion\n§8(Divineレアリティの武器2つ)", "textures/items/hyperion");
-    
+
     form.button("キャンセル");
 
     form.show(player).then(response => {
-        if (response.canceled || response.selection === 4) return;
+        if (response.canceled || response.selection === 5) return;
         
         switch (response.selection) {
             case 0:
@@ -541,6 +542,13 @@ function showWeaponSynthesisMenu(player) {
                 ]);
                 break;
             case 3:
+                synthesizeWeapon(player, "gacha:veryweakness_sword", "§1衝撃的な剣", "§a弱さの剣", 1, "§d衝撃的な弱さの剣", [
+                    "§e[衝撃的な弱体化] §5攻撃 右クリック",
+                    "§5攻撃した相手に弱体化IVを1秒間付与する",
+                    "§5右クリックで衝撃吸収IIを30秒間付与する(CT30秒)"
+                ]);
+                break;
+            case 4:
                 craftHyperion(player);
                 break;
         }
