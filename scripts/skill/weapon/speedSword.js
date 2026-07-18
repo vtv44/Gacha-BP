@@ -26,11 +26,11 @@ export class speedSwordSkill extends skillBase {
 
         system.runTimeout(() => {
             if (!target.isValid) return;
-            target.applyDamage(1, { cause: EntityDamageCause.selfDestruct, damagingEntity: player });
+            target.applyDamage(1, { cause: EntityDamageCause.magic, damagingEntity: player });
         }, 2);
         system.runTimeout(() => {
             if (!target.isValid) return;
-            target.applyDamage(1, { cause: EntityDamageCause.selfDestruct, damagingEntity: player });
+            target.applyDamage(1, { cause: EntityDamageCause.magic, damagingEntity: player });
         }, 4);
     }
 }
