@@ -42,12 +42,15 @@ export class assassinSkill extends skillBase {
             const legs = equippable.getEquipment(EquipmentSlot.Legs);
             const feet = equippable.getEquipment(EquipmentSlot.Feet);
 
-            assassinSkill.savedArmor.set(player.id, { head, chest, legs, feet });
+            const offhand = equippable.getEquipment(EquipmentSlot.Offhand);
+
+            assassinSkill.savedArmor.set(player.id, { head, chest, legs, feet, offhand });
 
             equippable.setEquipment(EquipmentSlot.Head, undefined);
             equippable.setEquipment(EquipmentSlot.Chest, undefined);
             equippable.setEquipment(EquipmentSlot.Legs, undefined);
             equippable.setEquipment(EquipmentSlot.Feet, undefined);
+            equippable.setEquipment(EquipmentSlot.Offhand, undefined);
         }
 
         this.onCooldown(player);
@@ -117,6 +120,7 @@ export class assassinSkill extends skillBase {
                 if (armorData.chest) equippable.setEquipment(EquipmentSlot.Chest, armorData.chest);
                 if (armorData.legs) equippable.setEquipment(EquipmentSlot.Legs, armorData.legs);
                 if (armorData.feet) equippable.setEquipment(EquipmentSlot.Feet, armorData.feet);
+                if (armorData.offhand) equippable.setEquipment(EquipmentSlot.Offhand, armorData.offhand);
             }
             assassinSkill.savedArmor.delete(player.id);
         }
