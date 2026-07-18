@@ -83,7 +83,7 @@ export const epicSpells = [
     },
     {
         amount: 1,
-        id: "minecraft:sculk",
+        id: "minecraft:ink_sac",
         name: "§5ブラックホール",
         lore: [
             "§d[シュバルツシルト半径の崩壊] §5右クリック",
