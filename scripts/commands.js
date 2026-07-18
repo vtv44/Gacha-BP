@@ -9,6 +9,7 @@ import { defenceGacha } from "./gacha/defenceGacha/defenceGacha";
 import { spellGacha } from "./gacha/spellGacha/spellGacha";
 import { school } from "./game/maps/school";
 import { discardMount } from "./game/maps/discardMount";
+import { factory } from "./game/maps/factory";
 
 export class commandFunctions {
 
@@ -247,6 +248,7 @@ export class commandFunctions {
                     case 0: new theEnd().buildRepair(); break
                     case 1: new school().buildRepair(); break
                     case 2: new discardMount().buildRepair(); break
+                    case 3: new factory().buildRepair(); break
                 }
 
                 return {

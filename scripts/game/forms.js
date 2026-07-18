@@ -62,6 +62,7 @@ export class forms {
         .button("ザ・エンド")
         .button("学校")
         .button("廃塚")
+        .button("工場")
 
         return form
     }
