@@ -5,7 +5,7 @@ export class campfireHealSkill extends skillBase {
     constructor() {
         super();
         this.id = "§d癒しの焚火";
-        this.cooldown = 30 * 20;
+        this.cooldown = 10 * 20;
     }
 
     execute(player) {

@@ -126,6 +126,7 @@ import { blazingSword } from "./weapon/blazingSword";
 import { largePeopleBootsSkill } from "./armor/largePeopleBoots";
 import { fewPeopleBootsSkill } from "./armor/fewPeopleBoots";
 import { enhanceFernSkill } from "./weapon/enhanceFern";
+import { iceBlockSkill } from "./armor/iceBlock";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new giantSwordSkill());
@@ -257,6 +258,7 @@ skillManager.tickSkillRegister(new valflameLeggingsSkill());
 skillManager.tickSkillRegister(new blazingSword());
 skillManager.tickSkillRegister(new largePeopleBootsSkill());
 skillManager.tickSkillRegister(new fewPeopleBootsSkill());
+skillManager.tickSkillRegister(new iceBlockSkill());
 
 const axeSkill = new infernalAxeSkill();
 
