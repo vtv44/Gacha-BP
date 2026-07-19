@@ -103,4 +103,17 @@ export const mythicArmors = [
             {id: "unbreaking", level: 3},
         ]
     },
+    {
+        amount: 1,
+        id: "minecraft:diamond_boots",
+        name: "§dスプリングブーツ",
+        lore: [
+            "§d[To the moon!] §5装備 スニーク",
+            "§5スニークし続けると大ジャンプする",
+            "§5CT3秒"
+        ],
+        enchants: [
+            {id: "protection", level: 4}
+        ]
+    },
 ]

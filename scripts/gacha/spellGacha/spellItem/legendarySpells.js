@@ -47,4 +47,13 @@ export const legendarySpells = [
             "§5自分以外の全てのプレイヤーの位置を入れ替える"
         ],
     },
+    {
+        amount: 1,
+        id: "minecraft:iron_sword",
+        name: "§6V killer",
+        lore: [
+            "§a[V] §r§5攻撃",
+            "§5名前にVが入ってる人に対して攻撃力が上がる"
+        ],
+    },
 ]

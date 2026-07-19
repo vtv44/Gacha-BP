@@ -1,3 +1,4 @@
+import { system, EntityDamageCause } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class vKillerSkill extends skillBase {
@@ -12,15 +13,17 @@ export class vKillerSkill extends skillBase {
 
         const name = target.name;
         if (name.includes("V") || name.includes("v")) {
-            target.applyDamage(event.damage, { cause: "entityAttack", damagingEntity: player });
+            system.runTimeout(() => {
+                if (!target.isValid) return;
+                target.applyDamage(event.damage, { cause: EntityDamageCause.selfDestruct });
+            }, 2);
 
             const dimension = player.dimension;
             const playerPos = player.location;
             const targetPos = target.location;
 
             dimension.playSound("respawn_anchor.charge", playerPos);
-            dimension.spawnParticle("rca:golden_sword", { x: playerPos.x, y: playerPos.y + 2, z: playerPos.z });
-            dimension.spawnParticle("rca:sweep_green_v", { x: targetPos.x, y: targetPos.y + 1, z: targetPos.z });
+            dimension.spawnParticle("rca:sweep_green", { x: targetPos.x, y: targetPos.y + 1, z: targetPos.z });
         }
     }
 }

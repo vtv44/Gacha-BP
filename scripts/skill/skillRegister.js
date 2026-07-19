@@ -134,6 +134,7 @@ import { speedSwordSkill } from "./weapon/speedSword";
 import { soundArmorSkill } from "./armor/soundArmor";
 import { yellowMagicSkill } from "./spell/yellowMagic";
 import { vKillerSkill } from "./weapon/vKiller";
+import { springBootsSkill } from "./armor/springBoots";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new shockWeaknessSwordSkill());
@@ -273,6 +274,7 @@ skillManager.tickSkillRegister(new fewPeopleBootsSkill());
 skillManager.tickSkillRegister(new iceBlockSkill());
 skillManager.tickSkillRegister(new frostChestPlateSkill());
 skillManager.tickSkillRegister(new soundArmorSkill());
+skillManager.tickSkillRegister(new springBootsSkill());
 
 const axeSkill = new infernalAxeSkill();
 
