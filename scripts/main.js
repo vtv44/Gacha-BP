@@ -90,7 +90,7 @@ system.beforeEvents.startup.subscribe(ev => {
 })
 
 system.runInterval(() => {
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -103,7 +103,7 @@ system.runInterval(() => {
 })
 
 system.runInterval(() => {
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -262,7 +262,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         }) 
     }
 
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const skill = skillManager.get(itemStack.nameTag);
     if (skill) skill.use(source, ev);
@@ -303,7 +303,7 @@ world.afterEvents.entityHurt.subscribe(ev => {
     const damagingEntity = damageSource.damagingEntity;
     if (hurtEntity.typeId !== "minecraft:player") return;
 
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -343,7 +343,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    //"minecraft:anvil",
+    "minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",
@@ -786,7 +786,7 @@ function locationCompare(pos1, pos2) {
 world.afterEvents.playerBreakBlock.subscribe(ev => {
     const { player } = ev;
     
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const item = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
     if (!item) return;
