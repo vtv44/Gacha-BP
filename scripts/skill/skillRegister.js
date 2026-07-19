@@ -133,11 +133,13 @@ import { shockWeaknessSwordSkill } from "./weapon/shockWeaknessSword";
 import { speedSwordSkill } from "./weapon/speedSword";
 import { soundArmorSkill } from "./armor/soundArmor";
 import { yellowMagicSkill } from "./spell/yellowMagic";
+import { vKillerSkill } from "./weapon/vKiller";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new shockWeaknessSwordSkill());
 skillManager.register(new speedSwordSkill());
 skillManager.register(new yellowMagicSkill());
+skillManager.register(new vKillerSkill());
 skillManager.register(new giantSwordSkill());
 skillManager.register(new heroSwordSkill());
 skillManager.register(new drillRodSkill());

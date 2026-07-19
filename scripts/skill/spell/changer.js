@@ -1,4 +1,4 @@
-import { world, system } from "@minecraft/server";
+import { world, system, GameMode } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 export class changerSkill extends skillBase {
@@ -72,6 +72,7 @@ export class changerSkill extends skillBase {
             for (const target of hitCandidates) {
                 if (!target || !target.isValid || target.id === owner.id || target.hasTag("is_projectile")) continue;
                 if (target.typeId !== "minecraft:player") continue;
+                if (target.getGameMode() === GameMode.spectator) continue;
 
                 if (ownerScore !== null) {
                     try {
