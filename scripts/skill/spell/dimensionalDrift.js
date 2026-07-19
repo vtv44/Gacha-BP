@@ -35,6 +35,7 @@ export class dimensinalDriftSkill extends skillBase {
         equip.setEquipment(EquipmentSlot.Offhand, null)
 
         dimension.playSound("voice.peppu_1", player.location)
+        dimension.playSound("voice.mikan_1", player.location)
         dimension.playSound("mob.warden.sonic_charge", player.location, {volume: 0.8, pitch: 2.5})
 
         system.runTimeout(() => {

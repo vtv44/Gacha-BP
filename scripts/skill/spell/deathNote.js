@@ -16,13 +16,13 @@ export class deathNoteSkill extends skillBase {
         .filter((p) => p.id !== player.id && p.getGameMode() !== GameMode.spectator)
         const form = new ActionFormData().title("§4誰の名前を書く？")
         for (let i = 0; i <= players.length - 1; i++) {
-            form.button(`§l${players[i].nameTag}`)
+            form.button(`§l${players[i].name}`)
         }
         form.show(player).then(res => {
             if (res.canceled) return
             const p = players[res.selection]
             this.deathNoteKill(p)
-            player.sendMessage(` \n§l[!] ${p.nameTag}は${this.killTime / 20}秒後に死亡する...\n `)
+            player.sendMessage(` \n§l[!] ${p.name}は${this.killTime / 20}秒後に死亡する...\n `)
             player.getComponent("inventory").container.getSlot(player.selectedSlotIndex).setItem(null)
         })
     }

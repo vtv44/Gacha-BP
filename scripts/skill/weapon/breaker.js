@@ -1,4 +1,4 @@
-import { world, system, ItemStack, ItemLockMode } from "@minecraft/server";
+import { world, system, ItemStack, ItemLockMode, EntityDamageCause } from "@minecraft/server";
 import { skillBase } from "../skillBase";
 
 const itemConfigs = {
@@ -89,10 +89,11 @@ export class crusherSkill extends skillBase {
 
     onDamage(player, event) {
         const target = event.hurtEntity;
+        const cause = event.damageSource.cause;
         const inv = player.getComponent("inventory");
         const item = inv?.container?.getItem(player.selectedSlotIndex);
         
-        if (item?.nameTag === this.id) {
+        if (item?.nameTag === this.id && cause === EntityDamageCause.entityAttack) {
             system.run(() => {
                 target?.applyDamage(6, { 
                     cause: "override",

@@ -9,7 +9,8 @@ export class smokeBombSkill extends skillBase {
     }
 
     execute(player) {
-        if (!this.canAddEffect(player)) return;
+        this.onCooldown(player);
+        
         const dimension = player.dimension;
         const location = player.location;
 
@@ -30,8 +31,7 @@ export class smokeBombSkill extends skillBase {
             );
         }
 
+        if (!this.canAddEffect(player)) return;
         player.addEffect("invisibility", 10 * 20, { amplifier: 0, showParticles: true });
-
-        this.onCooldown(player);
     }
 }

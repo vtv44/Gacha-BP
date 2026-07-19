@@ -22,6 +22,12 @@ export class blueBirdOfHappinessSkill extends skillBase {
         }
 
         player.runCommand("particle minecraft:magic_critical_hit_emitter ~~1.4~")
+        dimension.spawnParticle("minecraft:example_flipbook", {
+            x: location.x,
+            y: location.y + 1.2,
+            z: location.z
+        })
+        player.playSound("random.levelup", {pitch: 2})
         dimension.playSound("mob.parrot.fly", location)
 
         const targets = this.getTargets(player, location, 100)
@@ -33,11 +39,11 @@ export class blueBirdOfHappinessSkill extends skillBase {
                 "§1[贈り物] §5右クリック",
                 "§5使うとどこかへ飛び去ってしまう"
             ])
-            bird.lockmode = ItemLockMode.inventory
+            bird.lockMode = ItemLockMode.inventory
 
             targets[rand].getComponent("inventory").container.addItem(bird)
 
-            player.sendMessage(`§l青色の鳥は${targets[rand].nameTag}の元へと飛んで行った...`)
+            player.sendMessage(`§l青色の鳥は${targets[rand].name}の元へと飛んで行った...`)
 
             targets[rand].sendMessage(`§lどこからか青色の鳥が飛んできた！`)
         } else {

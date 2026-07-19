@@ -10,7 +10,7 @@ export class harubaguSpecialLevySKill extends skillBase {
 
     execute(player) {
         const location = player.location
-        const targets = this.getTargets(player, location, 7)
+        const targets = this.getTargets(player, location, 100)
         let heal = 0
 
         if (!targets[0]) {
