@@ -7,7 +7,7 @@ export class discardMount extends mapBase {
 
         this.mapPos = [
             // mapPos[0]が最小値 mapPos[1]が最大値
-            {x: 0, y: 5, z: -2000},
+            {x: 0, y: 4, z: -2000},
             {x: 170, y: 35, z: -1882}
         ]
         this.blockCancelHeight = {min: 0, max: 66}

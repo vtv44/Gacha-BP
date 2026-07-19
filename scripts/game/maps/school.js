@@ -7,7 +7,7 @@ export class school extends mapBase {
 
         this.mapPos = [
             // mapPos[0]が最小値 mapPos[1]が最大値
-            {x: -2000, y: 0, z: 0},
+            {x: -2000, y: 3, z: 0},
             {x: -1758, y: 30, z: 173}
         ]
         this.blockCancelHeight = {min: 0, max: 46}

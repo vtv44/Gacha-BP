@@ -6,7 +6,7 @@ export class factory extends mapBase {
         super()
 
         this.mapPos = [
-            {x: 2000, y: 5, z: 2000},
+            {x: 2000, y: 4, z: 2000},
             {x: 2125, y: 35, z: 2099}
         ]
         this.blockCancelHeight = {min: 0, max: 70}
