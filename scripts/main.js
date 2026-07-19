@@ -90,7 +90,7 @@ system.beforeEvents.startup.subscribe(ev => {
 })
 
 system.runInterval(() => {
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -103,7 +103,7 @@ system.runInterval(() => {
 })
 
 system.runInterval(() => {
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -136,7 +136,7 @@ world.beforeEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
 
     if (hurtEntity.typeId !== "minecraft:player") return;
-    if (!world.getDynamicProperty("game")) ev.cancel = true;
+    //if (!world.getDynamicProperty("game")) ev.cancel = true;
     
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -262,7 +262,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         }) 
     }
 
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const skill = skillManager.get(itemStack.nameTag);
     if (skill) skill.use(source, ev);
@@ -303,7 +303,7 @@ world.afterEvents.entityHurt.subscribe(ev => {
     const damagingEntity = damageSource.damagingEntity;
     if (hurtEntity.typeId !== "minecraft:player") return;
 
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -343,7 +343,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    "minecraft:anvil",
+    //"minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",
@@ -512,12 +512,13 @@ function showWeaponSynthesisMenu(player) {
     form.button("§5燃え盛る剣\n§8(§f燃え残った剣 §8+ §f赤色の魔力§8)", "textures/items/blazing_sword");
     
     form.button("§6衝撃的な弱さの剣\n§8(§1衝撃的な剣 §8+ §a弱さの剣§8)", "textures/items/veryweakness_sword");
+    form.button("§1黄色の魔力\n§8(§f赤色の魔力 §8+ §a緑色の魔力§8)", "textures/items/dye_powder_yellow");
     form.button("§bHyperion\n§8(Divineレアリティの武器2つ)", "textures/items/hyperion");
 
     form.button("キャンセル");
 
     form.show(player).then(response => {
-        if (response.canceled || response.selection === 5) return;
+        if (response.canceled || response.selection === 6) return;
         
         switch (response.selection) {
             case 0:
@@ -549,6 +550,13 @@ function showWeaponSynthesisMenu(player) {
                 ]);
                 break;
             case 4:
+                synthesizeWeapon(player, "minecraft:yellow_dye", "§f赤色の魔力", "§a緑色の魔力", 1, "§1黄色の魔力", [
+                    "§e[毒火遊び] §5被弾",
+                    "§5周囲のプレイヤーに毒と炎を与える",
+                    "§5赤色の魔力、緑色の魔力より範囲が増えている"
+                ]);
+                break;
+            case 5:
                 craftHyperion(player);
                 break;
         }
@@ -778,7 +786,7 @@ function locationCompare(pos1, pos2) {
 world.afterEvents.playerBreakBlock.subscribe(ev => {
     const { player } = ev;
     
-    if (!world.getDynamicProperty("game")) return;
+    //if (!world.getDynamicProperty("game")) return;
 
     const item = player.getComponent("inventory").container.getItem(player.selectedSlotIndex);
     if (!item) return;

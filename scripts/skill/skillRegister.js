@@ -131,10 +131,13 @@ import { dimensinalDriftSkill } from "./spell/dimensionalDrift";
 import { frostChestPlateSkill } from "./armor/frostChestPlate";
 import { shockWeaknessSwordSkill } from "./weapon/shockWeaknessSword";
 import { speedSwordSkill } from "./weapon/speedSword";
+import { soundArmorSkill } from "./armor/soundArmor";
+import { yellowMagicSkill } from "./spell/yellowMagic";
 
 skillManager.register(new redMagicSkill());
 skillManager.register(new shockWeaknessSwordSkill());
 skillManager.register(new speedSwordSkill());
+skillManager.register(new yellowMagicSkill());
 skillManager.register(new giantSwordSkill());
 skillManager.register(new heroSwordSkill());
 skillManager.register(new drillRodSkill());
@@ -267,6 +270,7 @@ skillManager.tickSkillRegister(new largePeopleBootsSkill());
 skillManager.tickSkillRegister(new fewPeopleBootsSkill());
 skillManager.tickSkillRegister(new iceBlockSkill());
 skillManager.tickSkillRegister(new frostChestPlateSkill());
+skillManager.tickSkillRegister(new soundArmorSkill());
 
 const axeSkill = new infernalAxeSkill();
 
