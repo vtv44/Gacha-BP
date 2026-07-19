@@ -90,7 +90,7 @@ system.beforeEvents.startup.subscribe(ev => {
 })
 
 system.runInterval(() => {
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -103,7 +103,7 @@ system.runInterval(() => {
 })
 
 system.runInterval(() => {
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const players = world.getAllPlayers()
     for (const p of players) {
@@ -136,7 +136,7 @@ world.beforeEvents.entityHurt.subscribe(ev => {
     const {damage, damageSource, hurtEntity} = ev;
 
     if (hurtEntity.typeId !== "minecraft:player") return;
-    //if (!world.getDynamicProperty("game")) ev.cancel = true;
+    if (!world.getDynamicProperty("game")) ev.cancel = true;
     
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -262,7 +262,7 @@ world.afterEvents.itemUse.subscribe(async ev => {
         }) 
     }
 
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const skill = skillManager.get(itemStack.nameTag);
     if (skill) skill.use(source, ev);
@@ -303,7 +303,7 @@ world.afterEvents.entityHurt.subscribe(ev => {
     const damagingEntity = damageSource.damagingEntity;
     if (hurtEntity.typeId !== "minecraft:player") return;
 
-    //if (!world.getDynamicProperty("game")) return;
+    if (!world.getDynamicProperty("game")) return;
 
     const armor = hurtEntity.getComponent("equippable");
     for (const slot of slots) {
@@ -343,7 +343,7 @@ const blockedBlocks = [
 ];
 
 const cancelBlocks = [
-    //"minecraft:anvil",
+    "minecraft:anvil",
     "minecraft:furnace",
     "minecraft:chipped_anvil",
     "minecraft:damaged_anvil",
@@ -392,7 +392,7 @@ function synthesizeWeapon(player, resultId, baseWeaponId, materialId, materialAm
     }
 
     if (!hasBaseWeapon) {
-        player.sendMessage(`§cベースとなる武器が足りません！`);
+        player.sendMessage(`§cベースとなるアイテムが足りません！`);
         player.playSound("note.bass");
         return;
     }
@@ -504,23 +504,28 @@ function craftHyperion(player) {
 
 function showWeaponSynthesisMenu(player) {
     const form = new ActionFormData();
-    form.title("§l武器合成メニュー");
-    form.body("合成する武器を選んでください。");
+    form.title("§lアイテム合成メニュー");
+    form.body("合成するアイテムを選んでください。");
 
-    form.button("§6フロストチェストプレート\n§8(§f壊れた防具 §8+ §5バカデカ氷§8)", "textures/items/frost_armor");
+    form.button("§6フロストチェストプレート\n§8(§f壊れた防具 §8+ §5バカデカ氷§8)", "textures/items/ice_armor");
     form.button("§6エンハンスファーン\n§8(§5バカデカ氷 §8+ §a壊れた剣§8)", "textures/items/enhance_fern");
     form.button("§5燃え盛る剣\n§8(§f燃え残った剣 §8+ §f赤色の魔力§8)", "textures/items/blazing_sword");
     
+    form.button("§6衝撃的な弱さの剣\n§8(§1衝撃的な剣 §8+ §a弱さの剣§8)", "textures/items/veryweakness_sword");
     form.button("§bHyperion\n§8(Divineレアリティの武器2つ)", "textures/items/hyperion");
-    
+
     form.button("キャンセル");
 
     form.show(player).then(response => {
-        if (response.canceled || response.selection === 4) return;
+        if (response.canceled || response.selection === 5) return;
         
         switch (response.selection) {
             case 0:
-                synthesizeWeapon(player, "gacha:frost_armor", "§f壊れた防具", "§5バカデカ氷", 1, "§6フロストチェストプレート", []);
+                synthesizeWeapon(player, "gacha:ice_armor", "§f壊れた防具", "§5バカデカ氷", 1, "§6フロストチェストプレート", [
+                    "§w[アイシクルタイム] §5スニーク",
+                    "§5スニークすると周りに氷を召喚してダメージと鈍化を与える",
+                    "§510秒のクールタイムがある"
+                ]);
                 break;
             case 1:
                 synthesizeWeapon(player, "gacha:enhance_fern", "§a壊れた剣", "§5バカデカ氷", 1, "§6エンハンスファーン", [
@@ -537,7 +542,13 @@ function showWeaponSynthesisMenu(player) {
                 ]);
                 break;
             case 3:
-                // ★追加：Hyperion合成を呼び出す
+                synthesizeWeapon(player, "gacha:veryweakness_sword", "§1衝撃的な剣", "§a弱さの剣", 1, "§d衝撃的な弱さの剣", [
+                    "§e[衝撃的な弱体化] §5攻撃 右クリック",
+                    "§5攻撃した相手に弱体化IVを1秒間付与する",
+                    "§5右クリックで衝撃吸収IIを30秒間付与する(CT30秒)"
+                ]);
+                break;
+            case 4:
                 craftHyperion(player);
                 break;
         }
@@ -549,7 +560,7 @@ function showAnvilMenu(player) {
     const form = new ActionFormData();
     form.title("§lかなどこメニュー");
     form.body("何をしますか？");
-    form.button("武器を合成する");
+    form.button("アイテムを合成する");
     form.button("エンチャントする");
 
     form.show(player).then(response => {
@@ -605,11 +616,9 @@ function craftArmor(player, resultId, costId, costAmount) {
         "§6[あーまいアーマー] §5装備",
         "§5お腹が減りにくくなる"
     ]);
-    
-    newItem.lockMode = ItemLockMode.inventory;
 
     inventory.addItem(newItem);
-    
+
     player.sendMessage(`§a防具を作成しました！`);
     player.playSound("random.anvil_use");
 }
@@ -654,8 +663,6 @@ function craftRainbowArmor(player, resultId, costId, costAmount) {
         "§e[虹の輝き] §5装備",
         "§5様々な力が宿る防具"
     ]);
-    
-    newItem.lockMode = ItemLockMode.inventory;
 
     inventory.addItem(newItem);
     

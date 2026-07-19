@@ -87,11 +87,14 @@ export class changerSkill extends skillBase {
                 const targetCenter = { x: tLoc.x, y: tLoc.y + (box.height / 2), z: tLoc.z };
 
                 if (this.getDistanceFromPointToSegment(targetCenter, currentPos, nextPos) < (0.8 + w)) {
-                    const ownerLoc = owner.location;
-                    const targetLoc = tLoc;
+                    const ownerLoc = { x: owner.location.x, y: owner.location.y, z: owner.location.z };
+                    const targetLoc = { x: tLoc.x, y: tLoc.y, z: tLoc.z };
 
-                    target.teleport(ownerLoc);
                     owner.teleport(targetLoc);
+                    system.run(() => {
+                        if (!target.isValid) return;
+                        target.teleport(ownerLoc);
+                    });
 
                     target.dimension.playSound("mob.endermen.portal", targetLoc);
                     owner.dimension.playSound("mob.endermen.portal", ownerLoc);

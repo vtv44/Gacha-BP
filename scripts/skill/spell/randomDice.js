@@ -11,15 +11,16 @@ export class randomDiceSkill extends skillBase {
     execute(player) {
         this.consumeItem(player); 
 
-        const duration = 200; 
+        const duration = 600;
 
         if (Math.random() < 0.5) {
             this.clearAllEffect(player)
             this.clearEffectSetTime(player, duration);
+            player.sendMessage("§c自分に効果が発動した！");
             player.runCommand("playsound voice.harubagu_4 @s ~ ~ ~");
         } else {
             const targets = this.getTargets(player, player.location, 100, 0, true);
-            
+
             for (const target of targets) {
                 this.clearAllEffect(target)
                 this.clearEffectSetTime(target, duration);

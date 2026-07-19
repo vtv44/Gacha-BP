@@ -30,7 +30,7 @@ export class curseSwordSkill extends skillBase {
 
         if (this.canAddEffect(target)) {
             const roll = Math.random();
-            const duration = 5 * 20;
+            const duration = 60 * 20;
 
             if (roll < 0.33) {
                 target.addEffect("poison", duration, { amplifier: 1, showParticles: true });

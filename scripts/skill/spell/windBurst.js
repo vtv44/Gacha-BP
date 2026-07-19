@@ -34,8 +34,8 @@ export class windBurstSkill extends skillBase {
                 dirZ = Math.random() - 0.5;
             }
 
-            const horizontalPower = 3.0; 
-            const verticalPower = 0.8;   
+            const horizontalPower = 5.0;
+            const verticalPower = 1.5;
 
             try {
                 target.applyKnockback({ x: dirX * horizontalPower, z: dirZ * horizontalPower }, verticalPower);

@@ -5,7 +5,7 @@ export class flowerDashSkill extends skillBase {
     constructor() {
         super();
         this.id = "§5フラワーダッシュ";
-        this.cooldown = 30 * 20;
+        this.cooldown = 50 * 20;
     }
 
     execute(player) {
