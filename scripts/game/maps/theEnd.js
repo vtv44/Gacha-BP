@@ -6,7 +6,7 @@ export class theEnd extends mapBase {
         super()
 
         this.mapPos = [
-            {x: 2000, y: 26, z: 0},
+            {x: 2000, y: 14, z: 0},
             {x: 2127, y: 53, z: 127}
         ]
 

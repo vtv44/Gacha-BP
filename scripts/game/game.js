@@ -113,12 +113,11 @@ export class game {
         }
 
         const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
-        //if (players.length <= 1) {
-        //    world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
-        //    return
-        //}
+        if (players.length <= 1) {
+            world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
+            return
+        }
 
-        world.setDynamicProperty("game", true)
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
         gameInfo.setScore("§l§a残り時間", 620)
         gameInfo.setScore("§l§b残り人数", 0)
@@ -158,6 +157,10 @@ export class game {
                 players[i].addEffect("health_boost", 99999 * 20, {amplifier: this.health, showParticles: false})
             }
         }
+
+        system.runTimeout(() => {
+            world.setDynamicProperty("game", true)
+        }, 3 * 20)
 
         system.runTimeout(() => {
             world.gameRules.pvp = true
