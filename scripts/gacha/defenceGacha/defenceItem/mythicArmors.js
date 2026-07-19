@@ -16,7 +16,7 @@ export const mythicArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:iron_helmet",
+        id: "minecraft:diamond_helmet",
         name: "§dスーパースローヘルメット",
         lore: [
             "§d[スーパースロー！] §5装備",
@@ -29,7 +29,7 @@ export const mythicArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:iron_chestplate",
+        id: "minecraft:diamond_chestplate",
         name: "§dスーパーリジェネレーションチェストプレート",
         lore: [
             "§d[スーパーリジェネ！] §5装備",
@@ -42,7 +42,7 @@ export const mythicArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:iron_leggings",
+        id: "minecraft:diamond_leggings",
         name: "§dスーパージャンプレギンス",
         lore: [
             "§d[スーパージャンプ！] §5装備",
@@ -55,7 +55,7 @@ export const mythicArmors = [
     },
     {
         amount: 1,
-        id: "minecraft:iron_boots",
+        id: "minecraft:diamond_boots",
         name: "§dスーパースピードブーツ",
         lore: [
             "§d[スーパースピード！] §5装備",

@@ -22,4 +22,13 @@ export const specialArmors = [
             {id: "unbreaking", level: 3}
         ]
     },
+    {
+        amount: 1,
+        id: "gacha:oto",
+        name: "§4ピアノ",
+        lore: [
+            "§d[華麗な音楽] §5常時",
+            "§510秒に一回周りのプレイヤーに音で攻撃する"
+        ],
+    },
 ]
