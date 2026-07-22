@@ -7,6 +7,7 @@ import { mapBase } from "./maps/mapBase"
 import { school } from "./maps/school"
 import { discardMount } from "./maps/discardMount"
 import { factory } from "./maps/factory"
+import { forms } from "./forms"
 
 export class game {
 
@@ -113,10 +114,10 @@ export class game {
         }
 
         const players = dimension.getPlayers({scoreOptions: [{objective: "team"}]})
-        if (players.length <= 1) {
-            world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
-            return
-        }
+        //if (players.length <= 1) {
+        //    world.sendMessage(`§cチームが決定されているプレイヤーが一人のため、ゲームを開始できません`)
+        //    return
+        //}
 
         world.scoreboard.setObjectiveAtDisplaySlot("Sidebar", {objective: gameInfo})
         gameInfo.setScore("§l§a残り時間", 620)
@@ -268,6 +269,36 @@ export class game {
         }
     }
 
+    static teamAddTag(result, player) {
+        const teamObject = world.scoreboard.getObjective("team")
+        
+        switch(result) {
+            case 1: 
+                teamObject.setScore(player, 1)
+                player.addTag("red")
+                break;
+
+            case 2:
+                teamObject.setScore(player, 2)
+                player.addTag("blue")
+                break;
+
+            case 3:
+                teamObject.setScore(player, 3)
+                player.addTag("yellow")
+                break;
+
+            case 4:
+                teamObject.setScore(player, 4)
+                player.addTag("green")
+                break;
+            
+            default:
+                console.log(`game.js teamAddTag() にて1～4以外の数字が入力されました ${player.name}`)
+                break;
+        }
+    }
+
     static teamSelect() {
         const dimension = world.getDimension("overworld")
         const players = dimension.getPlayers()
@@ -279,21 +310,17 @@ export class game {
             teamObject.setScore(players[i], i + 5)
 
             const block = dimension.getBlock(location).below()
-            if (block.typeId === "minecraft:red_wool") {
-                teamObject.setScore(players[i], 1)
-                players[i].addTag("red")
-            }
-            if (block.typeId === "minecraft:blue_wool") {
-                teamObject.setScore(players[i], 2)
-                players[i].addTag("blue")
-            }
-            if (block.typeId === "minecraft:lime_wool") {
-                teamObject.setScore(players[i], 3)
-                players[i].addTag("green")
-            }
-            if (block.typeId === "minecraft:yellow_wool") {
-                teamObject.setScore(players[i], 4)
-                players[i].addTag("yellow")
+            if (block.typeId === "minecraft:red_wool") this.teamAddTag(1, players[i])
+
+            if (block.typeId === "minecraft:blue_wool") this.teamAddTag(2, players[i])
+
+            if (block.typeId === "minecraft:lime_wool") this.teamAddTag(3, players[i])
+
+            if (block.typeId === "minecraft:yellow_wool") this.teamAddTag(4, players[i])
+
+            if (block.typeId === "minecraft:white_wool") {
+                const rand = Math.floor(Math.random() * 4) + 1
+                this.teamAddTag(rand, players[i])
             }
         }
     }
@@ -443,12 +470,32 @@ export class game {
                 }
             }
 
-            for (const p of world.getAllPlayers()) {
-                p.addTag("area_damage")
-            }
-
             gameInfo.addScore("§l§a残り時間", -1)
 
+            for (const p of world.getAllPlayers()) {
+                p.addTag("area_damage")
+
+                const dir = p.getViewDirection()
+                const y = dir.y
+
+                if (y > 0.985 && !p.hasTag("showing_form") && p.getGameMode() === GameMode.Spectator) {
+                    p.addTag("showing_form")
+
+                    forms.gamePlayers().show(p).then((res) => {
+
+                        system.runTimeout(() => {
+                            p.removeTag("showing_form")
+                        }, 10)
+
+                        if (res.canceled) return
+
+                        const t = this.gameJoinPlayers[res.selection]
+                        if (!this.testJoinGame(t)) return
+
+                        p.teleport(t.location)
+                    })
+                }
+            }
         } else {
             const players = world.getAllPlayers()
             const coinScore = world.scoreboard.getObjective("coin")
@@ -457,7 +504,7 @@ export class game {
                 const coin = coinScore ? (coinScore.getScore(p) ?? 0) : 0
                 p.onScreenDisplay.setActionBar(`§l現在の所持コイン: §e${coin}`)
 
-                p.addEffect("speed", 30 * 20, {amplifier: 2, showParticles: false})
+                p.addEffect("speed", 10 * 20, {amplifier: 2, showParticles: false})
             }
         }
     }

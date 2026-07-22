@@ -30,8 +30,8 @@ export class magicRevolverSkill extends skillBase {
             dimension.spawnParticle("gacha:magic_revolver_smoke", atkPos)
             const targets = this.getTargets(player, atkPos, 2)
             for (const target of targets) {
-                target.applyDamage(10, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
-                target.setOnFire(6)
+                target.applyDamage(7, {damagingEntity: player, cause: EntityDamageCause.entityAttack})
+                target.setOnFire(4)
             }
         }
 
@@ -45,7 +45,9 @@ export class magicRevolverSkill extends skillBase {
         if (useCount >= 6) {
             player.playSound("random.fizz", {pitch: 1, volume: 0.8})
             magicRevolverSkill.counter.set(player.id, 0)
-            player.applyDamage(1, {damagingEntity: player, cause: EntityDamageCause.none})
+            player.applyDamage(4, {damagingEntity: player, cause: EntityDamageCause.selfDestruct})
+            player.addEffect("slowness", this.cooldown / 2, {amplifier: 1})
+            player.addEffect("blindness", 30)
             this.onCooldown(player)
             return
         }

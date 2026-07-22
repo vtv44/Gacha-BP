@@ -41,7 +41,19 @@ export class forms {
         .button("ゲーム開始")
         .button("ゲーム設定")
         .button("チーム決定")
+        .button("チーム決定(ランダム)")
         .button("ゲームリセット")
+
+        return form
+    }
+
+    static gamePlayers() {
+        const form = new ActionFormData()
+        .title("ゲーム中のプレイヤー")
+
+        for (const p of game.gameJoinPlayers) {
+            form.button(p.name)
+        }
 
         return form
     }

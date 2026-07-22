@@ -157,6 +157,7 @@ export class commandFunctions {
                     case 0:
                         game.gameStart()
                         break
+
                     case 1:
                         forms.gameSettingForm().show(player).then((res) => {
                             if (res.canceled) return {
@@ -189,6 +190,7 @@ export class commandFunctions {
                             world.sendMessage(`§lゲーム設定が変更されました`)
                         })
                         break
+
                     case 2:
                         game.teamClear()
                         game.teamSelect()
@@ -213,7 +215,26 @@ export class commandFunctions {
                             p.playSound("random.levelup", {pitch: 0.5, volume: 0.7})
                         }
                         break
+
                     case 3:
+                        game.teamClear()
+
+                        players.push(players.shift())
+                        const length = players.length
+
+                        for (let i = 0; i <= length - 1; i++) {
+                            game.teamAddTag((i % 4) + 1, players[i])
+                        }
+
+                        const redTeam2 = game.getTeam(1).map(p => p.name).join("§f, §c")
+                        const blueTeam2 = game.getTeam(2).map(p => p.name).join("§f, §b")
+                        const greenTeam2 = game.getTeam(3).map(p => p.name).join("§f, §a")
+                        const yellowTeam2 = game.getTeam(4).map(p => p.name).join("§f, §e")
+
+                        world.sendMessage(`§l§c赤: ${redTeam2}\n§b青: ${blueTeam2}\n§a緑: ${greenTeam2}\n§e黄: ${yellowTeam2}`)
+                        break
+
+                    case 4:
                         game.gameReset()
                         break
                 }
